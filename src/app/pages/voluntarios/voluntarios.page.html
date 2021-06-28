@@ -1,0 +1,21 @@
+<ion-list >
+  <ion-item>
+    <ion-avatar slot="start">
+      <ion-icon name="person-outline"></ion-icon>
+    </ion-avatar>
+    <ion-label>
+      <h2>xd</h2>
+      <ion-button text-left (click)="navigateDetails(item)" fill="clear">
+        View Profile
+      </ion-button>
+    </ion-label>
+    <div class="end-slot" slot="end">
+      <ion-button fill="clear" *ngIf="item.isClaimed">
+        <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon> Claimed
+      </ion-button>
+      <ion-button color="success" *ngIf="!item.isClaimed" (click)="navigateDetails(item)">
+        Claim
+      </ion-button>
+    </div>
+  </ion-item>
+</ion-list> 

@@ -1,0 +1,16 @@
+  
+
+  ion-tab-bar{
+    height:60px;
+    font-size: 20px;
+    --background: rgba(0, 0, 0, 0.468);
+    bottom: 0;
+  }
+  
+  .tabs-icon{
+    font-size: 35px;
+  }
+
+  ion-tab-button{
+    --background: rgba(0, 0, 0, 0.468);
+  }

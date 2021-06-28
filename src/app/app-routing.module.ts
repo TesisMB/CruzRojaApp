@@ -1,10 +1,11 @@
+import { AlertasPage } from './pages/alertas/alertas.page';
+import { RoleName } from './models/RoleName';
 import { AuthGuard } from './guards/auth.guard';
-import { AutoLoginGuard } from './guards/auto-login.guard';
-import { LoginPage } from './components/login/login.page';
+import { LoginPage } from './pages/login/login.page';
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes, CanLoad } from '@angular/router';
-import { HomePage } from './components/home/home.page';
-import { ChatPage } from './components/chat/chat.page';
+import { PreloadAllModules, RouterModule, Routes, CanLoad, CanActivate } from '@angular/router';
+import { HomePage } from './pages/home/home.page';
+import { ChatPage } from './pages/chat/chat.page';
 
 
 const routes: Routes = [
@@ -16,30 +17,37 @@ const routes: Routes = [
 
   {
     path: 'login',
-    component: LoginPage
+    component: LoginPage,
   },
  
   {
     path: 'home',
-    component: HomePage
+    component: HomePage,
+    canActivate: [AuthGuard]
   },
-  
+
   {
     path: 'alertas',
-    loadChildren: () => import('./components/alertas/alertas.module').then( m => m.AlertasPageModule)
+    loadChildren: () => import('./pages/alertas/alertas.module').then( m => m.AlertasPageModule),
+    canActivate: [AuthGuard],
+    data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.Voluntario, RoleName.CEyD]}
   },
 
   {
     path: 'voluntarios',
-    loadChildren: () => import('./components/voluntarios/voluntarios.module').then( m => m.VoluntariosPageModule)
+    loadChildren: () => import('./pages/voluntarios/voluntarios.module').then( m => m.VoluntariosPageModule),
+    canActivate: [AuthGuard],
+    data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.CEyD]}
   },
 
   {
     path: 'chat',
-    component: ChatPage
+    component: ChatPage,
+    canActivate: [AuthGuard],
+    data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.Voluntario, RoleName.CEyD]}
   },
 
-
+  //Redirecciona a un 404
   {
     path: '**',
     redirectTo: ''

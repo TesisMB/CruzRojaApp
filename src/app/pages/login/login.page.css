@@ -1,19 +1,4 @@
 
-.head {
-    justify-content: center;
-    align-self: center;
-    position: relative;
-    top: 30px;
-    margin-bottom: 10px;
-  }
-  
-  .img {
-    height: 50px;
-    width: 50px;
-    position: relative;
-    top: -50px;
-    left: 20px;
-  }
   
   h1 {
     color: #fff;
@@ -21,34 +6,39 @@
     top: 50px;
     font-size: 25px;
   }
-  
-  .Container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: 120px;
-  }
-  
+
   h2 {
     font-size: 40px;
   }
 
-  /*
-    Ionic CSS - Login 
-  */
+  .img {
+    height: 120px;
+    width: 120px;
+    position: static;
+  }
 
-  .login-ion-item{
+  ion-item{
     border-color: rgba(0, 0, 0, 0);
     background-color: transparent;
     color: white; 
   }
 
-  .login-ion-icon {
+  ion-input{
+    border-color: rgba(0, 0, 0, 0);
+    background-color: transparent;
+    color: white; 
+  }
+
+  hr {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;}
+
+  ion-icon {
     font-size: 100px;
   }
 
-  .login-ion-label{
+  ion-label{
     font-weight: bold
   }
 
