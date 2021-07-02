@@ -1,5 +1,6 @@
+import { CurrentUser } from './models/CurrentUser';
 import { filter, takeUntil } from 'rxjs/operators';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { NavigationEnd, Router } from '@angular/router';
 import { LoginService } from './services/login.service';
@@ -9,24 +10,30 @@ import { Subject } from 'rxjs';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy{
   closed$ = new Subject<any>();
-  showTabs = true; // <-- show tabs by default
+  showTabs: CurrentUser; // <-- show tabs by default
+  handler: any;
   constructor(
     private router: Router,
     private platform: Platform,
     private loginService: LoginService) {
     }
 
+    
     ngOnInit() {
-      this.router.events.pipe(
+      this.handler = this.loginService.currentUserObs.subscribe(
+      (data: CurrentUser) =>{ 
+        this.showTabs = data;
+      });
+      /* this.router.events.pipe(
         filter(e => e instanceof NavigationEnd),
         takeUntil(this.closed$)
       ).subscribe(event => {
-        if (event['url'] === '/login') {
-          this.showTabs = false; // <-- hide tabs on specific pages
+        if (event['url'] !== '/login') {
+          this.showTabs = true; // <-- hide tabs on specific pages
         }
-      });
+      });*/
     }
     
     ngOnDestroy() {
