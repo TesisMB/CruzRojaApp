@@ -1,33 +1,36 @@
 <ion-content color="danger" enctype="application/json" padding>
-  <form [formGroup]="credentials" (ngSubmit)="login(credentials)">
-    <ion-grid>
-      <ion-row color="danger" class="ion-justify-content-center">
-        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div class="ion-text-center">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <img class="img" src="https://1.bp.blogspot.com/-XnYaCR8Oah4/XwzTOABWn3I/AAAAAAAABaY/-EyDoHPCIIQ6EAloBqlxoLnmyXWUu2DmwCLcBGAsYHQ/s320/cruzar.png">
-            <h2>SICREYD</h2>
-          </div>
-          <div class="form-group" padding>
+  <div>
+    <form [formGroup]="credentials" (ngSubmit)="onSubmit()">
+      <ion-grid>
+        <ion-row color="danger" class="ion-justify-content-center">
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+            <div class="ion-text-center">
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <img class="img" src="https://1.bp.blogspot.com/-XnYaCR8Oah4/XwzTOABWn3I/AAAAAAAABaY/-EyDoHPCIIQ6EAloBqlxoLnmyXWUu2DmwCLcBGAsYHQ/s320/cruzar.png">
+             <h2>SICREYD</h2>
+             </div>
+            <div class="form-group" padding>
 
-            <ion-item>
-              <ion-label position="fixed">Dni</ion-label>
-              <ion-input formControlName="UserDni" name="dni" type="text" required></ion-input>
-            </ion-item>
-            <ion-item >
+              <ion-item>
+                <ion-label position="fixed">Dni</ion-label>
+                <ion-input formControlName="UserDni" name="dni" type="text" required></ion-input>
+              </ion-item>
+
+              <ion-item >
               <ion-label position="fixed">Contraseña</ion-label>
               <ion-input formControlName="UserPassword" name="passWord" type="password" required></ion-input>
-            </ion-item>
-          </div>
-          <div class="ion-text-end" text-center padding>
-            <button ion-button type="submit" (click)="showLoading()" [disabled]="!credentials.valid" [routerLink]="['/menu']">Ingresar</button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
+              </ion-item>
+            </div>
+            <div class="ion-text-end" text-center padding>
+            <button id="button" ion-button type="submit" [disabled]="!credentials.valid">Ingresar</button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
 </ion-content>

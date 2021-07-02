@@ -3,7 +3,7 @@ import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
-import { BehaviorSubject, Observable, from } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -31,10 +31,10 @@ export class LoginService {
     return this.currentUserSubject.value;
   }
 
-  login(userDni:string, userPassword:string): Observable<any> {
+  login(userDni:string, userPassword:string){
     //Se hace el post a los atributos
-    return this.http.post(environment.apiURL + this.apiURL,{ userDni, userPassword})
-    .pipe(map((user: CurrentUser)=> 
+    return this.http.post(environment.apiURL + this.apiURL,{userDni, userPassword})
+    .pipe(map((user: any)=> 
       {
         if(user && user.token){
           localStorage.setItem('currentUser', JSON.stringify(user));
@@ -43,11 +43,7 @@ export class LoginService {
         }
           return user;
       })
-    )
-  }
-
-  isAuthenticated() {
-    return this.authState.value;
+    );
   }
 
   logout() {

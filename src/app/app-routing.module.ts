@@ -28,7 +28,7 @@ const routes: Routes = [
 
   {
     path: 'alertas',
-    loadChildren: () => import('./pages/alertas/alertas.module').then( m => m.AlertasPageModule),
+    component: AlertasPage,
     canActivate: [AuthGuard],
     data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.Voluntario, RoleName.CEyD]}
   },

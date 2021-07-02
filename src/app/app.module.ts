@@ -1,3 +1,6 @@
+export function getToken() {
+  return localStorage.getItem('currentUser');
+}
 import { MenuPage } from './pages/menu/menu.page';
 import { AlertasPage } from './pages/alertas/alertas.page';
 import { LoginPage } from './pages/login/login.page';
@@ -9,8 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoginService} from './services/login.service' 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { ChatPage } from './pages/chat/chat.page';
 import { HomePage } from './pages/home/home.page';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -29,12 +31,13 @@ import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
     FormsModule,
     ReactiveFormsModule,
     IonicStorageModule.forRoot(), 
-    JwtModule.forRoot({}),
-    
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: getToken
+    } 
+    }),
 ],
   providers: [
-    LoginService, 
-    Storage,
     { 
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

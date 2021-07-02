@@ -1,38 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { Router } from '@angular/router';
-import { catchError } from 'rxjs/operators';
-
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent} from '@angular/common/http';
+import { Observable} from 'rxjs';
+import { LoginService } from '../services/login.service';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthInterceptorService implements HttpInterceptor{
 
-  constructor(private router: Router) { }
+  constructor(private authenticationService: LoginService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token: string = localStorage.getItem('token');
-
-    let request = req;
-
-    if (token) {
-      request = req.clone({
-        setHeaders: {
-          authorization: `Bearer ${ token }`
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        // Agrega al header la autentificacion con el jwt si el usuario fue loggeado y la api lo requiere.
+        const currentUser = this.authenticationService.currentUserValue;
+        const isLoggedIn = currentUser && currentUser.token;
+        const isApiUrl = request.url.startsWith(environment.apiURL);
+        if (isLoggedIn && isApiUrl) {
+            request = request.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${currentUser.token}`
+                }
+            });
+            
         }
-      });
-  }
-  return next.handle(request).pipe(
-    //El catch-error va a ser utilizado solo si el ingreso de los datos son invalidos
-    catchError((err: HttpErrorResponse) => {
-      if (err.status === 401) {
-        this.router.navigateByUrl('/login');
-      }
-      return throwError( err );
-  })
-  );
 
-  }
+        return next.handle(request);
+    }
 }
+
 

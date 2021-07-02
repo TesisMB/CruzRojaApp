@@ -23,8 +23,9 @@ export class LoginPage implements OnInit {
   constructor(
     private servicio: LoginService, 
     public toastCtrl: ToastController, 
-    private loadingCtrl: LoadingController,
+    //private loadingCtrl: LoadingController,
     private router: Router,
+
     private formBuilder: FormBuilder,
   ) 
     {
@@ -44,8 +45,9 @@ export class LoginPage implements OnInit {
   }
 
   get f() { return this.credentials.controls; }
-
-  async showLoading(){
+  
+  /* async showLoading(){
+  var button = document.getElementsByTagName("#button");
    let loading = await this.loadingCtrl.create({
       message: "Espere"
     });
@@ -53,7 +55,7 @@ export class LoginPage implements OnInit {
     setTimeout(()=>{
       loading.dismiss();
     }, 1000)
-   }
+   } */
 
   async FailToast(msg: string) {
    this.toastCtrl.dismiss();
@@ -65,24 +67,24 @@ export class LoginPage implements OnInit {
    toast.present();
  }
 
-  async onSubmit(){
-    const loading = await this.loadingCtrl.create();
-    await loading.present();
+  onSubmit(){
+    //const loading = await this.loadingCtrl.create();
+    //await loading.present();
 
     this.handler = this.servicio.login(this.f.UserDni.value, this.f.UserPassword.value)
     .subscribe(
-      async(res)=>{
-        await loading.dismiss();//////
+      res => {
+        console.log('entro');
         this.router.navigateByUrl('/home', { replaceUrl: true });
-        this.resultado = res;
-        console.log(res);
+        //await loading.dismiss();
       },
      
       error => {
               this.error = error;
               this.FailToast("Datos Incorrectos")
               console.log(error.message);
-              },  
-    )
+              }
+      
+    );
   }
 }

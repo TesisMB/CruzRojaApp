@@ -1,5 +1,5 @@
 import { RoleName } from './RoleName';
-export class CurrentUser 
+export interface CurrentUser 
 {
   id: number;
   userDni: string;
