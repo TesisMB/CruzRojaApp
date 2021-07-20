@@ -1,0 +1,19 @@
+
+/* Components de Ionic */
+
+ion-header{
+  --ion-header-color:#ffffff  !important;
+  color: rgb(255, 253, 253);
+}
+
+ion-list{
+  display: flex;
+  --ion-list-color:#ffffff  !important;
+  color: rgb(255, 253, 253);
+  margin-bottom: 15px;
+}
+
+ion-item{
+  --ion-card-color:#ffffff  !important;
+  color: rgb(255, 253, 253);
+}

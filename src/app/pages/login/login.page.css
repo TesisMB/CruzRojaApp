@@ -1,14 +1,8 @@
 
   
-  h1 {
-    color: #fff;
-    position: relative;
-    top: 50px;
-    font-size: 25px;
-  }
-
   h2 {
     font-size: 40px;
+    font-weight: bold;
   }
 
   .img {
@@ -17,141 +11,56 @@
     position: static;
   }
 
-  ion-item{
-    border-color: rgba(0, 0, 0, 0);
-    background-color: transparent;
-    color: white; 
+  .ion-div{
+    margin-top: 3rem;
   }
 
-  ion-input{
-    border-color: rgba(0, 0, 0, 0);
-    background-color: transparent;
-    color: white; 
+  .ixd{
+    box-shadow: 2px 2px 5px 8px rgba(0, 0, 0, 0.1);
   }
 
-  hr {
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;}
-
-  ion-icon {
-    font-size: 100px;
+  ion-item {
+    --ion-item-background: #bd2d2d;
+    color: rgb(255, 253, 253);
+    --border-color: #fffff;
   }
 
   ion-label{
-    font-weight: bold
+    font-weight: bold;
   }
 
-  .login-ion-background {
-    --ion-background-color:#bd2d2d
-    /*todo lo que se encuentra dentro del login */
-    width: 300px;
-    height: 400px;
-    position: relative;
-    background-color: #FF160C;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 15px;
-    padding: 0px 15px 0px 15px;
-    box-shadow: 0px 25px 36px 12px rgba(0, 0, 0, 0.51); /*sombra del login */
+  ion-content {
+    --ion-background-color:#bd2d2d !important;
+    border-radius: 25px;
     overflow: hidden;
   }
-  
-  .invalid-feedback {
-    color: #fff;
+  .form-input{
+    display: flex;
   }
   
-  .text .invalid-feedback {
-    color: #fff;
+  form{
+    margin-top: 6rem;
   }
-  
-  .icons{
-    margin: 0;
-    padding: 0;
-  }
-  
-  .material-icons {
-    /* Icono usado para poder visualizar la contraseña */
-    color: white;
-  }
-  
-  form input {
-    /*contraseña y el Dni */
-    width: 100%;
-    height: 50px;
-    padding-top: 20px;
-    color: white;
-    border: none;
-    background-color: #bd2d2d;
-    border-bottom: 2px solid white;
-    outline: none;
-  }
-  
-  .dni {
-    position: relative;
-    top: 20px;
-  }
-  
-  form label {
-    transform: translateY(-50px);
-    pointer-events: none;
-  }
-  
-  .contentDni {
-    position: absolute;
-    top: 45px;
-    right: 195px;
-    color: white;
-    transition: all 0.3s ease;
-  }
-  
-  .contentPassword {
-    position: absolute;
-    top: 45px;
-    right: 195px;
-    color: white;
-    transition: all 0.3s ease;
-  }
-  
-  form input:focus + .labelDni .contentDni,
-  form input:valid + .labelDni .contentDni {
-    transform: translateY(-100%);
-    font-size: 14px;
-    color: rgb(20, 20, 20);
-  }
-  
-  form input:focus + .labelPassword .contentPassword,
-  form input:valid + .labelPassword .contentPassword {
-    transform: translateY(-100%);
-    font-size: 14px;
-    color: rgb(20, 20, 20);
-  }
-  
+
   button {
     background-color: white;
     color: rgb(20, 20, 20);
-    width: 130px;
-    height: 40px;
+    width: 65%;
+    text-align: center;
+    font-weight: bold;
     border: none;
     border-radius: 8px;
-    display: flex;
-    align-self: center;
-    margin-top: 30px;
-    justify-content: center;
+    margin-top: 10px;
     font-size: 16px;
-    text-align: center;
-    outline: none;
-    cursor: pointer;
     transition: all 0.3s ease;
-    padding-top: 10px;
+    padding: 12px;
+  }
+
+  .buttonstyle{
+    display: 	flex; 
+    justify-content: center; 
+    align-items: center;
+    margin-top: 3rem;
   }
   
-  button:hover {
-    transform: translateY(5px);
-  }
-  
-  a:hover {
-    color: #fff;
-  }
   

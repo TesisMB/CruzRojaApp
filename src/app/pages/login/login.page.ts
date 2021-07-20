@@ -4,7 +4,7 @@ import { LoginService } from '../../services/login.service';
 import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',

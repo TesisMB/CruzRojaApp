@@ -1,36 +1,26 @@
-<ion-content enctype="application/json">
-  <div>
+<ion-content enctype="application/json" class="ion-margin-vertical">
+
     <form [formGroup]="credentials" (ngSubmit)="onSubmit()">
-      <ion-grid>
-        <ion-row color="danger" class="ion-justify-content-center">
-          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-            <div class="ion-text-center">
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <img class="img" src="https://1.bp.blogspot.com/-XnYaCR8Oah4/XwzTOABWn3I/AAAAAAAABaY/-EyDoHPCIIQ6EAloBqlxoLnmyXWUu2DmwCLcBGAsYHQ/s320/cruzar.png">
-             <h2>SICREYD</h2>
-            </div>
-            <div class="form-group">
 
-              <ion-item>
-                <ion-label position="fixed">Dni</ion-label>
-                <ion-input formControlName="UserDni" name="dni" type="text" required></ion-input>
-              </ion-item>
+      <div class="ion-text-center ixd">
+          <img class="img text-danger" src="https://1.bp.blogspot.com/-XnYaCR8Oah4/XwzTOABWn3I/AAAAAAAABaY/-EyDoHPCIIQ6EAloBqlxoLnmyXWUu2DmwCLcBGAsYHQ/s320/cruzar.png">
+          <h2>SICREYD</h2>
+      </div>
+      <div class ="ion-div">
+        <ion-item>
+            <ion-label position="fixed">Dni</ion-label>
+            <ion-input formControlName="UserDni" name="dni" type="text" required></ion-input>
+        </ion-item>
 
-              <ion-item >
-              <ion-label position="fixed">Contraseña</ion-label>
-              <ion-input formControlName="UserPassword" name="passWord" type="password" required></ion-input>
-              </ion-item>
-            </div>
-            <div class="ion-text-end" text-center>
-            <button id="button" ion-button type="submit" [disabled]="!credentials.valid">Ingresar</button>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+        <ion-item>
+          <ion-label position="fixed">Contraseña</ion-label>
+          <ion-input formControlName="UserPassword" name="passWord" type="password" required></ion-input>
+        </ion-item>
+
+        <div class="buttonstyle">
+          <button id="button" ion-button type="submit" [disabled]="!credentials.valid">Ingresar</button>
+       </div>
+    </div>
     </form>
-  </div>
+
 </ion-content>

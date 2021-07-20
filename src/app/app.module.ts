@@ -4,7 +4,7 @@ export function getToken() {
 import { MenuPage } from './pages/menu/menu.page';
 import { AlertasPage } from './pages/alertas/alertas.page';
 import { LoginPage } from './pages/login/login.page';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicModule} from '@ionic/angular';
 import { AppComponent } from './app.component';
@@ -37,6 +37,7 @@ import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
     } 
     }),
 ],
+schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { 
       provide: HTTP_INTERCEPTORS,
@@ -46,5 +47,6 @@ import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
     }
   ],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}
