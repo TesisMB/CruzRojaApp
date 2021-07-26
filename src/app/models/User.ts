@@ -1,6 +1,6 @@
 import {Person} from './index';
 export interface User {
-  userPerson: Person;
+  persons: Person;
   userDni: string;
   userID: number;
 

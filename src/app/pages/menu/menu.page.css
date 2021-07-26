@@ -3,14 +3,26 @@
   ion-tab-bar{
     height:60px;
     font-size: 20px;
-    --background: rgba(0, 0, 0, 0.468);
+    --background: rgba(0, 0, 0, 0.5);
     bottom: 0;
   }
   
+  ion-fab-button{
+    width: 45px;
+    height: 45px;
+    --background: rgba(255, 255, 255, 0.5);
+  }
+
+  ion-fab{
+    margin-top: 1.4rem;
+  }
+
+  ion-tab-button{
+    --background: rgba(0, 0, 0, 0.5);
+  }
+
   .tabs-icon{
     font-size: 35px;
   }
 
-  ion-tab-button{
-    --background: rgba(0, 0, 0, 0.468);
-  }
+  

@@ -20,7 +20,6 @@ export class AppComponent implements OnInit, OnDestroy{
     private loginService: LoginService) {
     }
 
-    
     ngOnInit() {
       this.handler = this.loginService.currentUserObs.subscribe(
       (data: CurrentUser) =>{ 

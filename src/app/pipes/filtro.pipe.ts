@@ -5,16 +5,18 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FiltroPipe implements PipeTransform {
 
-  transform(volunteers: Volunteer[], texto: string): Volunteer[] {
-    if(texto.length == 0){
+  transform(
+    volunteers: Volunteer[], 
+    texto: string): Volunteer[] 
+    {
+    console.log(volunteers);
+    if(texto === ''){
       {return volunteers;}
     }
-      texto = texto.toLocaleLowerCase();
+      texto = texto.toLowerCase();
       volunteers.filter(volunteer =>{
-        return volunteer.users.userPerson.firstName.toLowerCase().includes(texto)
-             ||volunteer.users.userPerson.lastName.toLowerCase().includes(texto);
+        return volunteer.users.persons.firstName.toLowerCase().includes(texto)
+             ||volunteer.users.persons.lastName.toLowerCase().includes(texto);
       });
-    
+    }   
   }
-
-}

@@ -21,35 +21,34 @@ export class VoluntariosPage implements OnInit {
 
   constructor(
     public http: HttpClient,
-  ) { 
-    this.volunteerService();
-  }
-
-  ngOnInit() {
+  ) {
     
   }
 
+  ngOnInit() {
+    this.volunteerService();
+  }
+
   search(event: any){
-    const texto = event.target.value;
-    this.textoBuscar = texto;
-    console.log(texto);
+    this.textoBuscar = event.target.value;
+    console.log(this.textoBuscar);
   }
 
   volunteerService(){
-    return this.http.get(environment.apiURL + this.apiUrl).subscribe((volunteers: Volunteer[]) =>{
-      this.volunteers = volunteers;
-      console.log(typeof this.volunteers);
+    return this.http.get<Volunteer[]>(environment.apiURL + this.apiUrl).subscribe(x =>{
+      console.log(x);
+      this.volunteers = x;
     });
   }
 
   chat(){
     console.log("test");
+    //Utilizo el método "close sliding Items" para que cierre el slide cuando se clickee a otra parte 
     this.lista.closeSlidingItems();
   }
 
   borrar(){
     console.log("test");
-    this.lista.closeSlidingItems();
   }
 
 }

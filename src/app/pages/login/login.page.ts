@@ -2,7 +2,6 @@ import { CurrentUser } from './../../models/CurrentUser';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { ToastController } from '@ionic/angular';
-import { LoadingController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -19,13 +18,11 @@ export class LoginPage implements OnInit {
   error: any = "";
   resultado: any;
   data: string;
-
+  loading: any;
   constructor(
     private servicio: LoginService, 
     public toastCtrl: ToastController, 
-    //private loadingCtrl: LoadingController,
     private router: Router,
-
     private formBuilder: FormBuilder,
   ) 
     {
@@ -45,17 +42,6 @@ export class LoginPage implements OnInit {
   }
 
   get f() { return this.credentials.controls; }
-  
-  /* async showLoading(){
-  var button = document.getElementsByTagName("#button");
-   let loading = await this.loadingCtrl.create({
-      message: "Espere"
-    });
-    loading.present();
-    setTimeout(()=>{
-      loading.dismiss();
-    }, 1000)
-   } */
 
   async FailToast(msg: string) {
    this.toastCtrl.dismiss();

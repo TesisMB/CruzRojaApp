@@ -10,20 +10,26 @@
   <ion-toolbar no-border>
     <ion-searchbar 
     placeholder="Buscar usuario..."
-    animated 
+    animated
     (ionChange)="search($event)"></ion-searchbar>
   </ion-toolbar>
 </div>
 
 <ion-content>
+  
   <ion-list #lista>
-    <ion-item-sliding *ngFor="let volunteer of volunteers | filtro: textoBuscar" >
+    <ion-item-sliding *ngFor="let volunteer of volunteers | filtro: textoBuscar">
+
       <ion-item>
-        <ion-label>{{volunteer.volunteerAvatar}}</ion-label>
-        <ion-label> <h3>Nombre y Apellido:</h3> <p>{{volunteer.users.persons.firstName}} {{volunteer.users.persons.lastName}}</p></ion-label>
-        <ion-label> <h3>Capacitación:</h3> <p>{{volunteer.volunteerSkills}}</p></ion-label>
+        <div>
+          <ion-label id="avatar">{{volunteer.volunteerAvatar}}</ion-label>
+          <ion-label> <h3>Nombre y Apellido:</h3> <p>{{volunteer.users.persons.firstName}} {{volunteer.users.persons.lastName}}</p></ion-label>
+        </div>
+          <ion-label id="capacitacion"> <h3>Capacitación:</h3> <p>{{volunteer.volunteerSkills}}</p></ion-label>
       </ion-item>
+
       <!--Agregando los íconos-->
+      
       <ion-item-options side="start">
         <ion-item-option color="success" name="archive" expandable>
           <ion-icon slot="icon-only" class="icons" name="chatbubbles"></ion-icon>
@@ -36,6 +42,6 @@
         </ion-item-option>
       </ion-item-options>
 
-      </ion-item-sliding>
-    </ion-list>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

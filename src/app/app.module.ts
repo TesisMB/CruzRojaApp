@@ -1,6 +1,8 @@
+
 export function getToken() {
   return localStorage.getItem('currentUser');
 }
+import { PipesModule } from './pipes/pipes.module';
 import { MenuPage } from './pages/menu/menu.page';
 import { AlertasPage } from './pages/alertas/alertas.page';
 import { LoginPage } from './pages/login/login.page';
@@ -29,6 +31,7 @@ import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
     AppRoutingModule, 
     NgbModule, 
     FormsModule,
+    PipesModule,
     ReactiveFormsModule,
     IonicStorageModule.forRoot(), 
     JwtModule.forRoot({
