@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent} from '@angular/common/http';
 import { Observable} from 'rxjs';
@@ -21,7 +22,7 @@ export class AuthInterceptorService implements HttpInterceptor{
                     Authorization: `Bearer ${currentUser.token}`
                 }
             });
-            
+
         }
 
         return next.handle(request);

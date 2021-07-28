@@ -14,15 +14,16 @@ export class VoluntariosPage implements OnInit {
   volunteers: Volunteer[] = [];
   skills: Skills[] = [];
   textoBuscar = '';
-  apiUrl = "/app/Volunteers"
+  apiUrl = '/app/Volunteers';
 
   //Permite llamar cualquier metodo del componente
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('lista') lista: IonList;
 
   constructor(
     public http: HttpClient,
   ) {
-    
+
   }
 
   ngOnInit() {
@@ -42,13 +43,13 @@ export class VoluntariosPage implements OnInit {
   }
 
   chat(){
-    console.log("test");
-    //Utilizo el método "close sliding Items" para que cierre el slide cuando se clickee a otra parte 
+    console.log('test');
+    //Utilizo el método "close sliding Items" para que cierre el slide cuando se clickee a otra parte
     this.lista.closeSlidingItems();
   }
 
   borrar(){
-    console.log("test");
+    console.log('test');
   }
 
 }

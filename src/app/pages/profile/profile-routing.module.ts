@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ProfilePage
+  },
+  {
+    path: 'cuenta',
+    loadChildren: () => import('./subpages/cuenta/cuenta.module').then( m => m.CuentaPageModule)
   }
 ];
 

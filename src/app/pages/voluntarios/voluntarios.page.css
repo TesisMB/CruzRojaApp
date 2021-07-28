@@ -10,3 +10,14 @@ ion-list{
   --ion-list-color:#ffffff  !important;
   color: rgb(255, 253, 253);
 }
+
+#capacitacion{
+  margin-top: 13px;
+  margin-left: 1rem;
+
+}
+
+#lista{
+  font-size: 12px;
+}
+

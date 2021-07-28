@@ -1,5 +1,5 @@
 <div>
-   <ion-header color="white">  
+   <ion-header color="white">
     <ion-toolbar>
     <ion-title color="white">Voluntarios</ion-title>
    </ion-toolbar>
@@ -8,7 +8,7 @@
 
 <div>
   <ion-toolbar no-border>
-    <ion-searchbar 
+    <ion-searchbar
     placeholder="Buscar usuario..."
     animated
     (ionChange)="search($event)"></ion-searchbar>
@@ -16,20 +16,26 @@
 </div>
 
 <ion-content>
-  
+
   <ion-list #lista>
     <ion-item-sliding *ngFor="let volunteer of volunteers | filtro: textoBuscar">
 
-      <ion-item>
-        <div>
-          <ion-label id="avatar">{{volunteer.volunteerAvatar}}</ion-label>
+      <ion-item >
+        <ion-avatar>
+          <ion-label >{{volunteer.volunteerAvatar}}</ion-label>
+        </ion-avatar>
           <ion-label> <h3>Nombre y Apellido:</h3> <p>{{volunteer.users.persons.firstName}} {{volunteer.users.persons.lastName}}</p></ion-label>
-        </div>
-          <ion-label id="capacitacion"> <h3>Capacitación:</h3> <p>{{volunteer.volunteerSkills}}</p></ion-label>
+        <ion-label id="capacitacion">
+          <h3>Capacitación: </h3>
+            <ul id="lista" *ngFor="let skills of volunteer['volunteersSkills']">
+                {{skills['skills']['skillName']}}
+            </ul>
+        </ion-label>
+
       </ion-item>
 
       <!--Agregando los íconos-->
-      
+
       <ion-item-options side="start">
         <ion-item-option color="success" name="archive" expandable>
           <ion-icon slot="icon-only" class="icons" name="chatbubbles"></ion-icon>
@@ -37,7 +43,7 @@
       </ion-item-options>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="borrar(user)" color="danger" name="delete">
+        <ion-item-option (click)="borrar()" color="danger" name="delete">
           <ion-icon slot="icon-only" class="icons" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>

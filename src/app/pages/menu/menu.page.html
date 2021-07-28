@@ -1,27 +1,27 @@
-<ion-fab horizontal="end">
-  <ion-fab-button>
-    <ion-icon name="person-outline"></ion-icon>
+<ion-fab horizontal='end'>
+  <ion-fab-button routerLink='profile'>
+    <ion-icon name='person-outline'></ion-icon>
   </ion-fab-button>
 </ion-fab>
 
-<ion-tabs> 
+<ion-tabs>
   <ion-tab-bar id="tabs" slot="bottom">
-    <ion-tab-button tab="home" (click)="home">
+    <ion-tab-button tab="home">
       <ion-icon class="tabs-icon" name="home-outline"></ion-icon>
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="alertas" (click)="alertas">
+    <ion-tab-button tab="alertas">
       <ion-icon class="tabs-icon" name="warning-outline"></ion-icon>
       <ion-label>Alertas</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="voluntarios" (click)="voluntarios">
+    <ion-tab-button tab="voluntarios">
       <ion-icon class="tabs-icon" name="person-outline"></ion-icon>
       <ion-label>Voluntarios</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="chat" (click)="chat">
+    <ion-tab-button tab="chat">
       <ion-icon class="tabs-icon" name="chatbubbles-outline"></ion-icon>
       <ion-label>Chat</ion-label>
     </ion-tab-button>

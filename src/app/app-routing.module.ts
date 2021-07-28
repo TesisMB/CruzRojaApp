@@ -3,9 +3,10 @@ import { RoleName } from './models/RoleName';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginPage } from './pages/login/login.page';
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes, CanLoad, CanActivate } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './pages/home/home.page';
 import { ChatPage } from './pages/chat/chat.page';
+import { ProfilePage } from './pages/profile/profile.page';
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginPage,
   },
- 
+
   {
     path: 'home',
     component: HomePage,
@@ -47,15 +48,17 @@ const routes: Routes = [
     data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.Voluntario, RoleName.CEyD]}
   },
 
+  {
+    path: 'profile',
+    component: ProfilePage,
+  },
+
   //Redirecciona a un 404
   {
     path: '**',
     redirectTo: ''
   },
-  {
-    path: 'profile',
-    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
-  }
+
 ];
 
 @NgModule({
