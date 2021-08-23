@@ -5,5 +5,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-card id="card" *ngFor="let alert of alerts; index as i" [ngStyle]="{backgroundColor: getColor(alert.alertDegree)}">
+      <ion-thumbnail>
 
+      </ion-thumbnail>
+      <ion-label><h3>Mensaje: {{alert.alertMessage}}</h3></ion-label>
+      <ion-label><h3>Fecha - Hora: </h3></ion-label>
+    </ion-card>
+  </ion-list>
 </ion-content>

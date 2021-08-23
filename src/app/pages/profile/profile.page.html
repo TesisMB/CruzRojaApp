@@ -1,35 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
+  <ion-icon button id="user"name="person-circle-outline"></ion-icon>
     <ion-list>
       <div>
-      <ion-item>
-        <h3>
+      <ion-item button routerLink='Cuenta'>
+        <h2>
           <ion-icon name="settings-outline"></ion-icon>
           Configuración
-        </h3>
-      </ion-item>
+        </h2>      </ion-item>
     </div>
 
   <div>
-    <ion-item>
+    <ion-item button>
       <ion-icon name="help-outline"></ion-icon>
-        <h3>
+        <h2>
           Ayuda
-        </h3>
+        </h2>
     </ion-item>
   </div>
 
   <div>
-    <ion-item click="logOutLogin()">
+    <ion-item button click="logOut()">
       <ion-icon name="log-out-outline"></ion-icon>
-      <h3>
+      <h2>
         Cerrar Sesión
-      </h3>
+      </h2>
     </ion-item>
   </div>
   </ion-list>

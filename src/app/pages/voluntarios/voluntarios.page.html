@@ -1,3 +1,4 @@
+<ion-router-outlet>
 <div>
    <ion-header color="white">
     <ion-toolbar>
@@ -18,20 +19,15 @@
 <ion-content>
 
   <ion-list #lista>
-    <ion-item-sliding *ngFor="let volunteer of volunteers | filtro: textoBuscar">
+    <ion-item-sliding (click)="presentPopOver" *ngFor="let volunteer of volunteers | filtro: textoBuscar">
 
-      <ion-item >
+      <ion-item routerLink='details'>
         <ion-avatar>
-          <ion-label >{{volunteer.volunteerAvatar}}</ion-label>
-        </ion-avatar>
-          <ion-label> <h3>Nombre y Apellido:</h3> <p>{{volunteer.users.persons.firstName}} {{volunteer.users.persons.lastName}}</p></ion-label>
-        <ion-label id="capacitacion">
-          <h3>Capacitación: </h3>
-            <ul id="lista" *ngFor="let skills of volunteer['volunteersSkills']">
-                {{skills['skills']['skillName']}}
-            </ul>
-        </ion-label>
+          <ion-img>
 
+          </ion-img>
+        </ion-avatar>
+          <ion-label> Nombre y Apellido:{{volunteer.users.persons.firstName}} {{volunteer.users.persons.lastName}}</ion-label>
       </ion-item>
 
       <!--Agregando los íconos-->
@@ -50,4 +46,6 @@
 
     </ion-item-sliding>
   </ion-list>
+
 </ion-content>
+</ion-router-outlet>

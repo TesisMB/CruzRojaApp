@@ -9,15 +9,15 @@
       <div class ="ion-div">
         <ion-item>
             <ion-label position="fixed">Dni</ion-label>
-            <ion-input formControlName="UserDni" name="dni" type="text" required></ion-input>
+            <ion-input formControlName="UserDni" name="dni" type="text" [maxlength] required></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="fixed">Contraseña</ion-label>
-          <ion-input formControlName="UserPassword" name="passWord" type="password" required></ion-input>
+          <ion-input formControlName="UserPassword" name="passWord" type="password" [minlength] [maxlength] required></ion-input>
         </ion-item>
 
-        <div class="buttonstyle">
+       <div class="buttonstyle">
           <button click="showLoading()" ion-button type="submit" [disabled]="!credentials.valid">Ingresar</button>
        </div>
        <span class="ion-text-center">¿Has olvidado tu contraseña?</span>

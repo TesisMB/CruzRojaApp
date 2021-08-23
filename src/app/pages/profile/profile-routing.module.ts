@@ -1,3 +1,4 @@
+import { CuentaPage } from './subpages/cuenta/cuenta.page';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -6,11 +7,13 @@ import { ProfilePage } from './profile.page';
 const routes: Routes = [
   {
     path: '',
-    component: ProfilePage
-  },
-  {
-    path: 'cuenta',
-    loadChildren: () => import('./subpages/cuenta/cuenta.module').then( m => m.CuentaPageModule)
+    component: ProfilePage,
+    children: [
+      {
+        path: 'cuenta',
+        component: CuentaPage
+      }
+    ]
   }
 ];
 

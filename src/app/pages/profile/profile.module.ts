@@ -1,3 +1,4 @@
+import { CuentaPage } from './subpages/cuenta/cuenta.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,9 @@ import { ProfilePage } from './profile.page';
     IonicModule,
     ProfilePageRoutingModule
   ],
-  declarations: [ProfilePage]
+  declarations: [
+    ProfilePage,
+    CuentaPage
+  ]
 })
 export class ProfilePageModule {}

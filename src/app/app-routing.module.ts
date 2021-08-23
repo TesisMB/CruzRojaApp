@@ -8,7 +8,6 @@ import { HomePage } from './pages/home/home.page';
 import { ChatPage } from './pages/chat/chat.page';
 import { ProfilePage } from './pages/profile/profile.page';
 
-
 const routes: Routes = [
   {
     path: '',

@@ -1,5 +1,5 @@
 
-  
+
   h2 {
     font-size: 40px;
     font-weight: bold;
@@ -37,7 +37,7 @@
   .form-input{
     display: flex;
   }
-  
+
   form{
     margin-top: 6rem;
   }
@@ -57,10 +57,10 @@
   }
 
   .buttonstyle{
-    display: 	flex; 
-    justify-content: center; 
+    display: 	flex;
+    justify-content: center;
     align-items: center;
     margin-top: 3rem;
   }
-  
-  
+
+

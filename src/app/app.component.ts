@@ -1,3 +1,4 @@
+/* eslint-disable no-trailing-spaces */
 import { CurrentUser } from './models/CurrentUser';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
     ngOnInit() {
       this.handler = this.loginService.currentUserObs.subscribe(
-      (data: CurrentUser) =>{ 
+      (data: CurrentUser) =>{
         this.showTabs = data;
       });
       /* this.router.events.pipe(
@@ -34,13 +35,13 @@ export class AppComponent implements OnInit, OnDestroy{
         }
       });*/
     }
-    
+
     ngOnDestroy() {
       this.closed$.next(); // <-- close subscription when component is destroyed
     }
-   
+
     initializeApp() {
-      this.platform.ready().then(() => { 
+      this.platform.ready().then(() => {
         this.loginService.authState.subscribe(state => {
           if (state) {
             this.router.navigate(['menu']);

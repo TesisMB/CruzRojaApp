@@ -1,3 +1,4 @@
+/* eslint-disable no-trailing-spaces */
 import { CurrentUser } from './../../models/CurrentUser';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
@@ -15,16 +16,16 @@ export class LoginPage implements OnInit {
   credentials: FormGroup;
   errorToast: any;
   handler: any;
-  error: any = "";
+  error: any = '';
   resultado: any;
   data: string;
   loading: any;
   constructor(
-    private servicio: LoginService, 
-    public toastCtrl: ToastController, 
+    private servicio: LoginService,
+    public toastCtrl: ToastController,
     private router: Router,
     private formBuilder: FormBuilder,
-  ) 
+  )
     {
       this.currentUser = this.servicio.currentUserValue;
          //Redirecciona si el usuario esta logeado
@@ -36,17 +37,20 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.credentials = this.formBuilder.group({
-      UserDni: ['', Validators.required],
-      UserPassword: ['', Validators.required]
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      UserDni: ['', Validators.required,Validators.maxLength(8)],
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      UserPassword: ['', Validators.required, Validators.minLength(8), Validators.maxLength(16)]
     });
   }
 
   get f() { return this.credentials.controls; }
 
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   async FailToast(msg: string) {
    this.toastCtrl.dismiss();
    const toast = await this.toastCtrl.create({
-     message: msg="Datos Erroneos",
+     message: msg='Datos Erroneos',
      duration: 3000,
      position: 'bottom',
    });
@@ -64,13 +68,19 @@ export class LoginPage implements OnInit {
         this.router.navigateByUrl('/home', { replaceUrl: true });
         //await loading.dismiss();
       },
-     
+
       error => {
               this.error = error;
-              this.FailToast("Datos Incorrectos")
+              this.FailToast('Datos Incorrectos');
               console.log(error.message);
               }
-      
+
     );
+  }
+
+  logOut(){
+    if(this.handler){
+      this.handler.unsubscribe();
+    }
   }
 }
