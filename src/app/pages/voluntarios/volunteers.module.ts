@@ -9,6 +9,8 @@ import { IonicModule } from '@ionic/angular';
 import { VolunteersPage } from './volunteers.page';
 import { VoluntariosPageRoutingModule } from './volunteers-routing.module';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { LayoutComponent } from 'src/app/components/volunteerlayout/volunteerlayout.component';
 @NgModule({
   imports: [
     PipesModule,
@@ -19,9 +21,11 @@ import { VoluntariosPageRoutingModule } from './volunteers-routing.module';
   ],
   declarations: [
     VolunteersPage,
-    VoluntariosDetallesPage
+    VoluntariosDetallesPage,
+    LayoutComponent,
   ],
   providers: [
+    Ng2SearchPipeModule
   ]
 })
 export class VolunteersPageModule {}

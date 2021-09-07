@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/semi */
 /* eslint-disable max-len */
 /* eslint-disable no-cond-assign */
@@ -45,9 +46,9 @@ export class AlertasPage implements OnInit {
   }
 
   async slideChanged(){
-    const currentIndex = this.slide.getPreviousIndex();
+    const currentIndex = this.slide.getActiveIndex();
     console.log(currentIndex);
-    if(await currentIndex === 0){
+    if(await currentIndex === 1){
       this.router.navigateByUrl('/voluntarios', { replaceUrl: true });
     }
   }

@@ -8,9 +8,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./volunteersdetails.page.css'],
 })
 export class VoluntariosDetallesPage implements OnInit {
-  handlerVoluntarios: any;
-  volunteersdetail: Volunteer;
-
   constructor() { }
 
   ngOnInit() {

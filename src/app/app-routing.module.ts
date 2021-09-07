@@ -1,3 +1,4 @@
+import { DataResolverService } from './resolver/data-resolver.service';
 import { AlertasPage } from './pages/alertas/alertas.page';
 import { RoleName } from './models/RoleName';
 import { AuthGuard } from './guards/auth.guard';
@@ -7,6 +8,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './pages/home/home.page';
 import { ChatPage } from './pages/chat/chat.page';
 import { ProfilePage } from './pages/profile/profile.page';
+
 
 const routes: Routes = [
   {
@@ -39,6 +41,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.CEyD]}
   },
+  {
+    path: 'volunteersdetails/id',
+    resolve: {
+      special: DataResolverService
+    },
+    loadChildren: './pages/voluntarios/volunteers.module'
+  }
+  ,
 
   {
     path: 'chat',

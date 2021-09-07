@@ -9,23 +9,27 @@
 
 <div>
   <ion-toolbar no-border>
+    <!-- (ionChange)="_ionChange($event)"
+    [(ngModel)]="searchTerm" -->
     <ion-searchbar #search
     debounce="500"
     placeholder="Buscar voluntario..."
+    [(ngModel)]="searchTerm"
     animated
-    (ionChange)="_ionChange($event)"></ion-searchbar>
+
+    ></ion-searchbar>
   </ion-toolbar>
 </div>
 
 <ion-content>
 
   <ion-list #lista>
-    <ion-item-sliding *ngFor="let volunteer of volunteers">
+    <ion-item-sliding #slide *ngFor="let volunteer of volunteers">
 
       <ion-item routerLink='details'>
         <ion-avatar>
           <ion-img>
-
+            <img src="" alt="">
           </ion-img>
         </ion-avatar>
           <ion-label> Nombre y Apellido:{{volunteer.users.persons.firstName}} {{volunteer.users.persons.lastName}}</ion-label>
@@ -34,13 +38,13 @@
       <!--Agregando los íconos-->
 
       <ion-item-options side="start">
-        <ion-item-option color="success" name="archive" expandable>
+        <ion-item-option ion-button expandable (click)="chat()" color="success" name="archive">
           <ion-icon slot="icon-only" class="icons" name="chatbubbles"></ion-icon>
         </ion-item-option>
       </ion-item-options>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="borrar()" color="danger" name="delete">
+        <ion-item-option ion-button expandable (click)="borrar()" color="danger" name="delete">
           <ion-icon slot="icon-only" class="icons" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>

@@ -1,9 +1,9 @@
 import { Volunteer } from './../models/Volunteer';
 import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
-  name: 'filtro'
+  name: 'filter'
 })
-export class FiltroPipe implements PipeTransform {
+export class FilterPipe implements PipeTransform {
 
   transform(
     volunteers: Volunteer[],
@@ -13,7 +13,7 @@ export class FiltroPipe implements PipeTransform {
       {return volunteers;}
     }
       texto = texto.toLowerCase();
-      volunteers.filter(volunteer =>volunteer.users.persons.firstName.toLowerCase().includes(texto)
-             ||volunteer.users.persons.lastName.toLowerCase().includes(texto));
+      volunteers.filter(volunteer =>volunteer.users.persons.firstName.toString().toLowerCase().includes(texto)
+             ||volunteer.users.persons.lastName.toString().toLowerCase().includes(texto));
     }
   }
