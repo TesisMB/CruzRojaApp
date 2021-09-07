@@ -38,9 +38,9 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.credentials = this.formBuilder.group({
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      UserDni: ['', Validators.required,Validators.maxLength(8)],
+      UserDni: ['', Validators.required],
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      UserPassword: ['', Validators.required, Validators.minLength(8), Validators.maxLength(16)]
+      UserPassword: ['', Validators.required]
     });
   }
 

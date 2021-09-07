@@ -35,7 +35,7 @@ const routes: Routes = [
 
   {
     path: 'voluntarios',
-    loadChildren: () => import('./pages/voluntarios/voluntarios.module').then( m => m.VoluntariosPageModule),
+    loadChildren: () => import('./pages/voluntarios/volunteers.module').then( m => m.VolunteersPageModule),
     canActivate: [AuthGuard],
     data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.CEyD]}
   },

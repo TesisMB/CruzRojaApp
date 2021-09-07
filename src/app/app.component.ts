@@ -1,9 +1,8 @@
 /* eslint-disable no-trailing-spaces */
 import { CurrentUser } from './models/CurrentUser';
-import { filter, takeUntil } from 'rxjs/operators';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 import { Subject } from 'rxjs';
 @Component({
@@ -26,14 +25,6 @@ export class AppComponent implements OnInit, OnDestroy{
       (data: CurrentUser) =>{
         this.showTabs = data;
       });
-      /* this.router.events.pipe(
-        filter(e => e instanceof NavigationEnd),
-        takeUntil(this.closed$)
-      ).subscribe(event => {
-        if (event['url'] !== '/login') {
-          this.showTabs = true; // <-- hide tabs on specific pages
-        }
-      });*/
     }
 
     ngOnDestroy() {

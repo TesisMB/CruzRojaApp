@@ -1,5 +1,5 @@
 import { HttpInterceptorService } from './_helpers/http.interceptor.service';
-import { VoluntariosPageModule } from './pages/voluntarios/voluntarios.module';
+import { VolunteersPageModule } from './pages/voluntarios/volunteers.module';
 /* eslint-disable no-trailing-spaces */
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
@@ -36,7 +36,7 @@ import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    VoluntariosPageModule,
+    VolunteersPageModule,
     NgbModule,
     FormsModule,
     PipesModule,

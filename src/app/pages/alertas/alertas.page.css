@@ -1,0 +1,15 @@
+ion-card{
+  display: flex;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+ion-card-title{
+  font-size: 16px;
+}
+
+ion-label{
+  color: rgb(0,0,0);
+}
+
+

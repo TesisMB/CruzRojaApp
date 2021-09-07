@@ -1,13 +1,13 @@
-import { VoluntariosDetallesPage } from './subpages/voluntarios-detalles/voluntarios-detalles.page';
+import { VoluntariosDetallesPage } from './subpages/voluntarios-detalles/volunteersdetails';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { VoluntariosPage } from './voluntarios.page';
+import { VolunteersPage } from './volunteers.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: VoluntariosPage,
+    component: VolunteersPage,
     children: [
       {
         path: 'details',

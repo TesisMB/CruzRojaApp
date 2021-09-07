@@ -9,17 +9,18 @@
 
 <div>
   <ion-toolbar no-border>
-    <ion-searchbar
-    placeholder="Buscar usuario..."
+    <ion-searchbar #search
+    debounce="500"
+    placeholder="Buscar voluntario..."
     animated
-    (ionChange)="search($event)"></ion-searchbar>
+    (ionChange)="_ionChange($event)"></ion-searchbar>
   </ion-toolbar>
 </div>
 
 <ion-content>
 
   <ion-list #lista>
-    <ion-item-sliding (click)="presentPopOver" *ngFor="let volunteer of volunteers | filtro: textoBuscar">
+    <ion-item-sliding *ngFor="let volunteer of volunteers">
 
       <ion-item routerLink='details'>
         <ion-avatar>

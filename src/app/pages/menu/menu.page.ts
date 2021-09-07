@@ -1,4 +1,3 @@
-import { ProfilePage } from './../profile/profile.page';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

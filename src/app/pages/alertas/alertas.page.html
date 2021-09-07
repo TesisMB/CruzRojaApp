@@ -6,12 +6,34 @@
 
 <ion-content>
   <ion-list>
-    <ion-card id="card" *ngFor="let alert of alerts; index as i" [ngStyle]="{backgroundColor: getColor(alert.alertDegree)}">
-      <ion-thumbnail>
+    <ng-container *ngFor="let alert of alerts; index as i">
+      <ion-slides #slide [options]="slideOpts" (ionSlideWillChange)="slideChanged()">
+        <div>
+          <ion-card id="card" [ngStyle]="{backgroundColor: getColor(alert.alertDegree)}">
+          <ion-card-header>
+            <!-- <ion-thumbnail></ion-thumbnail> -->
+            <ion-card-title>Emergencia:</ion-card-title>
+            <ion-card-subtitle>Cordoba</ion-card-subtitle>
+          </ion-card-header>
 
-      </ion-thumbnail>
-      <ion-label><h3>Mensaje: {{alert.alertMessage}}</h3></ion-label>
-      <ion-label><h3>Fecha - Hora: </h3></ion-label>
-    </ion-card>
+          <ion-slide slot="start">
+            <ion-icon name="chatbox-outline">Voluntarios</ion-icon>
+          </ion-slide>
+
+          <ion-card-content>
+            <ion-icon name="locate-outline"></ion-icon>
+            <ion-label>Ubicación: {{alert.alertMessage}}</ion-label>
+
+            <ion-icon name="calendar-outline"></ion-icon>
+            <ion-label>Fecha - Hora: </ion-label>
+          </ion-card-content>
+
+          <ion-slide slot="end">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-slide>
+        </ion-card>
+      </div>
+    </ion-slides>
+  </ng-container>
   </ion-list>
 </ion-content>

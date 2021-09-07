@@ -15,10 +15,6 @@
     margin-top: 3rem;
   }
 
-  .ixd{
-    box-shadow: 2px 2px 5px 8px rgba(0, 0, 0, 0.1);
-  }
-
   ion-item {
     --ion-item-background: #bd2d2d;
     color: rgb(255, 253, 253);
@@ -63,4 +59,12 @@
     margin-top: 3rem;
   }
 
-
+  .span{
+    --background: #bd2d2d;
+    color: rgb(255, 253, 253);
+    width: 65%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 10px;
+    margin-left: 55px;
+  }

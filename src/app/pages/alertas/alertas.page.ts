@@ -4,8 +4,10 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable no-trailing-spaces */
 import { Alert } from './../../models/Alert';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import { IonSlides } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alertas',
@@ -13,6 +15,7 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./alertas.page.css'],
 })
 export class AlertasPage implements OnInit {
+  @ViewChild('slide') slide: IonSlides;
 
   'emergency': [
     {
@@ -22,14 +25,31 @@ export class AlertasPage implements OnInit {
 
   alerts: Alert[] = [{id: 1, alertMessage: 'esto es rojo', alertDegree: 'rojo'}, {id: 2, alertMessage: 'esto es amarillo', alertDegree: 'amarillo'}];
 
+
+
   http: DataService;
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   estilo: string = "";
-  constructor(
 
+  slideOpts = {
+    initialSlide: 0,
+    speed: 500,
+    slidesPerView: 1.5,
+  }
+
+  constructor(
+    private router: Router
   ) { }
 
   ngOnInit() {
+  }
+
+  async slideChanged(){
+    const currentIndex = this.slide.getPreviousIndex();
+    console.log(currentIndex);
+    if(await currentIndex === 0){
+      this.router.navigateByUrl('/voluntarios', { replaceUrl: true });
+    }
   }
 
   getColor(color: string){
