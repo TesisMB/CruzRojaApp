@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent} from '@angular/common/http';
 import { Observable} from 'rxjs';
-import { LoginService } from '../services/login.service';
+import { LoginService } from '../services/login/login.service';
 import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'

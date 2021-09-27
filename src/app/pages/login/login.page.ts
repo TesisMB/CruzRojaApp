@@ -1,7 +1,7 @@
 /* eslint-disable no-trailing-spaces */
 import { CurrentUser } from './../../models/CurrentUser';
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../services/login/login.service';
 import { ToastController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';

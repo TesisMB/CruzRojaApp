@@ -1,5 +1,5 @@
 /* eslint-disable no-trailing-spaces */
-import { LoginService } from './../services/login.service';
+import { LoginService } from './../services/login/login.service';
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor,HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';

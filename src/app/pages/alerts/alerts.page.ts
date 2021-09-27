@@ -4,31 +4,23 @@
 /* eslint-disable no-cond-assign */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable no-trailing-spaces */
-import { Alert } from './../../models/Alert';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
 import { IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alerts/alert.service';
+import { EmergenciesDisasters } from 'src/app/models';
 
 @Component({
   selector: 'app-alertas',
-  templateUrl: './alertas.page.html',
-  styleUrls: ['./alertas.page.css'],
+  templateUrl: './alerts.page.html',
+  styleUrls: ['./alerts.page.css']
 })
-export class AlertasPage implements OnInit {
+
+export class AlertsPage implements OnInit {
   @ViewChild('slide') slide: IonSlides;
 
-  'emergency': [
-    {
-      'alertDegree': 'Amarillo';
-    }
-  ];
+  alerts: EmergenciesDisasters[];
 
-  alerts: Alert[] = [{id: 1, alertMessage: 'esto es rojo', alertDegree: 'rojo'}, {id: 2, alertMessage: 'esto es amarillo', alertDegree: 'amarillo'}];
-
-
-
-  http: DataService;
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   estilo: string = "";
 
@@ -37,12 +29,24 @@ export class AlertasPage implements OnInit {
     speed: 500,
     slidesPerView: 1.5,
   }
+  handlerAlerts: any;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private service: AlertService
   ) { }
 
   ngOnInit() {
+    this.getAllAlerts();
+  }
+
+  getAllAlerts(){
+    this.handlerAlerts = this.service.getAll().subscribe((x: EmergenciesDisasters[]) =>{
+    console.log('ingreso Alertas');
+    this.alerts = x;
+    console.log(this.alerts[0].typesEmergenciesDisasters.typeEmergencyDisasterName);
+
+   });
   }
 
   async slideChanged(){
@@ -55,9 +59,9 @@ export class AlertasPage implements OnInit {
 
   getColor(color: string){
     switch(color){
-      case 'rojo':
+      case '2':
         return "#ff4538";
-      case 'amarillo':
+      case '3':
         return "#ffc409";
     }
   }

@@ -6,12 +6,11 @@ import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
   providedIn: 'root'
 })
 export class DataResolverService implements Resolve<any> {
-
+  id: number
   constructor(private dataService: DataService) { }
 
   resolve(route: ActivatedRouteSnapshot) {
-    // eslint-disable-next-line prefer-const
-    let id = route.paramMap.get('volunteerID');
-    return this.dataService.getAll();
+    let id = route.paramMap.getAll('id');
+    return this.dataService.getById;
   }
 }

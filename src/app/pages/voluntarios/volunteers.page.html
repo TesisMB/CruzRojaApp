@@ -53,4 +53,11 @@
   </ion-list>
 
 </ion-content>
+
+<input (input)="textoPadre = $event.target.addEventListener" type="text">
+
+<app-volunteersdetails [textoHijo]="textoPadre">
+
+</app-volunteersdetails>
+
 </ion-router-outlet>

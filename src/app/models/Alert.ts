@@ -1,5 +1,5 @@
 export interface Alert {
-  id: number;
+  alertID: number;
   alertMessage: string;
   alertDegree: string;
 }

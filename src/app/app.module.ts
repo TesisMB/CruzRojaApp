@@ -8,7 +8,7 @@ export function getToken() {
 }
 
 import { MenuPage } from './pages/menu/menu.page';
-import { AlertasPage } from './pages/alertas/alertas.page';
+import { AlertsPage } from './pages/alerts/alerts.page';
 import { LoginPage } from './pages/login/login.page';
 import { ChatPage } from './pages/chat/chat.page';
 import { HomePage } from './pages/home/home.page';
@@ -29,7 +29,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
-  declarations: [AppComponent, LoginPage, AlertasPage, ChatPage, HomePage, MenuPage],
+  declarations: [AppComponent, LoginPage, AlertsPage, ChatPage, HomePage, MenuPage],
   entryComponents: [],
 
   imports: [

@@ -1,6 +1,7 @@
 /* eslint-disable eqeqeq */
+
+import { Component, Input, OnInit } from '@angular/core';
 import { Volunteer } from 'src/app/models/Volunteer';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-volunteersdetails',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./volunteersdetails.page.css'],
 })
 export class VoluntariosDetallesPage implements OnInit {
+  @Input()
+  textoHijo: Volunteer[];
   constructor() { }
 
   ngOnInit() {

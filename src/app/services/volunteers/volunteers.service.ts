@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class VolunteersService extends DataService{
 
   constructor(http: HttpClient) {
-    super(http, '/Volunteers');
+    super(http, '/app/Volunteers');
    }
 
 }

@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable eqeqeq */
-import { VolunteersService } from '../../services/volunteers.service';
+import { VolunteersService } from '../../services/volunteers/volunteers.service';
 import { Router } from '@angular/router';
 import { Volunteer } from '../../models/Volunteer';
 import { Skills } from 'src/app/models/Skills';
@@ -19,6 +19,8 @@ import { filter } from 'rxjs/operators';
 
 export class VolunteersPage implements OnInit {
   @Input('searchTerm')
+
+  textoPadre: any;
 
   volunteers: Volunteer[] = [];
   skills: Skills[] = [];
@@ -64,8 +66,7 @@ export class VolunteersPage implements OnInit {
   } */
 
    getAllVolunteers(){
-      this.handlerVoluntarios = this.service.getAll().pipe(filter((x: Volunteer[], index) => x[index].users.persons.status == true))
-     .subscribe((x: Volunteer[]) =>{
+      this.handlerVoluntarios = this.service.getAll().subscribe((x: Volunteer[]) =>{
       console.log('ingreso');
       this.volunteers = x;
       console.log(this.volunteers);

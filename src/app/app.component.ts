@@ -3,7 +3,7 @@ import { CurrentUser } from './models/CurrentUser';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { LoginService } from './services/login.service';
+import { LoginService } from './services/login/login.service';
 import { Subject } from 'rxjs';
 @Component({
   selector: 'app-root',

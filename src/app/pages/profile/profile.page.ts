@@ -1,7 +1,6 @@
+import { ProfileService } from './../../services/profile/profile.service';
 import { User } from './../../models/User';
-import { Person } from './../../models/Person';
-import { DataService } from './../../services/data.service';
-import { LoginService } from './../../services/login.service';
+import { LoginService } from './../../services/login/login.service';
 import { Component, Injectable } from '@angular/core';
 
 @Injectable()
@@ -11,16 +10,26 @@ import { Component, Injectable } from '@angular/core';
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.css'],
 })
+
 export class ProfilePage{
-  user: User;
+  users: User[];
   handlerProfile: any;
+  service: ProfileService;
+  id: number;
   constructor(
     private logOutEvent: LoginService,
-    public http: DataService,
   ) {}
 
   logOut(){
     this.logOutEvent.logout();
   }
 
+  getProfile(){
+      this.handlerProfile = this.service.getById(this.id)
+      .subscribe((x: User[]) =>{
+      console.log('ingreso');
+      this.users = x;
+      console.log(this.users);
+    });
+  }
 }

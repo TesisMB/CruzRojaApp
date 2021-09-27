@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>alertas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ng-container *ngFor="let alert of alerts; index as i">
+        <div >
+          <ion-card id="card" [ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}">
+            <ion-button>
+              <ion-icon name="people-circle-outline"></ion-icon>
+            </ion-button>
+              <ion-card-header>
+                <ion-thumbnail>
+
+                </ion-thumbnail>
+              </ion-card-header>
+              <ion-card-title>Emergencia: {{alert.typesEmergenciesDisasters.typeEmergencyDisasterName}}</ion-card-title>
+
+            <ion-card-content>
+              <ion-icon name="locate-outline"></ion-icon>
+              <ion-label>Ubicación: {{alert.locations.locationCityName}}</ion-label>
+
+              <ion-icon name="calendar-outline"></ion-icon>
+              <ion-label>Fecha - Hora (Inicio): {{alert.emergencyDisasterStartDate}}</ion-label>
+
+              <div *ngIf="alert.emergencyDisasterEndDate">
+                <ion-icon name="calendar-outline"></ion-icon>
+                <ion-label>Fecha - Hora (Final): {{alert.emergencyDisasterEndDate}}</ion-label>
+              </div>
+
+            </ion-card-content>
+
+            <ion-button>
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+
+        </ion-card>
+      </div>
+  </ng-container>
+  </ion-list>
+</ion-content>

@@ -1,7 +1,7 @@
-import { CurrentUser } from './../models/CurrentUser';
+import { CurrentUser } from './../../models/CurrentUser';
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -9,13 +9,14 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
   authState = new BehaviorSubject(false);
   private currentUserSubject: BehaviorSubject<any>;
   // eslint-disable-next-line @typescript-eslint/member-ordering
   public currentUserObs: Observable<any>;
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  apiURL = '/login';
+  apiURL = '/app/login';
 
   //El platform es usado para que podamos usar el localStorage
   constructor(

@@ -1,5 +1,5 @@
 import { DataResolverService } from './resolver/data-resolver.service';
-import { AlertasPage } from './pages/alertas/alertas.page';
+import { AlertsPage } from './pages/alerts/alerts.page';
 import { RoleName } from './models/RoleName';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginPage } from './pages/login/login.page';
@@ -30,7 +30,7 @@ const routes: Routes = [
 
   {
     path: 'alertas',
-    component: AlertasPage,
+    component: AlertsPage,
     canActivate: [AuthGuard],
     data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.Voluntario, RoleName.CEyD]}
   },
