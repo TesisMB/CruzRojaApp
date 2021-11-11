@@ -17,11 +17,17 @@ export class ProfilePage{
   service: ProfileService;
   id: number;
   constructor(
-    private logOutEvent: LoginService,
+    private loginService: LoginService,
   ) {}
 
   logOut(){
-    this.logOutEvent.logout();
+    if(this.handlerProfile){
+      this.handlerProfile.unsubscribe();
+    }
+  }
+
+  getCurrentUser(){
+    this.loginService.currentUserObs;
   }
 
   getProfile(){
@@ -32,4 +38,5 @@ export class ProfilePage{
       console.log(this.users);
     });
   }
+
 }

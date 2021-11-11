@@ -3,12 +3,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProfilePage } from './profile.page';
-import { ProfilelayoutComponent } from 'src/app/components/profilelayout/profilelayout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProfilelayoutComponent,
     children: [
       {
         path: 'cuenta',

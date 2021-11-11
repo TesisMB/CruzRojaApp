@@ -7,9 +7,8 @@ import { VolunteersService } from '../../services/volunteers/volunteers.service'
 import { Router } from '@angular/router';
 import { Volunteer } from '../../models/Volunteer';
 import { Skills } from 'src/app/models/Skills';
-import { Component, Input, OnInit, ViewChild} from '@angular/core';
-import { IonItemSliding, IonList, IonSearchbar } from '@ionic/angular';
-import { filter } from 'rxjs/operators';
+import { Component, OnInit} from '@angular/core';
+
 
 @Component({
   selector: 'app-volunteers',
@@ -18,9 +17,6 @@ import { filter } from 'rxjs/operators';
 })
 
 export class VolunteersPage implements OnInit {
-  @Input('searchTerm')
-
-  textoPadre: any;
 
   volunteers: Volunteer[] = [];
   skills: Skills[] = [];
@@ -29,12 +25,6 @@ export class VolunteersPage implements OnInit {
   searchTerm: string;
   public searchedItem: any;
   public list: Array<Volunteer> = [];
-
-  //Permite llamar cualquier metodo del componente
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  @ViewChild('lista') lista: IonList;
-  @ViewChild('search', { static: false }) search: IonSearchbar;
-  @ViewChild('slide') slide: IonItemSliding;
 
   constructor(
     public router: Router,
@@ -47,41 +37,11 @@ export class VolunteersPage implements OnInit {
     this.getAllVolunteers();
   }
 
-  ionViewDidEnter(){
-    setTimeout(()=>{
-      this.search.setFocus();
-    });
-  }
-
-  //Evento del buscador
-  /* _ionChange(event: any){
-    const val = event;
-    this.searchedItem = this.volunteers;
-    if (val && val.trim != ''){
-      this.searchedItem = this.searchedItem.filter((volunteers: Volunteer) =>{
-        return (volunteers.users.persons.firstName.toString().indexOf(val.toLowerCase()) > -1);
-      });
-    }
-    this.search.getInputElement();
-  } */
-
    getAllVolunteers(){
       this.handlerVoluntarios = this.service.getAll().subscribe((x: Volunteer[]) =>{
-      console.log('ingreso');
       this.volunteers = x;
       console.log(this.volunteers);
      });
   }
 
-   chat(){
-    this.router.navigateByUrl('/chat', { replaceUrl: true });
-    console.log('Ingreso al chat');
-    //Utilizo el método "close sliding Items" para que cierre el slide cuando se clickee a otra parte
-    //this.lista.closeSlidingItems();
-  }
-
-  borrar(){
-    console.log('Borro al voluntario');
-    //this.lista.closeSlidingItems();
-  }
 }

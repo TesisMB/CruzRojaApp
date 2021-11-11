@@ -12,48 +12,42 @@
 </div>
 
 <ion-content>
-<div class="container">
-  <ion-card let volunteer of volunteers>
+  <div class="container" *ngFor="let volunteer of volunteers">
+      <ion-card>
+        <ion-card-header>
+          <ion-avatar>
 
-    <ion-card-header>
-      <ion-avatar>
+          </ion-avatar>
+          <ion-card-title>
+            {{volunteer.users.persons.firstName}} {{volunteer.users.persons.lastName}}
+          </ion-card-title>
+        </ion-card-header>
 
-      </ion-avatar>
-      <ion-card-title>
-      </ion-card-title>
-    </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label>
+              Domicilio: {{volunteer.users.persons.address}}
+            </ion-label>
+          </ion-item>
 
-    <ion-card-content>
-      <ion-item>
-        <ion-label>
-          DNI:
-        </ion-label>
-      </ion-item>
+          <ion-item>
+            <ion-label>
+              Telefono: {{volunteer.users.persons.phone}}
+            </ion-label>
+          </ion-item>
 
-      <ion-item>
-        <ion-label>
-          Domicilio:
-        </ion-label>
-      </ion-item>
+          <ion-item>
+            <ion-label>
+              Lugar de trabajo:
+            </ion-label>
+          </ion-item>
 
-      <ion-item>
-        <ion-label>
-          Telefono:
-        </ion-label>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>
-          Lugar de trabajo:
-        </ion-label>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>
-          Horario:
-        </ion-label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-</div>
+          <ion-item>
+            <ion-label>
+              Horario: {{volunteer.users.persons.address}}
+            </ion-label>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
 </ion-content>

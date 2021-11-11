@@ -4,12 +4,47 @@ ion-card{
   border-radius: 10px;
 }
 
+ion-thumbnail{
+  margin-left: -2rem;
+}
+
 ion-card-title{
-  font-size: 16px;
+  margin-top: 2rem;
+  margin-left: -13px;
+  font-size: 14px;
+  color:#000000
 }
 
 ion-label{
-  color: rgb(0,0,0);
+  color:#000000
 }
 
+.ubicationClass{
+  margin-left: -5px;
+  margin-top: -13px;
+  font-size: 13px;
+}
 
+.emergencyTimeClass{
+  margin-left: -5px;
+  font-size: 13px;
+}
+
+.buttonVolunteerClass{
+  --background: rgb(1, 129, 1);
+  display: block;
+  width: 140px;
+  font-size: 20px;
+}
+
+.buttonAlertDetailClass{
+  margin-left: 10rem;
+  margin-top: -40px;
+  display: block;
+  width: 140px;
+  font-size: 20px;
+}
+
+.labelButton{
+  font-size: 8px;
+}

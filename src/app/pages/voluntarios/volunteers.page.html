@@ -22,42 +22,16 @@
 </div>
 
 <ion-content>
-
-  <ion-list #lista>
-    <ion-item-sliding #slide *ngFor="let volunteer of volunteers">
-
-      <ion-item routerLink='details'>
-        <ion-avatar>
-          <ion-img>
-            <img src="" alt="">
-          </ion-img>
-        </ion-avatar>
-          <ion-label> Nombre y Apellido:{{volunteer.users.persons.firstName}} {{volunteer.users.persons.lastName}}</ion-label>
+  <ion-list *ngFor="let volunteer of volunteers">
+    <ion-item routerLink='details'>
+      <ion-avatar>
+        <ion-img>
+          <img src="" alt="">
+        </ion-img>
+      </ion-avatar>
+        <ion-label> Nombre y Apellido:{{volunteer.users.persons.firstName}} {{volunteer.users.persons.lastName}}</ion-label>
       </ion-item>
-
-      <!--Agregando los íconos-->
-
-      <ion-item-options side="start">
-        <ion-item-option ion-button expandable (click)="chat()" color="success" name="archive">
-          <ion-icon slot="icon-only" class="icons" name="chatbubbles"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-
-      <ion-item-options side="end">
-        <ion-item-option ion-button expandable (click)="borrar()" color="danger" name="delete">
-          <ion-icon slot="icon-only" class="icons" name="trash"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-
-    </ion-item-sliding>
   </ion-list>
 
 </ion-content>
 
-<input (input)="textoPadre = $event.target.addEventListener" type="text">
-
-<app-volunteersdetails [textoHijo]="textoPadre">
-
-</app-volunteersdetails>
-
-</ion-router-outlet>

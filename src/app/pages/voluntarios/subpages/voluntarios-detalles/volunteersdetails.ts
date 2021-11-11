@@ -1,6 +1,7 @@
 /* eslint-disable eqeqeq */
 
 import { Component, Input, OnInit } from '@angular/core';
+import { VolunteersService } from 'src/app/services/volunteers/volunteers.service';
 import { Volunteer } from 'src/app/models/Volunteer';
 
 @Component({
@@ -10,11 +11,23 @@ import { Volunteer } from 'src/app/models/Volunteer';
 })
 export class VoluntariosDetallesPage implements OnInit {
   @Input()
-  textoHijo: Volunteer[];
-  constructor() { }
+  volunteers: Volunteer[];
+  handlerVoluntarios: any;
+  idVolunteer: number;
+  constructor(
+    public service: VolunteersService,
+  ) { }
 
   ngOnInit() {
 
   }
+
+  getVolunteersByID(){
+    this.handlerVoluntarios = this.service.getById(this.idVolunteer).subscribe((x: Volunteer[]) =>{
+    console.log('ingreso volunteer detail');
+    this.volunteers = x;
+    console.log(this.volunteers);
+   });
+}
 
 }
