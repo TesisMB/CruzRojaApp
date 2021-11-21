@@ -11,7 +11,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: 'voluntarios',
+        path: '',
         component: VolunteersPage
       },
       {

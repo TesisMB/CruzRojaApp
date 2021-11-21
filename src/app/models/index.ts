@@ -9,3 +9,4 @@ export  * from './EmergenciesDisasters';
 export  * from './Locations';
 export * from './Alert';
 export * from './Employees';
+export * from './TypeChatRooms';
