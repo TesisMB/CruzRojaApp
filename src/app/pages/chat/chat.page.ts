@@ -12,7 +12,7 @@ import { TypeChatRooms } from 'src/app/models';
 export class ChatPage implements OnInit {
 
   handlerChat: any;
-  chatTypeList: TypeChatRooms[];
+  chatTypeList: TypeChatRooms[] = [];
 
   constructor(
     public router: Router,

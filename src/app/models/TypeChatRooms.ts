@@ -1,33 +1,51 @@
 export interface TypeChatRooms  {
-  ID: number
-  IsGroupChat: boolean;
+  id: number;
+  isGroupChat: boolean;
 
-  //Si el isGroupChat es false
-  chat: {
-    ID: number
-    usersChat:{
-      userID: number,
-      name: string
+  chatRooms: [{
+      chatRoomID: number;
+      createdDate: Date;
+
+      usersChatRooms: [{
+        userID: number;
+        name: string;
+      }]
+
+      emergenciesDisasters: {
+        emergencyDisasterID: number;
+        locationCityName: string;
+        typeEmergencyDisasterID: number;
+        typeEmergencyDisasterName: string;
+        typeEmergencyDisasterIcon: string;
+      }
+
     }
-  };
-
-  //Si el isGroupChat es true
-  chatRooms: {
-    ID: number,
-    CreatedDate: Date,
-
-    UsersChatRooms: {
-      userID: number;
-      name: string;
-    };
-
-    EmergenciesDisasters: {
-      EmergencyDisasterID: number,
-      LocationCityName: string,
-      TypeEmergencyDisasterID: number,
-      TypeEmergencyDisasterName: string,
-      TypeEmergencyDisasterIcon: string
-    }
-
-  }
+  ]
 }
+
+
+/* export class chat {
+  ID: number
+  usersChat:{
+    userID: number,
+    name: string
+  }
+} */
+
+/* export class chatRooms {
+  chatRoomID: number
+  createdDate: Date
+
+  UsersChatRooms: {
+    userID: number;
+    name: string;
+  };
+}
+
+export interface emergenciesDisasters {
+  emergencyDisasterID: number,
+  locationCityName: string,
+  typeEmergencyDisasterID: number,
+  typeEmergencyDisasterName: string,
+  ypeEmergencyDisasterIcon: string
+} */
