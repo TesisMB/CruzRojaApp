@@ -19,7 +19,7 @@ export class VoluntariosDetallesPage implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.getVolunteersByID();
   }
 
   getVolunteersByID(){
@@ -29,5 +29,4 @@ export class VoluntariosDetallesPage implements OnInit {
       console.log(this.volunteers);
     });
   }
-
 }

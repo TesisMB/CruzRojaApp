@@ -47,8 +47,7 @@ const routes: Routes = [
       special: DataResolverService
     },
     loadChildren: './pages/voluntarios/volunteers.module'
-  }
-  ,
+  },
 
   {
     path: 'chat',

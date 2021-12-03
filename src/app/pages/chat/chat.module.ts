@@ -1,4 +1,5 @@
-/*import { NgModule } from '@angular/core';
+import { GroupChatPage } from './groupchat/groupchat.page';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -6,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ChatPageRoutingModule } from './chat-routing.module';
 
-import { ChatPage } from './chat.page';
+import { ChatlayoutComponent } from 'src/app/components/chatlayout/chatlayout.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,10 @@ import { ChatPage } from './chat.page';
     IonicModule,
     ChatPageRoutingModule
   ],
-  declarations: [ChatPage]
+  declarations:[
+  GroupChatPage,
+  ChatlayoutComponent
+]
 })
 export class ChatPageModule {}
-*/
+

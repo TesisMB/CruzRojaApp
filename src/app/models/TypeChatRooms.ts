@@ -9,7 +9,7 @@ export interface TypeChatRooms  {
       usersChatRooms: [{
         userID: number;
         name: string;
-      }]
+      }];
 
       emergenciesDisasters: {
         emergencyDisasterID: number;
@@ -18,34 +18,6 @@ export interface TypeChatRooms  {
         typeEmergencyDisasterName: string;
         typeEmergencyDisasterIcon: string;
       }
-
     }
   ]
 }
-
-
-/* export class chat {
-  ID: number
-  usersChat:{
-    userID: number,
-    name: string
-  }
-} */
-
-/* export class chatRooms {
-  chatRoomID: number
-  createdDate: Date
-
-  UsersChatRooms: {
-    userID: number;
-    name: string;
-  };
-}
-
-export interface emergenciesDisasters {
-  emergencyDisasterID: number,
-  locationCityName: string,
-  typeEmergencyDisasterID: number,
-  typeEmergencyDisasterName: string,
-  ypeEmergencyDisasterIcon: string
-} */

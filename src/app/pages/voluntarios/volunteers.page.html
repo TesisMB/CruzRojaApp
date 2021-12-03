@@ -24,13 +24,16 @@
 <ion-content>
   <ion-list *ngFor="let volunteer of volunteers">
     <ion-item routerLink='details'>
+
       <ion-avatar>
         <ion-img>
           <img src="" alt="">
         </ion-img>
       </ion-avatar>
+
         <ion-label> Nombre y Apellido:{{volunteer.users.persons.firstName}} {{volunteer.users.persons.lastName}}</ion-label>
-      </ion-item>
+
+     </ion-item>
   </ion-list>
 
 </ion-content>

@@ -1,4 +1,6 @@
-/*import { NgModule } from '@angular/core';
+import { ChatlayoutComponent } from './../../components/chatlayout/chatlayout.component';
+import { GroupChatPage } from './groupchat/groupchat.page';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ChatPage } from './chat.page';
@@ -6,8 +8,18 @@ import { ChatPage } from './chat.page';
 const routes: Routes = [
   {
     path: '',
-    component: ChatPage
-  }
+    component: ChatlayoutComponent,
+    children: [
+      {
+        path: '',
+        component: ChatPage
+      },
+      {
+        path: 'groupchat',
+        component: GroupChatPage
+      }
+    ]
+  },
 ];
 
 @NgModule({
@@ -15,4 +27,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class ChatPageRoutingModule {}
-*/
