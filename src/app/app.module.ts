@@ -10,7 +10,6 @@ export function getToken() {
 import { MenuPage } from './pages/menu/menu.page';
 import { AlertsPage } from './pages/alerts/alerts.page';
 import { LoginPage } from './pages/login/login.page';
-import { ChatPage } from './pages/chat/chat.page';
 import { HomePage } from './pages/home/home.page';
 
 import { PipesModule } from './pipes/pipes.module';
@@ -28,6 +27,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 //Interceptor
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ChatPage } from './pages/chat/chat.page';
 @NgModule({
   declarations: [AppComponent, LoginPage, AlertsPage, ChatPage, HomePage, MenuPage],
   entryComponents: [],
@@ -48,7 +48,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
       config: {
         tokenGetter: getToken
     }
-    }),
+  }),
 ],
 schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

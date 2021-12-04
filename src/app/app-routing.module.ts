@@ -1,3 +1,4 @@
+import { ChatlayoutComponent } from './components/chatlayout/chatlayout.component';
 import { DataResolverService } from './resolver/data-resolver.service';
 import { AlertsPage } from './pages/alerts/alerts.page';
 import { RoleName } from './models/RoleName';
@@ -8,8 +9,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './pages/home/home.page';
 import { ChatPage } from './pages/chat/chat.page';
 import { ProfilePage } from './pages/profile/profile.page';
+import { ChatPageModule } from './pages/chat/chat.module';
 
-
+const ChatModule = () => import('src/app/pages/chat/chat.module').then(m => m.ChatPageModule);
 const routes: Routes = [
   {
     path: '',
@@ -37,7 +39,7 @@ const routes: Routes = [
 
   {
     path: 'voluntarios',
-    loadChildren: () => import('./pages/voluntarios/volunteers.module').then( m => m.VolunteersPageModule),
+    loadChildren: './pages/voluntarios/volunteers.module',
     canActivate: [AuthGuard],
     data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.CEyD]}
   },
@@ -51,9 +53,7 @@ const routes: Routes = [
 
   {
     path: 'chat',
-    component: ChatPage,
-    canActivate: [AuthGuard],
-    data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.Voluntario, RoleName.CEyD]}
+    loadChildren: ChatModule,
   },
 
   {

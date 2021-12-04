@@ -5,9 +5,8 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let item of chatTypeList">
-    <div class="div_padding" *ngFor="let chat of item['chatRooms']">
-      <a routerLink='groupchat'>
+  <div *ngFor="let item of chatTypeList" >
+    <div class="div_padding" *ngFor="let chat of item['chatRooms']" [routerLink]="['/grupo']">
         <img src="../../../assets/icons - Resources - EmergDesas/{{chat.emergenciesDisasters.typeEmergencyDisasterIcon}}.svg" width= "40px">
         <div class="div_p">
           <p>
@@ -23,7 +22,6 @@
           {{users.name}}
         </ion-item>
       </div> -->
-      </a>
-    </div>
+      </div>
   </div>
 </ion-content>
