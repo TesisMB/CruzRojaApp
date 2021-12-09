@@ -1,11 +1,34 @@
 <ion-content>
+
+  <ion-header>
+    <ion-header class="ion-no-border">
+      <div>
+        <ion-toolbar>
+
+          <ion-buttons slot="start">
+            <ion-back-button type="button" defaultHref="chat"></ion-back-button>
+          </ion-buttons>
+
+          <ion-title>Incendio urbano
+            <br>
+                      Cruz del Eje</ion-title>
+
+        </ion-toolbar>
+      </div>
+    </ion-header>
+  </ion-header>
+
   <form id="footer-input" ng-submit="add(message)">
-      <label class="item-input-wrapper">
-        <input type="text" placeholder="text" id="message"/>
-        <button id="btnSend">Send</button>
-      </label>
+      <ion-label class="item-input-wrapper">
+        <input type="text" placeholder="Enviar mensaje..." id="message"/>
+          <button id="btnSend">
+            <ion-icon name="paper-plane-outline"></ion-icon>
+          </button>
+      </ion-label>
+
       <a class="button button-clear" ng-click="takePicture()">
         <i class="icon ion-camera"></i>
       </a>
+
   </form>
 </ion-content>

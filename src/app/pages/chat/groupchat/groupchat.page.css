@@ -1,0 +1,41 @@
+
+
+.item-input-wrapper{
+  width: 95%;
+  display: flex;
+}
+
+/* IDs */
+
+#footer-input{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 85%;
+}
+
+#btnSend{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  outline: none;
+}
+
+#message{
+  height: 45px;
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  width: 100%;
+  margin-right: 10px;
+}
+
+input::placeholder {
+  padding-left: 10px;
+}
+
+ion-icon{
+  font-size: 24px;
+  margin-right: 5px;
+  transform: rotate(45deg);
+}

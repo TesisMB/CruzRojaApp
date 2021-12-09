@@ -1,4 +1,3 @@
-import { ChatlayoutComponent } from './components/chatlayout/chatlayout.component';
 import { DataResolverService } from './resolver/data-resolver.service';
 import { AlertsPage } from './pages/alerts/alerts.page';
 import { RoleName } from './models/RoleName';
@@ -7,11 +6,9 @@ import { LoginPage } from './pages/login/login.page';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './pages/home/home.page';
-import { ChatPage } from './pages/chat/chat.page';
 import { ProfilePage } from './pages/profile/profile.page';
-import { ChatPageModule } from './pages/chat/chat.module';
 
-const ChatModule = () => import('src/app/pages/chat/chat.module').then(m => m.ChatPageModule);
+//const ChatModule =
 const routes: Routes = [
   {
     path: '',
@@ -53,7 +50,7 @@ const routes: Routes = [
 
   {
     path: 'chat',
-    loadChildren: ChatModule,
+    loadChildren: () => import('src/app/pages/chat/chat.module').then(m => m.ChatPageModule)
   },
 
   {

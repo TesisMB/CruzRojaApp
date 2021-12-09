@@ -15,7 +15,7 @@ const routes: Routes = [
         component: ChatPage
       },
       {
-        path: 'grupo',
+        path: 'groupChat',
         component: GroupChatPage
       }
     ]
