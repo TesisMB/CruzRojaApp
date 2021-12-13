@@ -19,6 +19,8 @@
     --ion-item-background: #bd2d2d;
     color: rgb(255, 253, 253);
     --border-color: #fffff;
+    width: 90%;
+    margin-left: 13px;
   }
 
   ion-label{
@@ -26,8 +28,8 @@
   }
 
   ion-content {
-    --ion-background-color:#bd2d2d !important;
-    border-radius: 25px;
+    background-color:#bd2d2d !important;
+    /* border-radius: 25px; */
     overflow: hidden;
   }
   .form-input{
@@ -35,7 +37,7 @@
   }
 
   form{
-    margin-top: 6rem;
+    margin-top: 4rem;
   }
 
   button {
@@ -56,11 +58,11 @@
     display: 	flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 
   .span{
-    --background: #bd2d2d;
+    --ion-item-background: #bd2d2d;
     color: rgb(255, 253, 253);
     width: 65%;
     text-align: center;

@@ -49,12 +49,12 @@ export class AlertsPage implements OnInit {
 
   getColor(color: string){
     if(color ==='Moderado'){
-      return "#ff4538";
-    } else if (color =='Extremo'){
-      return "#ffc409";
+      return "#e4e415dc";
+    } else if (color ==='Extremo'){
+      return "#c93636";
       }
-    else if (color =='Controlado'){
-      return "#29d440";
+    else if (color === 'Controlado'){
+      return "#2d9e2d";
     }
   }
 }
