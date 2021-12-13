@@ -18,9 +18,23 @@
     </ion-header>
   </ion-header>
 
+
+  <ion-grid>
+    <ion-row *ngFor="let message of messages">
+      <ion-col>
+        <b>{{message.user}}</b><br>
+        <span>{{message.msg}}</span>
+        <div class="time" text-right>
+          {{message.createdAt | date:'short'}}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
   <form id="footer-input" ng-submit="add(message)">
       <ion-label class="item-input-wrapper">
-        <input type="text" placeholder="Enviar mensaje..." id="message"/>
+        <input type="text" placeholder="Enviar mensaje..." id="chat-input"/>
           <button id="btnSend">
             <ion-icon name="paper-plane-outline"></ion-icon>
           </button>
