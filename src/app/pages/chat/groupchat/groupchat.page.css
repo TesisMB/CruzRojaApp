@@ -47,7 +47,7 @@
   outline: none;
 }
 
-#chat-input{
+input{
   height: 45px;
   border-radius: 15px;
   outline: none;
@@ -64,4 +64,9 @@ ion-icon{
   font-size: 24px;
   margin-right: 5px;
   transform: rotate(45deg);
+}
+
+ion-content{
+  --offset-bottom: 2px !important;
+
 }
