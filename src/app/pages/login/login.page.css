@@ -1,70 +1,70 @@
+h2 {
+  font-size: 40px;
+  font-weight: bold;
+}
 
+.img {
+  height: 120px;
+  width: 120px;
+  position: static;
+}
 
-  h2 {
-    font-size: 40px;
-    font-weight: bold;
-  }
+.ion-div{
+  margin-top: 3rem;
+}
 
-  .img {
-    height: 120px;
-    width: 120px;
-    position: static;
-  }
+ion-item {
+  --ion-item-background: #bd2d2d;
+  color: rgb(255, 253, 253);
+  --border-color: #fffff;
+  width: 90%;
+  margin-left: 13px;
+}
 
-  .ion-div{
-    margin-top: 3rem;
-  }
+ion-label{
+  font-weight: bold;
+}
 
-  ion-item {
-    --ion-item-background: #bd2d2d;
-    color: rgb(255, 253, 253);
-    --border-color: #fffff;
-  }
+ion-content {
+  background-color:#bd2d2d !important;
+  /* border-radius: 25px; */
+  overflow: hidden;
+}
+.form-input{
+  display: flex;
+}
 
-  ion-label{
-    font-weight: bold;
-  }
+form{
+  margin-top: 4rem;
+}
 
-  ion-content {
-    --ion-background-color:#bd2d2d !important;
-    border-radius: 25px;
-    overflow: hidden;
-  }
-  .form-input{
-    display: flex;
-  }
+button {
+  background-color: white;
+  color: rgb(20, 20, 20);
+  width: 65%;
+  text-align: center;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  padding: 12px;
+}
 
-  form{
-    margin-top: 6rem;
-  }
+.buttonstyle{
+  display:   flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
 
-  button {
-    background-color: white;
-    color: rgb(20, 20, 20);
-    width: 65%;
-    text-align: center;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    margin-top: 10px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    padding: 12px;
-  }
-
-  .buttonstyle{
-    display: 	flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3rem;
-  }
-
-  .span{
-    --background: #bd2d2d;
-    color: rgb(255, 253, 253);
-    width: 65%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 10px;
-    margin-left: 55px;
-  }
+.span{
+  --ion-item-background: #bd2d2d;
+  color: rgb(255, 253, 253);
+  width: 65%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 10px;
+  margin-left: 55px;
+}

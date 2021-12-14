@@ -5,6 +5,32 @@
   display: flex;
 }
 
+
+/* Clases */
+
+.message{
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  white-space: pre-wrap;
+}
+
+.other-message{
+  background: var(--ion-color-tertiary);
+  color: #fff;
+}
+
+.my-message{
+  background: var(--ion-color-secondary);
+  color: #fff;
+}
+
+.time{
+  color: #dfdfdf;
+  float: right;
+  font-size:small;
+}
+
 /* IDs */
 
 #footer-input{

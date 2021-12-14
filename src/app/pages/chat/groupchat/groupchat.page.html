@@ -18,19 +18,32 @@
     </ion-header>
   </ion-header>
 
+ <!-- mensajes -->
 
+<!--
+  Testeo de  mensajes
   <ion-grid>
     <ion-row *ngFor="let message of messages">
-      <ion-col>
+      <ion-col size="9" class="message other-message">
+        <b>{{message.user}}</b><br>
+        <span>{{message.msg}}</span>
+        <div class="time">
+          {{message.createdAt | date:'short'}}
+        </div>
+      </ion-col>
+
+      <ion-col offset="3 "size="9" class="message my-message">
         <b>{{message.user}}</b><br>
         <span>{{message.msg}}</span>
         <div class="time" text-right>
           {{message.createdAt | date:'short'}}
         </div>
       </ion-col>
-    </ion-row>
-  </ion-grid>
 
+    </ion-row>
+  </ion-grid> -->
+
+<!-- input -->
 
   <form id="footer-input" ng-submit="add(message)">
       <ion-label class="item-input-wrapper">
@@ -39,10 +52,6 @@
             <ion-icon name="paper-plane-outline"></ion-icon>
           </button>
       </ion-label>
-
-      <a class="button button-clear" ng-click="takePicture()">
-        <i class="icon ion-camera"></i>
-      </a>
 
   </form>
 </ion-content>

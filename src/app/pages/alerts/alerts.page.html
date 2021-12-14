@@ -1,14 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>alertas</ion-title>
+    <ion-title>Alertas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <ng-container *ngFor="let alert of alerts; index as i">
-
-    <ng-container *ngIf="getColor('Controlado')" >
+      <!--     <ng-container *ngIf="getColor('Controlado')" >
       <div>
         <ion-button class="buttonVolunteerClass" routerLink='/voluntarios'>
           <ion-icon name="people-circle-outline"></ion-icon>
@@ -21,46 +20,60 @@
           <ion-label class="labelButton">Informe</ion-label>
         </ion-button>
       </div>
-    </ng-container>
+    </ng-container> -->
 
-        <div>
-          <ion-card id="card" [ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}">
+      <div>
+        <ion-card
+          id="card"
+          [ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}"
+        >
+          <!--Header del card-->
+          <div class="header">
+            <ion-card-header>
+              <ion-thumbnail>
+                <img
+                  src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
+                />
+              </ion-thumbnail>
+            </ion-card-header>
 
-            <!--Header del card-->
+            <ion-card-title
+              >{{alert.typesEmergenciesDisasters.typeEmergencyDisasterName}}</ion-card-title
+            >
+          </div>
 
-              <ion-card-header>
-                <ion-thumbnail>
-                  <img src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg">
-                </ion-thumbnail>
-              </ion-card-header>
+          <!--Contenido del card-->
 
-            <ion-card-title>{{alert.typesEmergenciesDisasters.typeEmergencyDisasterName}}</ion-card-title>
+          <ion-card-content>
+            <div class="ubicationClass">
+              <!--                 <ion-icon name="locate-outline"></ion-icon>
+ -->
+              <ion-label>
+                <!-- Ubicación: -->
+                {{alert.locations.locationCityName}}
+              </ion-label>
+            </div>
 
-            <!--Contenido del card-->
+            <div class="emergencyTimeClass">
+              <!--                 <ion-icon name="calendar-outline"></ion-icon>
+ -->
+              <ion-label class="time">
+                <!-- Fecha - Hora (Inicio):  -->{{alert.emergencyDisasterStartDate
+                |date : 'dd/MM/yyyy hh:mm a'}}
+              </ion-label>
+            </div>
 
-              <ion-card-content>
-              <div class="ubicationClass">
-                <ion-icon name="locate-outline"></ion-icon>
-                <ion-label>
-                  Ubicación: {{alert.locations.locationCityName}}
-                </ion-label>
-              </div>
-
-              <div class="emergencyTimeClass">
-                <ion-icon name="calendar-outline"></ion-icon>
-                <ion-label>
-                  Fecha - Hora (Inicio): {{alert.emergencyDisasterStartDate |date : 'dd/MM/yyyy hh:mm a'}}
-                </ion-label>
-              </div>
-
-              <div *ngIf="alert.emergencyDisasterEndDate">
-                <ion-icon name="calendar-outline"></ion-icon>
-                <ion-label>Fecha - Hora (Final): {{alert.emergencyDisasterEndDate}}</ion-label>
-              </div>
-            </ion-card-content>
-
-          </ion-card>
-        </div>
+            <div *ngIf="alert.emergencyDisasterEndDate" style="display: none">
+              <!--                 <ion-icon name="calendar-outline"></ion-icon>
+ -->
+              <ion-label
+                >Fecha - Hora (Final):
+                {{alert.emergencyDisasterEndDate}}</ion-label
+              >
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
     </ng-container>
   </ion-list>
 </ion-content>

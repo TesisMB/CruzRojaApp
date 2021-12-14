@@ -23,6 +23,7 @@
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
+    "@aspnet/signalr": "^1.0.27",
     "@auth0/angular-jwt": "^5.0.2",
     "@capacitor/cli": "^3.0.1",
     "@capacitor/core": "^3.0.1",
