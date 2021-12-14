@@ -6,6 +6,28 @@
   margin-bottom: 3px;
 }
 
+/* Clases */
+
+.message{
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  white-space: pre-wrap
+}
+
+.other-message{
+  background: var(--ion-color-tertiary);
+  color: #fff
+}
+
+.my-message{
+  background: var(--ion-color-secondary);
+  color: #fff
+}
+
+.time{
+  text-align: right;
+}
 
 
 /* IDs */
@@ -14,7 +36,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  height: 85%;
 }
 
 #btnSend{
@@ -24,7 +45,7 @@
   outline: none;
 }
 
-#message{
+#chat-input{
   height: 45px;
   border-radius: 15px;
   outline: none;
@@ -37,10 +58,6 @@ input::placeholder {
   padding-left: 10px;
 }
 
-/* input:focus {
-  padding-left: 10px;
-} */
-
 ion-icon{
   font-size: 24px;
   margin-right: 5px;
@@ -51,7 +68,7 @@ ion-icon{
   background: rgba(235, 231, 231, 0.459);
 }
 
-ion-content{
-  --offset-bottom:  none !important;
-  --offset-bottom:  0px !important;
+/* ion-content{
+  --offset-bottom:  2px !important;
 }
+ */

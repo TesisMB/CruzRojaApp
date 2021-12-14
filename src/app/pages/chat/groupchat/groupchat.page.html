@@ -1,66 +1,67 @@
-<ion-content>
-  <ion-header>
-    <ion-header class="ion-no-border">
-      <div>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-back-button type="button" defaultHref="chat"></ion-back-button>
-          </ion-buttons>
+<ion-header>
+  <ion-header class="ion-no-border">
+    <div>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button type="button" defaultHref="chat"></ion-back-button>
+        </ion-buttons>
 
-          <ion-title
-            >Incendio urbano
-            <br />
-            Cruz del Eje</ion-title
-          >
-        </ion-toolbar>
-      </div>
-    </ion-header>
+        <ion-title
+          >Incendio urbano
+          <br />
+          Cruz del Eje</ion-title
+        >
+      </ion-toolbar>
+    </div>
   </ion-header>
+</ion-header>
+
+<ion-content>
+
 
  <!-- mensajes -->
 
-<!--
-  Testeo de  mensajes
-  <ion-grid>
+
     <ion-row *ngFor="let message of messages">
       <ion-col size="9" class="message other-message">
         <b>{{message.user}}</b><br>
-        <span>{{message.msg}}</span>
+        <span>{{message.message}}</span>
         <div class="time">
-          {{message.createdAt | date:'short'}}
+          {{message.createDate | date:'short'}}
         </div>
       </ion-col>
 
-      <ion-col offset="3 "size="9" class="message my-message">
+      <ion-col size="9" offset="3" class="message my-message">
         <b>{{message.user}}</b><br>
-        <span>{{message.msg}}</span>
-        <div class="time" text-right>
-          {{message.createdAt | date:'short'}}
+        <span>{{message.message}}</span>
+        <div class="time">
+          {{message.createDate | date:'short'}}
         </div>
       </ion-col>
 
     </ion-row>
-  </ion-grid> -->
 
 <!-- input -->
 
+
+</ion-content>
+
+<ion-footer>
   <form id="footer-input" ng-submit="add(message)">
     <ion-label class="item-input-wrapper">
-      <input type="text" placeholder="Usuario" id="user" 
+
+      <input type="text" placeholder="Usuario" id="user"
+
       (change)="value()" />
-      <input
-        type="text"
-        placeholder="Enviar mensaje..."
-        id="message"
-        (change)="value()"
-      />
-      <button id="btnSend">
-        <ion-icon name="paper-plane-outline"></ion-icon>
-      </button>
+
+      <input type="text" placeholder="Enviar mensaje..." id="chat-input" (change)="value()" />
+
+        <button id="btnSend">
+
+          <ion-icon name="paper-plane-outline"></ion-icon>
+
+        </button>
     </ion-label>
 
-    <a class="button button-clear" ng-click="takePicture()">
-      <i class="icon ion-camera"></i>
-    </a>
-  </form>
-</ion-content>
+</form>
+</ion-footer>

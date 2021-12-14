@@ -3,7 +3,7 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from 'src/app/services/data.service';
 import { Injectable } from '@angular/core';
-import { Messages } from '../../models/Messages';
+import { Messages } from '../../models/Message';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { environment } from 'src/environments/environment';
 

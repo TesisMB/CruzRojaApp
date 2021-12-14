@@ -1,6 +1,8 @@
-import { TypeChatRooms } from './../../../models/TypeChatRooms';
-import { Component, OnInit } from '@angular/core';
+import { Messages } from '../../../models/Message';
+
+import { Component } from '@angular/core';
 import { HubConnectionBuilder, HubConnection } from '@aspnet/signalr';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-groupchat',
@@ -9,6 +11,26 @@ import { HubConnectionBuilder, HubConnection } from '@aspnet/signalr';
 })
 export class GroupChatPage  {
 
+  messages = [
+    {
+      user: 'simon',
+      message: 'Hola, ¿como andas?',
+      messageState: true,
+      createDate: 155408085600
+    },
+    {
+      user: 'max',
+      message: 'Todo bien, y vos?',
+      messageState: true,
+      createDate: 155408085600,
+    },
+    {
+      user: 'simon',
+      message: 'sa',
+      messageState: true,
+      createDate: 155408085600
+    },
+  ];
 
   hubConnection: HubConnection;
 
@@ -29,7 +51,7 @@ export class GroupChatPage  {
     const btnSend = (document.getElementById('btnSend').addEventListener('click', (event) =>
     {
           const user = ((document.getElementById('user') as HTMLInputElement).value);
-          const message = (( document.getElementById('message') as HTMLInputElement).value);
+          const message = (( document.getElementById('chat-input') as HTMLInputElement).value);
 
           console.log(user + ' ' + message);
         })
