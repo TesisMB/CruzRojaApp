@@ -17,7 +17,6 @@ import { ChatlayoutComponent } from 'src/app/components/chatlayout/chatlayout.co
     ChatPageRoutingModule
   ],
   declarations:[
-  ChatPage,
   GroupChatPage,
   ChatlayoutComponent
 ]

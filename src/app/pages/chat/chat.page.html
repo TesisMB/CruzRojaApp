@@ -7,54 +7,17 @@
 <ion-content>
   <div *ngFor="let item of chatTypeList" >
     <div class="div_padding" *ngFor="let chat of item['chatRooms']">
-
-      <ion-card [routerLink]="['groupChat']">
-
-        <!--Header del card-->
-
-          <ion-card-header>
-            <ion-thumbnail>
-              <img src="../../../assets/icons - Resources - EmergDesas/{{chat.emergenciesDisasters.typeEmergencyDisasterIcon}}.svg" width= "40px">
-            </ion-thumbnail>
-          </ion-card-header>
-
-        <ion-card-title>{{chat.emergenciesDisasters.typeEmergencyDisasterName}}</ion-card-title>
-
-        <!--Contenido del card-->
-
-          <ion-card-content>
-          <div>
-            <p>
-              {{chat.emergenciesDisasters.typeEmergencyDisasterName}}
-            </p>
-          </div>
-
-          <div>
-            <p>
-              {{chat.emergenciesDisasters.locationCityName}}
-            </p>
-          </div>
-        </ion-card-content>
-
-      </ion-card>
-
-<!--
-        <img src="../../../assets/icons - Resources - EmergDesas/{{chat.emergenciesDisasters.typeEmergencyDisasterIcon}}.svg" width= "40px">
-        <div class="div_p">
-          <p>
-            {{chat.emergenciesDisasters.typeEmergencyDisasterName}}
-          </p>
-
-          <p>
-            {{chat.emergenciesDisasters.locationCityName}}
-          </p>
-        </div> -->
-
-      <!-- <div *ngFor="let users of chat['usersChatRooms']">
-        <ion-item>
-          {{users.name}}
+      <ion-list>
+        <ion-item [routerLink]="['groupChat']">
+          <ion-avatar slot="start">
+            <img src="../../../assets/icons - Resources - EmergDesas/{{chat.emergenciesDisasters.typeEmergencyDisasterIcon}}.svg" width= "40px">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{chat.emergenciesDisasters.typeEmergencyDisasterName}}</h2>
+            <p>{{chat.emergenciesDisasters.locationCityName}}</p>
+          </ion-label>
         </ion-item>
-      </div> -->
+      </ion-list>
       </div>
   </div>
 </ion-content>
