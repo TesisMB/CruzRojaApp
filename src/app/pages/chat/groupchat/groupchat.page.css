@@ -3,6 +3,7 @@
 .item-input-wrapper{
   width: 95%;
   display: flex;
+  margin-bottom: 3px;
 }
 
 
@@ -60,8 +61,21 @@ input::placeholder {
   padding-left: 10px;
 }
 
+/* input:focus {
+  padding-left: 10px;
+} */
+
 ion-icon{
   font-size: 24px;
   margin-right: 5px;
   transform: rotate(45deg);
+}
+
+#btnSend:hover{
+  background: rgba(235, 231, 231, 0.459);
+}
+
+ion-content{
+  --offset-bottom:  none !important;
+  --offset-bottom:  0px !important;
 }
