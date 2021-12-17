@@ -1,7 +1,7 @@
 import { GroupChatPage } from './groupchat/groupchat.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChatPage } from './chat.page';
 import { IonicModule } from '@ionic/angular';
 
@@ -14,7 +14,8 @@ import { ChatlayoutComponent } from 'src/app/components/chatlayout/chatlayout.co
     CommonModule,
     FormsModule,
     IonicModule,
-    ChatPageRoutingModule
+    ChatPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations:[
   GroupChatPage,

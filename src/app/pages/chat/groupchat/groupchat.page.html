@@ -16,13 +16,9 @@
   </ion-header>
 </ion-header>
 
+<!-- mensajes -->
 <ion-content>
-
-
- <!-- mensajes -->
-
-
-    <ion-row *ngFor="let message of messages">
+<ion-row *ngFor="let message of mensajes">
       <ion-col size="9" class="message other-message">
         <b>{{message.user}}</b><br>
         <span>{{message.message}}</span>
@@ -40,28 +36,23 @@
       </ion-col>
 
     </ion-row>
+</ion-content>
 
 <!-- input -->
 
-
-</ion-content>
-
 <ion-footer>
-  <form id="footer-input" ng-submit="add(message)">
+
+  <form [formGroup]="chatForm" (ngSubmit)="onSubmit()" id="footer-input">
     <ion-label class="item-input-wrapper">
+     <!--  <input type="text" placeholder="Usuario" id="user"
+      (change)="value()" /> -->
 
-      <input type="text" placeholder="Usuario" id="user"
+      <input type="text" formControlName="messages" name="messages" placeholder="Enviar mensaje..." id="chat-input" />
 
-      (change)="value()" />
-
-      <input type="text" placeholder="Enviar mensaje..." id="chat-input" (change)="value()" />
-
-        <button id="btnSend">
-
+        <button type="submit" id="btnSend">
           <ion-icon name="paper-plane-outline"></ion-icon>
-
         </button>
     </ion-label>
+  </form>
 
-</form>
 </ion-footer>

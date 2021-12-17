@@ -1,8 +1,8 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Messages } from '../../../models/Message';
-
 import { Component } from '@angular/core';
 import { HubConnectionBuilder, HubConnection } from '@aspnet/signalr';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { ChatService } from 'src/app/services/chat/chat.service';
 
 @Component({
   selector: 'app-groupchat',
@@ -11,14 +11,15 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 })
 export class GroupChatPage  {
 
-  messages = [
+ mensajes =
+ [
     {
       user: 'simon',
       message: 'Hola, ¿como andas?',
       messageState: true,
-      createDate: 155408085600
+      createDate: new Date(155408085600)
     },
-    {
+     {
       user: 'max',
       message: 'Todo bien, y vos?',
       messageState: true,
@@ -32,19 +33,27 @@ export class GroupChatPage  {
     },
   ];
 
-  hubConnection: HubConnection;
+  chatForm: FormGroup;
+  chatHandler: any;
+  chat: Messages[] = [];
 
-  constructor() {
-    const builder = new HubConnectionBuilder();
-    this.hubConnection = builder.withUrl('https://localhost:5001/chat').build();
+  constructor(
+    private chatService: ChatService,
+    private form: FormBuilder,
+  ) {
 
-    this.hubConnection.on('notificar', (mensaje) =>{
+  }
 
-      console.log(mensaje);
-
+  ngOnInit() {
+    this.chatForm = this.form.group({
+      user: ['yoel',[Validators.required]],
+      messages: [],
+      messageState: [false,[Validators.required]],
+      createDate: ['20/12/21 - 20:00 pm',[Validators.required]],
     });
-    this.hubConnection.start();
-
+    this.chatService.eventMessage.subscribe(mjs =>{
+      console.log('Evento recibido' , mjs);
+    });
   }
 
   value() {
@@ -53,10 +62,22 @@ export class GroupChatPage  {
           const user = ((document.getElementById('user') as HTMLInputElement).value);
           const message = (( document.getElementById('chat-input') as HTMLInputElement).value);
 
-          console.log(user + ' ' + message);
+          console.log('user' + 'message');
         })
     );
   };
-}
 
+  postChat(){
+    this.chatHandler = this.chatService.post(this.chatForm.value)
+    .subscribe(data => {
+      console.log(data);
+      //this.messages = data;
+    })
+  }
 
+   onSubmit(){
+    console.log(this.chatForm.value);
+    this.chatForm.controls.messages.reset();
+
+   }
+  }

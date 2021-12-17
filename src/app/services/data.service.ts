@@ -19,7 +19,16 @@ export class DataService {
     return this.http.get<any>(environment.apiURL+this.patch+'/'+id);
   }
 
+  post(resource){
+ return this.http.post(
+      environment.apiURL + this.patch,
+      JSON.stringify(resource),
+      this.options
+    );
+    }
+
   update(resource){
-    return this.http.put(environment.apiURL+this.patch, JSON.stringify(resource), this.options);
+    return this.http.patch(environment.apiURL+this.patch, JSON.stringify(resource), this.options);
   }
+
 }

@@ -1,23 +1,32 @@
-import { EventEmitter} from '@angular/core';
-import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from 'src/app/services/data.service';
-import { Injectable } from '@angular/core';
-import { Messages } from '../../models/Message';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { environment } from 'src/environments/environment';
+import { Injectable, EventEmitter } from '@angular/core';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChatService extends DataService{
-  private _hubConnection: HubConnection;
 
+export class ChatService extends DataService{
+
+  hubConnection: HubConnection;
+  eventMessage: EventEmitter<any> = new EventEmitter();
 
   constructor(http: HttpClient) {
     super(http, '/chatrooms');
-  }
 
+    const builder = new HubConnectionBuilder();
+    this.hubConnection = builder.withUrl('https://localhost:5001/chat').build();
+
+    this.hubConnection.on('notificar', (mensaje) =>{
+
+      console.log(mensaje);
+      let messages = JSON.parse(mensaje);
+      this.eventMessage.emit(messages);
+    });
+
+    this.hubConnection.start();
+  }
 
 }
 
