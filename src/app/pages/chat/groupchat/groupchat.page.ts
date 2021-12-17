@@ -1,6 +1,6 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Messages } from '../../../models/Message';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HubConnectionBuilder, HubConnection } from '@aspnet/signalr';
 import { ChatService } from 'src/app/services/chat/chat.service';
 
@@ -9,7 +9,7 @@ import { ChatService } from 'src/app/services/chat/chat.service';
   templateUrl: './groupchat.page.html',
   styleUrls: ['./groupchat.page.css'],
 })
-export class GroupChatPage  {
+export class GroupChatPage implements OnInit  {
 
  mensajes =
  [
@@ -72,7 +72,7 @@ export class GroupChatPage  {
     .subscribe(data => {
       console.log(data);
       //this.messages = data;
-    })
+    });
   }
 
    onSubmit(){

@@ -26,7 +26,7 @@ export class ChatPage implements OnInit {
   getChat(){
     this.handlerChat = this.service.getAll().subscribe((x: TypeChatRooms[]) =>{
     this.chatTypeList = x;
-    console.log('entro chat')
+    console.log('entro chat');
     console.log(this.chatTypeList);
    });
   }
