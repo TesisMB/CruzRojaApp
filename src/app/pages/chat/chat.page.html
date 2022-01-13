@@ -8,7 +8,7 @@
   <div *ngFor="let item of chatTypeList" >
     <div class="div_padding" *ngFor="let chat of item['chatRooms']">
       <ion-list>
-        <ion-item [routerLink]="['groupChat']">
+        <ion-item [routerLink]="['groupChat', chat.chatRoomID]">
           <ion-avatar slot="start">
             <img src="../../../assets/icons - Resources - EmergDesas/{{chat.emergenciesDisasters.typeEmergencyDisasterIcon}}.svg" width= "40px">
           </ion-avatar>

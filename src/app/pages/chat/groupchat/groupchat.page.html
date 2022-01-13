@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header *ngIf="chat">
   <ion-header class="ion-no-border">
     <div>
       <ion-toolbar>
@@ -6,11 +6,7 @@
           <ion-back-button type="button" defaultHref="chat"></ion-back-button>
         </ion-buttons>
 
-        <ion-title
-          >Incendio urbano
-          <br />
-          Cruz del Eje</ion-title
-        >
+        <ion-title>{{chat.emergenciesDisasters.typeEmergencyDisasterName}}</ion-title>
       </ion-toolbar>
     </div>
   </ion-header>
@@ -18,41 +14,26 @@
 
 <!-- mensajes -->
 <ion-content>
-<ion-row *ngFor="let message of mensajes">
-      <ion-col size="9" class="message other-message">
-        <b>{{message.user}}</b><br>
-        <span>{{message.message}}</span>
-        <div class="time">
-          {{message.createDate | date:'short'}}
-        </div>
-      </ion-col>
-
-      <ion-col size="9" offset="3" class="message my-message">
-        <b>{{message.user}}</b><br>
-        <span>{{message.message}}</span>
-        <div class="time">
-          {{message.createDate | date:'short'}}
-        </div>
-      </ion-col>
-
-    </ion-row>
+  <ion-row *ngIf="chat">
+    <ion-col size="9" *ngFor="let item of chat['messages']">
+      <p class="time">{{item.message}}</p>
+    </ion-col>
+  </ion-row>
 </ion-content>
 
 <!-- input -->
 
 <ion-footer>
-
-  <form [formGroup]="chatForm" (ngSubmit)="onSubmit()" id="footer-input">
+  <form [formGroup]="chatForm" (ngSubmit)="postChat()" footer-input>
     <ion-label class="item-input-wrapper">
-     <!--  <input type="text" placeholder="Usuario" id="user"
+      <!--  <input type="text" placeholder="Usuario" id="user"
       (change)="value()" /> -->
 
-      <input type="text" formControlName="messages" name="messages" placeholder="Enviar mensaje..." id="chat-input" />
-
-        <button type="submit" id="btnSend">
-          <ion-icon name="paper-plane-outline"></ion-icon>
-        </button>
+      <input type="text"formControlName="message"name="message" placeholder="Enviar mensaje..." id="chat-input"/>
+      
+      <button type="submit" id="btnSend" [disabled]="chatForm.get('message').invalid">
+        <ion-icon name="paper-plane-outline"></ion-icon>
+      </button>
     </ion-label>
   </form>
-
 </ion-footer>

@@ -21,7 +21,7 @@ export class ChatService extends DataService{
     this.hubConnection.on('notificar', (mensaje) =>{
 
       console.log(mensaje);
-      let messages = JSON.parse(mensaje);
+      const messages = JSON.parse(mensaje);
       this.eventMessage.emit(messages);
     });
 

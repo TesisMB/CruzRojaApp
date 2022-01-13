@@ -13,7 +13,7 @@ import { Volunteer } from 'src/app/models/Volunteer';
 export class VoluntariosDetallesPage implements OnInit {
   @Input() volunteers: Volunteer[];
   handlerVoluntarios: any;
-  idVolunteer: number = 1;
+  idVolunteer = 1;
   constructor(
     public service: VolunteersService,
   ) { }
@@ -22,8 +22,8 @@ export class VoluntariosDetallesPage implements OnInit {
     this.getVolunteersByID();
   }
 
-  getVolunteersByID(){
-      this.handlerVoluntarios = this.service.getById(this.idVolunteer).subscribe((x: Volunteer[]) =>{
+  getVolunteersByID() {
+    this.handlerVoluntarios = this.service.getById(this.idVolunteer).subscribe((x: Volunteer[]) => {
       console.log('ingreso volunteer detail');
       this.volunteers = x;
       console.log(this.volunteers);

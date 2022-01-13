@@ -15,7 +15,7 @@ const routes: Routes = [
         component: ChatPage
       },
       {
-        path: 'groupChat',
+        path: 'groupChat/:id',
         component: GroupChatPage
       }
     ]
@@ -26,4 +26,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ChatPageRoutingModule {}
+export class ChatPageRoutingModule { }

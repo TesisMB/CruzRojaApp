@@ -1,23 +1,26 @@
-export interface TypeChatRooms  {
+import { ChatRooms } from './ChatRooms';
+
+export interface TypeChatRooms {
   id: number;
   isGroupChat: boolean;
 
-  chatRooms: [{
-      chatRoomID: number;
-      createdDate: Date;
+  chatRooms: ChatRooms[];
+  /* [{
+   chatRoomID: number;
+   createdDate: Date;
 
-      usersChatRooms: [{
-        userID: number;
-        name: string;
-      }];
+   usersChatRooms: [{
+     userID: number;
+     name: string;
+   }];
 
-      emergenciesDisasters: {
-        emergencyDisasterID: number;
-        locationCityName: string;
-        typeEmergencyDisasterID: number;
-        typeEmergencyDisasterName: string;
-        typeEmergencyDisasterIcon: string;
-      }
-    }
-  ]
+   emergenciesDisasters: {
+     emergencyDisasterID: number;
+     locationCityName: string;
+     typeEmergencyDisasterID: number;
+     typeEmergencyDisasterName: string;
+     typeEmergencyDisasterIcon: string;
+   };
+ }
+ ]; */
 }
