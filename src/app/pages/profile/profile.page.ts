@@ -20,12 +20,6 @@ export class ProfilePage{
     private loginService: LoginService,
   ) {}
 
-  logOut(){
-    if(this.handlerProfile){
-      this.handlerProfile.unsubscribe();
-    }
-  }
-
   getCurrentUser(){
     this.loginService.currentUserObs;
   }
@@ -39,4 +33,7 @@ export class ProfilePage{
     });
   }
 
+  ngOnDestroy(){
+      this.handlerProfile.unsubscribe();
+  }
 }

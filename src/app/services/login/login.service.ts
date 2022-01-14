@@ -1,5 +1,5 @@
 import { CurrentUser } from './../../models/CurrentUser';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 
 export class LoginService {
+  private options = { headers: new HttpHeaders().set('Content-Type', 'application/json'),
+                      params: new HttpParams() };
   authState = new BehaviorSubject(false);
   private currentUserSubject: BehaviorSubject<any>;
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -57,4 +59,13 @@ export class LoginService {
       this.router.navigate(['/pages/login']);
     }
 
+    sendEmail(email: string){
+      return this.http.post<string>(environment.apiURL+'Forgot-Password', email);
+    }
+
+    changePassword(token: string, userPassword: string){
+      let parametros = new HttpParams().append('token', token);
+      this.options.params = parametros;
+      return this.http.post<any>(environment.apiURL+'reset-password/', {userPassword}, this.options);
+  }
 }

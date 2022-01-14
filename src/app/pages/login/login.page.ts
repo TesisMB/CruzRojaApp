@@ -61,7 +61,8 @@ export class LoginPage implements OnInit {
     //const loading = await this.loadingCtrl.create();
     //await loading.present();
 
-    this.handler = this.servicio.login(this.f.UserDni.value, this.f.UserPassword.value)
+    this.handler = this.servicio
+    .login(this.f.UserDni.value, this.f.UserPassword.value)
     .subscribe(
       res => {
         console.log('entro');
