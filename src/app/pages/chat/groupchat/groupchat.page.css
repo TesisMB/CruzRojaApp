@@ -22,13 +22,19 @@
 
 .my-message{
   background: var(--ion-color-secondary);
-  color: #fff
-}
-
-.time{
+  color: #fff;
   text-align: right;
 }
 
+.time{
+  color: #dfdfdf;
+  float: right;
+  font-size: small;
+}
+
+p{
+  margin-top: -5px;
+}
 
 /* IDs */
 

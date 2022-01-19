@@ -7,4 +7,13 @@ export class Messages {
   FK_ChatRoomID?: number;
   // eslint-disable-next-line @typescript-eslint/naming-convention
   FK_LocationVolunteerID?: number;
+
+  // constructor( _message : string, _FK_ChatRoomID: number, _FK_LocationVolunteerID?: number,_id?: number) {
+  //   this.messageState = false;
+  //   this.createdDate = Date.now();
+  //   this.id = _id || null;
+  //   this.message = _message;
+  //   this.FK_ChatRoomID = _FK_ChatRoomID;
+  //   this.FK_LocationVolunteerID = _FK_LocationVolunteerID || null;
+  // }
 }

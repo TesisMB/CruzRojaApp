@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.css'],
 })
 export class LoginPage implements OnInit {
-  currentUser: CurrentUser;
   credentials: FormGroup;
   errorToast: any;
   handler: any;
@@ -27,32 +26,35 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
   )
     {
-      this.currentUser = this.servicio.currentUserValue;
-         //Redirecciona si el usuario esta logeado
-         if (this.servicio.currentUserValue) {
-            this.router.navigate(['/']);
-        }
+      let currentUser: CurrentUser = this.servicio.currentUserValue;
+      //Redirecciona si el usuario esta logeado
+      if (currentUser) {
+        console.log('Valor de currentUser:', currentUser)
+        // this.router.navigate(['/home']);
+     }
       const toasty = this.toastCtrl.create();
     }
 
+
+      //Se inicializa las validaciones
   ngOnInit() {
     this.credentials = this.formBuilder.group({
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       UserDni: ['', Validators.required],
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       UserPassword: ['', Validators.required]
     });
+    console.log('Estoy en: ', window.location.pathname);
   }
 
   get f() { return this.credentials.controls; }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+  //Si el usuario ingresa mal los datos, se le aparecera un toast para advertirle que los datos son erroneos
   async FailToast(msg: string) {
    this.toastCtrl.dismiss();
    const toast = await this.toastCtrl.create({
      message: msg='Datos Erroneos',
      duration: 3000,
      position: 'bottom',
+     cssClass: "backtoast"
    });
    toast.present();
  }
@@ -79,9 +81,4 @@ export class LoginPage implements OnInit {
     );
   }
 
-  logOut(){
-    if(this.handler){
-      this.handler.unsubscribe();
-    }
-  }
 }

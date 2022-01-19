@@ -1,12 +1,13 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Messages } from '../../../models/Message';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HubConnectionBuilder, HubConnection } from '@aspnet/signalr';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { ActivatedRoute } from '@angular/router';
-import { TypeChatRooms } from 'src/app/models';
 import { ChatRooms } from 'src/app/models/ChatRooms';
 import { LoginService } from 'src/app/services/login/login.service';
+import { IonContent } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-groupchat',
@@ -14,31 +15,6 @@ import { LoginService } from 'src/app/services/login/login.service';
   styleUrls: ['./groupchat.page.css'],
 })
 export class GroupChatPage implements OnInit {
-
-
-
-  /*   chat =
-  [
-    {
-      user: 'simon',
-      message: 'Hola, ¿como andas?',
-      messageState: true,
-      createdDate: new Date(155408085600)
-    },
-    {
-      user: 'max',
-      message: 'Todo bien, y vos?',
-      messageState: true,
-      createdDate: 155408085600,
-    },
-    {
-      //user: 'simon',
-      message: 'sa',
-      messageState: true,
-      createdDate: 155408085600
-    },
-  ]; */
-
   chat: ChatRooms;
   chatForm: FormGroup;
   chatHandler: any;
@@ -47,46 +23,27 @@ export class GroupChatPage implements OnInit {
   handler: any;
   identificador: 0;
 
+  @ViewChild(IonContent) content: IonContent;
+
   constructor(
     private chatService: ChatService,
     private fb: FormBuilder,
     private aRoute: ActivatedRoute,
-    private services: LoginService
+    private services: LoginService,
   ) {
     this.chatForm = this.fb.group({
       message: ['', Validators.required],
       // eslint-disable-next-line @typescript-eslint/naming-convention
       FK_ChatRoomID: ['', Validators.required]
     });
-
   }
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-
-  /*   console.log('Get', user.userID);
-   */
-
-  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngOnInit() {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    this.id = +this.aRoute.snapshot.params.id;
+    this.id = + this.aRoute.snapshot.params.id;
     this.getById();
-
+    this.hubConnection();
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log('LocalStorage', currentUser.userID);
-
-    /* const user = this.services.currentUserValue;
-
-    console.log('Get', user.userID); */
-    /*   this.chatForm = this.form.group({
-         user: ['yoel', [Validators.required]],
-         messages: [],
-         messageState: [false, [Validators.required]],
-         createDate: ['20/12/21 - 20:00 pm', [Validators.required]],
-       });
-       this.chatService.eventMessage.subscribe(mjs => {
-         console.log('Evento recibido', mjs);
-       }); */
   }
 
   value() {
@@ -113,14 +70,16 @@ export class GroupChatPage implements OnInit {
     // Agregamos un nuevo mensaje
     const msj: Messages = {
       message: this.chatForm.get('message').value,
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      FK_ChatRoomID: this.chatForm.get('FK_ChatRoomID').value
-
+      FK_ChatRoomID : this.chatForm.get('FK_ChatRoomID').value,
+     // createdDate: Date.now()
     };
+
 
     this.chatHandler = this.chatService.post(msj)
       .subscribe(data => {
         console.log(data);
+        this.chat.messages.push(data.messages);
+
 
         //this.messages = data;
       }, error => {
@@ -138,13 +97,25 @@ export class GroupChatPage implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.chatForm.value);
-    this.chatForm.controls.messages.reset();
+    this.postChat();
+    this.chatForm.reset();
+    this.content.scrollToBottom(0);
   }
 
+  hubConnection(){
+    this.chatService.eventMessage.subscribe(messageReception => {
+      console.log('Mensaje recibido del Hub', messageReception);
+      this.chat.messages.push(messageReception);
+      console.log('Mensaje after push', this.chat);
+
+    },
+    error => {
+      console.log('Se pikó el hub', error);
+    });
+  }
   /*  getColor(id: number) {
      const userId = this.services.currentUserValue.userID;
- 
+
      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
      (id === userId) ? '#e4e415dc' : '#c93636';
    } */

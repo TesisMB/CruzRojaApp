@@ -1,7 +1,8 @@
 import { ProfileService } from './../../services/profile/profile.service';
 import { User } from './../../models/User';
 import { LoginService } from './../../services/login/login.service';
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable()
 
@@ -11,29 +12,36 @@ import { Component, Injectable } from '@angular/core';
   styleUrls: ['./profile.page.css'],
 })
 
-export class ProfilePage{
-  users: User[];
+export class ProfilePage implements OnDestroy, OnInit{
+  users: User;
   handlerProfile: any;
   service: ProfileService;
   id: number;
   constructor(
     private loginService: LoginService,
+    private router: Router,
   ) {}
 
-  getCurrentUser(){
-    this.loginService.currentUserObs;
+  ngOnInit(){
+    this.getProfile();
+
   }
 
   getProfile(){
       this.handlerProfile = this.service.getById(this.id)
-      .subscribe((x: User[]) =>{
+      .subscribe((x: User) =>{
       console.log('ingreso');
       this.users = x;
       console.log(this.users);
     });
   }
 
+  logout(){
+    this.loginService.logout();
+    this.router.navigate(['/login']);
+  }
+
   ngOnDestroy(){
-      this.handlerProfile.unsubscribe();
+    this.handlerProfile.unsubscribe();
   }
 }

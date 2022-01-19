@@ -12,7 +12,7 @@ import { Subject } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy{
   closed$ = new Subject<any>();
-  showTabs: CurrentUser; // <-- show tabs by default
+  showTabs: boolean = false; // <-- show tabs by default
   handler: any;
   constructor(
     private router: Router,
@@ -23,23 +23,24 @@ export class AppComponent implements OnInit, OnDestroy{
     ngOnInit() {
       this.handler = this.loginService.currentUserObs.subscribe(
       (data: CurrentUser) =>{
-        this.showTabs = data;
+        (data) ? this.showTabs = true : this.showTabs = false;
       });
     }
 
     ngOnDestroy() {
-      this.closed$.next(); // <-- close subscription when component is destroyed
+      this.closed$.next();
+      this.handler.unsubscribe(); // <-- close subscription when component is destroyed
     }
 
-    initializeApp() {
-      this.platform.ready().then(() => {
-        this.loginService.authState.subscribe(state => {
-          if (state) {
-            this.router.navigate(['menu']);
-          } else {
-            this.router.navigate(['login']);
-          }
-        });
-      });
-  }
+  //    initializeApp() {
+  //     this.platform.ready().then(() => {
+  //       this.loginService.currentUserObs.subscribe(state => {
+  //         if (state) {
+  //           this.router.navigate(['menu']);
+  //         } else {
+  //           this.router.navigate(['login']);
+  //         }
+  //       });
+  //     });
+  // }
 }
