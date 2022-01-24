@@ -1,10 +1,11 @@
 export class Messages {
   id?: number;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   message: string;
   messageState?: boolean;
   createdDate?: Date;
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  FK_ChatRoomID?: number;
+  FK_ChatRoomID?: string;
   // eslint-disable-next-line @typescript-eslint/naming-convention
   FK_LocationVolunteerID?: number;
 

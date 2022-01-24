@@ -23,12 +23,12 @@ export class ChatPage implements OnInit {
     this.getChat();
   }
 
-  getChat(){
-    this.handlerChat = this.service.getAll().subscribe((x: TypeChatRooms[]) =>{
-    this.chatTypeList = x;
-    console.log('entro chat');
-    console.log(this.chatTypeList);
-   });
+  getChat() {
+    this.handlerChat = this.service.getAll().subscribe((x: TypeChatRooms[]) => {
+      this.chatTypeList = x;
+      console.log('entro chat');
+      console.log(this.chatTypeList);
+    });
   }
 
 }

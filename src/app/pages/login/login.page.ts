@@ -24,19 +24,18 @@ export class LoginPage implements OnInit {
     public toastCtrl: ToastController,
     private router: Router,
     private formBuilder: FormBuilder,
-  )
-    {
-      let currentUser: CurrentUser = this.servicio.currentUserValue;
-      //Redirecciona si el usuario esta logeado
-      if (currentUser) {
-        console.log('Valor de currentUser:', currentUser)
-        // this.router.navigate(['/home']);
-     }
-      const toasty = this.toastCtrl.create();
+  ) {
+    let currentUser: CurrentUser = this.servicio.currentUserValue;
+    //Redirecciona si el usuario esta logeado
+    if (currentUser) {
+      console.log('Valor de currentUser:', currentUser)
+      // this.router.navigate(['/home']);
     }
+    const toasty = this.toastCtrl.create();
+  }
 
 
-      //Se inicializa las validaciones
+  //Se inicializa las validaciones
   ngOnInit() {
     this.credentials = this.formBuilder.group({
       UserDni: ['', Validators.required],
@@ -49,36 +48,36 @@ export class LoginPage implements OnInit {
 
   //Si el usuario ingresa mal los datos, se le aparecera un toast para advertirle que los datos son erroneos
   async FailToast(msg: string) {
-   this.toastCtrl.dismiss();
-   const toast = await this.toastCtrl.create({
-     message: msg='Datos Erroneos',
-     duration: 3000,
-     position: 'bottom',
-     cssClass: "backtoast"
-   });
-   toast.present();
- }
+    this.toastCtrl.dismiss();
+    const toast = await this.toastCtrl.create({
+      message: msg = 'Datos Erroneos',
+      duration: 3000,
+      position: 'bottom',
+      cssClass: "backtoast"
+    });
+    toast.present();
+  }
 
-  onSubmit(){
+  onSubmit() {
     //const loading = await this.loadingCtrl.create();
     //await loading.present();
 
     this.handler = this.servicio
-    .login(this.f.UserDni.value, this.f.UserPassword.value)
-    .subscribe(
-      res => {
-        console.log('entro');
-        this.router.navigateByUrl('/home', { replaceUrl: true });
-        //await loading.dismiss();
-      },
+      .login(this.f.UserDni.value, this.f.UserPassword.value)
+      .subscribe(
+        res => {
+          console.log('entro');
+          this.router.navigateByUrl('/home', { replaceUrl: true });
+          //await loading.dismiss();
+        },
 
-      error => {
-              this.error = error;
-              this.FailToast('Datos Incorrectos');
-              console.log(error.message);
-              }
+        error => {
+          this.error = error;
+          this.FailToast('Datos Incorrectos');
+          console.log(error.message);
+        }
 
-    );
+      );
   }
 
 }

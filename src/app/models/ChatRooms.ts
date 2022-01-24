@@ -24,7 +24,7 @@ export interface ChatRooms {
             messageState: false;
             createdDate: Date;
             // eslint-disable-next-line @typescript-eslint/naming-convention
-            FK_ChatRoomID?: number;
+            FK_ChatRoomID?: string;
             // eslint-disable-next-line @typescript-eslint/naming-convention
             FK_LocationVolunteerID?: number;
         }
