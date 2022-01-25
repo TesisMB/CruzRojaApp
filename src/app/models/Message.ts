@@ -1,3 +1,4 @@
+import { User } from './User';
 export class Messages {
   id?: number;
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -8,7 +9,7 @@ export class Messages {
   FK_ChatRoomID?: string;
   // eslint-disable-next-line @typescript-eslint/naming-convention
   FK_LocationVolunteerID?: number;
-
+  userID?: number;
   // constructor( _message : string, _FK_ChatRoomID: number, _FK_LocationVolunteerID?: number,_id?: number) {
   //   this.messageState = false;
   //   this.createdDate = Date.now();

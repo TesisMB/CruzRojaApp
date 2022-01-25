@@ -17,10 +17,12 @@ export class ChatPage implements OnInit {
   constructor(
     public router: Router,
     public service: ChatService
-  ) { }
+  ) {
+    this.getChat();
+  }
 
   ngOnInit() {
-    this.getChat();
+
   }
 
   getChat() {

@@ -8,6 +8,9 @@ import { TypeChatRooms } from 'src/app/models';
 import { ChatRooms } from 'src/app/models/ChatRooms';
 import { LoginService } from 'src/app/services/login/login.service';
 
+const CURRENT_USER_STYLE = "my-message";
+const OTHER_MESSAGE_STYLE = "other-message";
+
 @Component({
   selector: 'app-groupchat',
   templateUrl: './groupchat.page.html',
@@ -21,6 +24,9 @@ export class GroupChatPage implements OnInit {
   id: number;
   handler: any;
   msj: Messages[] = [];
+  currentUser = null;
+  offset = 0;
+
   constructor(
     private chatService: ChatService,
     private fb: FormBuilder,
@@ -49,12 +55,12 @@ export class GroupChatPage implements OnInit {
     this.id = +this.aRoute.snapshot.params.id;
     this.getById();
 
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log('LocalStorage', currentUser.userID);
+   this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log('LocalStorage', this.currentUser.userID);
 
   }
 
-  value() {
+  /* value() {
     const btnSend = (document.getElementById('btnSend').addEventListener('click', (event) => {
       const user = ((document.getElementById('user') as HTMLInputElement).value);
       const message = ((document.getElementById('chat-input') as HTMLInputElement).value);
@@ -62,7 +68,7 @@ export class GroupChatPage implements OnInit {
       console.log('user' + 'message');
     })
     );
-  };
+  }; */
 
   getById() {
     this.handler = this.chatService.getById(this.id).subscribe(data => {
@@ -76,11 +82,9 @@ export class GroupChatPage implements OnInit {
 
   postChat() {
     this.chatForm.get('FK_ChatRoomID').patchValue(this.id);
-    // Agregamos un nuevo mensaje
+    this.offset = 3;
     const msj: Messages = {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       message: this.chatForm.get('message').value,
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       FK_ChatRoomID: this.chatForm.get('FK_ChatRoomID').value
 
     };
@@ -88,12 +92,11 @@ export class GroupChatPage implements OnInit {
     this.chatHandler = this.chatService.post(msj)
       .subscribe(data => {
         console.log('Todo Bien', data);
-        //this.chat.messages.push(data);
-        //this.messages = data;
-        //this.chatService.sendMessage(data);
       }, error => {
         console.log(error);
       });
+      this.chatForm.reset();
+      document.getElementById("message").focus();
   }
 
   getChat() {
@@ -107,14 +110,7 @@ export class GroupChatPage implements OnInit {
 
   onSubmit() {
     console.log(this.chatForm.value);
-    this.chatForm.controls.messages.reset();
   }
 
-  /*  getColor(id: number) {
-const userId = this.services.currentUserValue.userID;
-
-     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-(id === userId) ? '#e4e415dc' : '#c93636';
-   } */
 
 }

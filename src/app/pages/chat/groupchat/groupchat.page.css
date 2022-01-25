@@ -12,24 +12,26 @@
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 4px;
-  white-space: pre-wrap
+  white-space: pre-wrap;
 }
 
+/* Mensaje interno */
+.my-message{
+  background: #3fa1ce;
+  color: #fff;
+  text-align: right;
+}
+
+/* Mensaje externo */
 .other-message{
   background: var(--ion-color-tertiary);
   color: #fff
 }
 
-.my-message{
-  background: var(--ion-color-secondary);
-  color: #fff;
-  text-align: right;
-}
-
 .time{
   color: #dfdfdf;
   float: right;
-  font-size: small;
+  font-size: 12px;
 }
 
 p{
@@ -49,6 +51,7 @@ p{
   height: 45px;
   border-radius: 50%;
   outline: none;
+  margin-top: 3px;
 }
 
 #chat-input{
@@ -58,6 +61,11 @@ p{
   border: none;
   width: 100%;
   margin-right: 10px;
+  margin-left: 3px;
+  margin-top: 3px;
+  resize: none;
+  background-color: #5c1a1a;
+  color: #fff;
 }
 
 input::placeholder {

@@ -13,24 +13,27 @@
 </ion-header>
 
 <!-- mensajes -->
-<ion-content>
-  <ion-row *ngIf="chat">
-    <ion-col size="9" *ngFor="let item of msj">
-      <p class="time">{{item.message}}</p>
+<ion-content *ngIf="chat">
+  <ion-row  >
+    <ion-col [offset]="(item.userID === currentUser.userID) ? '3' : '0'" size="9" *ngFor="let item of msj" class= "message" [ngClass]="(item.userID === currentUser.userID) ? 'my-message' : 'other-message'">
+      <span id="message">{{item.message}}</span>
+      <div class="time">
+        <span>{{item.createdDate | date : 'short'}}</span>
+      </div>
     </ion-col>
   </ion-row>
 </ion-content>
 
 <!-- input -->
 
-<ion-footer>
+<ion-footer style="background-color: #b71c1c;">
   <form [formGroup]="chatForm" (ngSubmit)="postChat()" footer-input>
     <ion-label class="item-input-wrapper">
       <!--  <input type="text" placeholder="Usuario" id="user"
       (change)="value()" /> -->
 
-      <input type="text"formControlName="message"name="message" placeholder="Enviar mensaje..." id="chat-input"/>
-      
+      <textarea autosize maxRows="3" type="text"formControlName="message" name="message" placeholder="Enviar mensaje..." id="chat-input"></textarea>
+
       <button type="submit" id="btnSend" [disabled]="chatForm.get('message').invalid">
         <ion-icon name="paper-plane-outline"></ion-icon>
       </button>
