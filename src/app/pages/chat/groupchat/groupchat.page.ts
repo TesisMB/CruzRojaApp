@@ -1,12 +1,13 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Messages } from '../../../models/Message';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { HubConnectionBuilder, HubConnection } from '@aspnet/signalr';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { ActivatedRoute } from '@angular/router';
 import { TypeChatRooms } from 'src/app/models';
 import { ChatRooms } from 'src/app/models/ChatRooms';
 import { LoginService } from 'src/app/services/login/login.service';
+import { IonContent, IonFab, IonFabButton } from '@ionic/angular';
 
 const CURRENT_USER_STYLE = "my-message";
 const OTHER_MESSAGE_STYLE = "other-message";
@@ -17,6 +18,9 @@ const OTHER_MESSAGE_STYLE = "other-message";
   styleUrls: ['./groupchat.page.css'],
 })
 export class GroupChatPage implements OnInit {
+
+  @ViewChild('#fab') scrollButton: IonFab;
+  @ViewChildren(IonContent) content: IonContent;
 
   chat: ChatRooms;
   chatForm: FormGroup;
@@ -41,12 +45,6 @@ export class GroupChatPage implements OnInit {
 
   }
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-
-  /*   console.log('Get', user.userID);
-   */
-
-  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
   ngOnInit() {
     this.chatService.messageReceived.subscribe((data) => {
       this.msj.push(data);
@@ -56,19 +54,8 @@ export class GroupChatPage implements OnInit {
     this.getById();
 
    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log('LocalStorage', this.currentUser.userID);
-
+   console.log('LocalStorage', this.currentUser.userID);
   }
-
-  /* value() {
-    const btnSend = (document.getElementById('btnSend').addEventListener('click', (event) => {
-      const user = ((document.getElementById('user') as HTMLInputElement).value);
-      const message = ((document.getElementById('chat-input') as HTMLInputElement).value);
-
-      console.log('user' + 'message');
-    })
-    );
-  }; */
 
   getById() {
     this.handler = this.chatService.getById(this.id).subscribe(data => {
@@ -112,5 +99,24 @@ export class GroupChatPage implements OnInit {
     console.log(this.chatForm.value);
   }
 
+  //Declaro callbacks para utilizar el scroll
+
+  logScrollStart(event) {
+    console.log("logScrollStart : When Scroll Starts", event);
+  }
+
+  logScrolling(event) {
+    console.log("logScrolling : When Scrolling", event);
+  }
+
+  logScrollEnd(event) {
+    console.log("logScrollEnd : When Scroll Ends", event);
+  }
+
+  //Funciones
+
+  ScrollToBottom() {
+    this.content.scrollToBottom(1500);
+  }
 
 }

@@ -1,4 +1,9 @@
 
+html, body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 
 .item-input-wrapper{
   width: 95%;
@@ -28,6 +33,10 @@
   color: #fff
 }
 
+.hide{
+  visibility: hidden;
+}
+
 .time{
   color: #dfdfdf;
   float: right;
@@ -52,6 +61,7 @@ p{
   border-radius: 50%;
   outline: none;
   margin-top: 3px;
+  margin-right: -3px;
 }
 
 #chat-input{
@@ -70,6 +80,15 @@ p{
 
 input::placeholder {
   padding-left: 10px;
+}
+
+#fab-button{
+  --background: #cc2020ca;
+  width: 45px;
+  height: 45px;
+  margin-top: 30rem;
+  transform: rotate(-45deg);
+  overflow-x: hidden;
 }
 
 ion-icon{

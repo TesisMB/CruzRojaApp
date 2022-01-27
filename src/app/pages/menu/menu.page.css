@@ -1,4 +1,4 @@
-  
+
 
   ion-tab-bar{
     height:60px;
@@ -6,8 +6,18 @@
     --background: rgba(0, 0, 0, 0.5);
     bottom: 0;
   }
-  
-  ion-fab-button{
+
+  /* Clases */
+
+  .tabs-icon{
+    font-size: 35px;
+  }
+
+  /* IDs */
+
+  /* Botón de Perfil */
+
+  #menu-fab-button{
     width: 45px;
     height: 45px;
     --background: rgba(255, 255, 255, 0.5);
@@ -21,8 +31,5 @@
     --background: rgba(0, 0, 0, 0.5);
   }
 
-  .tabs-icon{
-    font-size: 35px;
-  }
 
-  
+
