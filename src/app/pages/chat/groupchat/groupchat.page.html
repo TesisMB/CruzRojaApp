@@ -18,8 +18,8 @@
 (ionScroll)="logScrolling($event)"
 (ionScrollEnd)="logScrollEnd($event)">
 
-<ion-button (click)="ScrollToBottom()"> Scroll To Bottom </ion-button>
-
+<!-- <ion-button (click)="ScrollToBottom()"> Scroll To Bottom </ion-button>
+ -->
   <ion-row>
     <ion-col [offset]="(item.userID === currentUser.userID) ? '3' : '0'" size="9" *ngFor="let item of msj" class= "message" [ngClass]="(item.userID === currentUser.userID) ? 'my-message' : 'other-message'">
       <span id="message">{{item.message}}</span>

@@ -1,13 +1,11 @@
 import { User } from './User';
 export class Messages {
   id?: number;
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   message: string;
   messageState?: boolean;
   createdDate?: Date;
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   FK_ChatRoomID?: string;
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+  FK_UserID?: number;
   FK_LocationVolunteerID?: number;
   userID?: number;
   // constructor( _message : string, _FK_ChatRoomID: number, _FK_LocationVolunteerID?: number,_id?: number) {

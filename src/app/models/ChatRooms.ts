@@ -26,6 +26,9 @@ export interface ChatRooms {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             FK_ChatRoomID?: string;
             // eslint-disable-next-line @typescript-eslint/naming-convention
+            FK_UserID: number;
+
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             FK_LocationVolunteerID?: number;
             userID: number;
         }
