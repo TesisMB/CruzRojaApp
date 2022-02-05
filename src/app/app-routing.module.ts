@@ -20,6 +20,11 @@ const routes: Routes = [
     path: 'login',
     component: LoginPage,
   },
+  {
+    path: 'forgotpassword',
+    loadChildren: () => import('./pages/login/forgotpassword/forgotpassword.module')
+    .then( m => m.ForgotpasswordPageModule)
+  },
 
   {
     path: 'home',
@@ -62,7 +67,11 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: ''
-  },
+  },  {
+    path: 'deployment',
+    loadChildren: () => import('./pages/deployment/deployment.module').then( m => m.DeploymentPageModule)
+  }
+
 
 ];
 

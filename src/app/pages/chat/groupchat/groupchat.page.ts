@@ -7,6 +7,8 @@ import { ChatRooms } from 'src/app/models/ChatRooms';
 import { LoginService } from 'src/app/services/login/login.service';
 import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
 import { IonContent, IonFab, IonFabButton } from '@ionic/angular';
+import { finalize } from 'rxjs/operators';
+
 @Component({
   selector: 'app-groupchat',
   templateUrl: './groupchat.page.html',
@@ -14,7 +16,7 @@ import { IonContent, IonFab, IonFabButton } from '@ionic/angular';
 })
 export class GroupChatPage implements OnInit, OnDestroy {
   @ViewChild('#fab') scrollButton: IonFab;
-  @ViewChildren(IonContent) content: IonContent;
+  @ViewChild(IonContent, { static: true }) content: IonContent;
 
   chat: ChatRooms;
   msj: Messages[] = [];
@@ -28,8 +30,6 @@ export class GroupChatPage implements OnInit, OnDestroy {
   id: number;
   observableUserID = null;
   currentUser = null;
-
-
 
   constructor(
     private chatService: ChatService,
@@ -51,14 +51,16 @@ export class GroupChatPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.messageHandler = this.service.messageReceived.subscribe((data) => {
       this.msj.push(data);
-    });
 
+    }, (error)=>{
+
+    });
     //Captar el CurrentUser mediante el LocalStorage
     //const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     //console.log('LocalStorage', currentUser.userID);
+
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log('LocalStorage', this.currentUser.userID);
-
 
     this.currentUserHandler = this.services.currentUserObs.subscribe(resp => {
       this.observableUserID = resp.userID;
@@ -91,7 +93,6 @@ export class GroupChatPage implements OnInit, OnDestroy {
   }
 
   postChat() {
-
     this.chatForm.get('FK_ChatRoomID').patchValue(this.id);
     this.chatForm.get('FK_UserID').patchValue(this.observableUserID);
 
@@ -100,13 +101,19 @@ export class GroupChatPage implements OnInit, OnDestroy {
     const msj = this.chatForm.value;
     console.log('chatForm', msj);
 
-    this.chatHandlerPost = this.chatService.post(msj).subscribe(data => {
+    this.chatHandlerPost = this.chatService.post(msj).pipe(
+      finalize(() => {
+        // this is called on both success and error
+        console.log('finalize');
+        this.ScrollToBottom();
+      }))
+    .subscribe(data => {
       console.log('Todo Bien');
       this.service.sendMessage(data);
-    }, error => {
-      console.log(error);
-    });
-
+    },
+      error => {
+        console.log(error);
+      });
     this.chatForm.reset();
   }
 
@@ -119,22 +126,18 @@ export class GroupChatPage implements OnInit, OnDestroy {
     });
   }
 
-
-  //Declaro callbacks para utilizar el scroll
-
-  logScrollStart(event) {
-    console.log("logScrollStart : When Scroll Starts", event);
-  }
-
-  logScrolling(event) {
-    console.log("logScrolling : When Scrolling", event);
-  }
-
-  logScrollEnd(event) {
-    console.log("logScrollEnd : When Scroll Ends", event);
-  }
-
   //Funciones
+  public lastScrollTop = 0;
+  public handleScroll(event): void {
+    if (event.detail.scrollTop >= this.lastScrollTop) {
+         document.getElementById("fab-button").style.top = '100%';
+    }else{
+      document.getElementById("fab-button").style.top = '75%';
+      document.getElementById("fab-button").style.right = '4%';
+    }
+
+    this.lastScrollTop = event.detail.scrollTop;
+  }
 
   ScrollToBottom() {
     this.content.scrollToBottom(1500);

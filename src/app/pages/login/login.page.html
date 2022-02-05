@@ -28,18 +28,17 @@
         ></ion-input>
       </ion-item>
 
-      <div class="buttonstyle">
+      <div class="buttonstyle" >
         <button
-          click="showLoading()"
-          ion-button
+          (click)="showLoading()"
           type="submit"
           [disabled]="!credentials.valid"
         >
           Ingresar
         </button>
       </div>
-      <div class="span">
-          <span onmouseover="style='text-decoration:underline'" onmouseout="style='text-decoration:none'">¿Has olvidado tu contraseña?</span>
+      <div>
+          <ion-button fill="clear" id="forgotPassword" routerLink='/forgotpassword' >¿Has olvidado tu contraseña?</ion-button>
       </div>
     </div>
   </form>

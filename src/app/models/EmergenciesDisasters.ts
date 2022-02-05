@@ -2,8 +2,8 @@ import { TypeEmergenciesDisasters, Employees, Locations, Alert } from './index';
 
 export interface EmergenciesDisasters {
   emergencyDisasterID: number;
-  emergencyDisasterStartDate: Date;
-  emergencyDisasterEndDate: Date;
+  emergencyDisasterStartDate: string;
+  emergencyDisasterEndDate: string;
   emergencyDisasterInstruction: string;
   employees: Employees;
   locations: Locations;

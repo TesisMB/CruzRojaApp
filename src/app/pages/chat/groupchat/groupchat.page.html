@@ -13,13 +13,17 @@
 </ion-header>
 
 <!-- mensajes -->
-<ion-content *ngIf="chat" [scrollEvents]="true"
+<!-- <ion-content *ngIf="chat" [scrollEvents]="true"
 (ionScrollStart)="logScrollStart($event)"
 (ionScroll)="logScrolling($event)"
-(ionScrollEnd)="logScrollEnd($event)">
+(ionScrollEnd)="logScrollEnd($event)"> -->
 
-<!-- <ion-button (click)="ScrollToBottom()"> Scroll To Bottom </ion-button>
- -->
+<ion-content [scrollEvents]="true" (ionScroll)="handleScroll($event)">
+  <!-- botón para volver al final del chat -->
+    <button id="fab-button" (click)="ScrollToBottom()">
+      <ion-icon name="chevron-down-outline"></ion-icon>
+    </button>
+
   <ion-row>
     <ion-col [offset]="(item.userID === currentUser.userID) ? '3' : '0'" size="9" *ngFor="let item of msj" class= "message" [ngClass]="(item.userID === currentUser.userID) ? 'my-message' : 'other-message'">
       <span id="message">{{item.message}}</span>
@@ -29,12 +33,6 @@
     </ion-col>
   </ion-row>
 </ion-content>
-
-<!-- botón para volver al final del chat -->
-
-<!-- <ion-fab id="fab" horizontal="end" vertical="top">
-
-</ion-fab> -->
 
 <!-- input -->
 
@@ -46,8 +44,8 @@
 
       <textarea autosize maxRows="3" type="text"formControlName="message" name="message" placeholder="Enviar mensaje..." id="chat-input"></textarea>
 
-      <button type="submit" id="btnSend" [disabled]="chatForm.get('message').invalid">
-        <ion-icon  name="paper-plane-outline"></ion-icon>
+      <button type="submit" class="btnSend" [disabled]="chatForm.get('message').invalid">
+        <ion-icon name="paper-plane-outline"></ion-icon>
       </button>
     </ion-label>
   </form>

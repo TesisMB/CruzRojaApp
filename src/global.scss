@@ -25,15 +25,17 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   display: none;
   overflow: hidden;
 }
-
+ */
 ion-content {
-  --offset-bottom: auto !important;
-  --overflow: hidden;
-  overflow: auto;
+  width: calc(100% + 20px);
+}
+
+ion-content::part(scroll){
+  padding-right: 1px;
 }
 
 .list-md {

@@ -7,26 +7,16 @@
 <ion-content>
   <ion-list>
     <ng-container *ngFor="let alert of alerts; index as i">
-      <!--     <ng-container *ngIf="getColor('Controlado')" >
-      <div>
-        <ion-button class="buttonVolunteerClass" routerLink='/voluntarios'>
-          <ion-icon name="people-circle-outline"></ion-icon>
-          <ion-label class="labelButton">Voluntarios</ion-label>
-        </ion-button>
-      </div>
-      <div>
-        <ion-button class="buttonAlertDetailClass">
-          <ion-icon name="document-outline"></ion-icon>
-          <ion-label class="labelButton">Informe</ion-label>
-        </ion-button>
-      </div>
-    </ng-container> -->
 
       <div>
         <ion-card
           id="card"
           [ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}"
         >
+        <ion-button id="options" fill="clear">
+          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+        </ion-button>
+
           <!--Header del card-->
           <div class="header">
             <ion-card-header>
@@ -59,13 +49,11 @@
  -->
               <ion-label class="time">
                 <!-- Fecha - Hora (Inicio):  -->{{alert.emergencyDisasterStartDate
-                |date : 'dd/MM/yyyy hh:mm a'}}
+                }}
               </ion-label>
             </div>
 
             <div *ngIf="alert.emergencyDisasterEndDate" style="display: none">
-              <!--                 <ion-icon name="calendar-outline"></ion-icon>
- -->
               <ion-label
                 >Fecha - Hora (Final):
                 {{alert.emergencyDisasterEndDate}}</ion-label

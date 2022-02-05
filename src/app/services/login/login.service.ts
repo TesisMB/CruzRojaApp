@@ -58,7 +58,7 @@ export class LoginService {
   }
 
   sendEmail(email: string) {
-    return this.http.post<string>(environment.apiURL + 'Forgot-Password', email);
+    return this.http.post<string>(environment.apiURL + '/forgot-password/', email);
   }
 
   changePassword(token: string, userPassword: string) {

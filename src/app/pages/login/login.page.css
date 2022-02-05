@@ -31,9 +31,8 @@
   }
 
   ion-content {
-    background-color:#bd2d2d !important;
-    /* border-radius: 25px; */
-    overflow: hidden;
+    --ion-background-color: #bd2d2d;
+    width: calc(100% - 0px);
   }
 
   /* Forms & Inputs */
@@ -67,20 +66,20 @@
     margin-top: 2rem;
   }
 
-  .span{
-    --ion-item-background: #bd2d2d;
-    color: rgb(255, 253, 253);
+  #forgotPassword{
+    color: white;
+    display: flex;
     width: 65%;
     text-align: center;
     font-weight: bold;
     font-size: 10px;
     margin-left: 55px;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 
   /* Toast */
 
-  .backtoast{
-   padding: 3rem;
-   border-radius: 3rem;
+  .back-toast{
+   margin-top: 2rem;
+   border-radius: 6rem !important;
   }

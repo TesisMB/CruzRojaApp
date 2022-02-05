@@ -41,6 +41,7 @@ html, body{
   color: #dfdfdf;
   float: right;
   font-size: 12px;
+  margin-top: 1rem;
 }
 
 p{
@@ -55,7 +56,7 @@ p{
   align-items: flex-end;
 }
 
-#btnSend{
+.btnSend {
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -63,6 +64,7 @@ p{
   margin-top: 3px;
   margin-right: -3px;
 }
+
 
 #chat-input{
   height: 45px;
@@ -83,12 +85,16 @@ input::placeholder {
 }
 
 #fab-button{
-  --background: #cc2020ca;
-  width: 45px;
-  height: 45px;
-  margin-top: 30rem;
+  border-radius: 50%;
+  position: fixed;
+  top: 1000px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: .5s;
+  z-index: 100;
+  background-color: #cc2020ca;
   transform: rotate(-45deg);
-  overflow-x: hidden;
 }
 
 ion-icon{
@@ -96,6 +102,11 @@ ion-icon{
   margin-right: 5px;
   transform: rotate(45deg);
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 
 #btnSend:hover{
   background: rgba(235, 231, 231, 0.459);

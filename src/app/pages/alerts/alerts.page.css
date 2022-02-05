@@ -66,6 +66,15 @@ ion-label{
   flex-direction: column;
   width: 100%;
 }
+
+#options{
+  margin-top: 4px;
+  margin-left: 16rem;
+  color: white;
+  font-size: 16px;
+  padding: 4px;
+}
+
 ion-card-content{
  /*  margin-left: 15px;
   padding: 10px; */

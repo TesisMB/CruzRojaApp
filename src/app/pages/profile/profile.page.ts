@@ -17,18 +17,20 @@ export class ProfilePage implements OnDestroy, OnInit{
   handlerProfile: any;
   service: ProfileService;
   id: number;
+  currentUser: any;
+
   constructor(
     private loginService: LoginService,
     private router: Router,
   ) {}
 
   ngOnInit(){
-    this.getProfile();
-
+   /*  this.getProfile(); */
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   getProfile(){
-      this.handlerProfile = this.service.getById(this.id)
+      this.handlerProfile = this.service.getById(this.currentUser.userID)
       .subscribe((x: User) =>{
       console.log('ingreso');
       this.users = x;
@@ -42,6 +44,9 @@ export class ProfilePage implements OnDestroy, OnInit{
   }
 
   ngOnDestroy(){
-    this.handlerProfile.unsubscribe();
+    if(this.handlerProfile){
+      this.handlerProfile.unsubscribe();
+    }
+
   }
 }
