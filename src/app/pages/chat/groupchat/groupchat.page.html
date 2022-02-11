@@ -13,10 +13,6 @@
 </ion-header>
 
 <!-- mensajes -->
-<!-- <ion-content *ngIf="chat" [scrollEvents]="true"
-(ionScrollStart)="logScrollStart($event)"
-(ionScroll)="logScrolling($event)"
-(ionScrollEnd)="logScrollEnd($event)"> -->
 
 <ion-content [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <!-- botón para volver al final del chat -->
@@ -25,7 +21,7 @@
     </button>
 
   <ion-row>
-    <ion-col [offset]="(item.userID === currentUser.userID) ? '3' : '0'" size="9" *ngFor="let item of msj" class= "message" [ngClass]="(item.userID === currentUser.userID) ? 'my-message' : 'other-message'">
+    <ion-col [offset]="(item.fK_UserID === currentUser.userID) ? '3' : '0'" size="9" *ngFor="let item of msj" class= "message" [ngClass]="(item.fK_UserID === currentUser.userID) ? 'my-message' : 'other-message'">
       <span id="message">{{item.message}}</span>
       <div class="time">
         <span>{{item.createdDate | date : 'short'}}</span>

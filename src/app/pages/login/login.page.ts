@@ -31,14 +31,14 @@ export class LoginPage implements OnInit {
     private loadingCtrl: LoadingController
   ) {
     let currentUser: CurrentUser = this.servicio.currentUserValue;
+
     //Redirecciona si el usuario esta logeado
     if (currentUser) {
       console.log('Valor de currentUser:', currentUser)
-      // this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
     }
     const toasty = this.toastCtrl.create();
   }
-
 
   //Se inicializa las validaciones
   ngOnInit() {
@@ -69,27 +69,27 @@ export class LoginPage implements OnInit {
 
   // Ion-Loading
 
-    async showLoading() {
+ /*  async  showLoading() {
       this.loading = await this.loadingCtrl.create({
         cssClass: 'my-custom-class',
         message: 'Por favor espere...',
       });
       return this.loading.present();
     }
-
+ */
   onSubmit() {
     this.handler = this.servicio
       .login(this.f.UserDni.value, this.f.UserPassword.value)
       .subscribe(
         res => {
-          this.loadingCtrl.dismiss();
+          /* this.loadingCtrl.dismiss(); */
           this.router.navigateByUrl('/home', { replaceUrl: true });
-          this.loading.dismiss();
+          /* this.loading.dismiss(); */
         },
 
         error => {
           this.error = error;
-          this.loadingCtrl.dismiss();
+          /* this.loadingCtrl.dismiss(); */
           this.showToast('Datos Incorrectos');
           console.log(error.message);
       }

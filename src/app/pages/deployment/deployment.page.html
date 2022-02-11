@@ -4,6 +4,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content>
+  <ion-button *ngIf="!isAccepted" [disabled]="isAccepted" (click)="setChatGroup()" expand="block">
+    Atras
+  </ion-button>
 </ion-content>

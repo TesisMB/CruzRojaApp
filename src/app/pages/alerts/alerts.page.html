@@ -6,62 +6,91 @@
 
 <ion-content>
   <ion-list>
-    <ng-container *ngFor="let alert of alerts; index as i">
-
-      <div>
-        <ion-card
-          id="card"
-          [ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}"
-        >
-        <ion-button id="options" fill="clear">
-          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-        </ion-button>
-
-          <!--Header del card-->
-          <div class="header">
-            <ion-card-header>
-              <ion-thumbnail>
-                <img
-                  src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
-                />
-              </ion-thumbnail>
-            </ion-card-header>
-
-            <ion-card-title
-              >{{alert.typesEmergenciesDisasters.typeEmergencyDisasterName}}</ion-card-title
-            >
-          </div>
-
-          <!--Contenido del card-->
-
-          <ion-card-content>
-            <div class="ubicationClass">
-              <!--                 <ion-icon name="locate-outline"></ion-icon>
+    <ion-item-sliding *ngFor="let alert of alerts; index as i">
+<!--       <ng-container >
  -->
-              <ion-label>
-                <!-- Ubicación: -->
-                {{alert.locations.locationCityName}}
-              </ion-label>
+        <!--Ion Card-->
+        <ion-item>
+          <ion-card
+            id="card"[ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}">
+
+            <!--Header del card-->
+
+            <div class="header">
+                <ion-card-header>
+                  <ion-thumbnail>
+                    <img
+                      src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
+                    />
+                  </ion-thumbnail>
+                </ion-card-header>
+
+                <div class="emergency">
+                  <ion-card-title>
+                    {{alert.typesEmergenciesDisasters.typeEmergencyDisasterName}}
+                  </ion-card-title>
+
+                  <ion-button
+                  icon-only
+                  fill="clear"
+                  shape="round"
+                  size="small"
+                  id="btnSlide">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                    <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+                  </ion-button>
+
+                </div>
             </div>
 
-            <div class="emergencyTimeClass">
-              <!--                 <ion-icon name="calendar-outline"></ion-icon>
- -->
-              <ion-label class="time">
-                <!-- Fecha - Hora (Inicio):  -->{{alert.emergencyDisasterStartDate
-                }}
-              </ion-label>
-            </div>
+            <!--Contenido del card-->
 
-            <div *ngIf="alert.emergencyDisasterEndDate" style="display: none">
-              <ion-label
-                >Fecha - Hora (Final):
-                {{alert.emergencyDisasterEndDate}}</ion-label
-              >
-            </div>
-          </ion-card-content>
-        </ion-card>
-      </div>
-    </ng-container>
+            <ion-card-content>
+                <div class="ubicationClass">
+                  <ion-label>
+                    <!-- Ubicación: -->
+                    {{alert.locations.locationCityName}}
+                  </ion-label>
+                </div>
+
+            <!-- Fecha - Hora (Inicio):  -->
+
+                <div class="emergencyTimeClass">
+                  <ion-label class="time">
+                   {{alert.emergencyDisasterStartDate
+                    }}
+                  </ion-label>
+                </div>
+
+            <!-- Fecha - Hora (Final):  -->
+
+                <div *ngIf="alert.emergencyDisasterEndDate" style="display: none">
+                  <ion-label
+                    >Fecha - Hora (Final):
+                    {{alert.emergencyDisasterEndDate}}</ion-label
+                  >
+                </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+
+        <!--  -->
+
+        <ion-item-options side="end">
+          <ion-item-option>
+            <ion-icon name="people-outline"></ion-icon>
+            <ion-label class="labelIcons" style="font-size: 12px;">Voluntarios</ion-label>
+          </ion-item-option>
+
+          <ion-item-option (click)="deploymentButton(i)">
+            <ion-icon name="document-outline"></ion-icon>
+            <ion-label class="labelIcons" style="font-size: 12px;">Despliegue</ion-label>
+          </ion-item-option>
+
+        </ion-item-options>
+        <!-- </ion-slides> -->
+      <!-- </ng-container> -->
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
+<app-menu showTabs></app-menu>

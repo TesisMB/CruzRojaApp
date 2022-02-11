@@ -15,8 +15,6 @@ export class AppComponent implements OnInit, OnDestroy{
   showTabs: boolean = false; // <-- show tabs by default
   handler: any;
   constructor(
-    private router: Router,
-    private platform: Platform,
     private loginService: LoginService) {
     }
 
@@ -30,17 +28,5 @@ export class AppComponent implements OnInit, OnDestroy{
     ngOnDestroy() {
       this.closed$.next();
       this.handler.unsubscribe(); // <-- close subscription when component is destroyed
-    }
-
-  //    initializeApp() {
-  //     this.platform.ready().then(() => {
-  //       this.loginService.currentUserObs.subscribe(state => {
-  //         if (state) {
-  //           this.router.navigate(['menu']);
-  //         } else {
-  //           this.router.navigate(['login']);
-  //         }
-  //       });
-  //     });
-  // }
+  }
 }

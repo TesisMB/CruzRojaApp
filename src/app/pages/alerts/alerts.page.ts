@@ -1,15 +1,10 @@
-
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable @typescript-eslint/semi */
-/* eslint-disable max-len */
-/* eslint-disable no-cond-assign */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable no-trailing-spaces */
+import { EmergenciesDisasters } from './../../models/EmergenciesDisasters';
+import { ChatService } from 'src/app/services/chat/chat.service';
 import { TypeEmergenciesDisasters } from './../../models/TypeEmergenciesDisasters';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlides } from '@ionic/angular';
+import { IonItemSliding, IonSlides } from '@ionic/angular';
 import { AlertService } from 'src/app/services/alerts/alert.service';
-import { EmergenciesDisasters } from 'src/app/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alertas',
@@ -18,22 +13,20 @@ import { EmergenciesDisasters } from 'src/app/models';
 })
 
 export class AlertsPage implements OnInit {
-  @ViewChild('slide') slide: IonSlides;
+  /* @ViewChild(IonSlides) slides: IonSlides; */
+  @ViewChild(IonItemSliding) slides: IonItemSliding;
 
   alerts: EmergenciesDisasters[]
-
   alertstypes: TypeEmergenciesDisasters[]
-
   isControlled = false;
-
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   estilo: string = "";
-
   handlerAlerts: any;
   handlerAlertsTypes: any;
+  id= null;
 
   constructor(
-    private service: AlertService,
+    private alertService: AlertService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -41,11 +34,32 @@ export class AlertsPage implements OnInit {
   }
 
   getAllAlerts(){
-    this.handlerAlerts = this.service.getAll().subscribe((x: EmergenciesDisasters[]) =>{
+    this.handlerAlerts = this.alertService.getAll().subscribe((x: EmergenciesDisasters[]) =>{
     console.log('ingreso Alertas');
     this.alerts = x;
    });
   }
+
+  /* Función para cuando se active el boton, se abre el slide para la derecha */
+
+  openSlide(){
+
+  }
+
+  /* Funciones de navegación */
+
+  volunteerButton(ev){
+    this.router.navigate(['/voluntarios']);
+  }
+
+  deploymentButton(index){
+    const alert = this.alerts[index];
+    this.alertService.setAlert(alert);
+    this.id = index;
+    this.router.navigate(['/deployment']);
+  }
+
+  /* Función para usar el color  */
 
   getColor(color: string){
     if(color ==='Moderado'){

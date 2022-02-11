@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <div *ngFor="let item of chatTypeList" >
     <div class="div_padding" *ngFor="let chat of item['chatRooms']">
       <ion-list>
@@ -21,3 +21,5 @@
       </div>
   </div>
 </ion-content>
+<app-menu></app-menu>
+

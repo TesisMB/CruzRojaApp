@@ -5,7 +5,7 @@ export class Messages {
   messageState?: boolean;
   createdDate?: Date;
   FK_ChatRoomID?: string;
-  FK_UserID?: number;
+  fK_UserID?: number;
   FK_LocationVolunteerID?: number;
   userID?: number;
   // constructor( _message : string, _FK_ChatRoomID: number, _FK_LocationVolunteerID?: number,_id?: number) {

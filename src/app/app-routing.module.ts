@@ -63,16 +63,16 @@ const routes: Routes = [
     component: ProfilePage,
   },
 
+  {
+    path: 'deployment',
+    loadChildren: () => import('./pages/deployment/deployment.module').then( m => m.DeploymentPageModule)
+  },
+
   //Redirecciona a un 404
   {
     path: '**',
     redirectTo: ''
-  },  {
-    path: 'deployment',
-    loadChildren: () => import('./pages/deployment/deployment.module').then( m => m.DeploymentPageModule)
-  }
-
-
+  },
 ];
 
 @NgModule({

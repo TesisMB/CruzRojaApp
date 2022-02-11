@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-inferrable-types */
-/* eslint-disable no-trailing-spaces */
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
