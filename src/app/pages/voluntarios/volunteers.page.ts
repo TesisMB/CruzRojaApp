@@ -30,7 +30,7 @@ export class VolunteersPage implements OnInit {
     public router: Router,
     public service: VolunteersService
   ) {
-    this.searchedItem = this.volunteers;
+    /* this.searchedItem = this.volunteers; */
   }
 
   ngOnInit() {
@@ -38,10 +38,9 @@ export class VolunteersPage implements OnInit {
   }
 
    getAllVolunteers(){
-      this.handlerVoluntarios = this.service.getAll().subscribe((x: Volunteer[]) =>{
+      this.handlerVoluntarios = this.service.getAll().subscribe((x: any) =>{
       this.volunteers = x;
       console.log(this.volunteers);
      });
   }
-
 }

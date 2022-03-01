@@ -1,17 +1,18 @@
 
 /* Components de Ionic */
 
-ion-header{
-  --ion-header-color:#ffffff  !important;
-  color: rgb(255, 253, 253);
-}
-
 ion-list{
   --ion-list-color:#ffffff  !important;
   color: rgb(255, 253, 253);
 }
 
+/* IDs */
+
 #lista{
   font-size: 12px;
+}
+
+#volunteerName{
+  margin-left: 1rem;
 }
 

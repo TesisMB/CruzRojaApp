@@ -1,38 +1,29 @@
-<!-- <ion-router-outlet> -->
-<div>
-   <ion-header color="white">
-    <ion-toolbar>
-    <ion-title color="white">Voluntarios</ion-title>
-   </ion-toolbar>
-  </ion-header>
-</div>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Voluntarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 
 <div>
-  <ion-toolbar no-border>
-    <!-- (ionChange)="_ionChange($event)"
-    [(ngModel)]="searchTerm" -->
-    <ion-searchbar #search
+  <ion-toolbar>
+    <ion-searchbar id="search"
     debounce="500"
     placeholder="Buscar voluntario..."
     [(ngModel)]="searchTerm"
     animated
-
     ></ion-searchbar>
   </ion-toolbar>
 </div>
 
 <ion-content>
   <ion-list *ngFor="let volunteer of volunteers">
-    <ion-item routerLink='details'>
-
+    <ion-item [routerLink]="['details', volunteer.id]">
       <ion-avatar>
         <ion-img>
-          <img src="" alt="">
+          <img src="" >
         </ion-img>
       </ion-avatar>
-
-        <ion-label> Nombre y Apellido:{{volunteer.users.persons.firstName}} {{volunteer.users.persons.lastName}}</ion-label>
-
      </ion-item>
   </ion-list>
 

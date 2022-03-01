@@ -13,7 +13,6 @@ export class FilterPipe implements PipeTransform {
       {return volunteers;}
     }
       texto = texto.toLowerCase();
-      volunteers.filter(volunteer =>volunteer.users.persons.firstName.toString().toLowerCase().includes(texto)
-             ||volunteer.users.persons.lastName.toString().toLowerCase().includes(texto));
+      volunteers.filter(volunteer =>volunteer.name);
     }
   }

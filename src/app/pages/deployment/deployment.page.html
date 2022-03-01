@@ -1,12 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>deployment</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-
 <ion-content>
+  <div class="header">
+
+  </div>
+
+  <ion-title id="emergencyTitle">Inundación</ion-title>
+
+  <div>
+    <ion-label>Responsable: </ion-label>
+    <ion-label>Fecha de Inicio: </ion-label>
+  </div>
+
   <ion-button *ngIf="!isAccepted" [disabled]="isAccepted" (click)="setChatGroup()" expand="block">
-    Atras
+    Aceptar
   </ion-button>
+
 </ion-content>

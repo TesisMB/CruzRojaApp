@@ -5,11 +5,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item-sliding *ngFor="let alert of alerts; index as i">
-<!--       <ng-container >
- -->
+  <ion-list #list>
+    <ion-item-sliding disabled *ngFor="let alert of alerts; index as i">
+
         <!--Ion Card-->
+
         <ion-item>
           <ion-card
             id="card"[ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}">
@@ -25,12 +25,15 @@
                   </ion-thumbnail>
                 </ion-card-header>
 
+                <!-- Botón de Slide -->
+
                 <div class="emergency">
                   <ion-card-title>
                     {{alert.typesEmergenciesDisasters.typeEmergencyDisasterName}}
                   </ion-card-title>
 
                   <ion-button
+                  (click)="openSlide()"
                   icon-only
                   fill="clear"
                   shape="round"
@@ -57,16 +60,16 @@
 
                 <div class="emergencyTimeClass">
                   <ion-label class="time">
-                   {{alert.emergencyDisasterStartDate
-                    }}
+                  <!-- Fecha - Hora (Inicio):  -->
+                   {{alert.emergencyDisasterStartDate}}
                   </ion-label>
                 </div>
 
             <!-- Fecha - Hora (Final):  -->
 
                 <div *ngIf="alert.emergencyDisasterEndDate" style="display: none">
-                  <ion-label
-                    >Fecha - Hora (Final):
+                  <ion-label>Fecha - Hora (Final):
+                    <!-- Fecha - Hora (Final):  -->
                     {{alert.emergencyDisasterEndDate}}</ion-label
                   >
                 </div>
@@ -74,23 +77,21 @@
           </ion-card>
         </ion-item>
 
-        <!--  -->
+        <!-- Opciones del Ion Item -->
 
         <ion-item-options side="end">
-          <ion-item-option>
+          <ion-item-option (click)="volunteerButton()">
             <ion-icon name="people-outline"></ion-icon>
-            <ion-label class="labelIcons" style="font-size: 12px;">Voluntarios</ion-label>
+            <ion-label>Voluntarios</ion-label>
           </ion-item-option>
 
           <ion-item-option (click)="deploymentButton(i)">
             <ion-icon name="document-outline"></ion-icon>
-            <ion-label class="labelIcons" style="font-size: 12px;">Despliegue</ion-label>
+            <ion-label>Despliegue</ion-label>
           </ion-item-option>
-
         </ion-item-options>
-        <!-- </ion-slides> -->
-      <!-- </ng-container> -->
+
     </ion-item-sliding>
   </ion-list>
 </ion-content>
-<app-menu showTabs></app-menu>
+<!-- <app-menu></app-menu> -->

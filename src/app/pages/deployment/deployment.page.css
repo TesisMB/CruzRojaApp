@@ -1,0 +1,12 @@
+/* Clases */
+
+.header{
+  height: 20%;
+  background-color: #86898a;
+}
+
+/* IDs */
+
+#emergencyTitle{
+  margin-left: 6rem;
+}

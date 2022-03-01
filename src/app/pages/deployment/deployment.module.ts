@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { DeploymentPageRoutingModule } from './deployment-routing.module';
 
 import { DeploymentPage } from './deployment.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModule,
     DeploymentPageRoutingModule
   ],
   declarations: [DeploymentPage]

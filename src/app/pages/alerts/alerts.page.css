@@ -51,7 +51,7 @@ ion-label{
 }
 
 .labelButton{
-  font-size: 8px;
+  font-size: 24px;
 }
 
 .header{
@@ -86,17 +86,7 @@ ion-label{
   width: 20%;
 }
 
-/* #volunteerButton{
-  font-size: 20px;
-}
-
-#deployButton{
-  font-size: 20px;
-} */
-
 ion-card-content{
- /*  margin-left: 15px;
-  padding: 10px; */
   padding: 15px;
   display: flex;
   justify-content: space-between;

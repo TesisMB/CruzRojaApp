@@ -8,12 +8,14 @@ import { IonicModule } from '@ionic/angular';
 import { ChatPageRoutingModule } from './chat-routing.module';
 
 import { ChatlayoutComponent } from 'src/app/components/chatlayout/chatlayout.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModule,
     ChatPageRoutingModule,
     ReactiveFormsModule
   ],

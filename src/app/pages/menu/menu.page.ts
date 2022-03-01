@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
+import { User } from 'ionic';
+import { LoginService } from 'src/app/services/login/login.service';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-menu',
@@ -15,17 +19,57 @@ import { Router } from '@angular/router';
 //'./profile.page.html'}
 export class MenuPage implements OnInit {
 
+  users: User;
+  handlerProfile: any;
+  service: ProfileService;
+  id: number;
+  currentUser: any;
+
   constructor(
-    private router: Router
+   /*  private router: Router, */
+    private menuCtrl: MenuController,
+    private loginService: LoginService,
+    private router: Router,
   ) {
-
-   }
-
-  ngOnInit() {
-
   }
 
-  navigateTabHome(){
+  ngOnInit(){
+    /*  this.getProfile(); */
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  getProfile(){
+      this.handlerProfile = this.service.getById(this.currentUser.userID)
+      .subscribe((x: User) =>{
+      console.log('ingreso');
+      this.users = x;
+      console.log(this.users);
+    });
+  }
+
+  /* Menu Functions */
+
+  navigateAccount(){
+    this.router.navigate(['/cuenta']);
+  }
+
+  logout(){
+    this.loginService.logout();
+    this.router.navigate(['/login']);
+  }
+
+  ngOnDestroy(){
+    if(this.handlerProfile){
+      this.handlerProfile.unsubscribe();
+    }
+  }
+
+  toggleMenu() {
+    this.menuCtrl.toggle('end');
+  }
+
+
+/*   navigateTabHome(){
     this.router.navigate(['/home']);
   }
 
@@ -40,5 +84,6 @@ export class MenuPage implements OnInit {
   navigateTabAlertProfile(){
     this.router.navigate(['/profile']);
   }
+*/
 
 }

@@ -1,8 +1,9 @@
-import { User } from './index';
 import { Skills } from './index';
 export interface Volunteer{
-    users: User;
-    volunteerID: number;
+    /* usersVolunteers: User; */
+    name: string;
+    userDni: string;
+    id: number;
     volunteersSkills: Skills[];
     volunteerAvatar: string;
 }

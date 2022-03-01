@@ -1,12 +1,10 @@
-import { HttpInterceptorService } from './_helpers/http.interceptor.service';
-import { VolunteersPageModule } from './pages/voluntarios/volunteers.module';
-/* eslint-disable no-trailing-spaces */
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export function getToken() {
   return localStorage.getItem('currentUser');
 }
 
+import { HttpInterceptorService } from './_helpers/http.interceptor.service';
+import { VolunteersPageModule } from './pages/voluntarios/volunteers.module';
 import { MenuPage } from './pages/menu/menu.page';
 import { AlertsPage } from './pages/alerts/alerts.page';
 import { LoginPage } from './pages/login/login.page';
@@ -24,10 +22,17 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { JwtModule } from '@auth0/angular-jwt';
+
+//SharedModule
+import { SharedModule } from './shared/shared.module';
+
 //Interceptor
+
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ChatPage } from './pages/chat/chat.page';
+
+
 @NgModule({
   declarations: [AppComponent, LoginPage, AlertsPage, ChatPage, HomePage, MenuPage],
   entryComponents: [],
@@ -39,6 +44,7 @@ import { ChatPage } from './pages/chat/chat.page';
     AppRoutingModule,
     VolunteersPageModule,
     NgbModule,
+    SharedModule,
     FormsModule,
     PipesModule,
     ReactiveFormsModule,

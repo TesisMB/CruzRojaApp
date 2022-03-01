@@ -1,3 +1,4 @@
+import { PlacesService } from './../../services/places/places.service';
 import { EmergenciesDisasters } from './../../models/EmergenciesDisasters';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { AlertService } from 'src/app/services/alerts/alert.service';
@@ -7,7 +8,7 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-deployment',
   templateUrl: './deployment.page.html',
-  styleUrls: ['./deployment.page.scss'],
+  styleUrls: ['./deployment.page.css'],
 })
 export class DeploymentPage implements OnInit, OnDestroy {
 
@@ -20,6 +21,7 @@ export class DeploymentPage implements OnInit, OnDestroy {
     private alertService: AlertService,
     private chatService: ChatService,
     private location: Location,
+    private placesService: PlacesService,
   ) { }
 
   ngOnInit() {

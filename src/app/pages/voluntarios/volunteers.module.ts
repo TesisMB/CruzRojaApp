@@ -12,13 +12,15 @@ import { VoluntariosPageRoutingModule } from './volunteers-routing.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LayoutComponent } from 'src/app/components/volunteerlayout/volunteerlayout.component';
 import { AppModule } from 'src/app/app.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
   imports: [
     PipesModule,
     CommonModule,
     FormsModule,
     IonicModule,
-    VoluntariosPageRoutingModule
+    VoluntariosPageRoutingModule,
+    SharedModule
   ],
   declarations: [
     VolunteersPage,

@@ -2,9 +2,10 @@ import { EmergenciesDisasters } from './../../models/EmergenciesDisasters';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { TypeEmergenciesDisasters } from './../../models/TypeEmergenciesDisasters';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonItemSliding, IonSlides } from '@ionic/angular';
+import { IonItemSliding, IonList, IonSlides } from '@ionic/angular';
 import { AlertService } from 'src/app/services/alerts/alert.service';
 import { Router } from '@angular/router';
+import { start } from 'repl';
 
 @Component({
   selector: 'app-alertas',
@@ -13,8 +14,9 @@ import { Router } from '@angular/router';
 })
 
 export class AlertsPage implements OnInit {
-  /* @ViewChild(IonSlides) slides: IonSlides; */
-  @ViewChild(IonItemSliding) slides: IonItemSliding;
+
+  @ViewChild(IonItemSliding) slide: IonItemSliding;
+  @ViewChild('list') lista:IonList;
 
   alerts: EmergenciesDisasters[]
   alertstypes: TypeEmergenciesDisasters[]
@@ -43,13 +45,15 @@ export class AlertsPage implements OnInit {
   /* Función para cuando se active el boton, se abre el slide para la derecha */
 
   openSlide(){
-
+    this.slide.open('end');
   }
+
 
   /* Funciones de navegación */
 
-  volunteerButton(ev){
+  volunteerButton(){
     this.router.navigate(['/voluntarios']);
+    this.lista.closeSlidingItems();
   }
 
   deploymentButton(index){
@@ -57,18 +61,20 @@ export class AlertsPage implements OnInit {
     this.alertService.setAlert(alert);
     this.id = index;
     this.router.navigate(['/deployment']);
+    this.lista.closeSlidingItems();
   }
 
   /* Función para usar el color  */
 
   getColor(color: string){
     if(color ==='Moderado'){
-      return "#e4e415dc";
+      return "#fadbd8";
     } else if (color ==='Extremo'){
-      return "#c93636";
+      return "#fcf3cf";
       }
     else if (color === 'Controlado'){
-      return "#2d9e2d";
+      return "#d5f5e3";
     }
   }
+
 }
