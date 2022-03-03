@@ -30,6 +30,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
   id: number;
   observableUserID = null;
   currentUser = null;
+  lastScrollTop = 0;
 
   constructor(
     private chatService: ChatService,
@@ -127,7 +128,6 @@ export class GroupChatPage implements OnInit, OnDestroy {
   }
 
   //Funciones
-  public lastScrollTop = 0;
   public handleScroll(event): void {
     if (event.detail.scrollTop >= this.lastScrollTop) {
          document.getElementById("fab-button").style.top = '100%';
@@ -149,12 +149,6 @@ export class GroupChatPage implements OnInit, OnDestroy {
     this.currentUserHandler.unsubscribe();
     this.currentGroupChatHandler.unsubscribe();
     this.chatHandlerId.unsubscribe();
-
-    /*this.chatHandlerGet.unsubscribe();
-     this.chatHandlerPost.unsubscribe(); */
-    /* if (this.chatHandler) {
-    this.chatHandler.unsubscribe();
-  } */
   }
 }
 

@@ -1,3 +1,5 @@
+import { AlertsPage } from './pages/alerts/alerts.page';
+import { LoginPage } from './pages/login/login.page';
 
 export function getToken() {
   return localStorage.getItem('currentUser');
@@ -25,10 +27,11 @@ import { SharedModule } from './shared/shared.module';
 
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MenuPage } from './pages/menu/menu.page';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginPage, AlertsPage],
   entryComponents: [],
 
   imports: [
@@ -37,10 +40,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     IonicModule.forRoot(),
     AppRoutingModule,
     NgbModule,
-    FormsModule,
     SharedModule,
-    PipesModule,
-    ReactiveFormsModule,
     Ng2SearchPipeModule,
     IonicStorageModule.forRoot(),
     JwtModule.forRoot({

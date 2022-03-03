@@ -1,24 +1,32 @@
-import { DeploymentPage } from './index';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AlertsPage } from './index';
-import { VolunteersPage } from './index';
-import { ChatPage } from './index';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { RouterModule } from '@angular/router';
+import { MenuPage } from '../pages/menu/menu.page';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
-    AlertsPage,
-    VolunteersPage,
-    ChatPage,
-    DeploymentPage
+    MenuPage
   ],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
+    RouterModule,
+    PipesModule
+  ],
+  exports: [
+    MenuPage,
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ReactiveFormsModule,
+    RouterModule,
+    PipesModule
   ]
 })
 export class SharedModule { }

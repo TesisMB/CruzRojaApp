@@ -54,7 +54,7 @@ export class LoginService {
     // Elimina el usuario del local Storage y lo declara null.
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    this.router.navigate(['/alertas']);
+    this.router.navigate(['/login']);
   }
 
   sendEmail(email: string) {

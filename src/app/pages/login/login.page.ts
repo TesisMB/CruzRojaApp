@@ -1,5 +1,4 @@
 import { environment } from './../../../environments/environment';
-/* eslint-disable no-trailing-spaces */
 import { CurrentUser } from './../../models/CurrentUser';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login/login.service';
@@ -12,6 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.css'],
 })
+
 export class LoginPage implements OnInit {
   credentials: FormGroup;
   errorToast: any;

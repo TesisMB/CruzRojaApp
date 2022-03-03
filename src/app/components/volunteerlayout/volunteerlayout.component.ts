@@ -26,5 +26,4 @@ export class LayoutComponent implements OnInit {
     });
     return await modal.present();
   }
-
 }
