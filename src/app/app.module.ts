@@ -4,11 +4,6 @@ export function getToken() {
 }
 
 import { HttpInterceptorService } from './_helpers/http.interceptor.service';
-import { VolunteersPageModule } from './pages/voluntarios/volunteers.module';
-import { MenuPage } from './pages/menu/menu.page';
-import { AlertsPage } from './pages/alerts/alerts.page';
-import { LoginPage } from './pages/login/login.page';
-import { HomePage } from './pages/home/home.page';
 
 import { PipesModule } from './pipes/pipes.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
@@ -30,11 +25,10 @@ import { SharedModule } from './shared/shared.module';
 
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { ChatPage } from './pages/chat/chat.page';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginPage, AlertsPage, ChatPage, HomePage, MenuPage],
+  declarations: [AppComponent],
   entryComponents: [],
 
   imports: [
@@ -42,10 +36,9 @@ import { ChatPage } from './pages/chat/chat.page';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    VolunteersPageModule,
     NgbModule,
-    SharedModule,
     FormsModule,
+    SharedModule,
     PipesModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule,

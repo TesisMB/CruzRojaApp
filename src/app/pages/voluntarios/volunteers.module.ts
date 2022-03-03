@@ -20,10 +20,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     IonicModule,
     VoluntariosPageRoutingModule,
-    SharedModule
   ],
   declarations: [
-    VolunteersPage,
     VoluntariosDetallesPage,
     LayoutComponent,
   ],

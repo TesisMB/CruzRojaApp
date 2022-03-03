@@ -10,3 +10,7 @@
 #emergencyTitle{
   margin-left: 6rem;
 }
+
+#map {
+  height: 180px;
+}

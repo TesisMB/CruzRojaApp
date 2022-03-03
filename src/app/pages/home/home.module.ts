@@ -10,7 +10,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule,
     FormsModule,
     IonicModule,
     HomePageRoutingModule

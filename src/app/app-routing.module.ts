@@ -1,13 +1,17 @@
+import { AlertsPage } from './pages/alerts/alerts.page';
+import { HomePageModule } from './pages/home/home.module';
 import { DataResolverService } from './resolver/data-resolver.service';
-import { RoleName } from './models/RoleName';
-import { AuthGuard } from './guards/auth.guard';
-import { LoginPage } from './pages/login/login.page';
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { HomePage } from './pages/home/home.page';
 
+import { AuthGuard } from './guards/auth.guard';
+import { RoleName } from './models/RoleName';
+import { LoginPage } from './pages/login/login.page';
 
-//const ChatModule =
+const volunteersModule = () => import ('src/app/pages/voluntarios/volunteers.module').then(x => x.VolunteersPageModule);
+const chatModule = () => import ('src/app/pages/chat/chat.module').then(x => x.ChatPageModule);
+
 const routes: Routes = [
   {
     path: '',
@@ -22,7 +26,7 @@ const routes: Routes = [
 
   {
     path: 'home',
-    component: HomePage,
+    component: HomePageModule,
     canActivate: [AuthGuard]
   },
 
@@ -35,7 +39,7 @@ const routes: Routes = [
 
   {
     path: 'voluntarios',
-    loadChildren: () => import('src/app/pages/voluntarios/volunteers.module').then(m => m.VolunteersPageModule),
+    loadChildren: volunteersModule,
     canActivate: [AuthGuard],
     data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.CEyD]}
   },
@@ -50,15 +54,14 @@ const routes: Routes = [
 
   {
     path: 'chat',
-    loadChildren: () => import('src/app/pages/chat/chat.module').then(m => m.ChatPageModule)
+    loadChildren: chatModule
   },
 
-  //Redirecciona a un 404
+  //Redirecciona a un 404, en cas ode que no exista una dirección
   {
     path: '**',
     redirectTo: ''
   },
-
 
 ];
 
