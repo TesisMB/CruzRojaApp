@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { User } from 'ionic';
+import { User } from 'src/app/models';
 import { LoginService } from 'src/app/services/login/login.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
@@ -17,7 +17,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
   styleUrls: ['./menu.page.css'],
 })
 //'./profile.page.html'}
-export class MenuPage implements OnInit {
+export class MenuPage implements OnInit, OnDestroy {
 
   users: User;
   handlerProfile: any;
