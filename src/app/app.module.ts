@@ -1,3 +1,5 @@
+import { CuentaPage } from './pages/cuenta/cuenta.page';
+import { HomePage } from './pages/home/home.page';
 import { AlertsPage } from './pages/alerts/alerts.page';
 import { LoginPage } from './pages/login/login.page';
 
@@ -28,10 +30,11 @@ import { SharedModule } from './shared/shared.module';
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MenuPage } from './pages/menu/menu.page';
+import { DeploymentPage } from './shared';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginPage, AlertsPage],
+  declarations: [AppComponent, LoginPage, AlertsPage, HomePage, DeploymentPage, CuentaPage],
   entryComponents: [],
 
   imports: [

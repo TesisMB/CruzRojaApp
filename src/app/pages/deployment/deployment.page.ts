@@ -26,11 +26,15 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     private placesService: PlacesService,
   ) { }
 
+  ngAfterViewInit(): void {
+    this.initMap();
+  }
+
   ngOnInit() {
     this.handleDeployment = this.alertService._currentAlert.subscribe(
       data =>{
         this.emergencies = data;
-        console.log(data);
+        console.log('asdsadasd', data);
       });
   }
 
@@ -45,12 +49,8 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     });
   }
 
-  ngOnDestroy(){
-    this.handleDeployment.unsubscribe();
-  }
-
   initMap(){
-    var map = L.map('map').setView([51.505, -0.09], 13);
+    var map = L.map('map').setView([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude], 10);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -59,10 +59,33 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     tileSize: 512,
     zoomOffset: -1,
     accessToken: 'pk.eyJ1IjoibWdjc29hZCIsImEiOiJjbDA1eXpoOGwwdWQ3M2tueXVycHFqMzhlIn0.CXkUig7PQwf0piWpitvI2w'
-}).addTo(map);
+  }).addTo(map);
+
+    var marker = L.marker([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude],{
+      fillColor: '#ccc'
+    })
+    .addTo(map);
+
+    var circle = L.circle([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude], {
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.3,
+      radius: 800,
+      stroke: false
+    }).addTo(map);
+
+    var popup = L.popup().setLatLng([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude])
+
+    function onMapClick(e) {
+      popup
+          .setLatLng(e.latlng)
+          .setContent("You clicked the map at " + e.latlng.toString())
+          .openOn(map);
+    }
+
   }
 
-  ngAfterViewInit(): void {
-      this.initMap();
+  ngOnDestroy(){
+    this.handleDeployment.unsubscribe();
   }
 }

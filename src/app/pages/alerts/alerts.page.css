@@ -5,6 +5,7 @@ ion-card{
   border-radius: 10px;
   flex-wrap: wrap;
   margin: 10px;
+  color:#000;
 }
 
 ion-card-title{
@@ -15,10 +16,6 @@ ion-card-title{
   color:#000;
   width: 80%;
   padding-left: 50px;
-}
-
-ion-label{
-  color:#000;
 }
 
 /* Clases */
@@ -90,4 +87,30 @@ ion-card-content{
   padding: 15px;
   display: flex;
   justify-content: space-between;
+}
+
+/* Iconos */
+
+.circulo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  margin: 5px 0;
+}
+
+.triangulo {
+  background-image: url("https://i.imgur.com/MTZHuke.png");
+  background-position: center;
+  background-size: cover;
+  height: 79px;
+  width: 89px;
+  z-index: 100;
+}
+
+.cuadrado {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #000;
+  margin: 5px 0;
 }

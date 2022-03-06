@@ -3,7 +3,6 @@ export  * from './Estates';
 export  * from './RoleName';
 export  * from './CurrentUser';
 export  * from './User';
-export  * from './Skills';
 export  * from './TypeEmergenciesDisasters';
 export  * from './EmergenciesDisasters';
 export  * from './Locations';

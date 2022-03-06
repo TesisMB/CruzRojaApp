@@ -12,10 +12,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./volunteersdetails.page.css'],
 })
 export class VoluntariosDetallesPage implements OnInit {
-  @Input() volunteers: Volunteer[];
+  volunteers: Volunteer;
   handlerVoluntarios: any;
   idVolunteer: number;
-  volunteer: Volunteer;
 
   constructor(
     public service: VolunteersService,
@@ -29,7 +28,6 @@ export class VoluntariosDetallesPage implements OnInit {
 
   getVolunteersByID() {
     this.handlerVoluntarios = this.service.getById(this.idVolunteer).subscribe((data) => {
-      console.log('ingreso volunteer detail');
       this.volunteers = data;
       console.log('ingreso volunteer detail');
       console.log(data);

@@ -1,11 +1,10 @@
+import { RoleName } from './../../models/RoleName';
 import { EmergenciesDisasters } from './../../models/EmergenciesDisasters';
-import { ChatService } from 'src/app/services/chat/chat.service';
 import { TypeEmergenciesDisasters } from './../../models/TypeEmergenciesDisasters';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonItemSliding, IonList, IonSlides } from '@ionic/angular';
 import { AlertService } from 'src/app/services/alerts/alert.service';
 import { Router } from '@angular/router';
-import { start } from 'repl';
 
 @Component({
   selector: 'app-alertas',
@@ -20,6 +19,7 @@ export class AlertsPage implements OnInit {
 
   alerts: EmergenciesDisasters[]
   alertstypes: TypeEmergenciesDisasters[]
+  role: RoleName
   isControlled = false;
   estilo: string = "";
   handlerAlerts: any;
@@ -46,8 +46,10 @@ export class AlertsPage implements OnInit {
 
   openSlide(){
     this.slide.open('end');
+    if(this.slide.open){
+      this.slide.close();
+    }
   }
-
 
   /* Funciones de navegación */
 
@@ -68,12 +70,12 @@ export class AlertsPage implements OnInit {
 
   getColor(color: string){
     if(color ==='Moderado'){
-      return "#fadbd8";
+      return "#d8db2f";
     } else if (color ==='Extremo'){
-      return "#fcf3cf";
+      return "#d83a35";
       }
     else if (color === 'Controlado'){
-      return "#d5f5e3";
+      return "#4cd137";
     }
   }
 

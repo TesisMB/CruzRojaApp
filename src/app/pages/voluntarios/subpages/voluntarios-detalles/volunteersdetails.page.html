@@ -5,37 +5,46 @@
         <ion-buttons slot="start">
           <ion-back-button type="button" defaultHref="voluntarios"></ion-back-button>
         </ion-buttons>
-        <ion-title>Detalles del Voluntario</ion-title>
+        <ion-title type="small">Detalles del Voluntario</ion-title>
       </ion-toolbar>
     </div>
   </ion-header>
 </div>
 
-<ion-content>
-  <div class="container" *ngIf="volunteer">
-      <ion-card>
-        <ion-card-header>
+<ion-content *ngIf="volunteers">
+    <div class="volunteerAvatar">
+      <ion-avatar id="avatar">
+        <img  src="{{volunteers.volunteerAvatar}}" >
+      </ion-avatar>
+      <div class="volunteerInfo">
+        <ion-label id="volunteerName">{{volunteers.name}}</ion-label>
+        <ion-label>Legajo: {{volunteers.userDni}}</ion-label>
+      </div>
+    </div>
 
-          <!-- Nombre y Apellido -->
+    <ion-card id="card">
+      <ion-card-header>
+        <ion-card-title>
+            Capacitaciones
+        </ion-card-title>
+      </ion-card-header>
 
-          <ion-card-title>
-            {{volunteer.name}}
-          </ion-card-title>
-        </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let volunteer of volunteers['volunteersSkills']">
+            <div id="volunteerDiv">
+              <p id="skillName">
+                {{volunteer['skillName']}}
+              </p>
 
-        <ion-card-content>
-
-          <ion-item>
-
-            <!-- Capacitaciones -->
-
-            <ion-label>
-              Capacitacion/es: {{volunteer.volunteersSkills}}
-            </ion-label>
-
+              <p class="skillsFormationDate" *ngFor="let item of volunteer['volunteersSkillsFormationEstates']">
+                {{item['formationEstateName']}}
+                {{item['date']}}
+              </p>
+            </div>
           </ion-item>
+        </ion-list>
         </ion-card-content>
       </ion-card>
-    </div>
 </ion-content>
 

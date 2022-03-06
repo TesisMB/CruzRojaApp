@@ -8,8 +8,16 @@ ion-list{
 
 /* IDs */
 
+#search{
+  width: 94%;
+}
+
 #lista{
   font-size: 12px;
+}
+
+#volunteerAvatar{
+  width: 100vw;
 }
 
 #volunteerName{

@@ -20,10 +20,9 @@
   <ion-list *ngFor="let volunteer of volunteers">
     <ion-item [routerLink]="['details', volunteer.id]">
       <ion-avatar>
-        <ion-img>
           <img src="{{volunteer.volunteerAvatar}}" >
-        </ion-img>
       </ion-avatar>
+      <ion-label id="volunteerName"> {{volunteer.name}}</ion-label>
      </ion-item>
   </ion-list>
 

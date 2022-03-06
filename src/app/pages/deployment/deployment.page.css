@@ -5,6 +5,11 @@
   background-color: #86898a;
 }
 
+.imgInfo{
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
 /* IDs */
 
 #emergencyTitle{
@@ -14,3 +19,5 @@
 #map {
   height: 180px;
 }
+
+

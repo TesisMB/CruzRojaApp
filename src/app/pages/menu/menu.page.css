@@ -2,7 +2,9 @@
   /* Tabs */
 
   ion-tab-bar{
-    position: absolute;
+    font-size: 20px;
+    --background: rgba(24, 24, 24, 0.5);
+    /* position: absolute;
     height:60px;
     width: 90%;
     bottom: 0;
@@ -12,8 +14,11 @@
     margin-bottom: 10px;
     margin-left: 1rem;
     --border:none;
-    --background: rgba(0,0,0,0.45);
+    --background: rgba(0,0,0,0.45); */
   }
+
+
+
 
   ion-tab-button{
     --background: rgba(0, 0, 0, 0.45);

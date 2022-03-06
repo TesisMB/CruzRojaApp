@@ -2,6 +2,51 @@ ion-buttons{
   font-size: 8px;
 }
 
-ion-card{
-  margin-top: 5rem;
+ion-avatar img{
+  max-width: none;
+  width: 100px;
+  height: 100px;
+}
+
+/* Classes */
+
+.volunteerAvatar{
+  margin-top: 1rem;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.volunteerInfo{
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.skillsFormationDate{
+  margin: 1rem
+}
+
+/* IDs */
+
+#volunteerName{
+  margin-top: 3rem;
+  font-size: 20px;
+}
+
+#skillName{
+  margin-top: 0.5rem;
+}
+
+#card{
+  margin-top: 2.5rem;
+  width: 83%;
+}
+
+#volunteerDiv{
+  border-bottom: 1px solid rgb(95, 94, 94);
 }

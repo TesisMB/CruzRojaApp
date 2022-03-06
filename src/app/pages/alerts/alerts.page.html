@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list #list>
+  <ion-list #list >
     <ion-item-sliding disabled *ngFor="let alert of alerts; index as i">
 
         <!--Ion Card-->
@@ -15,14 +15,18 @@
             id="card"[ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}">
 
             <!--Header del card-->
-
             <div class="header">
-                <ion-card-header>
-                  <ion-thumbnail>
-                    <img
-                      src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
-                    />
-                  </ion-thumbnail>
+              <ion-card-header>
+                <div [ngClass]="{
+                  'circulo': alert.alerts.alertDegree === 'Moderado',
+                  'triangulo': alert.alerts.alertDegree === 'Controlado',
+                  'cuadrado': alert.alerts.alertDegree === 'Extremo'}">
+                    <ion-thumbnail>
+                      <img class="emergencyIcon"
+                        src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
+                      />
+                    </ion-thumbnail>
+                </div>
                 </ion-card-header>
 
                 <!-- Botón de Slide -->
@@ -33,12 +37,12 @@
                   </ion-card-title>
 
                   <ion-button
-                  (click)="openSlide()"
-                  icon-only
-                  fill="clear"
-                  shape="round"
-                  size="small"
-                  id="btnSlide">
+                    (click)="openSlide()"
+                    icon-only
+                    fill="clear"
+                    shape="round"
+                    size="small"
+                    id="btnSlide">
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                     <ion-ripple-effect type="unbounded"></ion-ripple-effect>
                   </ion-button>
@@ -61,7 +65,7 @@
                 <div class="emergencyTimeClass">
                   <ion-label class="time">
                   <!-- Fecha - Hora (Inicio):  -->
-                   {{alert.emergencyDisasterStartDate}}
+                   {{alert.emergencyDisasterStartDate | date: 'short'}}
                   </ion-label>
                 </div>
 
@@ -79,6 +83,8 @@
 
         <!-- Opciones del Ion Item -->
 
+        <!-- Usar *ngIf="" para ocultar esta función si el currentuser es un voluntario -->
+
         <ion-item-options side="end">
           <ion-item-option (click)="volunteerButton()">
             <ion-icon name="people-outline"></ion-icon>
@@ -94,4 +100,4 @@
     </ion-item-sliding>
   </ion-list>
 </ion-content>
-<!-- <app-menu></app-menu> -->
+<!-- <app-menu showTabs></app-menu> -->

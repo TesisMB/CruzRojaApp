@@ -8,6 +8,8 @@ import { RoleName } from './models/RoleName';
 import { LoginPage } from './pages/login/login.page';
 import { AlertsPage } from './pages/alerts/alerts.page';
 import { HomePage } from './pages/home/home.page';
+import { CuentaPage } from './pages/cuenta/cuenta.page';
+import { DeploymentPage } from './pages/deployment/deployment.page';
 
 const volunteersModule = () => import ('src/app/pages/voluntarios/volunteers.module').then(x => x.VolunteersPageModule);
 const chatModule = () => import ('src/app/pages/chat/chat.module').then(x => x.ChatPageModule);
@@ -39,17 +41,19 @@ const routes: Routes = [
     data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.CEyD]}
   },
 
-/*   {
-    path: 'volunteersdetails/id',
-    resolve: {
-      special: DataResolverService
-    },
-    loadChildren: './pages/voluntarios/volunteers.module'
-  }, */
-
   {
     path: 'chat',
     loadChildren: chatModule
+  },
+
+  {
+    path: 'deployment',
+    component: DeploymentPage,
+  },
+
+  {
+    path: 'cuenta',
+    component: CuentaPage,
   },
 
   //Redirecciona a un 404, en cas ode que no exista una dirección

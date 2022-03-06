@@ -6,7 +6,6 @@
 import { VolunteersService } from '../../services/volunteers/volunteers.service';
 import { Router } from '@angular/router';
 import { Volunteer } from '../../models/Volunteer';
-import { Skills } from 'src/app/models/Skills';
 import { Component, OnInit} from '@angular/core';
 
 
@@ -19,7 +18,6 @@ import { Component, OnInit} from '@angular/core';
 export class VolunteersPage implements OnInit {
 
   volunteers: Volunteer[] = [];
-  skills: Skills[] = [];
   handlerVoluntarios: any;
   textoBuscar = '';
   searchTerm: string;
