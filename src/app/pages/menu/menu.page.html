@@ -33,10 +33,11 @@
 
 <!-- Menu Window -->
 
-<ion-menu type="push" side="end" menuID= "menuID" swipeGesture="false" contentId="principal">
+<ion-menu type="overlay" side="end" menuID= "menuID" swipeGesture="false" contentId="principal">
   <ion-header>
     <ion-toolbar>
-      <ion-icon style="margin-left: 10px; font-size: 48px;" button id="user" name="person-circle-outline"></ion-icon>
+      <img *ngIf="currentUser.roleName != 'Voluntario'" src="{{currentUser.volunteerAvatar}}" alt="">
+      <!-- <ion-icon style="margin-left: 10px; font-size: 48px;" button id="user" name="person-circle-outline"></ion-icon> -->
       <ion-title>{{currentUser.persons.firstName}} {{currentUser.persons.lastName}}</ion-title>
     </ion-toolbar>
   </ion-header>

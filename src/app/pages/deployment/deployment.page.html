@@ -10,13 +10,22 @@
   <ion-title id="emergencyTitle">Inundación</ion-title>
 
   <div>
-    <ion-label>Responsable: </ion-label>
-    <ion-label>Fecha de Inicio: </ion-label>
+    <ion-label>Fecha de Inicio: {{emergencies.emergencyDisasterStartDate | date: 'short'}}</ion-label>
   </div>
+
+  <ion-card>
+    <!-- <ion-card-header>
+      <ion-card-title>{{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterDescription}}</ion-card-title>
+    </ion-card-header> -->
+
+    <ion-card-content>
+      {{emergencies.emergencyDisasterInstruction}}
+    </ion-card-content>
+  </ion-card>
+
+  <div id="map"></div>
 
   <ion-button *ngIf="!isAccepted" [disabled]="isAccepted" (click)="setChatGroup()" expand="block">
     Aceptar
   </ion-button>
-
-  <div id="map"></div>
 </ion-content>

@@ -5,15 +5,117 @@
 </ion-header>
 
 <ion-content>
-<ion-list>
-  <ion-item>
-    <h2>Cambiar contraseña</h2>
-    <hr>
-    <h3>Ingrese su nueva contraseña</h3>
-    <ion-input></ion-input>
-    <h3>Ingrese nuevamente su contraseña</h3>
-    <ion-input></ion-input>
-    <ion-button fill="clear">¿No recuerda su contraseña?</ion-button>
-  </ion-item>
-</ion-list>
+  <form [formGroup]="initForm()" (ngSubmit)="initForm()">
+
+    <ion-list>
+
+      <!-- Card de datos de contacto -->
+
+      <ion-card>
+
+        <!--Header del card-->
+
+        <ion-card-header>
+          <ion-card-title>
+              Datos de contacto
+          </ion-card-title>
+        </ion-card-header>
+
+        <!--Contenido del card-->
+
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Correo electrónico</ion-label>
+            <ion-input
+            formControlName="Email"
+            name="Email"
+            type="email"
+            required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Teléfono</ion-label>
+            <ion-input
+            formControlName="Phone"
+            name="Phone"
+            type="phone"
+            required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Domicilio</ion-label>
+            <ion-input
+            formControlName="Address"
+            name="Address"
+            type="address"
+            required></ion-input>
+          </ion-item>
+          <ion-item id="accSelect">
+            <ion-label >Disponibilidad ante Emergencias</ion-label>
+            <ion-select cancelText="Cancelar" okText="Aceptar" value="disponible">
+              <ion-select-option value="disponible">Disponible</ion-select-option>
+              <ion-select-option value="noDisponible">No disponible</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-card-content>
+        <!-- [disabled]="!initForm().valid" -->
+        <ion-button
+          class="accButton"
+          type="submit"
+          shape="round"
+        >Guardar</ion-button>
+      </ion-card>
+
+      <!-- Card de Contraseña -->
+
+      <ion-card>
+
+        <!--Header del card-->
+
+        <ion-card-header>
+          <ion-card-title>
+              Contraseña
+          </ion-card-title>
+        </ion-card-header>
+
+        <!--Contenido del card-->
+
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Actual contraseña</ion-label>
+            <ion-input
+            formControlName="Password"
+            name="password"
+            type="text"
+            required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Nueva contraseña</ion-label>
+            <ion-input
+            formControlName="NewPassword"
+            name="newPassword"
+            type="text"
+            required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Repetir contraseña</ion-label>
+            <ion-input
+            formControlName="RepeatPassword"
+            name="repeatPassword"
+            type="text"
+            required></ion-input>
+          </ion-item>
+
+        </ion-card-content>
+        <!-- [disabled]="!initForm().valid" -->
+        <ion-button
+          class="accButton"
+          type="submit"
+          shape="round"
+        >Guardar</ion-button>
+      </ion-card>
+    </ion-list>
+  </form>
 </ion-content>

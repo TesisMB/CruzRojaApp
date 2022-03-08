@@ -20,6 +20,19 @@ ion-card-title{
 
 /* Clases */
 
+.emergency{
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.emergencyIcon{
+  max-width: none;
+  width: 90%;
+  margin-left: 17px;
+  margin-top: 12px;
+}
+
 .ubicationClass{
   /* margin-left: -5px; */
  /*  margin-top: -13px; */
@@ -57,12 +70,6 @@ ion-card-title{
   justify-content: center;
   flex-direction: column;
   width: 100%;
-}
-
-.emergency{
-  display: flex;
-  width: 100%;
-  align-items: center;
 }
 
 /* ID */

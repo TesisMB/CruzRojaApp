@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { IonMenu, MenuController } from '@ionic/angular';
 import { User } from 'ionic';
 import { LoginService } from 'src/app/services/login/login.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
@@ -18,7 +18,6 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 })
 //'./profile.page.html'}
 export class MenuPage implements OnInit, OnDestroy {
-
   users: User;
   handlerProfile: any;
   service: ProfileService;
@@ -34,7 +33,6 @@ export class MenuPage implements OnInit, OnDestroy {
   }
 
   ngOnInit(){
-    /*  this.getProfile(); */
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
@@ -51,11 +49,11 @@ export class MenuPage implements OnInit, OnDestroy {
 
   navigateAccount(){
     this.router.navigate(['/cuenta']);
+    this.menuCtrl.close()
   }
 
   logout(){
     this.loginService.logout();
-
   }
 
   ngOnDestroy(){

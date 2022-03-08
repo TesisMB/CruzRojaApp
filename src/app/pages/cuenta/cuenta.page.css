@@ -1,0 +1,19 @@
+/* Clases */
+
+.accButton{
+  --background: red;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:80%;
+    margin-left: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.accButton{
+  overflow: visible;
+}

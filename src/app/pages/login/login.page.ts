@@ -1,4 +1,3 @@
-import { environment } from './../../../environments/environment';
 import { CurrentUser } from './../../models/CurrentUser';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login/login.service';
@@ -43,8 +42,8 @@ export class LoginPage implements OnInit {
   //Se inicializa las validaciones
   ngOnInit() {
     this.credentials = this.formBuilder.group({
-      UserDni: ['', Validators.required],
-      UserPassword: ['', Validators.required]
+      UserDni: ['',[Validators.required, Validators.maxLength(16)]],
+      UserPassword: ['',[Validators.required, Validators.minLength(8), Validators.maxLength(16)]]
     });
     console.log('Estoy en: ', window.location.pathname);
   }

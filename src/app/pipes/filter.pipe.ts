@@ -6,13 +6,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(
-    volunteers: Volunteer[],
-    texto: string): Volunteer[] {
-    console.log(volunteers);
-    if(texto === ''){
-      {return volunteers;}
-    }
+    volunteers: Volunteer[] = [],
+      texto: string,
+      column: string
+    ): Volunteer[] {
+      if(texto === ''){
+        return volunteers;
+      }
+
       texto = texto.toLowerCase();
-      volunteers.filter(volunteer =>volunteer.name);
+
+      return volunteers.filter(
+        volunteer =>{
+          return volunteer[column].toLowerCase().includes(texto);
+      });
     }
   }

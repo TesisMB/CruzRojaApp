@@ -35,10 +35,18 @@ export class VolunteersPage implements OnInit {
     this.getAllVolunteers();
   }
 
-   getAllVolunteers(){
-      this.handlerVoluntarios = this.service.getAll().subscribe((x: any) =>{
-      this.volunteers = x;
-      console.log(this.volunteers);
-     });
+  /* Función de busqueda */
+
+  search(event){
+
+    this.textoBuscar = event.detail.value;
+    console.log(event);
+  }
+
+  getAllVolunteers(){
+    this.handlerVoluntarios = this.service.getAll().subscribe((x: any) =>{
+    this.volunteers = x;
+    console.log(this.volunteers);
+  });
   }
 }

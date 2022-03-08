@@ -1,17 +1,19 @@
 
+/* Componentes de Ionic */
+
 html, body{
   margin: 0;
   padding: 0;
   height: 100%;
 }
 
+/* Clases */
+
 .item-input-wrapper{
   width: 95%;
   display: flex;
   margin-bottom: 3px;
 }
-
-/* Clases */
 
 .message{
   padding: 10px;
@@ -28,6 +30,7 @@ html, body{
 }
 
 /* Mensaje externo */
+
 .other-message{
   background: var(--ion-color-tertiary);
   color: #fff

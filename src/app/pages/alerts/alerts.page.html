@@ -15,6 +15,7 @@
             id="card"[ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}">
 
             <!--Header del card-->
+
             <div class="header">
               <ion-card-header>
                 <div [ngClass]="{
@@ -37,12 +38,14 @@
                   </ion-card-title>
 
                   <ion-button
+
                     (click)="openSlide()"
                     icon-only
                     fill="clear"
                     shape="round"
                     size="small"
-                    id="btnSlide">
+                    id="btnSlide"
+                    >
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                     <ion-ripple-effect type="unbounded"></ion-ripple-effect>
                   </ion-button>

@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header no-border>
   <ion-toolbar>
     <ion-title>Voluntarios</ion-title>
   </ion-toolbar>
@@ -8,16 +8,16 @@
 <div>
   <ion-toolbar>
     <ion-searchbar id="search"
-    debounce="500"
+    debounce="250"
     placeholder="Buscar voluntario..."
-    [(ngModel)]="searchTerm"
+    (ionChange)="search($event)"
     animated
     ></ion-searchbar>
   </ion-toolbar>
 </div>
 
 <ion-content>
-  <ion-list *ngFor="let volunteer of volunteers">
+  <ion-list *ngFor="let volunteer of volunteers | filter: textoBuscar: 'name'" >
     <ion-item [routerLink]="['details', volunteer.id]">
       <ion-avatar>
           <img src="{{volunteer.volunteerAvatar}}" >
