@@ -5,7 +5,12 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-chip class="ion-margin-start">
+    <ion-avatar>
+      <img src="{{currentUser.volunteerAvatar}}" />
+    </ion-avatar>
+    <ion-label>{{currentUser.persons.firstName}} {{currentUser.persons.lastName}}</ion-label>
+  </ion-chip>
   <div class="slides ion-margin-bottom">
     <ion-slides pager="true">
       <ion-slide>

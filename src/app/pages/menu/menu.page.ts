@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonMenu, MenuController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
 import { User } from 'ionic';
 import { LoginService } from 'src/app/services/login/login.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
