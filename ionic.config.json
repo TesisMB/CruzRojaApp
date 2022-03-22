@@ -1,7 +1,7 @@
 {
-  "name": "testing",
+  "name": "SICREYD",
   "integrations": {
-    "cordova": {}
+
   },
   "type": "angular"
 }
