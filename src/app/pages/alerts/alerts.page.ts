@@ -24,6 +24,7 @@ export class AlertsPage implements OnInit {
   estilo: string = "";
   handlerAlerts: any;
   handlerAlertsTypes: any;
+  currentUser: any;
   id= null;
 
   constructor(
@@ -33,6 +34,7 @@ export class AlertsPage implements OnInit {
 
   ngOnInit() {
     this.getAllAlerts();
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   getAllAlerts(){

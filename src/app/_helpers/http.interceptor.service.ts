@@ -1,16 +1,14 @@
 /* eslint-disable no-trailing-spaces */
 import { LoginService } from './../services/login/login.service';
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpInterceptor,HttpRequest} from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor,HttpRequest, HttpResponse,HttpErrorResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 //Implementación de Catch-error global usando "HTTP Interceptor"
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class HttpInterceptorService implements HttpInterceptor{
 
   constructor(public router: Router, private loginService: LoginService) { }

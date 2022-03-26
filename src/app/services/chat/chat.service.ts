@@ -21,21 +21,21 @@ export class ChatService extends DataService {
   }
 
   get getPosition(){
-    let chatGroup = {latitude: 31.0870016, longitude: 64.4907008, FK_ChatRoomID: 29};
+    let coords = {latitude: -66.764252, longitude: -70.184845};
     const coordsOptions = {enableHighAccuracy: true, timeout: 5000, maximumAge: 0};
     /* if(!navigator.geolocation){ */
       const location = navigator.geolocation.watchPosition(data => {
-        chatGroup.latitude = data.coords.latitude;
-          console.log(chatGroup.latitude);
-          chatGroup.longitude = data.coords.longitude;
-          console.log(chatGroup.longitude);
+        coords.latitude = data.coords.latitude;
+          console.log(coords.latitude);
+          coords.longitude = data.coords.longitude;
+          console.log(coords.longitude);
       }, error=>{
         console.log('Error de Current Position: ', error);
       },
         coordsOptions
       );
    /*  } */
-    return chatGroup;
+    return coords;
   }
 
 }

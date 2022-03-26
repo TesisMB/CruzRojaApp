@@ -20,7 +20,7 @@
 
   <div id="map"></div>
 
-  <ion-button *ngIf="!isAccepted" [disabled]="isAccepted" (click)="setChatGroup()" expand="block">
+  <ion-button shape="round" class="accButton" *ngIf="!isAccepted && currentUser.roleName == 'Voluntario' && emergencies.alerts.alertDegree != 'Controlado'" [disabled]="isAccepted" (click)="setChatGroup()" expand="block">
     Aceptar
   </ion-button>
 </ion-content>

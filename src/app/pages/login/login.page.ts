@@ -1,7 +1,8 @@
 import { CurrentUser } from './../../models/CurrentUser';
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 import { LoginService } from '../../services/login/login.service';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -20,14 +21,14 @@ export class LoginPage implements OnInit {
   error: any = '';
   resultado: any;
   data: string;
-  loading: any;
+  // loading: any = null;
 
   constructor(
     private servicio: LoginService,
     public toastCtrl: ToastController,
     private router: Router,
     private formBuilder: FormBuilder,
-    private loadingCtrl: LoadingController
+    private ionLoader: LoaderService
   ) {
     let currentUser: CurrentUser = this.servicio.currentUserValue;
 
@@ -36,7 +37,6 @@ export class LoginPage implements OnInit {
       console.log('Valor de currentUser:', currentUser)
       this.router.navigate(['/home']);
     }
-    const toasty = this.toastCtrl.create();
   }
 
   //Se inicializa las validaciones
@@ -55,43 +55,49 @@ export class LoginPage implements OnInit {
   // Ion-Toast
 
     //Si el usuario ingresa mal los datos, se le aparecera un toast para advertirle que los datos son erroneos
-    async showToast(msg: string) {
-      this.toastCtrl.dismiss();
+    async showToast(msg: string, duration: number) {
+      // this.toastCtrl.dismiss();
       const toast = await this.toastCtrl.create({
         message: msg,
-        duration: 3000,
+        duration: duration,
         cssClass: "back-toast",
-        color: 'danger'
+        /* color: color */
       });
-      return toast.present();
+      await toast.present();
     }
 
-  // Ion-Loading
 
- /*  async  showLoading() {
-      this.loading = await this.loadingCtrl.create({
-        cssClass: 'my-custom-class',
-        message: 'Por favor espere...',
-      });
-      return this.loading.present();
+
+    showLoader() {
+      this.ionLoader.showLoader();
+
+      setTimeout(() => {
+        this.hideLoader();
+      }, 2000);
     }
- */
+
+    hideLoader() {
+      this.ionLoader.hideLoader();
+    }
+
   onSubmit() {
+    this.showLoader();
     this.handler = this.servicio
       .login(this.f.UserDni.value, this.f.UserPassword.value)
       .subscribe(
         res => {
-          /* this.loadingCtrl.dismiss(); */
+          this.hideLoader();
           this.router.navigateByUrl('/home', { replaceUrl: true });
-          /* this.loading.dismiss(); */
+
         },
 
         error => {
           this.error = error;
-          /* this.loadingCtrl.dismiss(); */
-          this.showToast('Datos Incorrectos');
+          this.hideLoader();
+          this.showToast('Datos Incorrectos', 3000);
           console.log(error.message);
       }
     );
-  }
+
+}
 }

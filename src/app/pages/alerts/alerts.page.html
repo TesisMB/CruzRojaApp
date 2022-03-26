@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list #list >
-    <ion-item-sliding disabled *ngFor="let alert of alerts; index as i">
+    <ion-item-sliding *ngFor="let alert of alerts; index as i">
 
         <!--Ion Card-->
 
@@ -37,7 +37,7 @@
                     {{alert.typesEmergenciesDisasters.typeEmergencyDisasterName}}
                   </ion-card-title>
 
-                  <ion-button
+                  <!-- <ion-button
                     (click)="openSlide()"
                     icon-only
                     fill="clear"
@@ -47,7 +47,7 @@
                     >
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                     <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-                  </ion-button>
+                  </ion-button> -->
 
                 </div>
             </div>
@@ -88,7 +88,7 @@
         <!-- Usar *ngIf="" para ocultar esta función si el currentuser es un voluntario -->
 
         <ion-item-options side="end">
-          <ion-item-option (click)="volunteerButton()">
+          <ion-item-option *ngIf="currentUser.roleName != 'Voluntario'" (click)="volunteerButton()">
             <ion-icon name="people-outline"></ion-icon>
             <ion-label>Voluntarios</ion-label>
           </ion-item-option>

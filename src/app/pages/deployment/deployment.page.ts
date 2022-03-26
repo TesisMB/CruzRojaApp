@@ -17,6 +17,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   emergencies: EmergenciesDisasters = null;
   handlerChat: any;
   isAccepted: boolean = false;
+  currentUser: any;
   private map;
 
 
@@ -35,8 +36,9 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     this.handleDeployment = this.alertService._currentAlert.subscribe(
       data =>{
         this.emergencies = data;
-        console.log('asdsadasd', data);
+        console.log('asd', data);
       });
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   setChatGroup(){

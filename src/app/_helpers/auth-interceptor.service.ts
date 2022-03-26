@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent} from '@angular/common/http';
-import { Observable} from 'rxjs';
+import { HttpEvent, HttpHandler, HttpInterceptor,HttpRequest, HttpResponse,HttpErrorResponse} from '@angular/common/http';
+import { Observable, throwError} from 'rxjs';
 import { LoginService } from '../services/login/login.service';
 import { environment } from '../../environments/environment';
-@Injectable({
-  providedIn: 'root'
-})
+import { catchError, map } from 'rxjs/operators';
+
+@Injectable()
 export class AuthInterceptorService implements HttpInterceptor{
 
   constructor(private authenticationService: LoginService) {}
@@ -25,8 +25,31 @@ export class AuthInterceptorService implements HttpInterceptor{
 
         }
 
-        return next.handle(request);
+        if (!request.headers.has('Content-Type')) {
+            request = request.clone({
+              setHeaders: {
+                'content-type': 'application/json'
+              }
+            });
+          }
+
+          request = request.clone({
+            headers: request.headers.set('Accept', 'application/json')
+          });
+
+          return next.handle(request).pipe(
+            map((event: HttpEvent<any>) => {
+              if (event instanceof HttpResponse) {
+                console.log('event--->>>', event);
+              }
+              return event;
+            }),
+            catchError((error: HttpErrorResponse) => {
+              console.error(error);
+              return throwError(error);
+            }));
     }
+
 }
 
 

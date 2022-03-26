@@ -2,7 +2,7 @@ import { CurrentUser } from './../../models/CurrentUser';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { map } from 'rxjs/operators';
+import { debounceTime, delay, map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -39,15 +39,17 @@ export class LoginService {
   login(userDni: string, userPassword: string) {
     //Se hace el post a los atributos
     return this.http.post(environment.apiURL + this.apiURL, { userDni, userPassword })
-      .pipe(map((user: any) => {
+      .pipe(
+      map((user: any) => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
           console.log(user);
           this.currentUserSubject.next(user);
         }
         return user;
-      })
-      );
+      }),
+
+    );
   }
 
   logout() {

@@ -18,6 +18,7 @@ export class CuentaPage implements OnInit {
 
   initForm(): FormGroup{
     return this.formBuilder.group({
+
       Password: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(16)]],
       NewPassword: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(16)]],
       RepeatPassword: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(16)]],
