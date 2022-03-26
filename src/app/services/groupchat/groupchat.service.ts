@@ -12,15 +12,14 @@ export class GroupchatService {
   messageReceived: EventEmitter<Messages> = new EventEmitter();
 
   groupChatId: number = null;
-
+  public currentGroupChat$: Observable<number>;
   private currentGroupChatSubject: BehaviorSubject<number>;
-  public _currentGroupChat: Observable<number>;
 
   constructor() {
     //Inicializo el BehaviorSubject como null
     this.currentGroupChatSubject = new BehaviorSubject<number>(null);
     //Conversion del BehaviorSubject a un observable(Escucha todo el tiempo y toma el ultimo valor)
-    this._currentGroupChat = this.currentGroupChatSubject.asObservable();
+    this.currentGroupChat$ = this.currentGroupChatSubject.asObservable();
   }
 
   public setChatRoomId(chatId: number) {

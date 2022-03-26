@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Messages } from '../../../models/Message';
 import { Component, OnDestroy, OnInit, ViewChild, ViewChildren } from '@angular/core';
@@ -69,9 +70,9 @@ export class GroupChatPage implements OnInit, OnDestroy {
       console.log(err);
     });
 
-    this.currentGroupChatHandler = this.service._currentGroupChat.subscribe(data => {
-      console.log('_currentGroupChat: ', data);
-    })
+    this.currentGroupChatHandler = this.service.currentGroupChat$.subscribe(data => {
+      console.log('currentGroupChat$: ', data);
+    });
 
     this.id = +this.aRoute.snapshot.params.id;
     this.getById();
@@ -106,7 +107,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
       finalize(() => {
         // this is called on both success and error
         console.log('finalize');
-        this.ScrollToBottom();
+        this.scrollToBottom();
       }))
     .subscribe(data => {
       console.log('Todo Bien');
@@ -130,16 +131,16 @@ export class GroupChatPage implements OnInit, OnDestroy {
   //Funciones
   public handleScroll(event): void {
     if (event.detail.scrollTop >= this.lastScrollTop) {
-         document.getElementById("fab-button").style.top = '100%';
+         document.getElementById('fab-button').style.top = '100%';
     }else{
-      document.getElementById("fab-button").style.top = '75%';
-      document.getElementById("fab-button").style.right = '4%';
+      document.getElementById('fab-button').style.top = '75%';
+      document.getElementById('fab-button').style.right = '4%';
     }
 
     this.lastScrollTop = event.detail.scrollTop;
   }
 
-  ScrollToBottom() {
+  scrollToBottom() {
     this.content.scrollToBottom(1500);
   }
 

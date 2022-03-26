@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { User } from 'ionic';
+import { User } from '../../models/User';
 import { LoginService } from 'src/app/services/login/login.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
@@ -49,7 +49,7 @@ export class MenuPage implements OnInit, OnDestroy {
 
   navigateAccount(){
     this.router.navigate(['/cuenta']);
-    this.menuCtrl.close()
+    this.menuCtrl.close();
   }
 
   logout(){
