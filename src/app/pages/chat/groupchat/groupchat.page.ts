@@ -40,6 +40,10 @@ export class GroupChatPage implements OnInit, OnDestroy {
     private aRoute: ActivatedRoute,
     private services: LoginService
   ) {
+
+    this.id = this.aRoute.snapshot.params.id;
+    this.service.setChatRoomId(this.id);
+
     this.chatForm = this.fb.group({
       message: ['', Validators.required],
       FK_ChatRoomID: ['', Validators.required],
@@ -74,10 +78,10 @@ export class GroupChatPage implements OnInit, OnDestroy {
       console.log('currentGroupChat$: ', data);
     });
 
-    this.id = +this.aRoute.snapshot.params.id;
+
+    console.log('Id ==> ', this.id);
     this.getById();
 
-    this.service.setChatRoomId(this.id);
     /*     this.service.setChatRoomId(30);
      */
     this.service.registerGroup();
