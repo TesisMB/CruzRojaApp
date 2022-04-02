@@ -1,4 +1,4 @@
-import { Volunteer } from './../models/Volunteer';
+import { UserChatRooms } from './../models/UserChatRooms';
 import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'filter'
@@ -6,10 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(
-    volunteers: Volunteer[] = [],
+    volunteers: UserChatRooms[] = [],
       texto: string,
       column: string
-    ): Volunteer[] {
+    ): UserChatRooms[] {
       if(texto === ''){
         return volunteers;
       }

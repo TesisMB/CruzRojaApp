@@ -68,6 +68,7 @@
                   <ion-label class="time">
                   <!-- Fecha - Hora (Inicio):  -->
                    {{alert.emergencyDisasterStartDate | date: 'short'}}
+
                   </ion-label>
                 </div>
 
@@ -76,8 +77,10 @@
                 <div *ngIf="alert.emergencyDisasterEndDate" style="display: none">
                   <ion-label>Fecha - Hora (Final):
                     <!-- Fecha - Hora (Final):  -->
-                    {{alert.emergencyDisasterEndDate}}</ion-label
+                    {{alert.emergencyDisasterEndDate}}
+                  </ion-label
                   >
+
                 </div>
             </ion-card-content>
           </ion-card>
@@ -88,7 +91,7 @@
         <!-- Usar *ngIf="" para ocultar esta función si el currentuser es un voluntario -->
 
         <ion-item-options side="end">
-          <ion-item-option *ngIf="currentUser.roleName != 'Voluntario'" (click)="volunteerButton()">
+          <ion-item-option (click)="showLoader()" [routerLink]="['emergency', alert.emergencyDisasterID]" *ngIf="currentUser.roleName != 'Voluntario'">
             <ion-icon name="people-outline"></ion-icon>
             <ion-label>Voluntarios</ion-label>
           </ion-item-option>

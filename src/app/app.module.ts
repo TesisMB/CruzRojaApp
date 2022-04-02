@@ -29,7 +29,6 @@ import { SharedModule } from './shared/shared.module';
 
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { MenuPage } from './pages/menu/menu.page';
 import { DeploymentPage } from './shared';
 
 

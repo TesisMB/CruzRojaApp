@@ -5,7 +5,6 @@
         <ion-buttons slot="start">
           <ion-back-button type="button" defaultHref="chat"></ion-back-button>
         </ion-buttons>
-
         <ion-title>{{chat.emergenciesDisasters.typeEmergencyDisasterName}}</ion-title>
       </ion-toolbar>
     </div>
@@ -16,7 +15,7 @@
 
 <ion-content [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <!-- botón para volver al final del chat -->
-    <button id="fab-button" (click)="ScrollToBottom()">
+    <button id="fab-button" (click)="scrollToBottom()">
       <ion-icon name="chevron-down-outline"></ion-icon>
     </button>
 

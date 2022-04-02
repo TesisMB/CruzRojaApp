@@ -1,9 +1,11 @@
 <ion-header no-border>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button type="button" defaultHref="alertas"></ion-back-button>
+    </ion-buttons>
     <ion-title>Voluntarios</ion-title>
   </ion-toolbar>
 </ion-header>
-
 
 <div>
   <ion-toolbar>
@@ -16,15 +18,11 @@
   </ion-toolbar>
 </div>
 
-<ion-content>
-  <ion-list *ngFor="let volunteer of volunteers | filter: textoBuscar: 'name'" >
-    <ion-item [routerLink]="['details', volunteer.id]">
-      <ion-avatar>
-          <img src="{{volunteer.volunteerAvatar}}" >
-      </ion-avatar>
-      <ion-label id="volunteerName"> {{volunteer.name}}</ion-label>
-     </ion-item>
+<ion-content *ngIf="volunteers">
+  <ion-list *ngFor="let item of volunteers | filter: textoBuscar: 'name'" >
+    <ion-item [routerLink]="['details', item.id]">
+      <ion-label id="volunteerName">{{item.name}}</ion-label>
+    </ion-item>
   </ion-list>
-
 </ion-content>
 <!-- <app-menu showTabs></app-menu> -->

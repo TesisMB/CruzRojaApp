@@ -1,13 +1,11 @@
-/* eslint-disable @angular-eslint/no-input-rename */
-/* eslint-disable arrow-body-style */
-/* eslint-disable @typescript-eslint/member-ordering */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable eqeqeq */
+import { AlertService } from 'src/app/services/alerts/alert.service';
 import { VolunteersService } from '../../services/volunteers/volunteers.service';
 import { Router } from '@angular/router';
 import { Volunteer } from '../../models/Volunteer';
 import { Component, OnInit} from '@angular/core';
-
+import { EmergenciesDisasters } from 'src/app/models/EmergenciesDisasters';
+import { ActivatedRoute } from '@angular/router';
+import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 
 @Component({
   selector: 'app-volunteers',
@@ -16,37 +14,53 @@ import { Component, OnInit} from '@angular/core';
 })
 
 export class VolunteersPage implements OnInit {
-
-  volunteers: Volunteer[] = [];
+  emergencies: EmergenciesDisasters;
   handlerVoluntarios: any;
   textoBuscar = '';
   searchTerm: string;
   public searchedItem: any;
-  public list: Array<Volunteer> = [];
+  idEmergency: number;
+  handlerEmergency: any;
+  volunteers: any = [];
 
   constructor(
     public router: Router,
-    public service: VolunteersService
+    private aRoute: ActivatedRoute,
+    public service: AlertService
   ) {
     /* this.searchedItem = this.volunteers; */
   }
 
   ngOnInit() {
-    this.getAllVolunteers();
+    this.idEmergency = this.aRoute.snapshot.params['id'];
+    this.getEmergenciesByID();
   }
 
   /* Función de busqueda */
 
   search(event){
-
     this.textoBuscar = event.detail.value;
     console.log(event);
   }
 
-  getAllVolunteers(){
-    this.handlerVoluntarios = this.service.getAll().subscribe((x: any) =>{
-    this.volunteers = x;
-    console.log(this.volunteers);
-  });
+  getEmergenciesByID() {
+    this.handlerEmergency = this.service.getByIdWithoutFilter(this.idEmergency).subscribe((data) => {
+      this.emergencies = data;
+
+      this.emergencies.chatRooms.usersChatRooms.forEach(element =>{
+        const user = {
+          id: element.userID,
+          name: element.name,
+          dni: element.userDni,
+          role: element.roleName
+        }
+        this.volunteers.push(user);
+      });
+      console.log("Voluntarios involucrados", this.volunteers);
+      console.log('ingreso emergency');
+      console.log(data);
+    },error =>{
+      console.log(error);
+    });
   }
 }

@@ -1,14 +1,10 @@
+import { UserChatRooms } from './UserChatRooms';
 
 /* eslint-disable @typescript-eslint/no-empty-interface */
 export interface ChatRooms {
-    chatRoomID: number;
+    id: number;
     creationDate: Date;
-    usersChatRooms: [
-        {
-            userID: number;
-            name: string;
-        }
-    ];
+    usersChatRooms: UserChatRooms[];
     emergenciesDisasters: {
         emergencyDisasterID: number;
         locationCityName: string;

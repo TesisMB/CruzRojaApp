@@ -1,5 +1,3 @@
-import { VolunteersPage } from './volunteers.page';
-import { VoluntariosDetallesPage } from './subpages/voluntarios-detalles/volunteersdetails';
 import { NgModule } from '@angular/core';
 
 import { VoluntariosPageRoutingModule } from './volunteers-routing.module';
@@ -16,8 +14,6 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     PipesModule,
   ],
   declarations: [
-    VolunteersPage,
-    VoluntariosDetallesPage,
     LayoutComponent,
   ],
   providers: [

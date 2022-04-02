@@ -8,14 +8,15 @@
   <div *ngFor="let item of chatTypeList" >
     <div class="div_padding" *ngFor="let chat of item['chatRooms']">
       <ion-list>
-        <ion-item [routerLink]="['groupChat', chat.id]">
-          <ion-avatar slot="start">
+        <ion-item >
+          <ion-button (click)="navigateToGroupChat(chat.id)">Aceptar</ion-button>
+          <!-- <ion-avatar slot="start">
             <img src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typeEmergencyDisasterIcon}}.svg" width= "40px">
-          </ion-avatar>
-          <ion-label>
-            <h2>{{chat.emergenciesDisasters.typeEmergencyDisasterName}}</h2>
-            <p>{{chat.emergenciesDisasters.locationCityName}}</p>
-          </ion-label>
+          </ion-avatar> -->
+         <!--  <ion-label>
+           <h2>{{item.typesEmergenciesDisasters.typeEmergencyDisasterName}}</h2>
+            <p>{{item.locations.locationCityName}}</p>
+          </ion-label> -->
         </ion-item>
       </ion-list>
       </div>

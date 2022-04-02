@@ -1,4 +1,4 @@
-import { TypeEmergenciesDisasters, Employees, Locations, Alert } from './index';
+import { TypeEmergenciesDisasters, Employees, Locations, Alert, ChatRooms, Volunteer } from './index';
 
 export interface EmergenciesDisasters {
   emergencyDisasterID: number;
@@ -9,4 +9,6 @@ export interface EmergenciesDisasters {
   locations: Locations;
   typesEmergenciesDisasters: TypeEmergenciesDisasters;
   alerts: Alert;
+  chatRooms: ChatRooms
+  volunteer: Volunteer
 }

@@ -21,7 +21,6 @@ export class LoginPage implements OnInit {
   error: any = '';
   resultado: any;
   data: string;
-  // loading: any = null;
 
   constructor(
     private servicio: LoginService,
@@ -61,12 +60,9 @@ export class LoginPage implements OnInit {
         message: msg,
         duration: duration,
         cssClass: "back-toast",
-        /* color: color */
       });
       await toast.present();
     }
-
-
 
     showLoader() {
       this.ionLoader.showLoader();
@@ -88,7 +84,6 @@ export class LoginPage implements OnInit {
         res => {
           this.hideLoader();
           this.router.navigateByUrl('/home', { replaceUrl: true });
-
         },
 
         error => {

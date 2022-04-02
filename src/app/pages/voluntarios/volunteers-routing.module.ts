@@ -9,16 +9,6 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: [
-      {
-        path: '',
-        component: VolunteersPage
-      },
-      {
-        path: 'details/:id',
-        component: VoluntariosDetallesPage
-      }
-    ]
   },
 ];
 

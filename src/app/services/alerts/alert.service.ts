@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { EmergenciesDisasters } from './../../models/EmergenciesDisasters';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Alert } from './../../models/Alert';
@@ -22,6 +23,10 @@ export class AlertService extends DataService {
   setAlert(alert: EmergenciesDisasters){
     const alertObject = alert;
     this.currentAlertSubject.next(alertObject);
+  }
+
+  getByIdWithoutFilter(id: number): Observable<any> {
+    return this.http.get<any>(environment.apiURL + this.patch + '/' + id);
   }
 
 }

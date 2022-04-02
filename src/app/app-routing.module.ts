@@ -6,13 +6,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { RoleName } from './models/RoleName';
 import { LoginPage } from './pages/login/login.page';
-import { AlertsPage } from './pages/alerts/alerts.page';
 import { HomePage } from './pages/home/home.page';
 import { CuentaPage } from './pages/cuenta/cuenta.page';
 import { DeploymentPage } from './pages/deployment/deployment.page';
 
 const volunteersModule = () => import ('src/app/pages/voluntarios/volunteers.module').then(x => x.VolunteersPageModule);
 const chatModule = () => import ('src/app/pages/chat/chat.module').then(x => x.ChatPageModule);
+const alertsModule = () => import ('src/app/pages/alerts/alerts.module').then(x => x.AlertsModule);
 
 const routes: Routes = [
 
@@ -29,7 +29,7 @@ const routes: Routes = [
 
   {
     path: 'alertas',
-    component: AlertsPage,
+    loadChildren: alertsModule,
     canActivate: [AuthGuard],
     data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.Voluntario, RoleName.CEyD]}
   },
@@ -57,10 +57,10 @@ const routes: Routes = [
   },
 
   //Redirecciona a un 404, en cas ode que no exista una dirección
-  {
+  /* {
     path: '**',
     redirectTo: ''
-  },
+  }, */
 
 ];
 

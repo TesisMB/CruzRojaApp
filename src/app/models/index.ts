@@ -10,3 +10,5 @@ export * from './Alert';
 export * from './Employees';
 export * from './TypeChatRooms';
 export * from './Message'
+export * from './ChatRooms'
+export * from './Volunteer'

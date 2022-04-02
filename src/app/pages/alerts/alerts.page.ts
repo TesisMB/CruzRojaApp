@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonItemSliding, IonList, IonSlides } from '@ionic/angular';
 import { AlertService } from 'src/app/services/alerts/alert.service';
 import { Router } from '@angular/router';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
   selector: 'app-alertas',
@@ -29,7 +30,8 @@ export class AlertsPage implements OnInit {
 
   constructor(
     private alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private ionLoader: LoaderService
   ) { }
 
   ngOnInit() {
@@ -53,14 +55,19 @@ export class AlertsPage implements OnInit {
     }
   }
 
-  /* Funciones de navegación */
+  showLoader() {
+    this.ionLoader.showLoader();
+    setTimeout(() => {
+      this.hideLoader();
+    }, 2000);
+  }
 
-  volunteerButton(){
-    this.router.navigate(['/voluntarios']);
-    this.lista.closeSlidingItems();
+  hideLoader() {
+    this.ionLoader.hideLoader();
   }
 
   deploymentButton(index){
+    this.showLoader();
     const alert = this.alerts[index];
     this.alertService.setAlert(alert);
     this.id = index;
@@ -80,5 +87,4 @@ export class AlertsPage implements OnInit {
       return "#4cd137";
     }
   }
-
 }
