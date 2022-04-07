@@ -31,7 +31,7 @@ export class LoaderService {
   showLoader() {
 
     this.loadingController.create({
-      message: 'Please wait...'
+      message: 'Cargando...'
     }).then((res) => {
       res.present();
     });

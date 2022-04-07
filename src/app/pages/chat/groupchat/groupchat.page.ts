@@ -1,3 +1,4 @@
+import { User } from './../../../models/User';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Messages } from '../../../models/Message';
@@ -29,7 +30,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
   chatHandlerPost: any;
   chatHandlerGet: any;
   id: number;
-  observableUserID = null;
+  observableUser: User;
   currentUser = null;
   lastScrollTop = 0;
 
@@ -47,7 +48,8 @@ export class GroupChatPage implements OnInit, OnDestroy {
     this.chatForm = this.fb.group({
       message: ['', Validators.required],
       FK_ChatRoomID: ['', Validators.required],
-      FK_UserID: ['', Validators.required]
+      FK_UserID: ['', Validators.required],
+      name: ['', Validators.required]
     });
 
     this.service.createConnection();
@@ -69,7 +71,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
     console.log('LocalStorage', this.currentUser.userID);
 
     this.currentUserHandler = this.services.currentUserObs.subscribe(resp => {
-      this.observableUserID = resp.userID;
+      this.observableUser = resp;
     }, err => {
       console.log(err);
     });
@@ -100,7 +102,8 @@ export class GroupChatPage implements OnInit, OnDestroy {
 
   postChat() {
     this.chatForm.get('FK_ChatRoomID').patchValue(this.id);
-    this.chatForm.get('FK_UserID').patchValue(this.observableUserID);
+    this.chatForm.get('FK_UserID').patchValue(this.observableUser.userID);
+    this.chatForm.get('name').patchValue(this.observableUser.persons.firstName)
 
     // Agregamos un nuevo mensaje
     //envia todo los valores del formulario

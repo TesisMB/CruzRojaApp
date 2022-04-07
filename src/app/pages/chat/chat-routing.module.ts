@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ChatPage } from './chat.page';
+import { PrivatechatPage } from './privatechat/privatechat.page';
 
 const routes: Routes = [
   {
@@ -17,9 +18,15 @@ const routes: Routes = [
       {
         path: 'groupChat/:id',
         component: GroupChatPage
-      }
+      },
+      {
+        path: 'privatechat/:id',
+        component: PrivatechatPage
+      },
     ]
   },
+
+
 ];
 
 @NgModule({

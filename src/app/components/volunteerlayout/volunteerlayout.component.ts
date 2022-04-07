@@ -1,4 +1,4 @@
-import { VoluntariosDetallesPage } from './../../pages/voluntarios/subpages/voluntarios-detalles/volunteersdetails';
+import { VoluntariosDetallesPage } from './../../pages/volunteers/subpages/voluntarios-detalles/volunteersdetails';
 
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';

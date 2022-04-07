@@ -1,7 +1,7 @@
 <!-- Boton de Perfil -->
 
 <ion-fab id="fab" horizontal='end'>
-    <ion-chip button="true"  (click)="toggleMenu()" class="ion-margin-start">
+    <ion-chip button="true" (click)="toggleMenu()" class="ion-margin-start">
       <ion-avatar>
         <img *ngIf="currentUser.roleName == 'Voluntario'" src="{{currentUser.volunteerAvatar}}">
         <ion-icon style="font-size: 24px;" button id="user" name="person-circle-outline"></ion-icon>

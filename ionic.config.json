@@ -1,7 +1,7 @@
 {
   "name": "SICREYD",
   "integrations": {
-
+    "capacitor": {}
   },
   "type": "angular"
 }

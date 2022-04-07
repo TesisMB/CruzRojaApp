@@ -1,0 +1,6 @@
+{
+	"appId": "com.sicreyd.app",
+	"appName": "SICREYD",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

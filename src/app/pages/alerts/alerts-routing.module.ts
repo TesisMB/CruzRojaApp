@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AlertsPage } from './alerts.page';
-import { VolunteersPage } from '../voluntarios/volunteers.page';
-import { VoluntariosDetallesPage } from '../voluntarios/subpages/voluntarios-detalles/volunteersdetails';
+import { VolunteersPage } from '../volunteers/volunteers.page';
+import { VoluntariosDetallesPage } from '../volunteers/subpages/voluntarios-detalles/volunteersdetails';
 
 const routes: Routes = [
   {

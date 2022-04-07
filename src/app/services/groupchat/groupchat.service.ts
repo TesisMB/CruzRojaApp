@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { HubConnection, HttpClient, HubConnectionBuilder } from '@aspnet/signalr';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Messages } from 'src/app/models';
 

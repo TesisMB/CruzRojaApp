@@ -1,4 +1,3 @@
-import { User } from './User';
 export class Messages {
   id?: number;
   message: string;
@@ -8,6 +7,7 @@ export class Messages {
   fK_UserID?: number;
   FK_LocationVolunteerID?: number;
   userID?: number;
+  name: string;
   // constructor( _message : string, _FK_ChatRoomID: number, _FK_LocationVolunteerID?: number,_id?: number) {
   //   this.messageState = false;
   //   this.createdDate = Date.now();

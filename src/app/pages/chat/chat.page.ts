@@ -31,6 +31,9 @@ export class ChatPage implements OnInit {
     this.router.navigate(['chat','groupChat', id]);
   }
 
+
+
+
   getChat() {
     this.handlerChat = this.service.getAll().subscribe((x: TypeChatRooms[]) => {
       this.chatTypeList = x;

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SICREYD</string>
+    <string name="title_activity_main">SICREYD</string>
+    <string name="package_name">com.sicreyd.app</string>
+    <string name="custom_url_scheme">com.sicreyd.app</string>
+</resources>

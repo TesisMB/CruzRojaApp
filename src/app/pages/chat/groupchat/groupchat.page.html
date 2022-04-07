@@ -5,7 +5,6 @@
         <ion-buttons slot="start">
           <ion-back-button type="button" defaultHref="chat"></ion-back-button>
         </ion-buttons>
-        <ion-title>{{chat.emergenciesDisasters.typeEmergencyDisasterName}}</ion-title>
       </ion-toolbar>
     </div>
   </ion-header>
@@ -21,7 +20,10 @@
 
   <ion-row>
     <ion-col [offset]="(item.fK_UserID === currentUser.userID) ? '3' : '0'" size="9" *ngFor="let item of msj" class= "message" [ngClass]="(item.fK_UserID === currentUser.userID) ? 'my-message' : 'other-message'">
-      <span id="message">{{item.message}}</span>
+        <span id="userName">{{item.name}}</span>
+      <div>
+        <span id="message">{{item.message}}</span>
+      </div>
       <div class="time">
         <span>{{item.createdDate | date : 'short'}}</span>
       </div>

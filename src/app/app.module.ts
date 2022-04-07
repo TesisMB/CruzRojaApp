@@ -1,4 +1,4 @@
-import { CuentaPage } from './pages/cuenta/cuenta.page';
+import { AccountPage } from './pages/account/account.page';
 import { HomePage } from './pages/home/home.page';
 import { AlertsPage } from './pages/alerts/alerts.page';
 import { LoginPage } from './pages/login/login.page';
@@ -9,15 +9,14 @@ export function getToken() {
 
 import { HttpInterceptorService } from './_helpers/http.interceptor.service';
 
-import { PipesModule } from './pipes/pipes.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicModule} from '@ionic/angular';
 import { AppComponent } from './app.component';
+import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IonicStorageModule } from '@ionic/storage-angular';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { JwtModule } from '@auth0/angular-jwt';
@@ -33,7 +32,7 @@ import { DeploymentPage } from './shared';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginPage, AlertsPage, HomePage, DeploymentPage, CuentaPage],
+  declarations: [AppComponent, LoginPage, AlertsPage, HomePage, DeploymentPage, AccountPage],
   entryComponents: [],
 
   imports: [
@@ -42,6 +41,7 @@ import { DeploymentPage } from './shared';
     IonicModule.forRoot(),
     AppRoutingModule,
     NgbModule,
+    ComponentsModule,
     SharedModule,
     Ng2SearchPipeModule,
     IonicStorageModule.forRoot(),

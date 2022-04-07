@@ -1,8 +1,7 @@
 export interface Locations  {
-  locationID: number,
-  locationDepartmentName: string,
-  locationMunicipalityName: string,
-  locationCityName: string,
-  locationLongitude: string,
-  locationLatitude: string
+  locationCityName:         string;
+  locationDepartmentName:   string;
+  locationMunicipalityName: string;
+  locationLongitude:        number;
+  locationLatitude:         number;
  }

@@ -1,24 +1,49 @@
 <ion-content>
-  <div class="header">
-    <div class="imgInfo">
-      <img class="emergencyIcon"
-        src="../../../assets/icons - Resources - EmergDesas/{{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
-      />
+  <div class="tab-content">
+    <div>
+      <h2>
+        Despliegue de Terreno
+      </h2>
+
+      <h4>
+        {{emergencies.locations.locationCityName}} -
+        {{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterName}}
+      </h4>
+
+    <div class="date">
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon>
+          <span>Fecha de inicio: {{emergencies.emergencyDisasterStartDate | date: 'dd/MM/yyyy hh:mm:ss
+          a'}}</span>
+      </p>
+      <p *ngIf="emergencies.emergencyDisasterEndDate">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span class="calendar-end">Fecha final: {{emergencies.emergencyDisasterEndDate}}</span>
+      </p>
+    </div>
+
+    <div class="date">
+      <p>
+        <ion-icon name="person-outline"></ion-icon>
+        <span>Responsable:
+          {{emergencies.employees.name}}
+        </span>
+      </p>
+    </div>
+
+
+    <div class="date map-container">
+      <div class="location map-frame">
+        <div id="map"></div>
+      </div>
+
+
+    <div class="instruction location">
+      {{emergencies.emergencyDisasterInstruction}}
+    </div>
+    </div>
     </div>
   </div>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterName}}</ion-card-title>
-      <ion-card-subtitle>Fecha de Inicio: {{emergencies.emergencyDisasterStartDate | date: 'short'}}</ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-card-content>
-      {{emergencies.emergencyDisasterInstruction}}
-    </ion-card-content>
-  </ion-card>
-
-  <div id="map"></div>
 
   <ion-button shape="round" class="accButton" *ngIf="!isAccepted && currentUser.roleName == 'Voluntario' && emergencies.alerts.alertDegree != 'Controlado'" [disabled]="isAccepted" (click)="setChatGroup()" expand="block">
     Aceptar

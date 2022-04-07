@@ -1,4 +1,4 @@
-import { DataResolverService } from './resolver/data-resolver.service';
+
 
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
@@ -7,17 +7,18 @@ import { AuthGuard } from './guards/auth.guard';
 import { RoleName } from './models/RoleName';
 import { LoginPage } from './pages/login/login.page';
 import { HomePage } from './pages/home/home.page';
-import { CuentaPage } from './pages/cuenta/cuenta.page';
+import { AccountPage } from './pages/account/account.page';
 import { DeploymentPage } from './pages/deployment/deployment.page';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
-const volunteersModule = () => import ('src/app/pages/voluntarios/volunteers.module').then(x => x.VolunteersPageModule);
+const volunteersModule = () => import ('src/app/pages/volunteers/volunteers.module').then(x => x.VolunteersPageModule);
 const chatModule = () => import ('src/app/pages/chat/chat.module').then(x => x.ChatPageModule);
 const alertsModule = () => import ('src/app/pages/alerts/alerts.module').then(x => x.AlertsModule);
 
 const routes: Routes = [
 
   {
-    path: '',
+    path: 'home',
     component: HomePage,
     canActivate: [AuthGuard]
   },
@@ -52,15 +53,21 @@ const routes: Routes = [
   },
 
   {
-    path: 'cuenta',
-    component: CuentaPage,
+    path: 'account',
+    component: AccountPage,
   },
 
-  //Redirecciona a un 404, en cas ode que no exista una dirección
-  /* {
+  {
+    path: 'pagenotfound',
+    component: PagenotfoundComponent
+  },
+
+  //Redirecciona a un 404, en caso de que no exista una dirección
+  {
     path: '**',
-    redirectTo: ''
-  }, */
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
 
 ];
 

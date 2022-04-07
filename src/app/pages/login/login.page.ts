@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
     //Redirecciona si el usuario esta logeado
     if (currentUser) {
       console.log('Valor de currentUser:', currentUser)
-      this.router.navigate(['/home']);
+      this.router.navigate(['home']);
     }
   }
 

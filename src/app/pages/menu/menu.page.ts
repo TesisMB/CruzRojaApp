@@ -48,7 +48,7 @@ export class MenuPage implements OnInit, OnDestroy {
   /* Menu Functions */
 
   navigateAccount(){
-    this.router.navigate(['/cuenta']);
+    this.router.navigate(['/account']);
     this.menuCtrl.close();
   }
 
@@ -68,7 +68,7 @@ export class MenuPage implements OnInit, OnDestroy {
 
 
 /*   navigateTabHome(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['home']);
   }
 
   navigateTabAlert(){

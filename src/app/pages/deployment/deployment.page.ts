@@ -18,8 +18,6 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   handlerChat: any;
   isAccepted: boolean = false;
   currentUser: any;
-  private map;
-
 
   constructor(
     private alertService: AlertService,
