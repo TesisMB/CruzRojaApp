@@ -4,44 +4,82 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
 
-  <div class="slides ion-margin-bottom">
-    <ion-slides pager="true">
+  <section class="ion-margin-bottom">
+    <ion-slides [options]="option" class="slides" pager="true">
+
       <ion-slide>
         <ion-card>
+          <img class="imgHeader" src="../../../assets/img-client/CruzRoja -Ilustracion.png" alt="inicioLogo">
           <ion-card-header>
-            <div class="main">
-              <img src="../../../assets/img-client/CruzRoja -Ilustracion.png" alt="inicioLogo">
-            </div>
+            <h3>Capacitaciones</h3>
           </ion-card-header>
-          <ion-card-content>
-            <ion-card-title>Sumate a nuestra campaña</ion-card-title>
-            <ion-card-subtitle>Mas información en nuestra pagina web </ion-card-subtitle>
-          </ion-card-content>
+          <ion-card-subtitle>
+            <p>
+              Sumate a nuestras campañas. <br/>
+              Mas información en nuestra <a href="https://www.cruzroja.org.ar/">pagina web</a>
+            </p>
+          </ion-card-subtitle>
         </ion-card>
       </ion-slide>
 
       <ion-slide>
         <ion-card>
+          <img class="imgHeader" id="emergency" src="../../../assets/img-client/emergencias.jpg" alt="emergenciaImg">
           <ion-card-header>
-            <div class="main">
-              <img id="emergency" src="../../../assets/img-client/emergencias.jpg" alt="emergenciaImg">
-            </div>
+            <h3>Emergencias</h3>
           </ion-card-header>
-          <ion-card-content>
-            <ion-card-title>Sumate a nuestra campaña</ion-card-title>
-            <ion-card-subtitle>Mas información en nuestra pagina web </ion-card-subtitle>
-          </ion-card-content>
+          <ion-card-subtitle>
+            <p>
+              Acompañamos a las comunidades antes, durante y después de emergencias y desastres.
+            </p>
+          </ion-card-subtitle>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card>
+          <img class="imgHeader" src="../../../assets/img-client/abuelos.jpg" alt="emergenciaImg">
+          <ion-card-header>
+            <h3>Teleasistencia</h3>
+          </ion-card-header>
+          <ion-card-subtitle>
+            <p>
+              Servicio de teleasistencia para adultos mayores y personas con discapacidad
+            </p>
+          </ion-card-subtitle>
         </ion-card>
       </ion-slide>
     </ion-slides>
-  </div>
+  </section>
 
-  <div class="container">
+  <section id="quienesSomos">
+    <div class="">
+    <img id="quienesSomosLogo" src="../../../assets/img-client/quienesomos.png" alt="">
+    <div>
+      <img src="../../../assets/img-client/codos.jpg" alt="">
+    </div>
+      <p class="">
+        Somos una asociación civil, humanitaria y de carácter voluntario, con presencia en el territorio argentino, y parte integrante del Movimiento Internacional de la Cruz Roja y de la Media Luna Roja, la red humanitaria más grande del mundo presente en 191 países. <br/>
+        Capacitamos en Primeros Auxilios a más de 50.000 personas por año en el país y brindamos cobertura a los asistentes en eventos masivos.</p>
+    </div>
+  </section>
+
+  <section>
+    <div id="donarSangre">
+      <img id="donarSangreLogo" src="../../../assets/img-client/vidadona.png" alt="">
+      <p style="color: black;">
+        Sumate a nuestro banco virtual de donantes de sangre
+      </p>
+      <ion-button id="verMasDonarSangre"shape="round">Ver Más</ion-button>
+    </div>
+  </section>
+
+ <!--  <div class="container">
     <img src="../../../assets/img-client/sumate-1.png" alt="SumateLogo">
     <img style="margin-left: 2rem" src="../../../assets/img-client/vidadona.png" alt="SumateLogo">
   </div>
-  <img  src="../../../assets/img-client/logo.png" alt="CruzRojaLogo">
+  <img  src="../../../assets/img-client/logo.png" alt="CruzRojaLogo"> -->
 </ion-content>
 <!-- <app-menu showTabs></app-menu> -->

@@ -17,3 +17,9 @@
 .accButton{
   overflow: visible;
 }
+
+/* IDs */
+
+.volunteerAvatar{
+  margin-left: 5rem;
+}

@@ -96,6 +96,7 @@ export class AccountPage implements OnInit {
   }
 
   //Función de Helper para convertirlo a Base64
+
   convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) =>{
     const reader = new FileReader;
     reader.onerror = reject;

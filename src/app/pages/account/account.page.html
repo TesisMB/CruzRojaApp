@@ -10,21 +10,24 @@
     <ion-list>
 
       <!-- Avatar - Solo voluntarios -->
-
-    <ion-avatar >
-
-    </ion-avatar>
+    <div id="volunteerAvatar">
+      <ion-avatar>
+        <img *ngIf="currentUser.roleName == 'Voluntario'" src="">
+      </ion-avatar>
+    </div>
 
     <!-- Boton para agregar una imagen -->
 
     <ion-button
+          *ngIf="currentUser.roleName == 'Voluntario'"
           class="accButton"
           type="submit"
           shape="round"
           (click)="selectImage()"
         >
-        <ion-icon name="image-outline"></ion-icon>
-        Seleccionar Imagen</ion-button>
+        <ion-icon style="margin-bottom: 3px; font-size: 24px;" name="image-outline"></ion-icon>
+        <ion-label style="margin-left: 10px;">Seleccionar Imagen</ion-label>
+        </ion-button>
 
       <!-- Card de datos de contacto -->
 

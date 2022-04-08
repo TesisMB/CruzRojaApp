@@ -3,8 +3,8 @@
 <ion-fab id="fab" horizontal='end'>
     <ion-chip button="true" (click)="toggleMenu()" class="ion-margin-start">
       <ion-avatar>
-        <img *ngIf="currentUser.roleName == 'Voluntario'" src="{{currentUser.volunteerAvatar}}">
-        <ion-icon style="font-size: 24px;" button id="user" name="person-circle-outline"></ion-icon>
+        <img id="volunteerIcon" *ngIf="currentUser.roleName == 'Voluntario'" src="{{currentUser.volunteerAvatar}}">
+        <ion-icon button id="userIcon" name="person-circle-outline"></ion-icon>
       </ion-avatar>
       <ion-label>{{currentUser.persons.firstName}} {{currentUser.persons.lastName}}</ion-label>
     </ion-chip>
@@ -18,7 +18,7 @@
 
       <ion-tab-button tab="home">
         <ion-icon name="home-outline"></ion-icon>
-        <ion-label>Home</ion-label>
+        <ion-label>Inicio</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="alertas">
@@ -40,8 +40,10 @@
 <ion-menu type="overlay" side="end" menuID= "menuID" swipeGesture="false" contentId="principal">
   <ion-header>
     <ion-toolbar>
-      <img *ngIf="currentUser.roleName != 'Voluntario'" src="{{currentUser.volunteerAvatar}}" style="font-size: 48px;" alt="">
-      <ion-icon style="margin-left: 10px; font-size: 48px;" button id="user" name="person-circle-outline"></ion-icon>
+      <ion-avatar>
+        <img id="volunteerAccIcon" *ngIf="currentUser.roleName == 'Voluntario'" style="margin-left: 5px; font-size: 48px;" src="{{currentUser.volunteerAvatar}}" alt="">
+      </ion-avatar>
+      <ion-icon *ngIf="currentUser.roleName != 'Voluntario'" style="margin-left: 10px; font-size: 48px;" button id="user" name="person-circle-outline"></ion-icon>
       <ion-title>{{currentUser.persons.firstName}} {{currentUser.persons.lastName}}</ion-title>
     </ion-toolbar>
   </ion-header>

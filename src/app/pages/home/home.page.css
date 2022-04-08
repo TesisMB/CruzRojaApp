@@ -4,12 +4,68 @@ ion-chip{
   margin-top: 15px;
 }
 
+/* background-color:  #fa3b2a; */
+
+ion-card{
+  width: 100%;
+  height: 520px;
+  box-shadow: none;
+  border-radius: 12px;
+}
+
+ion-item{
+  width: 100%;
+  box-shadow: none;
+}
+
+p{
+  padding: 5px;
+}
+
+section{
+  margin-top: 5px;
+}
+
 /* Clases */
 
   .slideCampaign{
     margin-left: 0.5rem;
   }
 
-  #emergency{
-    width: 270px; height: 216px;
+  .imgHeader{
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
+    transform: scale(1.1, 1.1);
+    transition: 600ms all ease-in-out;
   }
+
+/* IDs */
+
+  #quienesSomos{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+  }
+
+  #quienesSomosLogo{
+    position: absolute;
+    bottom: -100px;
+    width: 100%;
+  }
+
+  #donarSangre{
+    width: 275px;
+    height: 275px;
+    border: 2px solid #fa3b2a;
+    background-color: white;
+    margin-left: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+

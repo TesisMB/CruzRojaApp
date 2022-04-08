@@ -15,6 +15,13 @@ export class HomePage implements OnInit {
 
   constructor() { }
 
+  option = {
+    slidesPerView: 1.5,
+    centeredSlides: true,
+    loop: true,
+    spaceBetween: 10,
+  }
+
   ngOnInit(){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
