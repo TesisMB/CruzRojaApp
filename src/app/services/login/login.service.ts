@@ -11,14 +11,14 @@ import { Router } from '@angular/router';
 })
 
 export class LoginService {
+  public currentUserObs: Observable<any>;
   private options = {
     headers: new HttpHeaders().set('Content-Type', 'application/json'),
     params: new HttpParams()
   };
-  authState = new BehaviorSubject(false);
+  private authState = new BehaviorSubject<any>(false);
   private currentUserSubject: BehaviorSubject<any>;
-  public currentUserObs: Observable<any>;
-  apiURL = '/app/login';
+  private apiURL = '/app/login';
 
   //El platform es usado para que podamos usar el localStorage
   constructor(
@@ -30,7 +30,7 @@ export class LoginService {
 
   public get currentUserValue(): CurrentUser {
     const user = JSON.parse(localStorage.getItem('currentUser'));
-    if (user != this.currentUserSubject.value) {
+    if (user !== this.currentUserSubject.value) {
       this.currentUserSubject.next(user);
     }
     return this.currentUserSubject.value;
@@ -56,7 +56,7 @@ export class LoginService {
     // Elimina el usuario del local Storage y lo declara null.
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    this.router.navigate(['/login']);
+    // this.router.navigateByUrl('/login');
   }
 
   sendEmail(email: string) {
@@ -64,7 +64,7 @@ export class LoginService {
   }
 
   changePassword(token: string, userPassword: string) {
-    let parametros = new HttpParams().append('token', token);
+    const parametros = new HttpParams().append('token', token);
     this.options.params = parametros;
     return this.http.post<any>(environment.apiURL + 'reset-password/', { userPassword }, this.options);
   }

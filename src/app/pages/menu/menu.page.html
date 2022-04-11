@@ -1,12 +1,12 @@
 <!-- Boton de Perfil -->
 
-<ion-fab id="fab" horizontal='end'>
-    <ion-chip button="true" (click)="toggleMenu()" class="ion-margin-start">
+<ion-fab id="fab" horizontal='end' class="ion-margin-start">
+    <ion-chip button="true" (click)="toggleMenu()" >
       <ion-avatar>
         <img id="volunteerIcon" *ngIf="currentUser.roleName == 'Voluntario'" src="{{currentUser.volunteerAvatar}}">
         <ion-icon button id="userIcon" name="person-circle-outline"></ion-icon>
       </ion-avatar>
-      <ion-label>{{currentUser.persons.firstName}} {{currentUser.persons.lastName}}</ion-label>
+      <!-- <ion-label>{{currentUser.persons.firstName}} {{currentUser.persons.lastName}}</ion-label> -->
     </ion-chip>
 </ion-fab>
 

@@ -54,6 +54,7 @@ export class MenuPage implements OnInit, OnDestroy {
 
   logout(){
     this.loginService.logout();
+    this.router.navigateByUrl('/login');
   }
 
   ngOnDestroy(){

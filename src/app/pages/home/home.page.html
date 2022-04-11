@@ -1,34 +1,34 @@
-<ion-header class="ion-no-border">
-	<ion-toolbar>
-    <ion-title>SICREYD</ion-title>
-	</ion-toolbar>
-</ion-header>
+ <app-header titulo="SIGREYD" class="ion-no-border">
 
-<ion-content [fullscreen]="true">
+</app-header>
+
+<ion-content fullscreen>
 
   <section class="ion-margin-bottom">
-    <ion-slides [options]="option" class="slides" pager="true">
+    <ion-slides [options]="option" pager scrollbar>
 
       <ion-slide>
+
         <ion-card>
-          <img class="imgHeader" src="../../../assets/img-client/CruzRoja -Ilustracion.png" alt="inicioLogo">
           <ion-card-header>
-            <h3>Capacitaciones</h3>
+          <img class="imgHeader" src="../../../assets/img-client/CruzRoja -Ilustracion.png" alt="inicioLogo">
           </ion-card-header>
           <ion-card-subtitle>
+            <h6>Capacitaciones</h6>
             <p>
               Sumate a nuestras campañas. <br/>
               Mas información en nuestra <a href="https://www.cruzroja.org.ar/">pagina web</a>
             </p>
           </ion-card-subtitle>
         </ion-card>
+    
       </ion-slide>
 
       <ion-slide>
         <ion-card>
           <img class="imgHeader" id="emergency" src="../../../assets/img-client/emergencias.jpg" alt="emergenciaImg">
           <ion-card-header>
-            <h3>Emergencias</h3>
+            <h5>Emergencias</h5>
           </ion-card-header>
           <ion-card-subtitle>
             <p>
@@ -42,7 +42,7 @@
         <ion-card>
           <img class="imgHeader" src="../../../assets/img-client/abuelos.jpg" alt="emergenciaImg">
           <ion-card-header>
-            <h3>Teleasistencia</h3>
+            <h5>Teleasistencia</h5>
           </ion-card-header>
           <ion-card-subtitle>
             <p>
@@ -55,11 +55,11 @@
   </section>
 
   <section id="quienesSomos">
-    <div class="">
-    <img id="quienesSomosLogo" src="../../../assets/img-client/quienesomos.png" alt="">
+    <div class="content">
     <div>
       <img src="../../../assets/img-client/codos.jpg" alt="">
     </div>
+    <img id="quienesSomosLogo" src="../../../assets/img-client/quienesomos.png" alt="">
       <p class="">
         Somos una asociación civil, humanitaria y de carácter voluntario, con presencia en el territorio argentino, y parte integrante del Movimiento Internacional de la Cruz Roja y de la Media Luna Roja, la red humanitaria más grande del mundo presente en 191 países. <br/>
         Capacitamos en Primeros Auxilios a más de 50.000 personas por año en el país y brindamos cobertura a los asistentes en eventos masivos.</p>
@@ -69,8 +69,10 @@
   <section>
     <div id="donarSangre">
       <img id="donarSangreLogo" src="../../../assets/img-client/vidadona.png" alt="">
-      <p style="color: black;">
+      <p>
+        <b>
         Sumate a nuestro banco virtual de donantes de sangre
+        </b>
       </p>
       <ion-button id="verMasDonarSangre"shape="round">Ver Más</ion-button>
     </div>

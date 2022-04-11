@@ -41,8 +41,12 @@
   }
 
   #userIcon{
+
+    position: relative;
+    right: 8px;
     margin-bottom: 5px;
-    font-size: 24px;
+    font-size: 26px;
+  
   }
 
   #volunteerIcon{

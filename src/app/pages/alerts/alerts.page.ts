@@ -16,13 +16,13 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
 export class AlertsPage implements OnInit {
 
   @ViewChild(IonItemSliding) slide: IonItemSliding;
-  @ViewChild('list') lista:IonList;
+  @ViewChild('list') lista: IonList;
 
-  alerts: EmergenciesDisasters[]
-  alertstypes: TypeEmergenciesDisasters[]
-  role: RoleName
+  alerts: EmergenciesDisasters[];
+  alertstypes: TypeEmergenciesDisasters[];
+  role: RoleName;
   isControlled = false;
-  estilo: string = "";
+  estilo = '';
   handlerAlerts: any;
   handlerAlertsTypes: any;
   currentUser: any;
@@ -79,12 +79,12 @@ export class AlertsPage implements OnInit {
 
   getColor(color: string){
     if(color ==='Moderado'){
-      return "#d8db2f";
+      return '#d8db2f';
     } else if (color ==='Extremo'){
-      return "#d83a35";
+      return '#d83a35';
       }
     else if (color === 'Controlado'){
-      return "#4cd137";
+      return '#4cd137';
     }
   }
 }

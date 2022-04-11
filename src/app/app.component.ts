@@ -12,7 +12,7 @@ import { Subject } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy{
   closed$ = new Subject<any>();
-  showTabs: boolean = false; // <-- show tabs by default
+  showTabs = false; // <-- show tabs by default
   handler: any;
   constructor(
     private loginService: LoginService) {
@@ -21,6 +21,7 @@ export class AppComponent implements OnInit, OnDestroy{
     ngOnInit() {
       this.handler = this.loginService.currentUserObs.subscribe(
       (data: CurrentUser) =>{
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         (data) ? this.showTabs = true : this.showTabs = false;
       });
     }
