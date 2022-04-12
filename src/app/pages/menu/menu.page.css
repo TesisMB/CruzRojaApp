@@ -17,9 +17,6 @@
     --background: rgba(0,0,0,0.45); */
   }
 
-
-
-
   ion-tab-button{
     --background: rgba(0, 0, 0, 0.45);
   }
@@ -41,12 +38,10 @@
   }
 
   #userIcon{
-
     position: relative;
-    right: 8px;
-    margin-bottom: 5px;
-    font-size: 26px;
-  
+    margin-top: 0.8rem;
+    color:black;
+    font-size: 40px;
   }
 
   #volunteerIcon{

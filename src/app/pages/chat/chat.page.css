@@ -1,0 +1,38 @@
+ion-segment{
+  --background: none;
+}
+
+ion-segment-button{
+  font-size: 1rem;
+  --border-width: 0;
+  --padding-start: 8px;
+  --padding-bottom: 3px;
+  --padding-end: 3px !important;
+  --padding-top: 8px !important;
+  --background-checked: #a33c32;
+  --indicator-color: transparent !important;
+  font-weight: bold;
+  border-radius: 22px;
+}
+
+ion-badge{
+  font-size: 11px;
+  margin-bottom: 5px;
+  --padding-start: 5px;
+  --padding-end: 5px;
+  --padding-bottom: 3px;
+  --padding-top: 3px;
+  --background: red;
+}
+
+/* Classes */
+
+.info-div{
+  position: absolute;
+  right: 0;
+  font-size: 0.8rem;
+  color: #737274;
+  font-weight: bolder;
+  text-align: right;
+}
+

@@ -5,18 +5,41 @@
 </ion-header>
 
 <ion-content padding>
+
+  <div class="tabs ion-padding">
+    <ion-segment value="chats" (ionChange)="segmentChange($event)">
+      <ion-segment-button value="groupchats">
+        <ion-label>Grupos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="privateschats">
+        <ion-label>Contactos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
   <div *ngFor="let item of chatTypeList" >
     <div class="div_padding" *ngFor="let chat of item['chatRooms']">
-      <ion-list>
-        <ion-item button (click)="navigateToGroupChat(chat.id)">
-          <ion-avatar slot="start">
-            <img src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg" width= "40px">
-          </ion-avatar>
-         <ion-label>
-            <h2>{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterName}}</h2>
-            <p>{{chat.emergenciesDisasters.locations.locationCityName}}</p>
-          </ion-label>
-        </ion-item>
+      <ion-list *ngIf="activeTab == 'chats'">
+        <div class="chats">
+          <ion-item lines="none" button (click)="navigateToGroupChat(chat.id)">
+            <ion-avatar slot="start">
+              <img src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg" width= "40px">
+            </ion-avatar>
+           <ion-label class="ion-text-nowrap">
+              <h2>
+                {{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterName}}
+              </h2>
+              <p>
+                {{chat.emergenciesDisasters.locations.locationCityName}}
+              </p>
+            </ion-label>
+            <!-- <div>
+              <div class="info-div">
+
+              </div>
+            </div> -->
+          </ion-item>
+        </div>
       </ion-list>
       </div>
   </div>

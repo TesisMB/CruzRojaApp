@@ -14,6 +14,7 @@ export class ChatPage implements OnInit {
   handlerChat: any;
   chatTypeList: TypeChatRooms[] = [];
   loadingHandle: any;
+  activeTab: string = 'chats';
   constructor(
     public router: Router,
     public service: ChatService,
@@ -31,7 +32,9 @@ export class ChatPage implements OnInit {
     this.router.navigate(['chat','groupChat', id]);
   }
 
-
+  segmentChange(e){
+    this.activeTab = e.target.value;
+  }
 
 
   getChat() {

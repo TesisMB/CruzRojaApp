@@ -5,7 +5,7 @@
 <ion-content fullscreen>
 
   <section class="ion-margin-bottom">
-    <ion-slides [options]="option" pager scrollbar>
+    <ion-slides [options]="option" pager>
 
       <ion-slide>
 
@@ -21,7 +21,7 @@
             </p>
           </ion-card-subtitle>
         </ion-card>
-    
+
       </ion-slide>
 
       <ion-slide>
@@ -67,15 +67,25 @@
   </section>
 
   <section>
-    <div id="donarSangre">
-      <img id="donarSangreLogo" src="../../../assets/img-client/vidadona.png" alt="">
-      <p>
-        <b>
-        Sumate a nuestro banco virtual de donantes de sangre
-        </b>
-      </p>
-      <ion-button id="verMasDonarSangre"shape="round">Ver Más</ion-button>
-    </div>
+    <ion-slides>
+      <ion-slide>
+        <div id="donarSangre">
+          <img id="donarSangreLogo" src="../../../assets/img-client/vidadona.png" alt="">
+          <p>
+            <b>
+            Sumate a nuestro banco virtual de donantes de sangre
+            </b>
+          </p>
+          <ion-button id="verMasDonarSangre"shape="round">Ver Más</ion-button>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div>
+          <img id="donarSangreLogo" src="../../../assets/img-client/vidadona.png" alt="">
+        </div>
+      </ion-slide>
+    </ion-slides>
   </section>
 
  <!--  <div class="container">
