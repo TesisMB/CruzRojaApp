@@ -22,7 +22,6 @@ export class HomePage implements OnInit {
   constructor() { }
 
 //  get option() {
-//    return {
 //     slidesPerView: 1.5,
 //     centeredSlides: true,
 //     loop: true,

@@ -1,7 +1,7 @@
 /* Componentes de Ionic */
 
  /*ion-chip{
-  margin-top: 15px; 
+  margin-top: 15px;
 }
 */
 /* background-color:  #fa3b2a; */
@@ -33,8 +33,6 @@ section{
 
   .slideCampaign{
     margin-left: 0.5rem;
-  }
-  ion-card-header{
   }
 
   .imgHeader{
@@ -101,9 +99,9 @@ align-items: center;
   }
 
   .swiper-slide img {
-     max-width: 85%; 
+     max-width: 85%;
     margin-top: 30px;
-    pointer-events: none; 
+    pointer-events: none;
   }
 
   b {

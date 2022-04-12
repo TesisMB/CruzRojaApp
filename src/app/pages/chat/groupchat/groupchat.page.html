@@ -10,7 +10,21 @@
   </ion-header>
 </ion-header>
 
-<!-- mensajes -->
+<!-- <div class="header ion-padding">
+  <div class="info">
+    <ion-buttons slot="start">
+      <ion-back-button type="button" defaultHref="chat"></ion-back-button>
+    </ion-buttons>
+    <ion-avatar>
+      <img src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg" alt="">
+    </ion-avatar>
+    <span class="details">
+       <h1>{{chat.emergenciesDisasters.typeEmergencyDisasterName}}</h1>
+    </span>
+  </div>
+</div> -->
+
+<!-- Mensajes -->
 
 <ion-content [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <!-- botón para volver al final del chat -->
@@ -31,7 +45,7 @@
   </ion-row>
 </ion-content>
 
-<!-- input -->
+<!-- Input -->
 
 <ion-footer style="background-color: #b71c1c;">
   <form [formGroup]="chatForm" (ngSubmit)="postChat()" footer-input >

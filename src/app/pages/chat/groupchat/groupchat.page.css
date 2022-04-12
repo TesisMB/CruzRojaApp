@@ -7,7 +7,34 @@ html, body{
   height: 100%;
 }
 
+h1, p{
+  margin: 0;
+  color: #fff;
+  margin-left: 10px;
+}
+
+h1{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+p{
+  opacity: 0.7;
+  margin-top: 3px;
+  font-size: 0.8rem;
+}
+
 /* Clases */
+
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  letter-spacing: 1px;
+  height: 10vh;
+}
+
+
 
 .item-input-wrapper{
   width: 95%;
@@ -16,9 +43,10 @@ html, body{
 }
 
 .message{
-  padding: 10px;
-  border-radius: 10px;
+  padding: 18px 20px;
+  border-radius: 18px;
   margin-bottom: 4px;
+  font-size: 0.9rem;
   white-space: pre-wrap;
 }
 
@@ -27,6 +55,7 @@ html, body{
   background: #3fa1ce;
   color: #fff;
   text-align: right;
+  right: 20px;
 }
 
 /* Mensaje externo */
@@ -47,18 +76,6 @@ html, body{
   margin-top: 1rem;
 }
 
-p{
-  margin-top: -5px;
-}
-
-/* IDs */
-
-#footer-input{
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
 .btnSend {
   width: 45px;
   height: 45px;
@@ -68,6 +85,13 @@ p{
   margin-right: -3px;
 }
 
+/* IDs */
+
+#footer-input{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 
 #chat-input{
   height: 45px;
