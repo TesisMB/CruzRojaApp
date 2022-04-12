@@ -7,4 +7,5 @@ export interface CurrentUser  {
   roleName: RoleName;
   token: string;
   userID: number;
+  volunteerAvatar: string;
  }

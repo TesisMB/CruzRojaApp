@@ -29,14 +29,16 @@ export class AccountPage implements OnInit {
 
   initForm(): FormGroup{
     return this.formBuilder.group({
-
       Password: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(16)]],
       NewPassword: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(16)]],
       RepeatPassword: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(16)]],
-      Email: ['',[Validators.required, Validators.email]],
-      Phone: ['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-      Address: ['',[Validators.required, Validators.pattern, Validators.maxLength(25)]],
-      Status: ['',[Validators.required]]
+      volunteerAvatar: [''],
+        persons: this.formBuilder.group({
+          email: ['',[Validators.required, Validators.email]],
+          phone: ['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+          address: ['',[Validators.required, Validators.pattern, Validators.maxLength(25)]],
+          status: ['',[Validators.required]]
+        })
     })
   }
 
@@ -44,12 +46,16 @@ export class AccountPage implements OnInit {
     this.fg = this.initForm();
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log('LocalStorage', this.currentUser);
-    this.fg.patchValue({
+
+    this.fg.patchValue(this.currentUser);
+
+
+    /*this.fg.patchValue({
       'Email':this.currentUser.persons.email,
       'Phone':this.currentUser.persons.phone,
       'Address':this.currentUser.persons.address,
       'Status': this.currentUser.userAvailability
-    })
+    })*/
   }
 
   async selectImage(){

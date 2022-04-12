@@ -18,7 +18,7 @@ export class VolunteersPage implements OnInit {
   public searchedItem: any;
   idEmergency: number;
   handlerEmergency: any;
-  volunteers: any = [];
+  volunteers = [];
 
   constructor(
     public router: Router,
@@ -51,8 +51,15 @@ export class VolunteersPage implements OnInit {
           dni: element.userDni,
           role: element.roleName
         }
+
+        
         this.volunteers.push(user);
+
+        this.volunteers = this.volunteers.filter(roleName => roleName.role === "Voluntario");
+
       });
+
+
       console.log("Voluntarios involucrados", this.volunteers);
       console.log('ingreso emergency');
       console.log(data);
