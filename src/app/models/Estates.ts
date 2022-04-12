@@ -1,6 +1,8 @@
 export interface Estates {
     estatePhone: number,
     locationAddress: LocationAddress;
+    locationCityName: string;
+
     estatesTimes:[{
                 times: Times;
              }];

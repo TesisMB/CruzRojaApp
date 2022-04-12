@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <div *ngFor="let item of chatTypeList" >
-    <div class="div_padding" *ngFor="let chat of item['chatRooms']">
+    <div class="div_padding" *ngFor="let chat of chatRooms">
       <ion-list>
         <ion-item button (click)="navigateToGroupChat(chat.id)">
           <ion-avatar slot="start">
