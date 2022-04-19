@@ -21,10 +21,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { JwtModule } from '@auth0/angular-jwt';
 
-//SharedModule
+// SharedModule
 import { SharedModule } from './shared/shared.module';
 
-//Interceptor
+// Interceptor
 
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -64,7 +64,7 @@ schemas: [CUSTOM_ELEMENTS_SCHEMA],
       useClass: HttpInterceptorService,
       //Permite agregar más interceptor y no reutilizar el mismo interceptor
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent],
 

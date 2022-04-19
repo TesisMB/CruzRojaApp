@@ -104,6 +104,37 @@
         <!-- [disabled]="!initForm().valid" -->
         <ion-button class="accButton" type="submit" shape="round" >Guardar</ion-button>
       </ion-card>
+
+      <!-- Card de Voluntario -->
+
+      <ion-card *ngIf="currentUser.roleName == 'Voluntario'">
+
+        <!--Header del card-->
+
+        <ion-card-header>
+          <ion-card-title>
+            Voluntario
+          </ion-card-title>
+        </ion-card-header>
+
+        <!--Contenido del card-->
+
+        <ion-card-content>
+          <!-- <ion-item>
+            <ion-label position="floating">Descripción del Voluntario</ion-label>
+            <ion-label>{{currentUser.volunt}}</ion-label>
+          </ion-item> -->
+
+          <!-- <ion-item>
+            <ion-label position="floating">Habilidades de los Voluntarios</ion-label>
+            <ion-input formControlName="NewPassword" name="newPassword" type="text" required></ion-input>
+          </ion-item> -->
+
+        </ion-card-content>
+        <!-- [disabled]="!initForm().valid" -->
+        <ion-button class="accButton" type="submit" shape="round" >Guardar</ion-button>
+      </ion-card>
+
     </ion-list>
   </form>
 </ion-content>

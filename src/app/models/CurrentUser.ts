@@ -8,4 +8,4 @@ export interface CurrentUser  {
   token: string;
   userID: number;
   volunteerAvatar: string;
- }
+}

@@ -1,25 +1,21 @@
-<ion-header *ngIf="chat">
-  <ion-header class="ion-no-border">
-    <div>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button type="button" defaultHref="chat"></ion-back-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </div>
-  </ion-header>
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button type="button" defaultHref="chat"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
-<!-- <div class="header ion-padding">
+<!-- <div class="header ion-no-border">
   <div class="info">
     <ion-buttons slot="start">
       <ion-back-button type="button" defaultHref="chat"></ion-back-button>
     </ion-buttons>
-    <ion-avatar>
+    <ion-avatar id="emergencyIcon">
       <img src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg" alt="">
     </ion-avatar>
     <span class="details">
-       <h1>{{chat.emergenciesDisasters.typeEmergencyDisasterName}}</h1>
+        <h1>{{chat.emergenciesDisasters.typeEmergencyDisasterName}}</h1>
     </span>
   </div>
 </div> -->
@@ -29,7 +25,7 @@
 <ion-content [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <!-- botón para volver al final del chat -->
     <button id="fab-button" (click)="scrollToBottom()">
-      <ion-icon name="chevron-down-outline"></ion-icon>
+      <ion-icon id="scrollBackIcon" name="chevron-down-outline"></ion-icon>
     </button>
 
   <ion-row>
@@ -47,7 +43,7 @@
 
 <!-- Input -->
 
-<ion-footer style="background-color: #b71c1c;">
+<ion-footer style="background-color: #fff;">
   <form [formGroup]="chatForm" (ngSubmit)="postChat()" footer-input >
     <ion-label class="item-input-wrapper">
       <!--  <input type="text" placeholder="Usuario" id="user"
@@ -56,7 +52,7 @@
       <textarea autosize maxRows="3" type="text"formControlName="message" name="message" placeholder="Enviar mensaje..." id="chat-input"></textarea>
 
       <button type="submit" class="btnSend" [disabled]="chatForm.get('message').invalid">
-        <ion-icon name="paper-plane-outline"></ion-icon>
+        <ion-icon id="btnIcon" name="send-sharp"></ion-icon>
       </button>
     </ion-label>
   </form>

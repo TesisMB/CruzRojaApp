@@ -40,7 +40,7 @@
   <ion-header>
     <ion-toolbar>
       <ion-avatar>
-        <img id="volunteerAccIcon" *ngIf="currentUser.roleName == 'Voluntario'" style="margin-left: 5px" src="{{currentUser.volunteerAvatar}}" alt="">
+        <img *ngIf="currentUser.roleName == 'Voluntario'" src="{{currentUser.volunteerAvatar}}" alt="">
       </ion-avatar>
       <ion-icon *ngIf="currentUser.roleName != 'Voluntario'" style="margin-left: 10px; font-size: 48px;" button id="user" name="person-circle-outline"></ion-icon>
       <ion-title>{{currentUser.persons.firstName}} {{currentUser.persons.lastName}}</ion-title>

@@ -24,22 +24,37 @@ p{
   font-size: 0.8rem;
 }
 
+ion-icon{
+  font-size: 20px;
+  margin-left: 3px;
+  margin-bottom: 3px;
+  transform: rotate(-45deg);
+}
+
+ion-toolbar{
+  box-shadow: 1;
+}
+
+input::placeholder {
+  padding-left: 10px;
+}
+
 /* Clases */
 
-.header{
+.details{
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-input-wrapper{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  letter-spacing: 1px;
-  height: 10vh;
-}
-
-
-
-.item-input-wrapper{
-  width: 95%;
-  display: flex;
-  margin-bottom: 3px;
+  position: static;
+  bottom: 20px;
+  width: 90vw;
+  left: 50%;
 }
 
 .message{
@@ -51,18 +66,18 @@ p{
 }
 
 /* Mensaje interno */
+
 .my-message{
-  background: #3fa1ce;
+  background: #ff2121ab;
   color: #fff;
-  text-align: right;
   right: 20px;
 }
 
 /* Mensaje externo */
 
 .other-message{
-  background: var(--ion-color-tertiary);
-  color: #fff
+  background: rgb(190, 190, 190);
+  color: #000000;
 }
 
 .hide{
@@ -70,19 +85,20 @@ p{
 }
 
 .time{
-  color: #dfdfdf;
+  color: #fff;
   float: right;
   font-size: 12px;
   margin-top: 1rem;
 }
 
 .btnSend {
-  width: 45px;
-  height: 45px;
+  fill: clear;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   outline: none;
   margin-top: 3px;
-  margin-right: -3px;
+  color: rgb(80, 80, 80);
 }
 
 /* IDs */
@@ -93,26 +109,31 @@ p{
   align-items: flex-end;
 }
 
+#userName{
+  margin-right: 10rem;
+  font-weight: bold;
+}
+
 #chat-input{
+  border: 1px solid #ddd;
   height: 45px;
-  border-radius: 15px;
+  background-color: #ddd;
+  border-radius: 10px;
+  resize: none;
   outline: none;
   border: none;
   width: 100%;
+  margin-bottom: 5px;
   margin-right: 10px;
-  margin-left: 3px;
-  margin-top: 3px;
-  resize: none;
-  background-color: #5c1a1a;
-  color: #fff;
-}
-
-input::placeholder {
-  padding-left: 10px;
+  margin-left: 5px;
+  margin-top: 5px;
+  color: #5f5e5e;
 }
 
 #fab-button{
   border-radius: 50%;
+  font-size: 24px;
+  background-color: #a0a0a0;
   position: fixed;
   top: 1000px;
   width: 50px;
@@ -120,26 +141,20 @@ input::placeholder {
   cursor: pointer;
   transition: .5s;
   z-index: 100;
-  background-color: #cc2020ca;
-  transform: rotate(-45deg);
+  transform: rotate(45deg);
 }
 
-ion-icon{
-  font-size: 24px;
+#scrollBackIcon{
+  margin-top: 7px;
   margin-right: 5px;
-  transform: rotate(45deg);
+  font-size: 26px
 }
 
 ::-webkit-scrollbar {
   display: none;
 }
 
-
 #btnSend:hover{
   background: rgba(235, 231, 231, 0.459);
 }
 
-/* ion-content{
-  --offset-bottom:  2px !important;
-}
- */

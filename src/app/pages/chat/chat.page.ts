@@ -36,17 +36,12 @@ export class ChatPage implements OnInit {
     }, err => {
       console.log(err);
     });
-
-
   }
 
   navigateToGroupChat(id: number){
     this.groupChatService.setChatRoomId(id);
     this.router.navigate(['chat','groupChat', id]);
   }
-
-
-
 
   getChat() {
     this.handlerChat = this.service.getAll().subscribe((x: TypeChatRooms[]) => {
@@ -58,7 +53,7 @@ export class ChatPage implements OnInit {
              this.chatRooms =  item.chatRooms.filter(a => a.emergenciesDisasters.locations.locationCityName == this.observableUser.estates.locationCityName);
         }
         });
-        
+
         console.log('entro chat');
         console.log("ChatRooms => ", this.chatRooms);
         console.log("TypeChat =>", this.chatTypeList);

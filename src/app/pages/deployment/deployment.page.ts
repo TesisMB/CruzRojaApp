@@ -6,6 +6,9 @@ import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Location } from '@angular/common';
 import * as L from 'LeafLet';
 
+import 'leaflet/dist/images/marker-icon-2x.png';
+import 'leaflet/dist/images/marker-shadow.png';
+
 @Component({
   selector: 'app-deployment',
   templateUrl: './deployment.page.html',
@@ -18,6 +21,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   handlerChat: any;
   isAccepted: boolean = false;
   currentUser: any;
+  map: L.Map;
 
   constructor(
     private alertService: AlertService,
@@ -51,7 +55,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   }
 
   initMap(){
-    var map = L.map('map').setView([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude], 9);
+    var map = L.map('map').setView([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude], 15);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -63,26 +67,22 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   }).addTo(map);
 
     var marker = L.marker([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude],{
-      fillColor: '#ccc'
+      fillColor: '#d93434'
     })
     .addTo(map);
 
-    var circle = L.circle([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude], {
+    var circle =  L.circle([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude], 500, {
       color: 'red',
       fillColor: '#f03',
-      fillOpacity: 0.3,
-      radius: 800,
-      stroke: false
+      fillOpacity: 0.5,
+      radius: 500
     }).addTo(map);
 
-    var popup = L.popup().setLatLng([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude])
+    function onLocationError(e) {
+      alert(e.message);
+  }
 
-    function onMapClick(e) {
-      popup
-          .setLatLng(e.latlng)
-          .setContent("You clicked the map at " + e.latlng.toString())
-          .openOn(map);
-    }
+  map.on('locationerror', onLocationError);
 
   }
 
