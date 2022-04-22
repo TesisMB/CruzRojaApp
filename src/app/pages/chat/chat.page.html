@@ -1,10 +1,18 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Chat</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="Chat"></app-header>
 
 <ion-content padding>
+
+  <div class="tabs ion-padding">
+    <ion-segment value="chats" (ionChange)="segmentChange($event)">
+      <ion-segment-button value="groupchats">
+        <ion-label>Grupos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="privateschats">
+        <ion-label>Contactos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
   <div *ngFor="let item of chatTypeList" >
     <div class="div_padding" *ngFor="let chat of chatRooms">
       <ion-list>

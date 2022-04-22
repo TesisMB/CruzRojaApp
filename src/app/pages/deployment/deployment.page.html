@@ -1,26 +1,28 @@
-<ion-header class="ion-no-border">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button type="button" defaultHref="alertas"></ion-back-button>
-      </ion-buttons>
-    </ion-toolbar>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button type="button" defaultHref="alertas"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Informe</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="tab-content">
+<section class="modo">
+<div class="tab-content">
+  <div>
+    <h2>
+      Despliegue de Terreno
+    </h2>
+
+    <h4>
+      {{emergencies.locations.locationCityName}} -
+      {{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterName}}
+    </h4>
+
     <div>
-      <h2>
-        Despliegue de Terreno
-      </h2>
-
-      <h4>
-        {{emergencies.locations.locationCityName}} -
-        {{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterName}}
-      </h4>
-
-    <div class="date">
       <p>
-        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-icon id="calendarIcon" name="calendar-outline"></ion-icon>
           <span>Fecha de inicio: {{emergencies.emergencyDisasterStartDate | date: 'dd/MM/yyyy hh:mm:ss
           a'}}</span>
       </p>
@@ -30,9 +32,9 @@
       </p>
     </div>
 
-    <div class="date">
+    <div>
       <p>
-        <ion-icon name="person-outline"></ion-icon>
+        <ion-icon id="responsibleIcon" name="person-outline"></ion-icon>
         <span>Responsable:
           {{emergencies.employees.name}}
         </span>
@@ -44,17 +46,23 @@
       <div class="location map-frame">
         <div id="map">
       </div>
-    </div>
+      </div>
 
 
-    <div class="instruction location">
-      {{emergencies.emergencyDisasterInstruction}}
-    </div>
-    </div>
+
+  <h2>
+    Instrucciones
+  </h2>
+
+      <div class="instruction location">
+        {{emergencies.emergencyDisasterInstruction}}
+      </div>
     </div>
   </div>
+</div>
 
-  <ion-button shape="round" class="accButton" *ngIf="!isAccepted && currentUser.roleName == 'Voluntario' && emergencies.alerts.alertDegree != 'Controlado'" [disabled]="isAccepted" (click)="setChatGroup()" expand="block">
-    Aceptar
-  </ion-button>
+    <ion-button shape="round" class="accButton" *ngIf="!isAccepted && currentUser.roleName == 'Voluntario' && emergencies.alerts.alertDegree != 'Controlado'" [disabled]="isAccepted" (click)="setChatGroup()" expand="block">
+      Aceptar
+    </ion-button>
+  </section>
 </ion-content>

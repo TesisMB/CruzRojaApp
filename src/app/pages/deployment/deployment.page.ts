@@ -32,6 +32,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
 
   ngAfterViewInit(): void {
     this.initMap();
+
   }
 
   ngOnInit() {
@@ -64,18 +65,23 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     tileSize: 512,
     zoomOffset: -1,
     accessToken: 'pk.eyJ1IjoibWdjc29hZCIsImEiOiJjbDA1eXpoOGwwdWQ3M2tueXVycHFqMzhlIn0.CXkUig7PQwf0piWpitvI2w'
+
   }).addTo(map);
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 1000);
 
     var marker = L.marker([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude],{
-      fillColor: '#d93434'
+      fillColor: '#ccc'
     })
     .addTo(map);
 
     var circle =  L.circle([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude], 500, {
       color: 'red',
       fillColor: '#f03',
-      fillOpacity: 0.5,
-      radius: 500
+      fillOpacity: 0.3,
+      radius: 800,
+      stroke: false
     }).addTo(map);
 
     function onLocationError(e) {

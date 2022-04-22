@@ -2,12 +2,6 @@ ion-segment{
   --background: none;
 }
 
-ion-list{
-  margin-top: 5px;
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-}
-
 ion-segment-button{
   font-size: 1rem;
   --border-width: 0;
@@ -15,7 +9,8 @@ ion-segment-button{
   --padding-bottom: 3px !important;
   --padding-end: 3px !important;
   --padding-top: 8px !important;
-  --background-checked: #dc5346;
+  --background-checked: #f65a4b;
+  --color-checked: white;
   --indicator-color: transparent !important;
   font-weight: bold;
   border-radius: 22px;

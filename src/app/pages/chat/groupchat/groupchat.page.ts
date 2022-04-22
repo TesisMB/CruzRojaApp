@@ -1,7 +1,7 @@
 import { User } from './../../../models/User';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Messages } from '../../../models/Message';
+import { Messages } from '../../../models/Messages';
 import { Component, OnDestroy, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { ActivatedRoute } from '@angular/router';

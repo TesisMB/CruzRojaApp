@@ -1,8 +1,5 @@
-h2, h4{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
+/* Componentes de Ionic */
 
 img{
   max-width: none;
@@ -13,12 +10,33 @@ body {
   margin: 0;
 }
 
-html, body, #map {
+html, body {
   height: 100%;
   width: 100vw;
 }
 
+span{
+  font-weight: bold;
+}
+
 /* Clases */
+
+.modo {
+  text-align: center;
+}
+
+.modo h2 {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.124);
+  font-size: 25px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.modo h4 {
+  font-size: 20px;
+  margin: 2rem 0;
+}
 
 .container{
   background-color: #ffffff;
@@ -29,6 +47,11 @@ html, body, #map {
   background-color: #86898a;
 }
 
+.instruction {
+  overflow-y: auto;
+  margin: 0 1rem;
+}
+
 .imgInfo{
   background-color: #ffffff;
   /* border-radius: 50%; */
@@ -36,6 +59,12 @@ html, body, #map {
 
 .emergencyIcon{
   width: 60%;
+}
+
+.location {
+  border: 1px solid #ccc;
+  height: 300px;
+  grid-template-columns: 1fr;
 }
 
 .accButton{
@@ -52,6 +81,11 @@ html, body, #map {
     margin-bottom: 1rem;
 }
 
+.date .calendar,
+.date .person {
+  margin-left: 20px;
+}
+
 .circulo {
   width: 120px;
   height: 120px;
@@ -62,14 +96,26 @@ html, body, #map {
 
 /* IDs */
 
+#map{
+  height: 45vh;
+}
+
+#calendarIcon{
+  font-size: 20px;
+  margin-bottom: -3px;
+  margin-right: 3px;
+}
+
+#responsibleIcon{
+  font-size: 20px;
+  margin-bottom: -3px;
+  margin-right: 3px;
+}
+
 #emergencyTitle{
   margin-left: 6rem;
 }
 
-#map {
-  height: 300px;
-  /* margin-right: 10.3rem; */
-}
 
 
 

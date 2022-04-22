@@ -1,3 +1,5 @@
+import { UserChatRooms } from './../../models/UserChatRooms';
+import { map, tap } from 'rxjs/operators';
 import { ChatRooms } from 'src/app/models/ChatRooms';
 import { LoginService } from 'src/app/services/login/login.service';
 import { CurrentUser } from './../../models/CurrentUser';
@@ -20,6 +22,7 @@ export class ChatPage implements OnInit {
   observableUser: CurrentUser;
   currentUserHandler: any;
   chatRooms:  ChatRooms[];
+  activeTab: string = 'chats';
 
   constructor(
     public router: Router,
@@ -27,15 +30,20 @@ export class ChatPage implements OnInit {
     private groupChatService: GroupchatService,
     private services: LoginService
   ) {
-    this.getChat();
+
   }
 
   ngOnInit() {
+    this.getChat();
     this.currentUserHandler = this.services.currentUserObs.subscribe(resp => {
       this.observableUser = resp;
     }, err => {
       console.log(err);
     });
+  }
+
+  segmentChange(e){
+    this.activeTab = e.target.value;
   }
 
   navigateToGroupChat(id: number){
@@ -44,19 +52,31 @@ export class ChatPage implements OnInit {
   }
 
   getChat() {
-    this.handlerChat = this.service.getAll().subscribe((x: TypeChatRooms[]) => {
-      this.chatTypeList = x;
+    const user: UserChatRooms = {
+      name: this.observableUser.persons.firstName + ' ' + this.observableUser.persons.lastName,
+      userID: this.observableUser.userID,
+      userDni: this.observableUser.userDni,
+      roleName: null
+    };
 
-
-      this.chatTypeList.forEach(item => {
+    this.handlerChat = this.service.getAll()
+    .pipe(map(x =>{
+      var chats = x;
+      x.forEach(item => {
         if(item.isGroupChat === true){
-             this.chatRooms =  item.chatRooms.filter(a => a.emergenciesDisasters.locations.locationCityName == this.observableUser.estates.locationCityName);
-        }
-        });
+          chats =  item.chatRooms.filter(a => a.emergenciesDisasters.locations.locationCityName == this.observableUser.estates.locationCityName && a.userChatRooms.includes(user));
+      }
+    });
+      console.log(chats);
+      return chats;
+    }
 
-        console.log('entro chat');
-        console.log("ChatRooms => ", this.chatRooms);
-        console.log("TypeChat =>", this.chatTypeList);
+    ))
+    .subscribe((x: TypeChatRooms[]) => {
+      this.chatTypeList = x;
+      console.log('entro chat');
+      //console.log("ChatRooms => ", this.chatRooms);
+      console.log("TypeChat =>", this.chatTypeList);
     });
   }
 }
