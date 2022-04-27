@@ -1,3 +1,16 @@
+/* Componentes de Ionic */
+
+img {
+  border-radius: 15px;
+  width: 80px;
+  height: 80px;
+}
+
+ion-icon{
+  width: 18px;
+  height: 18px;
+}
+
 /* Clases */
 
 .accButton{
@@ -18,12 +31,30 @@
   overflow: visible;
 }
 
-.avatar{
-  position: relative;
+.avatarMrg{
+  padding: 15px;
 }
 
-/* IDs */
+.avatar{
+  position: relative;
+  left: 40%;
+}
 
-#cameraBtn{
+.cameraBtn{
+  margin-top: 10px;
+  --border-width: 1px;
+  --border-color: var(--ion-color-light-shade);
+  --border-style: solid;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-bottom: 0;
+  --padding-top: 0;
+
+  --border-radius: 50%;
+  height: 26px;
+  width: 26px;
+
   position: absolute;
+  right: -10px;
+  bottom: -25px;
 }

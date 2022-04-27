@@ -42,6 +42,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
         console.log('asd', data);
       });
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log('Estoy en: ', window.location.pathname);
   }
 
   setChatGroup(){

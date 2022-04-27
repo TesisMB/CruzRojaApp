@@ -15,9 +15,6 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
 
 export class AlertsPage implements OnInit {
 
-  @ViewChild(IonItemSliding) slide: IonItemSliding;
-  @ViewChild('list') lista: IonList;
-
   alerts: EmergenciesDisasters[];
   alertstypes: TypeEmergenciesDisasters[];
   role: RoleName;
@@ -48,13 +45,6 @@ export class AlertsPage implements OnInit {
 
   /* Función para cuando se active el boton, se abre el slide para la derecha */
 
-  openSlide(){
-    this.slide.open('end');
-    if(this.slide.open){
-      this.slide.close();
-    }
-  }
-
   showLoader() {
     this.ionLoader.showLoader();
     setTimeout(() => {
@@ -66,19 +56,12 @@ export class AlertsPage implements OnInit {
     this.ionLoader.hideLoader();
   }
 
-  volunteerButton(){
-    this.showLoader();
-    this.router.navigate(['/deployment']);
-    this.lista.closeSlidingItems();
-  }
-
   deploymentButton(index){
     this.showLoader();
     const alert = this.alerts[index];
     this.alertService.setAlert(alert);
     this.id = index;
     this.router.navigate(['/deployment']);
-    this.lista.closeSlidingItems();
   }
 
   /* Función para usar el color  */
@@ -93,7 +76,4 @@ export class AlertsPage implements OnInit {
       return '#4cd137';
     }
   }
-
-  /* Funciones para el PopOver */
-
 }

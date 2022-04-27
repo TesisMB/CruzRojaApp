@@ -33,12 +33,6 @@ const routes: Routes = [
     data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.Voluntario, RoleName.CEyD]}
   },
 
-/*   {
-    path: 'voluntarios',
-    component: DeploymentPage,
-    canActivate: [AuthGuard],
-  }, */
-
   {
     path: 'chat',
     loadChildren: chatModule

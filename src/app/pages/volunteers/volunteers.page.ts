@@ -52,13 +52,11 @@ export class VolunteersPage implements OnInit {
           role: element.roleName
         }
 
-        
         this.volunteers.push(user);
 
         this.volunteers = this.volunteers.filter(roleName => roleName.role === "Voluntario");
 
       });
-
 
       console.log("Voluntarios involucrados", this.volunteers);
       console.log('ingreso emergency');

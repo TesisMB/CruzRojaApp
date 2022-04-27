@@ -13,10 +13,12 @@
 
     <ion-list>
       <!-- Avatar - Solo voluntarios -->
-      <div *ngIf="currentUser.roleName == 'Voluntario'">
-        <ion-avatar class="avatar" (click)="selectImage()">
+      <div class="avatarMrg" *ngIf="currentUser.roleName == 'Voluntario'">
+        <ion-avatar class="avatar" >
           <img src="{{this.currentUser.volunteerAvatar}}">
-          <ion-icon size="large" button id="cameraBtn" name="camera-outline"></ion-icon>
+          <ion-button class="cameraBtn" (click)="selectImage()">
+            <ion-icon size="large" button name="camera-outline"></ion-icon>
+          </ion-button>
         </ion-avatar>
       </div>
 
@@ -67,14 +69,10 @@
           </ion-item>
         </ion-card-content>
         <!-- [disabled]="!initForm().valid" -->
-        <ion-button class="accButton" type="submit" shape="round">Guardar</ion-button>
-      </ion-card>
 
-      <!-- Card de Contraseña -->
+      <!-- Contraseña -->
 
-      <ion-card>
-
-        <!--Header del card-->
+        <!--Header-->
 
         <ion-card-header>
           <ion-card-title>
@@ -82,7 +80,7 @@
           </ion-card-title>
         </ion-card-header>
 
-        <!--Contenido del card-->
+        <!--Contenido-->
 
         <ion-card-content>
           <ion-item>
