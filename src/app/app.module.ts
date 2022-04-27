@@ -28,11 +28,10 @@ import { SharedModule } from './shared/shared.module';
 
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { DeploymentPage } from './shared';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginPage, AlertsPage, HomePage, DeploymentPage, AccountPage],
+  declarations: [AppComponent, LoginPage, AlertsPage, HomePage, AccountPage],
   entryComponents: [],
 
   imports: [

@@ -1,4 +1,4 @@
-export interface Locations  {
+export interface LocationsEmergenciesDisasters  {
   locationCityName:         string;
   locationDepartmentName:   string;
   locationMunicipalityName: string;

@@ -3,7 +3,7 @@ import { EmergenciesDisasters } from './../../models/EmergenciesDisasters';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { AlertService } from 'src/app/services/alerts/alert.service';
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import { Location } from '@angular/common';
+
 import * as L from 'LeafLet';
 
 import 'leaflet/dist/images/marker-icon-2x.png';
@@ -56,7 +56,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   }
 
   initMap(){
-    var map = L.map('map').setView([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude], 15);
+    var map = L.map('map').setView([this.emergencies.locationsEmergenciesDisasters.locationLatitude, this.emergencies.locationsEmergenciesDisasters.locationLongitude], 15);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -71,12 +71,12 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     map.invalidateSize();
   }, 1000);
 
-    var marker = L.marker([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude],{
+    var marker = L.marker([this.emergencies.locationsEmergenciesDisasters.locationLatitude, this.emergencies.locationsEmergenciesDisasters.locationLongitude],{
       fillColor: '#ccc'
     })
     .addTo(map);
 
-    var circle =  L.circle([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude], 500, {
+    var circle =  L.circle([this.emergencies.locationsEmergenciesDisasters.locationLatitude, this.emergencies.locationsEmergenciesDisasters.locationLongitude], 500, {
       color: 'red',
       fillColor: '#f03',
       fillOpacity: 0.3,

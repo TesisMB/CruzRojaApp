@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AlertsPage } from './alerts.page';
 import { VolunteersPage } from '../volunteers/volunteers.page';
 import { VoluntariosDetallesPage } from '../volunteers/subpages/voluntarios-detalles/volunteersdetails';
+import { DeploymentPage } from '../deployment/deployment.page';
 
 const routes: Routes = [
   {
@@ -16,7 +17,10 @@ const routes: Routes = [
         path: '',
         component: AlertsPage
       },
-
+      {
+        path: 'deployment',
+        component: DeploymentPage,
+      },
     ]
   },
   {
@@ -26,7 +30,7 @@ const routes: Routes = [
       {
         path: 'details/:id',
         component: VoluntariosDetallesPage
-      }
+      },
     ]
   },
 ];

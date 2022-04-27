@@ -1,5 +1,3 @@
-import { UserChatRooms } from './../../models/UserChatRooms';
-import { map, tap } from 'rxjs/operators';
 import { ChatRooms } from 'src/app/models/ChatRooms';
 import { LoginService } from 'src/app/services/login/login.service';
 import { CurrentUser } from './../../models/CurrentUser';
@@ -7,7 +5,6 @@ import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
 import { ChatService } from './../../services/chat/chat.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TypeChatRooms, User } from 'src/app/models';
 
 @Component({
   selector: 'app-chat',
@@ -17,7 +14,6 @@ import { TypeChatRooms, User } from 'src/app/models';
 
 export class ChatPage implements OnInit {
   handlerChat: any;
-  chatTypeList: TypeChatRooms[] = [];
   loadingHandle: any;
   observableUser: CurrentUser;
   currentUserHandler: any;
@@ -52,31 +48,12 @@ export class ChatPage implements OnInit {
   }
 
   getChat() {
-    const user: UserChatRooms = {
-      name: this.observableUser.persons.firstName + ' ' + this.observableUser.persons.lastName,
-      userID: this.observableUser.userID,
-      userDni: this.observableUser.userDni,
-      roleName: null
-    };
-
     this.handlerChat = this.service.getAll()
-    .pipe(map(x =>{
-      var chats = x;
-      x.forEach(item => {
-        if(item.isGroupChat === true){
-          chats =  item.chatRooms.filter(a => a.emergenciesDisasters.locations.locationCityName == this.observableUser.estates.locationCityName && a.userChatRooms.includes(user));
-      }
-    });
-      console.log(chats);
-      return chats;
-    }
-
-    ))
-    .subscribe((x: TypeChatRooms[]) => {
-      this.chatTypeList = x;
+    .subscribe((x: ChatRooms[]) => {
+      this.chatRooms = x;
       console.log('entro chat');
       //console.log("ChatRooms => ", this.chatRooms);
-      console.log("TypeChat =>", this.chatTypeList);
+      console.log("Chat =>", this.chatRooms);
     });
   }
 }

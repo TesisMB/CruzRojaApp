@@ -1,99 +1,36 @@
-ion-card{
+
+/* Descripción de Emergencias */
+
+ion-col{
+  padding:0 !important;
   display: flex;
+  flex-direction: column-reverse;
   align-items: center;
-  justify-content: center;
   border-radius: 10px;
-  flex-wrap: wrap;
-  margin: 10px;
-  color:#000;
+  margin-top: 10px;
+  margin-left: 5px;
 }
 
-ion-card-title{
-  font-size: 15px;
+ion-row{
+  display: flex;
+  justify-content: space-around;
+  width: 93%;
+}
+
+.card-content{
   text-align: center;
+}
+
+.subtitle{
+  font-size: 12px;
   font-weight: 700;
-  text-transform: uppercase;
-  color:#000;
-  width: 80%;
-  padding-left: 50px;
 }
 
-/* Clases */
+/* IDs */
 
-.emergency{
-  display: flex;
-  width: 100%;
-  align-items: center;
-}
-
-.emergencyIcon{
-  max-width: none;
-  width: 90%;
-  margin-left: 17px;
-  margin-top: 12px;
-}
-
-.ubicationClass{
-  /* margin-left: -5px; */
- /*  margin-top: -13px; */
-  font-size: 13px;
-}
-
-.emergencyTimeClass{
- /*  margin-left: -5px; */
-  font-size: 13px;
-  margin-left: 16px;
-}
-
-.buttonVolunteerClass{
-  --background: rgb(1, 129, 1);
-  display: block;
-  width: 140px;
-  font-size: 20px;
-}
-
-.buttonAlertDetailClass{
-  margin-left: 10rem;
-  /* margin-top: -40px; */
-  display: block;
-  width: 140px;
-  font-size: 20px;
-}
-
-.labelButton{
-  font-size: 24px;
-}
-
-.header{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-}
-
-/* ID */
-
-#options{
-  margin-top: 4px;
-  margin-left: 16rem;
-  color: white;
-  font-size: 16px;
-  padding: 4px;
-}
-
-#btnSlide{
-  color: #ffffff;
-  font-size: 20px;
-  background-color: transparent;
-  outline: none;
-  width: 20%;
-}
-
-ion-card-content{
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
+#emergencyIcon{
+  width: 50%;
+  margin-bottom: 5px;
 }
 
 /* Iconos */

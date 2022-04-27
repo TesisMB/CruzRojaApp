@@ -2,114 +2,16 @@
 
 <!-- Vista de Alertas mejorado -->
 
-<!-- <div class="card">
-  <img class="emergencyIcon" src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"/>
-
-  <div class="card-content">
-    <h3 class="title"></h3>
-  </div>
-</div>
- -->
-
 <ion-content>
-  <ion-list #list >
-    <ion-item-sliding *ngFor="let alert of alerts; index as i">
-
-        <!--Ion Card-->
-
-        <ion-item>
-          <ion-card
-            id="card"[ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}">
-
-            <!--Header del card-->
-
-            <div class="header">
-              <ion-card-header>
-                <div [ngClass]="{
-                  'circulo': alert.alerts.alertDegree === 'Moderado',
-                  'triangulo': alert.alerts.alertDegree === 'Controlado',
-                  'cuadrado': alert.alerts.alertDegree === 'Extremo'}">
-                    <ion-thumbnail>
-                      <img class="emergencyIcon"
-                        src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
-                      />
-                    </ion-thumbnail>
-                </div>
-                </ion-card-header>
-
-                <!-- Botón de Slide -->
-
-                <div class="emergency">
-                  <ion-card-title>
-                    {{alert.typesEmergenciesDisasters.typeEmergencyDisasterName}}
-                  </ion-card-title>
-
-                  <!-- <ion-button
-                    (click)="openSlide()"
-                    icon-only
-                    fill="clear"
-                    shape="round"
-                    size="small"
-                    id="btnSlide"
-                    >
-                    <ion-icon name="chevron-forward-outline"></ion-icon>
-                    <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-                  </ion-button> -->
-
-                </div>
-            </div>
-
-            <!--Contenido del card-->
-
-            <ion-card-content>
-                <div class="ubicationClass">
-                  <ion-label>
-                    <!-- Ubicación: -->
-                    {{alert.locations.locationCityName}}
-                  </ion-label>
-                </div>
-
-            <!-- Fecha - Hora (Inicio):  -->
-
-                <div class="emergencyTimeClass">
-                  <ion-label class="time">
-                  <!-- Fecha - Hora (Inicio):  -->
-                   {{alert.emergencyDisasterStartDate | date: 'short'}}
-
-                  </ion-label>
-                </div>
-
-            <!-- Fecha - Hora (Final):  -->
-
-                <div *ngIf="alert.emergencyDisasterEndDate" style="display: none">
-                  <ion-label>Fecha - Hora (Final):
-                    <!-- Fecha - Hora (Final):  -->
-                    {{alert.emergencyDisasterEndDate}}
-                  </ion-label
-                  >
-
-                </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-item>
-
-        <!-- Opciones del Ion Item -->
-
-        <!-- Usar *ngIf="" para ocultar esta función si el currentuser es un voluntario -->
-
-        <ion-item-options side="end">
-          <ion-item-option (click)="showLoader()" [routerLink]="['emergency', alert.emergencyDisasterID]" *ngIf="currentUser.roleName != 'Voluntario'">
-            <ion-icon name="people-outline"></ion-icon>
-            <ion-label>Voluntarios</ion-label>
-          </ion-item-option>
-
-          <ion-item-option (click)="deploymentButton(i)">
-            <ion-icon name="document-outline"></ion-icon>
-            <ion-label>Despliegue</ion-label>
-          </ion-item-option>
-        </ion-item-options>
-
-    </ion-item-sliding>
-  </ion-list>
+  <ion-grid>
+    <ion-row wrap>
+      <ion-col *ngFor="let alert of alerts; index as i" size="3" fixed [ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}">
+        <img id="emergencyIcon"src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"/>
+        <div class="card-content">
+          <h3 class="subtitle">ID: {{alert.emergencyDisasterID}}</h3>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 <!-- <app-menu showTabs></app-menu> -->

@@ -66,6 +66,12 @@ export class AlertsPage implements OnInit {
     this.ionLoader.hideLoader();
   }
 
+  volunteerButton(){
+    this.showLoader();
+    this.router.navigate(['/deployment']);
+    this.lista.closeSlidingItems();
+  }
+
   deploymentButton(index){
     this.showLoader();
     const alert = this.alerts[index];
@@ -80,11 +86,14 @@ export class AlertsPage implements OnInit {
   getColor(color: string){
     if(color ==='Moderado'){
       return '#d8db2f';
-    } else if (color ==='Extremo'){
+    } else if (color ==='Urgente'){
       return '#d83a35';
       }
     else if (color === 'Controlado'){
       return '#4cd137';
     }
   }
+
+  /* Funciones para el PopOver */
+
 }

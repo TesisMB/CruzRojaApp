@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+/* import { NgModule } from '@angular/core';
 
 import { VoluntariosPageRoutingModule } from './volunteers-routing.module';
 
@@ -20,4 +20,4 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     Ng2SearchPipeModule
   ]
 })
-export class VolunteersPageModule {}
+export class VolunteersPageModule {} */

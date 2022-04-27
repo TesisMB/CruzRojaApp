@@ -3785,6 +3785,10 @@
   dependencies:
     "buffer-indexof" "^1.0.0"
 
+"dns@file:./src/mock/dns":
+  "resolved" "file:src/mock/dns"
+  "version" "3.1.0"
+
 "doctrine@^3.0.0":
   "integrity" "sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w=="
   "resolved" "https://registry.npmjs.org/doctrine/-/doctrine-3.0.0.tgz"

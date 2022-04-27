@@ -8,10 +8,8 @@ import { RoleName } from './models/RoleName';
 import { LoginPage } from './pages/login/login.page';
 import { HomePage } from './pages/home/home.page';
 import { AccountPage } from './pages/account/account.page';
-import { DeploymentPage } from './pages/deployment/deployment.page';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
-const volunteersModule = () => import ('src/app/pages/volunteers/volunteers.module').then(x => x.VolunteersPageModule);
 const chatModule = () => import ('src/app/pages/chat/chat.module').then(x => x.ChatPageModule);
 const alertsModule = () => import ('src/app/pages/alerts/alerts.module').then(x => x.AlertsModule);
 
@@ -35,21 +33,15 @@ const routes: Routes = [
     data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.Voluntario, RoleName.CEyD]}
   },
 
-  {
+/*   {
     path: 'voluntarios',
-    loadChildren: volunteersModule,
+    component: DeploymentPage,
     canActivate: [AuthGuard],
-    data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.CEyD]}
-  },
+  }, */
 
   {
     path: 'chat',
     loadChildren: chatModule
-  },
-
-  {
-    path: 'deployment',
-    component: DeploymentPage,
   },
 
   {

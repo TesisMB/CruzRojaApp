@@ -40,6 +40,7 @@
     "@microsoft/signalr": "^6.0.0",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "bootstrap": "^4.5.2",
+    "dns": "file:./src/mock/dns",
     "leaflet": "^1.7.1",
     "ng2-search-filter": "^0.5.1",
     "rxjs": "~6.6.0",

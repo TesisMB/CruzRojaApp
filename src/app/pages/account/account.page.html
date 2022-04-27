@@ -12,21 +12,21 @@
   <form [formGroup]="fg">
 
     <ion-list>
-
       <!-- Avatar - Solo voluntarios -->
-      <div id="volunteerAvatar">
-        <ion-avatar>
-          <img *ngIf="currentUser.roleName == 'Voluntario'" src="{{this.currentUser.volunteerAvatar}}">
+      <div *ngIf="currentUser.roleName == 'Voluntario'">
+        <ion-avatar class="avatar" (click)="selectImage()">
+          <img src="{{this.currentUser.volunteerAvatar}}">
+          <ion-icon size="large" button id="cameraBtn" name="camera-outline"></ion-icon>
         </ion-avatar>
       </div>
 
       <!-- Boton para agregar una imagen -->
 
-      <ion-button *ngIf="currentUser.roleName == 'Voluntario'" class="accButton" type="submit" shape="round"
+     <!--  <ion-button *ngIf="currentUser.roleName == 'Voluntario'" class="accButton" type="submit" shape="round"
         (click)="selectImage()">
         <ion-icon style="margin-bottom: 3px; font-size: 24px;" name="image-outline"></ion-icon>
         <ion-label style="margin-left: 10px;">Seleccionar Imagen</ion-label>
-      </ion-button>
+      </ion-button> -->
 
       <!-- Card de datos de contacto -->
 

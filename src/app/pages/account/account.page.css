@@ -18,8 +18,12 @@
   overflow: visible;
 }
 
+.avatar{
+  position: relative;
+}
+
 /* IDs */
 
-.volunteerAvatar{
-  margin-left: 5rem;
+#cameraBtn{
+  position: absolute;
 }

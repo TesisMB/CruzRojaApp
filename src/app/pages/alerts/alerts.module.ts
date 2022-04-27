@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { AlertsRoutingModule } from './alerts-routing.module';
 import { VoluntariosDetallesPage } from '../volunteers/subpages/voluntarios-detalles/volunteersdetails';
+import { DeploymentPage } from '../deployment/deployment.page';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { VoluntariosDetallesPage } from '../volunteers/subpages/voluntarios-deta
     ComponentsModule
   ],
   declarations: [
+    DeploymentPage,
     VolunteersPage,
     VoluntariosDetallesPage,
     AlertslayoutComponent,
