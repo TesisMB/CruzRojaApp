@@ -41,6 +41,11 @@
       </p>
     </div>
 
+    <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+      <ion-fab-button  class="volunteerButton" (click)="navigateVolunteer()">
+        <ion-icon id="volunteerIcon" name="people-circle-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
     <div class="date map-container">
       <div class="location map-frame">
@@ -59,8 +64,8 @@
   </div>
 </div>
 
-    <ion-button shape="round" class="accButton" *ngIf="!isSubscribe && currentUser.roleName == 'Voluntario' && emergencies.alerts.alertDegree != 'Controlado'" [disabled]="isSubscribe" (click)="setChatGroup()" expand="block">
-      Subscribirme a la alerta!
-    </ion-button>
-  </section>
+<ion-button shape="round" class="accButton" *ngIf="!isSubscribe && currentUser.roleName == 'Voluntario' && emergencies.alerts.alertDegree != 'Controlado'" [disabled]="isSubscribe" (click)="setChatGroup()" expand="block">
+  Subscribirme a la alerta!
+</ion-button>
+</section>
 </ion-content>

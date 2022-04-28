@@ -8,6 +8,7 @@ import * as L from 'LeafLet';
 
 import 'leaflet/dist/images/marker-icon-2x.png';
 import 'leaflet/dist/images/marker-shadow.png';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-deployment',
@@ -26,6 +27,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   constructor(
     private alertService: AlertService,
     private chatService: ChatService,
+    private router: Router,
     private location: Location,
     private placesService: PlacesService,
   ) { }
@@ -77,7 +79,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   }).addTo(map);
   setTimeout(() => {
     map.invalidateSize();
-  }, 1000);
+  }, 500);
 
     const marker = L.marker(
       [this.emergencies.locationsEmergenciesDisasters.locationLatitude,
@@ -106,6 +108,10 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
 
   map.on('locationerror', onLocationError);
 
+  }
+
+  navigateVolunteer(){
+    this.router.navigate(['emergency']);
   }
 
   ngOnDestroy(){

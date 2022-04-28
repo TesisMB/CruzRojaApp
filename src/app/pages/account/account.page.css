@@ -11,6 +11,14 @@ ion-icon{
   height: 18px;
 }
 
+ion-input{
+  font-size: 14px;
+}
+
+ion-label{
+  font-size: 14px;
+}
+
 /* Clases */
 
 .accButton{

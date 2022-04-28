@@ -61,6 +61,12 @@ span{
   width: 60%;
 }
 
+.volunteerButton{
+  width: 45px;
+    height: 45px;
+}
+
+
 .location {
   border: 1px solid #ccc;
   height: 300px;
@@ -115,6 +121,12 @@ span{
 #emergencyTitle{
   margin-left: 6rem;
 }
+
+#volunteerIcon{
+  width: 80%;
+  height: 80%;
+}
+
 
 
 
