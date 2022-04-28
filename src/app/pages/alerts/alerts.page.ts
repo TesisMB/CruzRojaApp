@@ -61,7 +61,7 @@ export class AlertsPage implements OnInit {
     const alert = this.alerts[index];
     this.alertService.setAlert(alert);
     this.id = index;
-    this.router.navigate(['/deployment']);
+    this.router.navigateByUrl('/alertas/deployment');
   }
 
   /* Función para usar el color  */

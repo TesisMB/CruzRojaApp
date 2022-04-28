@@ -18,11 +18,12 @@ const routes: Routes = [
         component: AlertsPage
       },
       {
-        path: 'deployment',
-        component: DeploymentPage,
-      },
+    path: 'deployment',
+    component: DeploymentPage,
+  },
     ]
   },
+
   {
     path: 'emergency/:id',
     component: VolunteersPage,

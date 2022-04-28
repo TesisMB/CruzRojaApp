@@ -3,7 +3,7 @@ import { EmergenciesDisasters } from './../../models/EmergenciesDisasters';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { AlertService } from 'src/app/services/alerts/alert.service';
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-
+import { Location } from '@angular/common';
 import * as L from 'LeafLet';
 
 import 'leaflet/dist/images/marker-icon-2x.png';
@@ -19,7 +19,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   handleDeployment: any;
   emergencies: EmergenciesDisasters = null;
   handlerChat: any;
-  isAccepted: boolean = false;
+  isAccepted = false;
   currentUser: any;
   map: L.Map;
 
@@ -29,11 +29,6 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     private location: Location,
     private placesService: PlacesService,
   ) { }
-
-  ngAfterViewInit(): void {
-    this.initMap();
-
-  }
 
   ngOnInit() {
     this.handleDeployment = this.alertService._currentAlert.subscribe(
@@ -45,6 +40,13 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     console.log('Estoy en: ', window.location.pathname);
   }
 
+  ngAfterViewInit(): void {
+    this.initMap();
+  }
+
+  get isSubscribe(){
+    return this.emergencies.chatRooms.usersChatRooms.find(x => x.userID === this.currentUser.userID);
+  }
   setChatGroup(){
     console.log(this.emergencies);
     this.handlerChat = this.chatService.joinGroup(this.emergencies.emergencyDisasterID).subscribe(data =>{
@@ -57,10 +59,15 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   }
 
   initMap(){
-    var map = L.map('map').setView([this.emergencies.locationsEmergenciesDisasters.locationLatitude, this.emergencies.locationsEmergenciesDisasters.locationLongitude], 15);
+    const map = L.map('map').setView(
+      [
+        this.emergencies.locationsEmergenciesDisasters.locationLatitude,
+         this.emergencies.locationsEmergenciesDisasters.locationLongitude
+        ], 15);
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
+     {
+    attribution: 'Ubicacíon de la emergencia de <bold>Cruz Roja Córdoba</bold>',
     maxZoom: 18,
     id: 'mapbox/streets-v11',
     tileSize: 512,
@@ -72,12 +79,20 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     map.invalidateSize();
   }, 1000);
 
-    var marker = L.marker([this.emergencies.locationsEmergenciesDisasters.locationLatitude, this.emergencies.locationsEmergenciesDisasters.locationLongitude],{
+    const marker = L.marker(
+      [this.emergencies.locationsEmergenciesDisasters.locationLatitude,
+      this.emergencies.locationsEmergenciesDisasters.locationLongitude
+    ],
+      {
       fillColor: '#ccc'
     })
     .addTo(map);
 
-    var circle =  L.circle([this.emergencies.locationsEmergenciesDisasters.locationLatitude, this.emergencies.locationsEmergenciesDisasters.locationLongitude], 500, {
+    const circle =  L.circle(
+      [this.emergencies.locationsEmergenciesDisasters.locationLatitude,
+         this.emergencies.locationsEmergenciesDisasters.locationLongitude
+        ],
+         500, {
       color: 'red',
       fillColor: '#f03',
       fillOpacity: 0.3,
@@ -85,9 +100,9 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
       stroke: false
     }).addTo(map);
 
-    function onLocationError(e) {
+    const onLocationError = (e) => {
       alert(e.message);
-  }
+  };
 
   map.on('locationerror', onLocationError);
 

@@ -1,11 +1,13 @@
+import { AlertsModule } from './pages/alerts/alerts.module';
+import { ChatPageModule } from './pages/chat/chat.module';
 import { AccountPage } from './pages/account/account.page';
 import { HomePage } from './pages/home/home.page';
 import { AlertsPage } from './pages/alerts/alerts.page';
 import { LoginPage } from './pages/login/login.page';
 
-export function getToken() {
-  return localStorage.getItem('currentUser');
-}
+// export function getToken() {
+//   return localStorage.getItem('currentUser');
+// }
 
 import { HttpInterceptorService } from './_helpers/http.interceptor.service';
 
@@ -31,7 +33,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginPage, AlertsPage, HomePage, AccountPage],
+  declarations: [AppComponent, LoginPage, HomePage, AccountPage],
   entryComponents: [],
 
   imports: [
@@ -43,12 +45,14 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ComponentsModule,
     SharedModule,
     Ng2SearchPipeModule,
-    IonicStorageModule.forRoot(),
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: getToken
-    }
-  }),
+    ChatPageModule,
+    AlertsModule
+  //   IonicStorageModule.forRoot(),
+  //   JwtModule.forRoot({
+  //     config: {
+  //       tokenGetter: getToken
+  //   }
+  // }),
 ],
 schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
