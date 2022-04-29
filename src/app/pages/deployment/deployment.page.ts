@@ -70,7 +70,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
      {
     attribution: 'Ubicacíon de la emergencia de <bold>Cruz Roja Córdoba</bold>',
-    maxZoom: 18,
+    maxZoom: 14,
     id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1,

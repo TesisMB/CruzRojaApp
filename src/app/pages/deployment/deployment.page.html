@@ -8,63 +8,64 @@
 </ion-header>
 
 <ion-content>
-<section class="modo">
-<div class="tab-content">
-  <div>
-    <h2>
+  <section class="modo">
+    <div class="tab-content">
+      <div>
+        <!--  <h2>
       Despliegue de Terreno
     </h2>
+ -->
+        <h4>
+          {{emergencies.locationsEmergenciesDisasters.locationCityName}} -
+          {{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterName}}
+        </h4>
 
-    <h4>
-      {{emergencies.locationsEmergenciesDisasters.locationCityName}} -
-      {{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterName}}
-    </h4>
-    <div>
-      <p>
-        <ion-icon id="calendarIcon" name="calendar-outline"></ion-icon>
-          <span>Fecha de inicio: {{emergencies.emergencyDisasterStartDate | date: 'dd/MM/yyyy hh:mm:ss
-          a'}}</span>
-      </p>
-      <p *ngIf="emergencies.emergencyDisasterEndDate">
-        <ion-icon name="calendar-outline"></ion-icon>
-        <span class="calendar-end">Fecha final: {{emergencies.emergencyDisasterEndDate}}</span>
-      </p>
+        <div class="calendarResponsible">
+          <p>
+            <ion-icon id="calendarIcon" name="calendar-outline"></ion-icon>
+            <span>Fecha de inicio: {{emergencies.emergencyDisasterStartDate | date: 'dd/MM/yyyy hh:mm:ss
+              a'}}</span>
+          </p>
+
+          <p>
+            <ion-icon id="responsibleIcon" name="person-outline"></ion-icon>
+            <span>Responsable:
+              {{emergencies.employees.name}}
+            </span>
+          </p>
+        </div>
+
+     <!--    <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+          <ion-fab-button class="volunteerButton"
+            [routerLink]="['/alertas','emergency', emergencies.emergencyDisasterID]">
+           <ion-icon id="volunteerIcon" name="people-circle-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+         -->
+        <ion-icon name="accessibility-outline" [routerLink]="['/alertas','emergency', emergencies.emergencyDisasterID]" class="volunteers"></ion-icon>
+
+
+        <div class="date map-container">
+          <div class="location map-frame">
+            <div id="map">
+            </div>
+          </div>
+
+          <h2>
+            Instrucciones
+          </h2>
+
+          <div class="instruction location">
+            {{emergencies.emergencyDisasterInstruction}}
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div>
-      <p>
-        <ion-icon id="responsibleIcon" name="person-outline"></ion-icon>
-        <span>Responsable:
-          {{emergencies.employees.name}}
-        </span>
-      </p>
-    </div>
-
-    <ion-fab horizontal="start" vertical="bottom" slot="fixed">
-      <ion-fab-button  class="volunteerButton" [routerLink]="['/alertas','emergency', emergencies.emergencyDisasterID]">
-        <ion-icon id="volunteerIcon" name="people-circle-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-
-    <div class="date map-container">
-      <div class="location map-frame">
-        <div id="map">
-      </div>
-      </div>
-
-  <h2>
-    Instrucciones
-  </h2>
-
-      <div class="instruction location">
-        {{emergencies.emergencyDisasterInstruction}}
-      </div>
-    </div>
-  </div>
-</div>
-
-<ion-button shape="round" class="accButton" *ngIf="!isSubscribe && currentUser.roleName == 'Voluntario' && emergencies.alerts.alertDegree != 'Controlado'" [disabled]="isSubscribe" (click)="setChatGroup()" expand="block">
-  Subscribirme a la alerta!
-</ion-button>
-</section>
+    <ion-button shape="round" class="accButton"
+      *ngIf="!isSubscribe && currentUser.roleName == 'Voluntario' && emergencies.alerts.alertDegree != 'Controlado'"
+      [disabled]="isSubscribe" (click)="setChatGroup()" expand="block">
+      Subscribirme a la alerta!
+    </ion-button>
+  </section>
 </ion-content>

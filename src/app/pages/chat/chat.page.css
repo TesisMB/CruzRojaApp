@@ -1,4 +1,4 @@
-ion-segment{
+/* ion-segment{
   --background: none;
 }
 
@@ -25,10 +25,10 @@ ion-badge{
   --padding-top: 3px;
   --background: red;
 }
-
+ */
 /* Classes */
 
-.info-div{
+/* .info-div{
   position: absolute;
   right: 0;
   font-size: 0.8rem;
@@ -36,4 +36,4 @@ ion-badge{
   font-weight: bolder;
   text-align: right;
 }
-
+ */

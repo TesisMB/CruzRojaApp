@@ -1,37 +1,36 @@
-
 /* Componentes de Ionic */
 
-html, body{
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
 }
 
-h1, p{
+h1, p {
   margin: 0;
   color: #fff;
   margin-left: 10px;
 }
 
-h1{
+h1 {
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-p{
+p {
   opacity: 0.7;
   margin-top: 3px;
   font-size: 0.8rem;
 }
 
-ion-icon{
+ion-icon {
   font-size: 20px;
   margin-left: 3px;
   margin-bottom: 3px;
   transform: rotate(-45deg);
 }
 
-ion-toolbar{
+ion-toolbar {
   box-shadow: 1;
 }
 
@@ -41,54 +40,55 @@ input::placeholder {
 
 /* Clases */
 
-.details{
+.details {
   margin-left: 15px;
   display: flex;
   flex-direction: column;
 }
 
-.item-input-wrapper{
+.item-input-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: static;
   bottom: 20px;
-  width: 90vw;
+  width: 97vw;
   left: 50%;
 }
 
-.message{
-  padding: 18px 20px;
-  border-radius: 18px;
-  margin-bottom: 4px;
+.message {
+  border-radius: 2px;
   font-size: 0.9rem;
   white-space: pre-wrap;
+  border-radius: 10px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  margin-top: 10px;
 }
 
 /* Mensaje interno */
 
-.my-message{
-  background: #ff2121ab;
+.my-message {
+  background: #bd2d2d;
   color: #fff;
   right: 20px;
 }
 
 /* Mensaje externo */
 
-.other-message{
-  background: rgb(190, 190, 190);
-  color: #000000;
+.other-message {
+  background: #184370;
+  color: #fff;
 }
 
-.hide{
+.hide {
   visibility: hidden;
 }
 
-.time{
+.time {
   color: #fff;
   float: right;
   font-size: 12px;
-  margin-top: 1rem;
 }
 
 .btnSend {
@@ -98,23 +98,23 @@ input::placeholder {
   border-radius: 50%;
   outline: none;
   margin-top: 3px;
-  color: rgb(80, 80, 80);
+  /* color: rgb(80, 80, 80); */
 }
 
 /* IDs */
 
-#footer-input{
+#footer-input {
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 
-#userName{
+#userName {
   margin-right: 10rem;
   font-weight: bold;
 }
 
-#chat-input{
+#chat-input {
   border: 1px solid #ddd;
   height: 45px;
   background-color: #ddd;
@@ -130,7 +130,7 @@ input::placeholder {
   color: #5f5e5e;
 }
 
-#fab-button{
+#fab-button {
   border-radius: 50%;
   font-size: 24px;
   background-color: #a0a0a0;
@@ -144,7 +144,7 @@ input::placeholder {
   transform: rotate(45deg);
 }
 
-#scrollBackIcon{
+#scrollBackIcon {
   margin-top: 7px;
   margin-right: 5px;
   font-size: 26px
@@ -154,7 +154,6 @@ input::placeholder {
   display: none;
 }
 
-#btnSend:hover{
+#btnSend:hover {
   background: rgba(235, 231, 231, 0.459);
 }
-

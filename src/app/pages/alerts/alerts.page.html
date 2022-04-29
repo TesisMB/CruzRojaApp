@@ -5,8 +5,10 @@
 <ion-content>
   <ion-grid>
     <ion-row wrap>
-      <ion-col (click)="deploymentButton(i)" *ngFor="let alert of alerts; index as i" size="3" fixed [ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}">
-        <img id="emergencyIcon"src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"/>
+      <ion-col (click)="deploymentButton(i)" *ngFor="let alert of alerts; index as i" size="3" fixed
+        [ngStyle]="{backgroundColor: getColor(alert.alerts.alertDegree)}">
+        <img id="emergencyIcon"
+          src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg" />
         <div class="card-content">
           <h3 class="subtitle">ID: {{alert.emergencyDisasterID}}</h3>
         </div>

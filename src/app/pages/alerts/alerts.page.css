@@ -1,8 +1,7 @@
-
 /* Descripción de Emergencias */
 
-ion-col{
-  padding:0 !important;
+ion-col {
+  padding: 0 !important;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -11,24 +10,24 @@ ion-col{
   margin-left: 5px;
 }
 
-ion-row{
+ion-row {
   display: flex;
   justify-content: space-around;
   width: 93%;
 }
 
-.card-content{
+.card-content {
   text-align: center;
 }
 
-.subtitle{
+.subtitle {
   font-size: 12px;
   font-weight: 700;
 }
 
 /* IDs */
 
-#emergencyIcon{
+#emergencyIcon {
   width: 50%;
   margin-bottom: 5px;
 }
@@ -44,7 +43,14 @@ ion-row{
 }
 
 .triangulo {
-  background-image: url("https://i.imgur.com/MTZHuke.png");
+  border-right: 60px solid transparent;
+  border-left: 60px solid transparent;
+  border-bottom: 60px solid black;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
   background-position: center;
   background-size: cover;
   height: 79px;

@@ -2,31 +2,37 @@
 
 <ion-content padding>
 
-  <div class="tabs ion-padding">
+  <!-- Por ahira se oculta  -->
+
+  <!--   <div class="tabs ion-padding">
+ -->
+  <!-- <div class="tabs">
     <ion-segment value="chats" (ionChange)="segmentChange($event)">
       <ion-segment-button value="groupchats">
         <ion-label>Grupos</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="privateschats">
+ -->
+  <!--  <ion-segment-button value="privateschats">
         <ion-label>Contactos</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </div>
+      </ion-segment-button> -->
+  <!-- </ion-segment>
+  </div> -->
 
-  <div *ngFor="let chat of chatRooms" >
+  <div *ngFor="let chat of chatRooms">
     <div class="div_padding">
       <ion-list>
         <ion-item button (click)="navigateToGroupChat(chat.id)">
           <ion-avatar slot="start">
-            <img src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg" width= "40px">
+            <img
+              src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
+              width="40px">
           </ion-avatar>
-        <ion-label>
+          <ion-label>
             <h2>#{{chat.id}} - {{chat.emergenciesDisasters.locationsEmergenciesDisasters.locationCityName}}</h2>
-        </ion-label>
+          </ion-label>
         </ion-item>
       </ion-list>
-      </div>
+    </div>
   </div>
 </ion-content>
 <!-- <app-menu showTabs></app-menu> -->
-
