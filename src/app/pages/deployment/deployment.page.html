@@ -19,7 +19,6 @@
       {{emergencies.locationsEmergenciesDisasters.locationCityName}} -
       {{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterName}}
     </h4>
-
     <div>
       <p>
         <ion-icon id="calendarIcon" name="calendar-outline"></ion-icon>
@@ -42,7 +41,7 @@
     </div>
 
     <ion-fab horizontal="start" vertical="bottom" slot="fixed">
-      <ion-fab-button  class="volunteerButton" (click)="navigateVolunteer()">
+      <ion-fab-button  class="volunteerButton" [routerLink]="['/alertas','emergency', emergencies.emergencyDisasterID]">
         <ion-icon id="volunteerIcon" name="people-circle-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>

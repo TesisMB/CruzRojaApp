@@ -111,7 +111,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   }
 
   navigateVolunteer(){
-    this.router.navigate(['emergency']);
+    this.router.navigate(['emergency/',  this.emergencies.emergencyDisasterID ]);
   }
 
   ngOnDestroy(){

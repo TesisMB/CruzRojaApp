@@ -18,22 +18,23 @@ const routes: Routes = [
         component: AlertsPage
       },
       {
-    path: 'deployment',
-    component: DeploymentPage,
+        path: 'deployment',
+        component: DeploymentPage,
+      },
+
+    ]
   },
+      {
+         path: 'emergency/:id',
+         component: VolunteersPage,
+         children: [
+             {
+               path: 'details/:id',
+               component: VoluntariosDetallesPage
+             },
     ]
   },
 
-  {
-    path: 'emergency/:id',
-    component: VolunteersPage,
-    children: [
-      {
-        path: 'details/:id',
-        component: VoluntariosDetallesPage
-      },
-    ]
-  },
 ];
 
 @NgModule({
