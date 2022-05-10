@@ -1,3 +1,5 @@
+import { MapViewComponent } from './../../maps/components/map-view/map-view.component';
+import { MapScreenComponent } from './../../maps/screens/map-screen/map-screen.component';
 import { AlertslayoutComponent } from './../../components/alertslayout/alertslayout/alertslayout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -21,6 +23,10 @@ const routes: Routes = [
         path: 'deployment',
         component: DeploymentPage,
       },
+      {
+        path: 'volunteerMap',
+        component: MapViewComponent,
+      }
 
     ]
   },

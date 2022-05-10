@@ -1,7 +1,11 @@
-.map-container{
+#map {
   position: fixed;
-  top: 0px;
-  right: 0px;
-  width: 100vw;
-  height: 100vh;
+  z-index: 1000;
+  height: 30vh;
+}
+
+.location {
+  border: 1px solid #ccc;
+  height: 180px;
+  font-size: 11px
 }

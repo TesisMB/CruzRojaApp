@@ -1,9 +1,11 @@
-import { Platform } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
+import { Platform, LoadingController } from '@ionic/angular';
 import { CurrentUser } from '../../models/CurrentUser';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera'
 import { Filesystem, Directory } from '@capacitor/filesystem';
+import { finalize } from 'rxjs/operators';
 
 const IMAGE_DIR = 'stored-images'
 
@@ -21,10 +23,13 @@ interface LocalFile {
 export class AccountPage implements OnInit {
   currentUser: CurrentUser;
   fg: FormGroup;
+  images: LocalFile[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
-    private platform: Platform
+    private platform: Platform,
+    private loadingCtrl: LoadingController,
+    private http: HttpClient
   ) { this.platform = platform; }
 
   initForm(): FormGroup{
@@ -58,6 +63,57 @@ export class AccountPage implements OnInit {
     })*/
   }
 
+  /* Section de Imagen */
+
+    // Carga de la imagen
+
+  async loadFiles(){
+    this.images = [];
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Cargando imagen...',
+    })
+
+    await loading.present();
+
+    Filesystem.readdir({
+      directory: Directory.Data,
+      path: IMAGE_DIR
+    }).then(result =>{
+      console.log('HERE', result);
+    },
+    async err =>{
+      await Filesystem.mkdir({
+        directory: Directory.Data,
+        path: IMAGE_DIR
+      })
+    }).then(_ =>{
+      loading.dismiss();
+    })
+  }
+
+  async loadFileData(fileNames: string[]){
+    for (let f of fileNames){
+      const filePath = `${IMAGE_DIR}/${f}`
+
+      const readFile = await Filesystem.readFile({
+        directory: Directory.Data,
+        path: filePath
+      });
+
+      this.images.push({
+        name: f,
+        path: filePath,
+        data: `data:image/jpeg;base64,${readFile.data}`
+      })
+
+      console.log('READ', readFile);
+
+    }
+  }
+
+    // Seleccionar imagen que esta dentro de la computadora
+
   async selectImage(){
     const image = await Camera.getPhoto({
       quality: 90,
@@ -71,6 +127,8 @@ export class AccountPage implements OnInit {
     }
   }
 
+    // Guardar imagen
+
   async saveImage(photo: Photo){
     const base64Data = await this.readAsBase64(photo);
     console.log(base64Data);
@@ -81,7 +139,44 @@ export class AccountPage implements OnInit {
       data: base64Data
     });
     console.log('saved', savedFile);
+    this.loadFiles();
   }
+
+  /*  */
+
+  async startUpload(file: LocalFile){
+    const response = await fetch(file.data);
+    const blob = await response.blob();
+    const formData = new FormData();
+    formData.append('file', blob, file.name);
+    this.uploadData(formData);
+  }
+
+  /* Subir la imagen */
+
+  async uploadData(formData: FormData){
+    const url = 'https://localhost:5001/StaticFiles/Images/Resources/'
+
+    this.http.post(url, formData).pipe(
+      finalize(() =>{
+        this.loadingCtrl.dismiss();
+      })
+    ).subscribe(res =>{
+      console.log(res);
+    })
+  }
+
+    // Borrar imagen
+
+  async deleteImage(file: LocalFile){
+    await Filesystem.deleteFile({
+      directory: Directory.Data,
+      path: file.path
+    });
+    this.loadFiles();
+  }
+
+  /* Base64 Converter - Ayuda a convertir la imagen en Base64 */
 
   async readAsBase64(photo: Photo){
     if (this.platform.is('hybrid')) {
@@ -111,6 +206,7 @@ export class AccountPage implements OnInit {
     };
     reader.readAsDataURL(blob);
   });
+
 }
 
 

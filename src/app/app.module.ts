@@ -30,10 +30,11 @@ import { SharedModule } from './shared/shared.module';
 
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MapViewComponent } from './maps/components/map-view/map-view.component';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginPage, HomePage, AccountPage],
+  declarations: [AppComponent, LoginPage, HomePage, AccountPage, MapViewComponent],
   entryComponents: [],
 
   imports: [

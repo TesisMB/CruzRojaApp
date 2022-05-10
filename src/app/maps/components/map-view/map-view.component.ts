@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { Map, Popup, Marker } from 'mapbox-gl';
 import { PlacesService } from 'src/app/services/places/places.service';
 import { MapService } from 'src/app/services/map/map.service';
+import * as L from 'LeafLet';
 
 @Component({
   selector: 'app-map-view',
@@ -9,33 +9,41 @@ import { MapService } from 'src/app/services/map/map.service';
   styleUrls: ['./map-view.component.css'],
 })
 export class MapViewComponent implements AfterViewInit {
-  @ViewChild('mapDiv') mapDivElement?: ElementRef;
+
+  @ViewChild('map') mapContainer: ElementRef;
+  map: L.Map;
 
   constructor(
     private placesService: PlacesService,
     private mapService: MapService) { }
 
   ngAfterViewInit(): void {
+    this.initMap();
+  /*   if( !this.placesService.useLocation) throw Error('No hay placesService.userLocation'); */
+ }
 
-    if( !this.placesService.useLocation) throw Error('No hay placesService.userLocation');
+ initMap(){
 
-    const map = new Map({
-      container: this.mapDivElement.nativeElement,
-      style: 'mapbox://styles/mapbox/streets-v11', // style URL
-      center: this.placesService.useLocation, // starting position [lng, lat]
-      zoom: 14 // starting zoom
-      });
+  this.map = L.map('map').setView([51.505, -0.09], 13);
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoibWdjc29hZCIsImEiOiJjbDA1eXpoOGwwdWQ3M2tueXVycHFqMzhlIn0.CXkUig7PQwf0piWpitvI2w'
+}).addTo(this.map);
 
-      const popup = new Popup()
-      .setHTML(`
-        <h6>Aquí estoy</h6>
-        <span>Estoy en este lugar del mundo</span>
-      `)
+setTimeout(() => {
+  this.map.invalidateSize();
+}, 500);
 
-      new Marker({color: 'red'})
-        .setLngLat(this.placesService.useLocation)
-        .setPopup(popup)
-        .addTo(map)
-        this.mapService.setMap(map);
-  }
+  const onLocationError = (e) => {
+    alert(e.message);
+};
+
+this.map.on('locationerror', onLocationError);
+this.map.remove();
+}
+
 }

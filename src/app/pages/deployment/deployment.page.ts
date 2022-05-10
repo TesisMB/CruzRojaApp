@@ -33,6 +33,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   ) { }
 
   ngOnInit() {
+    this.getPlacesByQuery();
     this.handleDeployment = this.alertService._currentAlert.subscribe(
       data =>{
         this.emergencies = data;
@@ -47,8 +48,13 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   }
 
   get isSubscribe(){
-    return this.emergencies.chatRooms.usersChatRooms.find(x => x.userID === this.currentUser.userID);
-  }
+    if(this.emergencies.chatRooms && this.currentUser.roleName == 'Voluntario' && this.emergencies.alerts.alertDegree !== 'Controlado'){
+        return this.emergencies.chatRooms.usersChatRooms.find(x => x.userID === this.currentUser.userID);
+      }
+    else {
+  return true;
+}}
+
   setChatGroup(){
     console.log(this.emergencies);
     this.handlerChat = this.chatService.joinGroup(this.emergencies.emergencyDisasterID).subscribe(data =>{
@@ -57,6 +63,18 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     }, error =>{
       console.log('error', error);
         this.isAccepted = true;
+    });
+  }
+
+  getPlacesByQuery(){
+    this.placesService.getAll()
+    .subscribe(resp => {
+
+      console.log('Ubicaciones:', resp);
+      /* this.isLoadingPlaces = false;
+      this.places = resp.features;
+
+      this.mapService.createMarkersFromPlaces(this.places); */
     });
   }
 
@@ -107,7 +125,6 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   };
 
   map.on('locationerror', onLocationError);
-
   }
 
   navigateVolunteer(){

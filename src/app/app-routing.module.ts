@@ -8,7 +8,6 @@ import { RoleName } from './models/RoleName';
 import { LoginPage } from './pages/login/login.page';
 import { HomePage } from './pages/home/home.page';
 import { AccountPage } from './pages/account/account.page';
-import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 const chatModule = () => import ('src/app/pages/chat/chat.module').then(x => x.ChatPageModule);
 const alertsModule = () => import ('src/app/pages/alerts/alerts.module').then(x => x.AlertsModule);
@@ -43,16 +42,16 @@ const routes: Routes = [
     component: AccountPage,
   },
 
-  {
-    path: 'pagenotfound',
-    component: PagenotfoundComponent
-  },
-
   //Redirecciona a un 404, en caso de que no exista una dirección
   {
     path: '**',
     redirectTo: 'home',
   },
+/*   {
+    path: 'tabs',
+    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
+  }, */
+
 
 ];
 
