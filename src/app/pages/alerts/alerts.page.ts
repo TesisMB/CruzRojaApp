@@ -15,8 +15,8 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
 
 export class AlertsPage implements OnInit {
 
-  alerts: EmergenciesDisasters[];
-  alertstypes: TypeEmergenciesDisasters[];
+  alerts: EmergenciesDisasters[] = [];
+  alertstypes: TypeEmergenciesDisasters[] = [];
   role: RoleName;
   isControlled = false;
   estilo = '';

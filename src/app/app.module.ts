@@ -2,7 +2,6 @@ import { AlertsModule } from './pages/alerts/alerts.module';
 import { ChatPageModule } from './pages/chat/chat.module';
 import { AccountPage } from './pages/account/account.page';
 import { HomePage } from './pages/home/home.page';
-import { AlertsPage } from './pages/alerts/alerts.page';
 import { LoginPage } from './pages/login/login.page';
 
 // export function getToken() {
@@ -18,7 +17,6 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { IonicStorageModule } from '@ionic/storage-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { JwtModule } from '@auth0/angular-jwt';

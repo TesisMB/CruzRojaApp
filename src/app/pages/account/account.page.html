@@ -9,26 +9,67 @@
   <!--   <form [formGroup]="fg" (ngSubmit)="">
  -->
 
-  <form [formGroup]="fg">
+  <div class="avatarMrg" *ngIf="currentUser.roleName == 'Voluntario'">
+    <ion-avatar class="avatar" >
+      <img src="{{this.currentUser.volunteerAvatar}}">
+      <ion-button class="cameraBtn" (click)="selectImage()">
+        <ion-icon size="large" button name="camera-outline"></ion-icon>
+      </ion-button>
+    </ion-avatar>
+  </div>
+
+ <!-- Credencial -->
+
+  <div *ngIf="currentUser.roleName == 'Voluntario'" class="card-content">
+      <ion-card class="card-c">
+        <ion-card-header>
+          <div class="d-flex flex-column align-items-start">
+              <span><h3>{{this.currentUser.persons.lastName}}, {{this.currentUser.persons.firstName}}</h3></span>
+              <span><h3>{{this.currentUser.userDni}}</h3></span>
+              <span>Cruz Roja Argentina</span>
+          </div>
+          <div mat-card-avatar class="logo-cr">
+            <img src="../../../assets/icons - navbar/CredencialLogo.jpg" alt="">
+          </div>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                Cargo.: {{this.currentUser.roleName}}
+              </ion-col>
+              <ion-col offset-4="">
+                Válido desde: 10/21
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                Fecha de Ing.: 10/21
+              </ion-col>
+              <ion-col offset-4="">
+                Sucursal: {{this.currentUser.estates.locationCityName}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+  </div>
+
+  <!-- Formulario -->
+
+  <form [formGroup]="fg" (ngSubmit)="onSubmit()">
 
     <ion-list>
       <!-- Avatar - Solo voluntarios -->
-      <div class="avatarMrg" *ngIf="currentUser.roleName == 'Voluntario'">
+      <!-- <div class="avatarMrg" *ngIf="currentUser.roleName == 'Voluntario'">
         <ion-avatar class="avatar" >
           <img src="{{this.currentUser.volunteerAvatar}}">
           <ion-button class="cameraBtn" (click)="selectImage()">
             <ion-icon size="large" button name="camera-outline"></ion-icon>
           </ion-button>
         </ion-avatar>
-      </div>
-
-      <!-- Boton para agregar una imagen -->
-
-     <!--  <ion-button *ngIf="currentUser.roleName == 'Voluntario'" class="accButton" type="submit" shape="round"
-        (click)="selectImage()">
-        <ion-icon style="margin-bottom: 3px; font-size: 24px;" name="image-outline"></ion-icon>
-        <ion-label style="margin-left: 10px;">Seleccionar Imagen</ion-label>
-      </ion-button> -->
+      </div> -->
 
       <!-- Card de datos de contacto -->
 
@@ -100,7 +141,7 @@
 
         </ion-card-content>
         <!-- [disabled]="!initForm().valid" -->
-        <ion-button class="accButton" type="submit" shape="round" >Guardar</ion-button>
+        <ion-button class="accButton" type="submit" shape="round" (click)="onSubmit()">Guardar</ion-button>
       </ion-card>
 
       <!-- Card de Voluntario -->

@@ -45,8 +45,8 @@ export class PlacesService extends DataService{
     })
   }
 
-  getLocationVolunteers(): Observable<any>{
+  /* getLocationVolunteers(): Observable<any>{
     const location = '/locations';
     return this.http.get(environment.apiURL + location);
-  }
+  } */
 }

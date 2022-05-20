@@ -59,7 +59,6 @@ export class LoginPage implements OnInit {
       const toast = await this.toastCtrl.create({
         message: msg,
         duration: duration,
-        cssClass: "back-toast",
       });
       await toast.present();
     }

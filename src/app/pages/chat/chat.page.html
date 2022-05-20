@@ -17,11 +17,11 @@
       </ion-segment-button> -->
   <!-- </ion-segment>
   </div> -->
-
+  <ng-container *ngIf="chatRooms.length; else noData">
   <div *ngFor="let chat of chatRooms">
     <div class="div_padding">
       <ion-list>
-        <ion-item button (click)="navigateToGroupChat(chat.id)">
+        <ion-item  button (click)="navigateToGroupChat(chat.id)">
           <ion-avatar slot="start">
             <img
               src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
@@ -34,5 +34,29 @@
       </ion-list>
     </div>
   </div>
+  </ng-container>
+<ng-template #noData>
+  <div class="d-flex flex-column align-items-center align-content-center m-5">
+  <img src="https://blush.design/api/download?shareUri=NsOLYp58jGydWYSf&c=Skin_0%7Eff9ba5&w=800&h=800&fm=png" style="height: 300px;" alt="">
+ <p class="text-center mt-3">Subscribase a una alerta!</p>
+</div>
+</ng-template>
+  <!-- Skeleton text -->
+
+  <ion-list *ngIf="!chatRooms">
+    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1]">
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
 <!-- <app-menu showTabs></app-menu> -->

@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera'
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { finalize } from 'rxjs/operators';
+import { compare } from 'fast-json-patch';
+import * as _ from 'lodash';
 
 const IMAGE_DIR = 'stored-images'
 
@@ -22,6 +24,8 @@ interface LocalFile {
 })
 export class AccountPage implements OnInit {
   currentUser: CurrentUser;
+  model: CurrentUser;
+  originalUser: CurrentUser;
   fg: FormGroup;
   images: LocalFile[] = [];
 
@@ -29,7 +33,7 @@ export class AccountPage implements OnInit {
     private formBuilder: FormBuilder,
     private platform: Platform,
     private loadingCtrl: LoadingController,
-    private http: HttpClient
+    private http: HttpClient,
   ) { this.platform = platform; }
 
   initForm(): FormGroup{
@@ -51,9 +55,8 @@ export class AccountPage implements OnInit {
     this.fg = this.initForm();
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log('LocalStorage', this.currentUser);
-
     this.fg.patchValue(this.currentUser);
-
+    this.model = _.cloneDeep(this.currentUser);
 
     /*this.fg.patchValue({
       'Email':this.currentUser.persons.email,
@@ -63,7 +66,13 @@ export class AccountPage implements OnInit {
     })*/
   }
 
-  /* Section de Imagen */
+  onSubmit(){
+    if(this.fg.valid){
+      let patch = compare(this.model, this.fg.value);
+    }
+  }
+
+  /* CAMARA - GALERIA */
 
     // Carga de la imagen
 
@@ -142,7 +151,7 @@ export class AccountPage implements OnInit {
     this.loadFiles();
   }
 
-  /*  */
+  /* Preparación del upload */
 
   async startUpload(file: LocalFile){
     const response = await fetch(file.data);

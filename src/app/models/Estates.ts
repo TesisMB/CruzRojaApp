@@ -1,21 +1,21 @@
 export interface Estates {
-    estatePhone: number,
-    locationAddress: LocationAddress;
-    locationCityName: string;
+  estatePhone: number,
+  locationAddress: LocationAddress;
+  locationCityName: string;
 
-    estatesTimes:[{
-                times: Times;
-             }];
+  estatesTimes:[{
+    times: Times;
+  }];
 }
 export interface LocationAddress {
-    address: string;
-    numberAddress: string;
+  address: string;
+  numberAddress: string;
 }
 
 export interface Times {
-    startTime: number;
-    endTime: number;
-    schedules: {
-        scheduleDate: string;
-    };
+  startTime: number;
+  endTime: number;
+  schedules: {
+    scheduleDate: string;
+  };
 }

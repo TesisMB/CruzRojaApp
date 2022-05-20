@@ -5,8 +5,12 @@
 <ion-content>
   <ion-grid>
     <ion-row wrap>
+      <ng-container *ngIf="alerts.length; else noData">
       <ion-col (click)="deploymentButton(i)" *ngFor="let alert of alerts; index as i" size="3" fixed
-        [ngClass]=""
+        [ngClass]="{
+          'circulo': alert.alerts.alertDegree === 'Moderado',
+          'triangulo': alert.alerts.alertDegree === 'Controlado',
+          'cuadrado': alert.alerts.alertDegree === 'Extremo'}"
         [ngStyle]="{
           backgroundColor: getColor(alert.alerts.alertDegree)
         }">
@@ -16,6 +20,13 @@
           <h3 class="subtitle">ID: {{alert.emergencyDisasterID}}</h3>
         </div>
       </ion-col>
+    </ng-container>
+<ng-template #noData>
+      <div class="d-flex flex-column align-items-center align-content-center m-5">
+      <img src="https://blush.design/api/download?shareUri=hlIniFJKcV8E0KWj&c=Skin_0%7Eff9ba5&w=800&h=800&fm=png" style="height: 250px;" alt="">
+     <p class="text-center mt-3">No se han emitido alerta!</p>
+    </div>
+    </ng-template>
     </ion-row>
   </ion-grid>
 </ion-content>

@@ -47,6 +47,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'home',
   },
+
 /*   {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)

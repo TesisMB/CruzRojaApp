@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
 import { IonContent, IonFab, IonFabButton } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-groupchat',
@@ -29,6 +30,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
   chatHandlerId: any;
   chatHandlerPost: any;
   chatHandlerGet: any;
+  leaveChat: any;
   id: number;
   observableUser: User;
   currentUser = null;
@@ -39,7 +41,9 @@ export class GroupChatPage implements OnInit, OnDestroy {
     private service: GroupchatService,
     private fb: FormBuilder,
     private aRoute: ActivatedRoute,
-    private services: LoginService
+    private services: LoginService,
+    public location: Location
+
   ) {
 
     this.id = this.aRoute.snapshot.params.id;
@@ -135,7 +139,16 @@ export class GroupChatPage implements OnInit, OnDestroy {
     });
   }
 
+  leaveGroup(){
+    this.leaveChat = this.chatService.leaveGroup(this.currentUser.userID, this.id).subscribe(data => {
+
+      this.location.back();
+      console.log('Usted a salido exitosamente del grupo!');
+    });
+  }
+
   //Funciones
+
   public handleScroll(event): void {
     if (event.detail.scrollTop >= this.lastScrollTop) {
          document.getElementById('fab-button').style.top = '100%';

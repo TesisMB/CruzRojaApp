@@ -9,6 +9,7 @@ import * as L from 'LeafLet';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import 'leaflet/dist/images/marker-shadow.png';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-deployment',
@@ -27,16 +28,18 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   constructor(
     private alertService: AlertService,
     private chatService: ChatService,
+    public toastCtrl: ToastController,
     private router: Router,
     private location: Location,
     private placesService: PlacesService,
   ) { }
 
   ngOnInit() {
-    this.getPlacesByQuery();
+    // this.getPlacesByQuery();
     this.handleDeployment = this.alertService._currentAlert.subscribe(
       data =>{
         this.emergencies = data;
+        this.initMap();
         console.log('asd', data);
       });
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -44,7 +47,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   }
 
   ngAfterViewInit(): void {
-    this.initMap();
+
   }
 
   get isSubscribe(){
@@ -60,8 +63,10 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     this.handlerChat = this.chatService.joinGroup(this.emergencies.emergencyDisasterID).subscribe(data =>{
       console.log('Aceptado');
         this.isAccepted = true;
+      this.location.back();
     }, error =>{
       console.log('error', error);
+        this.showToast('Ya se ha aceptado la emergencia', 3000);
         this.isAccepted = true;
     });
   }
@@ -127,9 +132,27 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   map.on('locationerror', onLocationError);
   }
 
+  async showToast(msg: string, duration: number) {
+    // this.toastCtrl.dismiss();
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      duration: duration,
+    });
+    await toast.present();
+  }
+
   navigateVolunteer(){
     this.router.navigate(['emergency/',  this.emergencies.emergencyDisasterID ]);
   }
+
+  /* async showToast(msg: string, duration: number) {
+    // this.toastCtrl.dismiss();
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      duration: duration,
+    });
+    await toast.present();
+  } */
 
   ngOnDestroy(){
     this.handleDeployment.unsubscribe();

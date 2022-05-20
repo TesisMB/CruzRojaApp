@@ -20,6 +20,14 @@
       <ion-label id="volunteerName">{{item.name}}</ion-label>
     </ion-item>
   </ion-list>
+
+  <ion-list *ngIf="volunteers == null">
+    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1]">
+      <h3>
+        <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+      </h3>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <!-- <ion-content *ngIf="volunteers.length == 0">
