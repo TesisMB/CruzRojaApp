@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
   "appId": "com.sigreyd.app",
   "appName": "SIGREYD",
   "plugins": {
@@ -8,5 +9,9 @@
   "PushNotifications": {
     "presentationOptions": ["badge", "sound", "alert"]
   }
+=======
+  "server": {
+    "url": "http://localhost:8100"
+>>>>>>> Stashed changes
   }
 }

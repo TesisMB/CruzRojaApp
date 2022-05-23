@@ -2,5 +2,8 @@
 	"appId": "com.sicreyd.app",
 	"appName": "SICREYD",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"server": {
+		"hostname": "localhost:8100"
+	}
 }
