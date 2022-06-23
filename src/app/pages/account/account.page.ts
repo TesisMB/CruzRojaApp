@@ -1,20 +1,21 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient } from '@angular/common/http';
 import { Platform, LoadingController } from '@ionic/angular';
 import { CurrentUser } from '../../models/CurrentUser';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera'
+import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { finalize } from 'rxjs/operators';
 import { compare } from 'fast-json-patch';
 import * as _ from 'lodash';
 
-const IMAGE_DIR = 'stored-images'
+const IMAGE_DIR = 'stored-images';
 
 interface LocalFile {
   name: string;
   path: string;
-  data: string
+  data: string;
 }
 
 @Component({
@@ -44,11 +45,11 @@ export class AccountPage implements OnInit {
       volunteerAvatar: [''],
         persons: this.formBuilder.group({
           email: ['',[Validators.required, Validators.email]],
-          phone: ['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+          phone: ['',[Validators.required,Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
           address: ['',[Validators.required, Validators.pattern, Validators.maxLength(25)]],
           status: ['',[Validators.required]]
         })
-    })
+    });
   }
 
   ngOnInit() {
@@ -63,12 +64,12 @@ export class AccountPage implements OnInit {
       'Phone':this.currentUser.persons.phone,
       'Address':this.currentUser.persons.address,
       'Status': this.currentUser.userAvailability
-    })*/
+    });*/
   }
 
   onSubmit(){
     if(this.fg.valid){
-      let patch = compare(this.model, this.fg.value);
+      const patch = compare(this.model, this.fg.value);
     }
   }
 
@@ -81,7 +82,7 @@ export class AccountPage implements OnInit {
 
     const loading = await this.loadingCtrl.create({
       message: 'Cargando imagen...',
-    })
+    });
 
     await loading.present();
 
@@ -95,15 +96,15 @@ export class AccountPage implements OnInit {
       await Filesystem.mkdir({
         directory: Directory.Data,
         path: IMAGE_DIR
-      })
-    }).then(_ =>{
+      });
+    }).then(() =>{
       loading.dismiss();
-    })
+    });
   }
 
   async loadFileData(fileNames: string[]){
-    for (let f of fileNames){
-      const filePath = `${IMAGE_DIR}/${f}`
+    for (const f of fileNames){
+      const filePath = `${IMAGE_DIR}/${f}`;
 
       const readFile = await Filesystem.readFile({
         directory: Directory.Data,
@@ -114,7 +115,7 @@ export class AccountPage implements OnInit {
         name: f,
         path: filePath,
         data: `data:image/jpeg;base64,${readFile.data}`
-      })
+      });
 
       console.log('READ', readFile);
 
@@ -164,7 +165,7 @@ export class AccountPage implements OnInit {
   /* Subir la imagen */
 
   async uploadData(formData: FormData){
-    const url = 'https://localhost:5001/StaticFiles/Images/Resources/'
+    const url = 'https://localhost:5001/StaticFiles/Images/Resources/';
 
     this.http.post(url, formData).pipe(
       finalize(() =>{
@@ -172,7 +173,7 @@ export class AccountPage implements OnInit {
       })
     ).subscribe(res =>{
       console.log(res);
-    })
+    });
   }
 
     // Borrar imagen
@@ -208,7 +209,7 @@ export class AccountPage implements OnInit {
   //Función de Helper para convertirlo a Base64
 
   convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) =>{
-    const reader = new FileReader;
+    const reader = new FileReader();
     reader.onerror = reject;
     reader.onload = ()=>{
       resolve(reader.result);

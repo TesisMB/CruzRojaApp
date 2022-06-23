@@ -36,6 +36,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
 
   ngOnInit() {
     // this.getPlacesByQuery();
+    // eslint-disable-next-line no-underscore-dangle
     this.handleDeployment = this.alertService._currentAlert.subscribe(
       data =>{
         this.emergencies = data;
@@ -51,7 +52,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   }
 
   get isSubscribe(){
-    if(this.emergencies.chatRooms && this.currentUser.roleName == 'Voluntario' && this.emergencies.alerts.alertDegree !== 'Controlado'){
+    if(this.emergencies.chatRooms && this.currentUser.roleName === 'Voluntario' && this.emergencies.alerts.alertDegree !== 'Controlado'){
         return this.emergencies.chatRooms.usersChatRooms.find(x => x.userID === this.currentUser.userID);
       }
     else {
@@ -136,7 +137,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     // this.toastCtrl.dismiss();
     const toast = await this.toastCtrl.create({
       message: msg,
-      duration: duration,
+      duration,
     });
     await toast.present();
   }

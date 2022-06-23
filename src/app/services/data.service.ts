@@ -3,13 +3,13 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Messages } from '../models';
 import { Operation } from 'fast-json-patch';
+import { LoginService } from './login/login.service';
 
 export class DataService {
-  private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
-  baseURL = environment.apiURL + 'profile/';
+  protected options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
   constructor(
     public http: HttpClient,
-    public patch: string
+    public patch: string,
   ) { }
 
   getAll() {
@@ -23,12 +23,6 @@ export class DataService {
   post(message: Messages): Observable<any> {
     return this.http.post(environment.apiURL + this.patch, message);
   }
-
-  patchUser(id: number, operations: Operation[]){
-    const url = this.baseURL + id;
-    return this.http.patch(url, operations);
-  }
-
   update(resource) {
     return this.http.patch(environment.apiURL + this.patch, JSON.stringify(resource), this.options);
   }

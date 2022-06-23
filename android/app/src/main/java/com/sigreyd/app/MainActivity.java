@@ -1,4 +1,4 @@
-package com.sicreyd.app;
+package com.sigreyd.app;
 
 import com.getcapacitor.BridgeActivity;
 

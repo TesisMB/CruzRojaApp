@@ -1,17 +1,5 @@
 {
-<<<<<<< Updated upstream
-  "appId": "com.sigreyd.app",
-  "appName": "SIGREYD",
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 0
-    },
-  "PushNotifications": {
-    "presentationOptions": ["badge", "sound", "alert"]
-  }
-=======
   "server": {
     "url": "http://localhost:8100"
->>>>>>> Stashed changes
   }
 }
