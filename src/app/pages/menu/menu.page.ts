@@ -7,12 +7,12 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-menu',
-  template: `
-    <ion-fab horizontal='end'>
-      <ion-fab-button (click)="pushPage()">
-        <ion-icon name='person-outline'></ion-icon>
-      </ion-fab-button>
-    </ion-fab>`,
+  // template: `
+  //   <ion-fab horizontal='end'>
+  //     <ion-fab-button (click)="pushPage()">
+  //       <ion-icon name='person-outline'></ion-icon>
+  //     </ion-fab-button>
+  //   </ion-fab>`,
   templateUrl: './menu.page.html',
   styleUrls: ['./menu.page.css'],
 })
@@ -48,16 +48,17 @@ export class MenuPage implements OnInit, OnDestroy {
   /* Menu Functions */
 
   navigateAccount(){
-    this.router.navigate(['/account']);
+    this.router.navigate(['tabs','account']);
     this.menuCtrl.close();
   }
 
   logout(){
     this.loginService.logout();
-    this.router.navigateByUrl('/login');
+    // this.router.navigateByUrl('/login');
   }
 
   ngOnDestroy(){
+    console.log('Salí de tabs');
     if(this.handlerProfile){
       this.handlerProfile.unsubscribe();
     }

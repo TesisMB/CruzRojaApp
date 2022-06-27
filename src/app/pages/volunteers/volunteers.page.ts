@@ -1,6 +1,6 @@
 import { AlertService } from 'src/app/services/alerts/alert.service';
 import { Router } from '@angular/router';
-import { Component, OnInit} from '@angular/core';
+import { Component, } from '@angular/core';
 import { EmergenciesDisasters } from 'src/app/models/EmergenciesDisasters';
 import { ActivatedRoute } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./volunteers.page.css'],
 })
 
-export class VolunteersPage implements OnInit {
+export class VolunteersPage {
   emergencies: EmergenciesDisasters;
   handlerVoluntarios: any;
   textoBuscar = '';
@@ -18,7 +18,7 @@ export class VolunteersPage implements OnInit {
   public searchedItem: any;
   idEmergency: number;
   handlerEmergency: any;
-  volunteers = [];
+  volunteers: any = [];
 
   constructor(
     public router: Router,
@@ -28,8 +28,8 @@ export class VolunteersPage implements OnInit {
     /* this.searchedItem = this.volunteers; */
   }
 
-  ngOnInit() {
-    this.idEmergency = this.aRoute.snapshot.params['id'];
+  ionViewWillEnter() {
+    this.idEmergency = this.aRoute.snapshot.params.id;
     this.getEmergenciesByID();
   }
 
@@ -46,19 +46,19 @@ export class VolunteersPage implements OnInit {
 
       this.emergencies.chatRooms.usersChatRooms.forEach(element =>{
         const user = {
-          id: element.userID,
+          userID: element.userID,
           name: element.name,
           dni: element.userDni,
           role: element.roleName
-        }
+        };
 
         this.volunteers.push(user);
 
-        this.volunteers = this.volunteers.filter(roleName => roleName.role === "Voluntario");
+        this.volunteers = this.volunteers.filter(roleName => roleName.role === 'Voluntario');
 
       });
 
-      console.log("Voluntarios involucrados", this.volunteers);
+      console.log('Voluntarios involucrados', this.volunteers);
       console.log('ingreso emergency');
       console.log(data);
     },error =>{

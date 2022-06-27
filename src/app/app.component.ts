@@ -19,15 +19,15 @@ export class AppComponent implements OnInit, OnDestroy{
     }
 
     ngOnInit() {
-      this.handler = this.loginService.currentUserObs.subscribe(
-      (data: CurrentUser) =>{
+      // this.handler = this.loginService.currentUserObs.subscribe(
+      // (data: CurrentUser) =>{
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        (data) ? this.showTabs = true : this.showTabs = false;
-      });
+        // (data) ? this.showTabs = true : this.showTabs = false;
+      // });
     }
 
     ngOnDestroy() {
       this.closed$.next();
-      this.handler.unsubscribe(); // <-- close subscription when component is destroyed
+      // this.handler.unsubscribe(); // <-- close subscription when component is destroyed
   }
 }

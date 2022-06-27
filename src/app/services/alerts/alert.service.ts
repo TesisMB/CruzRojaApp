@@ -12,13 +12,14 @@ import { Injectable } from '@angular/core';
 
 export class AlertService extends DataService {
   private currentAlertSubject: BehaviorSubject<EmergenciesDisasters>;
-  public _currentAlert: Observable<EmergenciesDisasters>;
+  private currentAlert$: Observable<EmergenciesDisasters>;
 
   constructor(http: HttpClient) {
     super(http, '/emergenciesdisasters/WithoutFilter');
     this.currentAlertSubject = new BehaviorSubject<EmergenciesDisasters>(null);
-    this._currentAlert = this.currentAlertSubject.asObservable();
+    this.currentAlert$ = this.currentAlertSubject.asObservable();
   }
+get currentAlert(){return this.currentAlert$;}
 
   setAlert(alert: EmergenciesDisasters){
     const alertObject = alert;

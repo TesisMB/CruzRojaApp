@@ -33,17 +33,17 @@ export class AuthInterceptorService implements HttpInterceptor{
               setHeaders: {
                 'content-type': 'application/json'
               },
-              setParams: {
-                userId: currentUser.userID.toString()
-              }
+              // setParams: {
+              //   userId: currentUser.userID.toString()
+              // }
             });
           }
 
           request = request.clone({
             headers: request.headers.set('Accept', 'application/json'),
-            setParams: {
-              userId: currentUser.userID.toString()
-            }
+            // setParams: {
+            //   userId: currentUser.userID.toString()
+            // }
           });
 
           return next.handle(request).pipe(

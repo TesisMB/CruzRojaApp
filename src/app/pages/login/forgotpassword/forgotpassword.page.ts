@@ -1,5 +1,5 @@
 import { LoginService } from './../../../services/login/login.service';
-import { Component, OnInit } from '@angular/core';
+import { Component,  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './forgotpassword.page.html',
   styleUrls: ['./forgotpassword.page.css'],
 })
-export class ForgotpasswordPage implements OnInit {
+export class ForgotpasswordPage {
   handleForgotPassword: any;
   emailForm: FormGroup;
 
@@ -20,7 +20,7 @@ export class ForgotpasswordPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
   }
 
   sendInfo(){
@@ -33,7 +33,7 @@ export class ForgotpasswordPage implements OnInit {
     },
     error =>{
       console.log(error);
-    })
+    });
     this.emailForm.reset();
   }
 }

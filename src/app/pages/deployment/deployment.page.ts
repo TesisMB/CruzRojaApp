@@ -37,7 +37,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   ngOnInit() {
     // this.getPlacesByQuery();
     // eslint-disable-next-line no-underscore-dangle
-    this.handleDeployment = this.alertService._currentAlert.subscribe(
+    this.handleDeployment = this.alertService.currentAlert.subscribe(
       data =>{
         this.emergencies = data;
         this.initMap();

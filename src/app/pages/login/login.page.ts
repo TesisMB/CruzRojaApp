@@ -29,20 +29,20 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private ionLoader: LoaderService
   ) {
-    let currentUser: CurrentUser = this.servicio.currentUserValue;
+    const currentUser: CurrentUser = this.servicio.currentUserValue;
 
     //Redirecciona si el usuario esta logeado
     if (currentUser) {
-      console.log('Valor de currentUser:', currentUser)
-      this.router.navigate(['home']);
+      console.log('Valor de currentUser:', currentUser);
+      this.router.navigate(['']);
     }
   }
 
   //Se inicializa las validaciones
   ngOnInit() {
     this.credentials = this.formBuilder.group({
-      UserDni: ['',[Validators.required, Validators.maxLength(16)]],
-      UserPassword: ['',[Validators.required, Validators.minLength(8), Validators.maxLength(16)]]
+      userDni: ['',[Validators.required, Validators.maxLength(16)]],
+      userPassword: ['',[Validators.required, Validators.minLength(8), Validators.maxLength(16)]]
     });
     console.log('Estoy en: ', window.location.pathname);
   }
@@ -58,7 +58,7 @@ export class LoginPage implements OnInit {
       // this.toastCtrl.dismiss();
       const toast = await this.toastCtrl.create({
         message: msg,
-        duration: duration,
+        duration,
       });
       await toast.present();
     }
@@ -78,11 +78,11 @@ export class LoginPage implements OnInit {
   onSubmit() {
     this.showLoader();
     this.handler = this.servicio
-      .login(this.f.UserDni.value, this.f.UserPassword.value)
+      .login(this.f.userDni.value, this.f.userPassword.value)
       .subscribe(
         res => {
           this.hideLoader();
-          this.router.navigateByUrl('/home', { replaceUrl: true });
+          this.router.navigateByUrl('', { replaceUrl: true });
         },
 
         error => {
