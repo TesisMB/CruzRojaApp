@@ -5,7 +5,7 @@ import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
 import { ChatService } from './../../services/chat/chat.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { delay } from 'rxjs/operators'
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chat',
@@ -19,7 +19,7 @@ export class ChatPage implements OnInit {
   observableUser: CurrentUser;
   currentUserHandler: any;
   chatRooms:  ChatRooms[] = [];
-  activeTab: string = 'chats';
+  activeTab = 'chats';
 
   constructor(
     public router: Router,
@@ -55,7 +55,7 @@ export class ChatPage implements OnInit {
       this.chatRooms = x;
       console.log('entro chat');
       //console.log("ChatRooms => ", this.chatRooms);
-      console.log("Chat =>", this.chatRooms);
+      console.log('Chat =>', this.chatRooms);
     });
   }
 }

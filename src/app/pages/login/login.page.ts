@@ -21,6 +21,7 @@ export class LoginPage implements OnInit {
   error: any = '';
   resultado: any;
   data: string;
+  isLoading = false;
 
   constructor(
     private servicio: LoginService,
@@ -82,6 +83,7 @@ export class LoginPage implements OnInit {
       .subscribe(
         res => {
           this.hideLoader();
+          this.isLoading = true;
           this.router.navigateByUrl('', { replaceUrl: true });
         },
 
@@ -90,6 +92,7 @@ export class LoginPage implements OnInit {
           this.hideLoader();
           this.showToast('Datos Incorrectos', 3000);
           console.log(error.message);
+          this.isLoading = false;
       }
     );
 

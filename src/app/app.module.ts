@@ -1,6 +1,7 @@
+import { AccountModule } from './pages/account/account.module';
+import { ForgotpasswordPage } from './pages/login/forgotpassword/forgotpassword.page';
 import { AlertsModule } from './pages/alerts/alerts.module';
 import { ChatPageModule } from './pages/chat/chat.module';
-import { AccountPage } from './pages/account/account.page';
 import { HomePage } from './pages/home/home.page';
 import { LoginPage } from './pages/login/login.page';
 
@@ -32,7 +33,7 @@ import { MapViewComponent } from './maps/components/map-view/map-view.component'
 
 
 @NgModule({
-  declarations: [AppComponent, LoginPage, HomePage, AccountPage, MapViewComponent],
+  declarations: [AppComponent, LoginPage, HomePage, MapViewComponent, ForgotpasswordPage],
   entryComponents: [],
 
   imports: [
@@ -45,7 +46,8 @@ import { MapViewComponent } from './maps/components/map-view/map-view.component'
     SharedModule,
     Ng2SearchPipeModule,
     ChatPageModule,
-    AlertsModule
+    AlertsModule,
+    AccountModule
   //   IonicStorageModule.forRoot(),
   //   JwtModule.forRoot({
   //     config: {

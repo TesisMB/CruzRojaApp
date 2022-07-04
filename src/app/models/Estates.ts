@@ -1,9 +1,9 @@
 export interface Estates {
-  estatePhone: number,
+  estatePhone: number;
   locationAddress: LocationAddress;
   locationCityName: string;
 
-  estatesTimes:[{
+  estatesTimes: [{
     times: Times;
   }];
 }

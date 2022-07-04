@@ -1,6 +1,6 @@
 <ion-content enctype="application/json" class="ion-margin-vertical">
   <form [formGroup]="credentials" (ngSubmit)="onSubmit()">
-    <div class="ion-text-center ixd">
+    <div class="ion-text-center">
       <img
         class="img text-danger"
         src="https://1.bp.blogspot.com/-XnYaCR8Oah4/XwzTOABWn3I/AAAAAAAABaY/-EyDoHPCIIQ6EAloBqlxoLnmyXWUu2DmwCLcBGAsYHQ/s320/cruzar.png"
@@ -31,8 +31,10 @@
       <div class="buttonstyle" >
         <button
           type="submit"
-          [disabled]="!credentials.valid">
-          Ingresar
+          [disabled]="!credentials.valid"
+          [disabled]="isLoading">
+            <span *ngIf="!isLoading">Ingresar</span>
+            <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
         </button>
       </div>
       <div>

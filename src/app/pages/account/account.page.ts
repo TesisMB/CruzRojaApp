@@ -2,13 +2,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Platform, LoadingController } from '@ionic/angular';
 import { CurrentUser } from '../../models/CurrentUser';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { finalize } from 'rxjs/operators';
 import { compare } from 'fast-json-patch';
 import * as _ from 'lodash';
+import { ProfileService } from 'src/app/services/profile/profile.service';
+import { LoginService } from 'src/app/services/login/login.service';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models';
 
 const IMAGE_DIR = 'stored-images';
 
@@ -23,18 +27,23 @@ interface LocalFile {
   templateUrl: './account.page.html',
   styleUrls: ['./account.page.css'],
 })
-export class AccountPage implements OnInit {
+export class AccountPage implements OnInit, OnDestroy {
   currentUser: CurrentUser;
+  users: User;
   model: CurrentUser;
   originalUser: CurrentUser;
+  handlerProfile: any;
   fg: FormGroup;
   images: LocalFile[] = [];
+  service: ProfileService;
 
   constructor(
     private formBuilder: FormBuilder,
     private platform: Platform,
     private loadingCtrl: LoadingController,
     private http: HttpClient,
+    private loginService: LoginService,
+    private router: Router,
   ) { this.platform = platform; }
 
   initForm(): FormGroup{
@@ -46,7 +55,7 @@ export class AccountPage implements OnInit {
         persons: this.formBuilder.group({
           email: ['',[Validators.required, Validators.email]],
           phone: ['',[Validators.required,Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
-          address: ['',[Validators.required, Validators.pattern, Validators.maxLength(25)]],
+          address: ['',[Validators.required,  Validators.maxLength(25)]],
           status: ['',[Validators.required]]
         })
     });
@@ -58,14 +67,16 @@ export class AccountPage implements OnInit {
     console.log('LocalStorage', this.currentUser);
     this.fg.patchValue(this.currentUser);
     this.model = _.cloneDeep(this.currentUser);
-
-    /*this.fg.patchValue({
-      'Email':this.currentUser.persons.email,
-      'Phone':this.currentUser.persons.phone,
-      'Address':this.currentUser.persons.address,
-      'Status': this.currentUser.userAvailability
-    });*/
   }
+
+  getProfile(){
+    this.handlerProfile = this.service.getById(this.currentUser.userID)
+    .subscribe((x: User) =>{
+    console.log('ingreso');
+    this.users = x;
+    console.log(this.users);
+  });
+}
 
   onSubmit(){
     if(this.fg.valid){
@@ -73,7 +84,35 @@ export class AccountPage implements OnInit {
     }
   }
 
-  /* CAMARA - GALERIA */
+  navigateToPersonalInfo(){
+    this.router.navigate(['personalinfo']);
+  }
+
+  navigateToPassword(){
+    this.router.navigate(['password']);
+  }
+
+  navigateToVolunteerCredentials(){
+    this.router.navigate(['volunteercredentials']);
+  }
+
+  navigateToVolunteerSkills(){
+    this.router.navigate(['volunteerskills']);
+  }
+
+  logout(){
+    this.loginService.logout();
+    // this.router.navigateByUrl('/login');
+  }
+
+  ngOnDestroy(){
+    console.log('Salí de tabs');
+    if(this.handlerProfile){
+      this.handlerProfile.unsubscribe();
+    }
+  }
+
+  /* GALERIA */
 
     // Carga de la imagen
 
@@ -165,7 +204,7 @@ export class AccountPage implements OnInit {
   /* Subir la imagen */
 
   async uploadData(formData: FormData){
-    const url = 'https://localhost:5001/StaticFiles/Images/Resources/';
+    const url = 'https://almacenamientotesis.blob.core.windows.net/publicuploads/';
 
     this.http.post(url, formData).pipe(
       finalize(() =>{
@@ -187,7 +226,6 @@ export class AccountPage implements OnInit {
   }
 
   /* Base64 Converter - Ayuda a convertir la imagen en Base64 */
-
   async readAsBase64(photo: Photo){
     if (this.platform.is('hybrid')) {
       // Read the file into base64 format
@@ -216,7 +254,6 @@ export class AccountPage implements OnInit {
     };
     reader.readAsDataURL(blob);
   });
-
 }
 
 

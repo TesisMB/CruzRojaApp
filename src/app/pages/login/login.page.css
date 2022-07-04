@@ -11,6 +11,11 @@
     height: 120px;
     width: 120px;
     position: static;
+    margin-top: 64px;
+  }
+
+  .header{
+    background-color: #bd2d2d;
   }
 
 /* Contenido */

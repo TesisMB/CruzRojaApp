@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
   ],
   exports: [
     HeaderComponent

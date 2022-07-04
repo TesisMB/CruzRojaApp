@@ -1,179 +1,220 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Cuenta</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="Cuenta"></app-header>
 
 <ion-content>
-  <!-- Falta agregar submit -->
-  <!--   <form [formGroup]="fg" (ngSubmit)="">
- -->
-
-  <div class="avatarMrg" *ngIf="currentUser.roleName == 'Voluntario'">
-    <ion-avatar class="avatar" >
-      <img src="{{this.currentUser.volunteerAvatar}}">
-      <ion-button class="cameraBtn" (click)="selectImage()">
-        <ion-icon size="large" button name="camera-outline"></ion-icon>
-      </ion-button>
-    </ion-avatar>
+  <div class="header" *ngIf="currentUser.roleName == 'Voluntario'">
+    <div class="header-info">
+      <ion-avatar>
+        <img src="{{this.currentUser.volunteerAvatar}}">
+      </ion-avatar>
+        <h4>{{this.currentUser.persons.lastName}}, {{this.currentUser.persons.firstName}}</h4>
+        <h4>{{this.currentUser.roleName}}</h4>
+    </div>
   </div>
 
- <!-- Credencial -->
+  <ion-list>
+    <h5>Mi Información</h5>
+      <ion-item button="true" (click)="navigateToPersonalInfo()">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Información Personal</ion-label>
+      </ion-item>
 
-  <div *ngIf="currentUser.roleName == 'Voluntario'" class="card-content">
-      <ion-card class="card-c">
-        <ion-card-header>
-          <div class="d-flex flex-column align-items-start">
-              <span><h3>{{this.currentUser.persons.lastName}}, {{this.currentUser.persons.firstName}}</h3></span>
-              <span><h3>{{this.currentUser.userDni}}</h3></span>
-              <span>Cruz Roja Argentina</span>
-          </div>
-          <div mat-card-avatar class="logo-cr">
-            <img src="../../../assets/icons - navbar/CredencialLogo.jpg" alt="">
-          </div>
-        </ion-card-header>
-
-        <ion-card-content>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                Cargo.: {{this.currentUser.roleName}}
-              </ion-col>
-              <ion-col offset-4="">
-                Válido desde: 10/21
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                Fecha de Ing.: 10/21
-              </ion-col>
-              <ion-col offset-4="">
-                Sucursal: {{this.currentUser.estates.locationCityName}}
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-  </div>
-
-  <!-- Formulario -->
-
-  <form [formGroup]="fg" (ngSubmit)="onSubmit()">
+      <ion-item button="true" (click)="navigateToPassword()">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-label>Contraseña</ion-label>
+      </ion-item>
 
     <ion-list>
-      <!-- Avatar - Solo voluntarios -->
-      <!-- <div class="avatarMrg" *ngIf="currentUser.roleName == 'Voluntario'">
-        <ion-avatar class="avatar" >
-          <img src="{{this.currentUser.volunteerAvatar}}">
-          <ion-button class="cameraBtn" (click)="selectImage()">
-            <ion-icon size="large" button name="camera-outline"></ion-icon>
-          </ion-button>
-        </ion-avatar>
-      </div> -->
+      <h5>Información de Voluntarios</h5>
+        <ion-item button="true" (click)="navigateToVolunteerCredentials()">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <ion-label>Credenciales</ion-label>
+        </ion-item>
 
-      <!-- Card de datos de contacto -->
-
-      <ion-card>
-
-        <!--Header del card-->
-
-        <ion-card-header>
-          <ion-card-title>
-            Datos de contacto
-          </ion-card-title>
-        </ion-card-header>
-
-        <!--Contenido del card-->
-
-        <ion-card-content formGroupName="persons">
-
-          <ion-item>
-            <ion-label position="floating">Correo electrónico</ion-label>
-            <ion-input formControlName="email" name="email" type="email" required></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="floating">Teléfono</ion-label>
-            <ion-input formControlName="phone" name="phone" type="phone" required></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="floating">Domicilio</ion-label>
-            <ion-input formControlName="address" name="address" type="address" required></ion-input>
-          </ion-item>
-          <ion-item id="accSelect">
-            <ion-label>Disponibilidad</ion-label>
-            <ion-select cancelText="Cancelar" okText="Aceptar" value="{{this.currentUser.persons.status}}">
-              <ion-select-option value="true">Disponible</ion-select-option>
-              <ion-select-option value="false">No disponible</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-card-content>
-        <!-- [disabled]="!initForm().valid" -->
-
-      <!-- Contraseña -->
-
-        <!--Header-->
-
-        <ion-card-header>
-          <ion-card-title>
-            Contraseña
-          </ion-card-title>
-        </ion-card-header>
-
-        <!--Contenido-->
-
-        <ion-card-content>
-          <ion-item>
-            <ion-label position="floating">Actual contraseña</ion-label>
-            <ion-input formControlName="Password" name="password" type="text" required></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="floating">Nueva contraseña</ion-label>
-            <ion-input formControlName="NewPassword" name="newPassword" type="text" required></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="floating">Repetir contraseña</ion-label>
-            <ion-input formControlName="RepeatPassword" name="repeatPassword" type="text" required></ion-input>
-          </ion-item>
-
-        </ion-card-content>
-        <!-- [disabled]="!initForm().valid" -->
-        <ion-button class="accButton" type="submit" shape="round" (click)="onSubmit()">Guardar</ion-button>
-      </ion-card>
-
-      <!-- Card de Voluntario -->
-
-      <ion-card *ngIf="currentUser.roleName == 'Voluntario'">
-
-        <!--Header del card-->
-
-        <ion-card-header>
-          <ion-card-title>
-            Voluntario
-          </ion-card-title>
-        </ion-card-header>
-
-        <!--Contenido del card-->
-
-        <ion-card-content>
-          <!-- <ion-item>
-            <ion-label position="floating">Descripción del Voluntario</ion-label>
-            <ion-label>{{currentUser.volunt}}</ion-label>
-          </ion-item> -->
-
-          <!-- <ion-item>
-            <ion-label position="floating">Habilidades de los Voluntarios</ion-label>
-            <ion-input formControlName="NewPassword" name="newPassword" type="text" required></ion-input>
-          </ion-item> -->
-
-        </ion-card-content>
-        <!-- [disabled]="!initForm().valid" -->
-        <ion-button class="accButton" type="submit" shape="round" >Guardar</ion-button>
-      </ion-card>
-
+        <ion-item button="true" (click)="navigateToVolunteerSkills()">
+          <ion-icon name="triangle-outline"></ion-icon>
+          <ion-label>Habilidades</ion-label>
+        </ion-item>
     </ion-list>
-  </form>
+
+    <ion-list>
+      <ion-item button="true" (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+  <span class="version">Versión 1.0.0</span>
+
 </ion-content>
+
+<!-- Falta agregar submit -->
+<!--   <form [formGroup]="fg" (ngSubmit)="">
+-->
+
+<!--  <div class="avatarMrg" *ngIf="currentUser.roleName == 'Voluntario'">
+  <ion-avatar class="avatar" >
+    <img src="{{this.currentUser.volunteerAvatar}}">
+    <ion-button class="cameraBtn" (click)="selectImage()">
+      <ion-icon size="large" button name="camera-outline"></ion-icon>
+    </ion-button>
+  </ion-avatar>
+</div> -->
+
+<!-- Credencial -->
+
+<!-- <div *ngIf="currentUser.roleName == 'Voluntario'" class="card-content">
+    <ion-card class="card-c">
+      <ion-card-header>
+        <div class="d-flex flex-column align-items-start">
+            <span><h3>{{this.currentUser.persons.lastName}}, {{this.currentUser.persons.firstName}}</h3></span>
+            <span><h3>{{this.currentUser.userDni}}</h3></span>
+            <span>Cruz Roja Argentina</span>
+        </div>
+        <div mat-card-avatar class="logo-cr">
+          <img src="../../../assets/icons - navbar/CredencialLogo.jpg" alt="">
+        </div>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              Cargo.: {{this.currentUser.roleName}}
+            </ion-col>
+            <ion-col offset-4="">
+              Válido desde: 10/21
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              Fecha de Ing.: 10/21
+            </ion-col>
+            <ion-col offset-4="">
+              Sucursal: {{this.currentUser.estates.locationCityName}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+</div> -->
+
+<!-- Formulario -->
+
+<!-- <form [formGroup]="fg" (ngSubmit)="onSubmit()"> -->
+
+  <!-- <ion-list> -->
+    <!-- Avatar - Solo voluntarios -->
+    <!-- <div class="avatarMrg" *ngIf="currentUser.roleName == 'Voluntario'">
+      <ion-avatar class="avatar" >
+        <img src="{{this.currentUser.volunteerAvatar}}">
+        <ion-button class="cameraBtn" (click)="selectImage()">
+          <ion-icon size="large" button name="camera-outline"></ion-icon>
+        </ion-button>
+      </ion-avatar>
+    </div> -->
+
+    <!-- Card de datos de contacto -->
+
+    <!-- <ion-card> -->
+
+      <!--Header del card-->
+
+      <!-- <ion-card-header>
+        <ion-card-title>
+          Datos de contacto
+        </ion-card-title>
+      </ion-card-header> -->
+
+      <!--Contenido del card-->
+
+      <!-- <ion-card-content formGroupName="persons">
+
+        <ion-item>
+          <ion-label position="floating">Correo electrónico</ion-label>
+          <ion-input formControlName="email" name="email" type="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Teléfono</ion-label>
+          <ion-input formControlName="phone" name="phone" type="phone" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Domicilio</ion-label>
+          <ion-input formControlName="address" name="address" type="address" required></ion-input>
+        </ion-item>
+        <ion-item id="accSelect">
+          <ion-label>Disponibilidad</ion-label>
+          <ion-select cancelText="Cancelar" okText="Aceptar" value="{{this.currentUser.persons.status}}">
+            <ion-select-option value="true">Disponible</ion-select-option>
+            <ion-select-option value="false">No disponible</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content> -->
+      <!-- [disabled]="!initForm().valid" -->
+
+    <!-- Contraseña -->
+
+      <!--Header-->
+
+      <!-- <ion-card-header>
+        <ion-card-title>
+          Contraseña
+        </ion-card-title>
+      </ion-card-header> -->
+
+      <!--Contenido-->
+
+      <!-- <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Actual contraseña</ion-label>
+          <ion-input formControlName="Password" name="password" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Nueva contraseña</ion-label>
+          <ion-input formControlName="NewPassword" name="newPassword" type="text" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Repetir contraseña</ion-label>
+          <ion-input formControlName="RepeatPassword" name="repeatPassword" type="text" required></ion-input>
+        </ion-item>
+      </ion-card-content> -->
+
+      <!-- [disabled]="!initForm().valid" -->
+      <!-- <ion-button class="accButton" type="submit" shape="round" (click)="onSubmit()">Guardar</ion-button> -->
+    <!-- </ion-card> -->
+
+    <!-- Card de Voluntario -->
+
+    <!-- <ion-card *ngIf="currentUser.roleName == 'Voluntario'">
+-->
+      <!--Header del card-->
+
+      <!-- <ion-card-header>
+        <ion-card-title>
+          Voluntario
+        </ion-card-title>
+      </ion-card-header> -->
+
+      <!--Contenido del card-->
+
+     <!--  <ion-card-content> -->
+        <!-- <ion-item>
+          <ion-label position="floating">Descripción del Voluntario</ion-label>
+          <ion-label>{{currentUser.volunt}}</ion-label>
+        </ion-item> -->
+
+        <!-- <ion-item>
+          <ion-label position="floating">Habilidades de los Voluntarios</ion-label>
+          <ion-input formControlName="NewPassword" name="newPassword" type="text" required></ion-input>
+        </ion-item> -->
+
+     <!--  </ion-card-content> -->
+      <!-- [disabled]="!initForm().valid" -->
+      <!-- <ion-button class="accButton" type="submit" shape="round" >Guardar</ion-button>
+    </ion-card> -->
+
+  <!-- </ion-list>
+</form> -->
