@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button type="button" defaultHref="alertas"></ion-back-button>
+      <ion-back-button type="button" ></ion-back-button>
     </ion-buttons>
     <ion-title>Informe</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <section class="modo">
+  <section *ngIf="isLoading" class="modo">
     <div class="tab-content">
       <div>
         <h4>
@@ -23,16 +23,16 @@
               a'}}</span>
           </p>
 
-          <p>
+          <!-- <p>
             <ion-icon id="responsibleIcon" name="person-outline"></ion-icon>
             <span>Responsable:
               {{emergencies.employees.name}}
             </span>
-          </p>
+          </p> -->
         </div>
 
-        <ion-icon name="locate-outline" [routerLink]="['/alertas','volunteerMap']"></ion-icon>
-        <ion-icon name="accessibility-outline" [routerLink]="['/alertas','emergency', emergencies.emergencyDisasterID]" class="volunteers"></ion-icon>
+        <ion-icon name="locate-outline" [routerLink]="['volunteerMap']"></ion-icon>
+        <ion-icon name="accessibility-outline" [routerLink]="['emergency/', emergencies.emergencyDisasterID]" class="volunteers"></ion-icon>
 
         <div class="date map-container">
           <div class="location map-frame">

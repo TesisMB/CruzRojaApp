@@ -4,10 +4,11 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row wrap>
+    <!-- <ion-row wrap> -->
       <ng-container *ngIf="alerts.length; else noData">
-      <ion-col (click)="deploymentButton(i)" *ngFor="let alert of alerts; index as i" size="3" fixed
-        [ngClass]="{
+      <ion-col  *ngFor="let alert of alerts; index as i" size="4" fixed
+       > 
+        <div (click)="deploymentButton(i)" [ngClass]="{
           'circulo': alert.alerts.alertDegree === 'Moderado',
           'triangulo': alert.alerts.alertDegree === 'Controlado',
           'cuadrado': alert.alerts.alertDegree === 'Extremo'}"
@@ -15,9 +16,11 @@
           backgroundColor: getColor(alert.alerts.alertDegree)
         }">
         <img id="emergencyIcon"
-          src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg" />
+        src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg" />
         <div class="card-content">
           <h3 class="subtitle">ID: {{alert.emergencyDisasterID}}</h3>
+        </div>
+       
         </div>
       </ion-col>
     </ng-container>
@@ -27,7 +30,7 @@
      <p class="text-center mt-3">No se han emitido alerta!</p>
     </div>
     </ng-template>
-    </ion-row>
+    <!-- </ion-row> -->
   </ion-grid>
 </ion-content>
 <!-- <app-menu showTabs></app-menu> -->

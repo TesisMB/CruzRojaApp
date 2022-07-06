@@ -9,6 +9,6 @@ export interface EmergenciesDisasters {
   locationsEmergenciesDisasters: LocationsEmergenciesDisasters;
   typesEmergenciesDisasters: TypeEmergenciesDisasters;
   alerts: Alert;
-  chatRooms: ChatRooms
-  volunteer: Volunteer
+  chatRooms: ChatRooms;
+  volunteer: Volunteer;
 }

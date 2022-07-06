@@ -107,7 +107,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
   postChat() {
     this.chatForm.get('FK_ChatRoomID').patchValue(this.id);
     this.chatForm.get('FK_UserID').patchValue(this.observableUser.userID);
-    this.chatForm.get('name').patchValue(this.observableUser.persons.firstName)
+    this.chatForm.get('name').patchValue(this.observableUser.persons.firstName);
 
     // Agregamos un nuevo mensaje
     //envia todo los valores del formulario

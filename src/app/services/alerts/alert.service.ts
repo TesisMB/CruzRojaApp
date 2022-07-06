@@ -16,13 +16,14 @@ export class AlertService extends DataService {
 
   constructor(http: HttpClient) {
     super(http, '/emergenciesdisasters/WithoutFilter');
-    this.currentAlertSubject = new BehaviorSubject<EmergenciesDisasters>(null);
+    this.currentAlertSubject = new BehaviorSubject<EmergenciesDisasters>(JSON.parse(localStorage.getItem('alerta')));
     this.currentAlert$ = this.currentAlertSubject.asObservable();
   }
 get currentAlert(){return this.currentAlert$;}
 
   setAlert(alert: EmergenciesDisasters){
     const alertObject = alert;
+    localStorage.setItem('alerta',JSON.stringify(alert));
     this.currentAlertSubject.next(alertObject);
   }
 

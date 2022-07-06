@@ -21,25 +21,25 @@ const routes: Routes = [
       {
         path: 'deployment',
         component: DeploymentPage,
+        children: [
+          {
+             path: 'emergency/:id',
+             component: VolunteersPage,
+             children: [
+                 {
+                   path: 'details/:id',
+                   component: VoluntariosDetallesPage
+                 },
+        ]
       },
       {
         path: 'volunteerMap',
         component: MapViewComponent,
       }
-
+        ]
+      },
     ]
   },
-      {
-         path: 'emergency/:id',
-         component: VolunteersPage,
-         children: [
-             {
-               path: 'details/:id',
-               component: VoluntariosDetallesPage
-             },
-    ]
-  },
-
 ];
 
 @NgModule({

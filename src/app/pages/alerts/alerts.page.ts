@@ -31,15 +31,22 @@ export class AlertsPage implements OnInit {
     private ionLoader: LoaderService
   ) { }
 
+  ionViewWillEnter() { // or you can use ionViewWillEnter()
+    this.ionLoader.showLoader(); }
+
+// ionViewDidEnter() {
+//     this.ionLoader.hideLoader();
+// }
   ngOnInit() {
     this.getAllAlerts();
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   getAllAlerts(){
     this.handlerAlerts = this.alertService.getAll().subscribe((x: EmergenciesDisasters[]) =>{
     console.log('ingreso Alertas');
     this.alerts = x;
+    this.ionLoader.hideLoader();
    });
   }
 
@@ -47,9 +54,9 @@ export class AlertsPage implements OnInit {
 
   showLoader() {
     this.ionLoader.showLoader();
-    setTimeout(() => {
-      this.hideLoader();
-    }, 2000);
+    // setTimeout(() => {
+    //   this.hideLoader();
+    // }, 2000);
   }
 
   hideLoader() {
@@ -57,11 +64,11 @@ export class AlertsPage implements OnInit {
   }
 
   deploymentButton(index){
-    this.showLoader();
+    // this.showLoader();
     const alert = this.alerts[index];
     this.alertService.setAlert(alert);
     this.id = index;
-    this.router.navigateByUrl('/alertas/deployment');
+    this.router.navigate(['deployment']);
   }
 
   /* Función para usar el color  */

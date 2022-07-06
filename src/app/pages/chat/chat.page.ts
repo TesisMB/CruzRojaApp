@@ -45,7 +45,7 @@ export class ChatPage implements OnInit {
 
   navigateToGroupChat(id: number){
     this.groupChatService.setChatRoomId(id);
-    this.router.navigate(['chat','groupChat', id]);
+    this.router.navigate(['groupChat', id]);
   }
 
   getChat() {

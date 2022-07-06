@@ -41,9 +41,11 @@ export class LoaderService {
   // Hide the loader if already created otherwise return error
   hideLoader() {
 
-    this.loadingController.dismiss().then((res) => {
+    this.loadingController.dismiss()
+    .then((res) => {
       console.log('Loading dismissed!', res);
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.log('error', error);
     });
 

@@ -10,6 +10,7 @@ import 'leaflet/dist/images/marker-icon-2x.png';
 import 'leaflet/dist/images/marker-shadow.png';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
   selector: 'app-deployment',
@@ -24,6 +25,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   isAccepted = false;
   currentUser: any;
   map: L.Map;
+  isLoading = true;
 
   constructor(
     private alertService: AlertService,
@@ -32,16 +34,17 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     private router: Router,
     private location: Location,
     private placesService: PlacesService,
+    private ionLoader: LoaderService
   ) { }
-
   ngOnInit() {
     // this.getPlacesByQuery();
     // eslint-disable-next-line no-underscore-dangle
     this.handleDeployment = this.alertService.currentAlert.subscribe(
       data =>{
         this.emergencies = data;
-        this.initMap();
         console.log('asd', data);
+      // this.ionLoader.hideLoader();
+        // this.initMap();
       });
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log('Estoy en: ', window.location.pathname);
@@ -87,8 +90,8 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   initMap(){
     const map = L.map('map').setView(
       [
-        this.emergencies.locationsEmergenciesDisasters.locationLatitude,
-         this.emergencies.locationsEmergenciesDisasters.locationLongitude
+        this.emergencies.locationsEmergenciesDisasters.locationlatitude,
+         this.emergencies.locationsEmergenciesDisasters.locationlongitude
         ], 15);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
@@ -101,13 +104,13 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     accessToken: 'pk.eyJ1IjoibWdjc29hZCIsImEiOiJjbDA1eXpoOGwwdWQ3M2tueXVycHFqMzhlIn0.CXkUig7PQwf0piWpitvI2w'
 
   }).addTo(map);
-  setTimeout(() => {
-    map.invalidateSize();
-  }, 500);
+  // setTimeout(() => {
+  //   map.invalidateSize();
+  // }, 500);
 
     const marker = L.marker(
-      [this.emergencies.locationsEmergenciesDisasters.locationLatitude,
-      this.emergencies.locationsEmergenciesDisasters.locationLongitude
+      [this.emergencies.locationsEmergenciesDisasters.locationlatitude,
+      this.emergencies.locationsEmergenciesDisasters.locationlongitude
     ],
       {
       fillColor: '#ccc'
@@ -115,8 +118,8 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     .addTo(map);
 
     const circle =  L.circle(
-      [this.emergencies.locationsEmergenciesDisasters.locationLatitude,
-         this.emergencies.locationsEmergenciesDisasters.locationLongitude
+      [this.emergencies.locationsEmergenciesDisasters.locationlatitude,
+         this.emergencies.locationsEmergenciesDisasters.locationlongitude
         ],
          500, {
       color: 'red',

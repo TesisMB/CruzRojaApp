@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Messages } from 'src/app/models';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -41,7 +41,7 @@ export class GroupchatService {
   //Me conecto al hub
   public createConnection() {
     const builder = new HubConnectionBuilder();
-    this.hubConnection = builder.withUrl('https://localhost:5001/chat').build();
+    this.hubConnection = builder.withUrl(environment.hubURL).build();
   }
 
   //Inicio la conexion
