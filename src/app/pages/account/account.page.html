@@ -1,17 +1,69 @@
 <app-header titulo="Cuenta"></app-header>
 
 <ion-content>
-  <div class="header" *ngIf="currentUser.roleName == 'Voluntario'">
-    <div class="header-info">
+  <div class="container">
+    <div class="overlay">
       <ion-avatar>
         <img src="{{this.currentUser.volunteerAvatar}}">
+      </ion-avatar>
+    </div>
+  </div>
+
+  <ion-card>
+    <ion-card-header *ngIf="currentUser.roleName == 'Voluntario'">
+      <ion-card-title>
+        {{this.currentUser.persons.lastName}}, {{this.currentUser.persons.firstName}}
+      </ion-card-title>
+      <ion-card-subtitle>
+        {{this.currentUser.roleName}}
+      </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card-content>
+    <ion-card-title>
+      Mi Información
+    </ion-card-title>
+      <ion-item button="true" (click)="navigateToPersonalInfo()">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Información Personal</ion-label>
+      </ion-item>
+      <ion-item button="true" (click)="navigateToPassword()">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-label>Contraseña</ion-label>
+      </ion-item>
+
+      <ion-card-title>
+        Información de Voluntarios
+      </ion-card-title>
+
+      <ion-item button="true" (click)="navigateToVolunteerCredentials()">
+        <ion-icon name="document-text-outline"></ion-icon>
+        <ion-label>Credenciales</ion-label>
+      </ion-item>
+
+      <ion-item button="true" (click)="navigateToVolunteerSkills()">
+        <ion-icon name="triangle-outline"></ion-icon>
+        <ion-label>Habilidades</ion-label>
+      </ion-item>
+
+      <ion-item lines="none" button="true" (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+  </ion-card-content>
+
+  <!-- <div class="header" *ngIf="currentUser.roleName == 'Voluntario'">
+    <div class="header-info">
+      <ion-avatar>
+
       </ion-avatar>
         <h4>{{this.currentUser.persons.lastName}}, {{this.currentUser.persons.firstName}}</h4>
         <h4>{{this.currentUser.roleName}}</h4>
     </div>
   </div>
-
-  <ion-list>
+ -->
+<!--   <ion-list>
     <h5>Mi Información</h5>
       <ion-item button="true" (click)="navigateToPersonalInfo()">
         <ion-icon name="person-outline"></ion-icon>
@@ -42,7 +94,7 @@
         <ion-label>Cerrar sesión</ion-label>
       </ion-item>
     </ion-list>
-  </ion-list>
+  </ion-list> -->
   <span class="version">Versión 1.0.0</span>
 
 </ion-content>

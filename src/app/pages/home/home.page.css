@@ -1,6 +1,10 @@
 
 /* Componentes de Ionic */
 
+  a{
+    color: white;
+  }
+
   ion-card{
     width: 100%;
     height: 350px;
