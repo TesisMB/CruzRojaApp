@@ -8,7 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <section *ngIf="isLoading" class="modo">
+  <!-- <section *ngIf="isLoading" class="modo"> -->
+  <section class="modo">
     <div class="tab-content">
       <div>
         <h4>
@@ -21,15 +22,15 @@
             <ion-icon id="calendarIcon" name="calendar-outline"></ion-icon>
             <span>Fecha de inicio: {{emergencies.emergencyDisasterStartDate | date: 'dd/MM/yyyy hh:mm:ss
               a'}}</span>
-          </p> 
-</div>
-          <!-- <p>
+          </p>
+        </div>
+        <!-- <p>
             <ion-icon id="responsibleIcon" name="person-outline"></ion-icon>
             <span>Responsable:
               {{emergencies.employees.name}}
             </span>
           </p>  -->
-        
+
 
         <!-- <ion-icon name="locate-outline" [routerLink]="['volunteerMap']"></ion-icon>
         <ion-icon name="accessibility-outline" [routerLink]="['emergency/', emergencies.emergencyDisasterID]" class="volunteers"></ion-icon> -->
@@ -38,12 +39,12 @@
           <div class="location map-frame">
             <div id="map">
             </div>
-        </div>
-        <div class="d-flex justify-content-center align-content-center">
-          <h2>
-            Instrucciones
-          </h2>
-    </div>
+          </div>
+          <div class="d-flex justify-content-center align-content-center">
+            <h2>
+              Instrucciones
+            </h2>
+          </div>
           <div class="instruction location">
             {{emergencies.emergencyDisasterInstruction}}
           </div>
@@ -51,9 +52,8 @@
       </div>
     </div>
 
-    <ion-button shape="round" class="accButton"
-      *ngIf="!isSubscribe"
-      [disabled]="isSubscribe" (click)="setChatGroup()" expand="block">
+    <ion-button shape="round" class="accButton" *ngIf="!isSubscribe" [disabled]="isSubscribe" (click)="setChatGroup()"
+      expand="block">
       Subscribirme a la alerta!
     </ion-button>
   </section>

@@ -104,9 +104,9 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     accessToken: 'pk.eyJ1IjoibWdjc29hZCIsImEiOiJjbDA1eXpoOGwwdWQ3M2tueXVycHFqMzhlIn0.CXkUig7PQwf0piWpitvI2w'
 
   }).addTo(map);
-  // setTimeout(() => {
-  //   map.invalidateSize();
-  // }, 500);
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 500);
 
     const marker = L.marker(
       [this.emergencies.locationsEmergenciesDisasters.locationlatitude,
