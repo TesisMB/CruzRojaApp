@@ -12,60 +12,54 @@
 <!-- Formulario -->
 
 <form [formGroup]="fg" (ngSubmit)="onSubmit()">
-  <ion-list>
-    <ion-card>
 
-      <!-- Información Personal -->
+  <ion-card>
 
-      <!--Header-->
+    <!--Header del card-->
 
-      <ion-card-header>
-        <ion-card-title>
-          Datos de contacto
-        </ion-card-title>
-      </ion-card-header>
+    <ion-card-header>
+      <ion-card-title>
+        Datos de contacto
+      </ion-card-title>
+    </ion-card-header>
 
-      <!--Contenido-->
+    <!--Contenido del card-->
 
-      <ion-card-content formGroupName="persons">
-        <ion-item>
-          <ion-label position="floating">Correo electrónico</ion-label>
-          <ion-input formControlName="email" name="email" type="email" required></ion-input>
-        </ion-item>
+    <ion-card-content formGroupName="persons">
 
-        <ion-item>
-          <ion-label position="floating">Teléfono</ion-label>
-          <ion-input formControlName="phone" name="phone" type="phone" required></ion-input>
-        </ion-item>
+      <ion-item>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input formControlName="email" name="email" type="email" required></ion-input>
+      </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Domicilio</ion-label>
-          <ion-input formControlName="address" name="address" type="address" required></ion-input>
-        </ion-item>
+      <ion-item>
+        <ion-label position="floating">Teléfono</ion-label>
+        <ion-input formControlName="phone" name="phone" type="phone" required></ion-input>
+      </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Ciudad</ion-label>
-          <ion-input formControlName="locationCityName" name="locationCityName" type="locationCityName" required></ion-input>
-        </ion-item>
-
-        <ion-item id="accSelect">
-          <ion-label>Disponibilidad</ion-label>
-          <ion-select cancelText="Cancelar" okText="Aceptar" value="{{this.currentUser.persons.status}}">
-            <ion-select-option value="true">Disponible</ion-select-option>
-            <ion-select-option value="false">No disponible</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
-  <ion-button
-    [disabled]="!initForm().valid"
-    class="accButton"
-    type="submit"
-    shape="round"
-    (click)="onSubmit()"
-    >
-  Guardar
-  </ion-button>
+      <ion-item>
+        <ion-label position="floating">Domicilio</ion-label>
+        <ion-input formControlName="address" name="address" type="address" required></ion-input>
+      </ion-item>
+      <ion-item id="accSelect">
+        <ion-label>Disponibilidad</ion-label>
+        <ion-select cancelText="Cancelar" okText="Aceptar" value="{{this.currentUser.persons.status}}">
+          <ion-select-option value="true">Disponible</ion-select-option>
+          <ion-select-option value="false">No disponible</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+    <!-- [disabled]="!initForm().valid" -->
 </form>
+
+<ion-button
+[disabled]="!initForm().valid"
+class="accButton"
+type="submit"
+shape="round"
+(click)="onSubmit()"
+>
+Guardar
+</ion-button>
 </ion-content>

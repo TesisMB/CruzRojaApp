@@ -5,6 +5,7 @@ import { compare } from 'fast-json-patch';
 import * as _ from 'lodash';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { User } from 'src/app/models';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-volunteercredentials',
   templateUrl: './volunteercredentials.page.html',
@@ -20,7 +21,9 @@ export class VolunteercredentialsPage implements OnInit {
   fg: FormGroup;
   service: ProfileService;
 
-  constructor(private formBuilder: FormBuilder,) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    public toastController: ToastController) { }
 
   ngOnInit() {
     this.fg = this.initForm();
@@ -28,6 +31,15 @@ export class VolunteercredentialsPage implements OnInit {
     console.log('LocalStorage', this.currentUser);
     this.fg.patchValue(this.currentUser);
     this.model = _.cloneDeep(this.currentUser);
+  }
+
+  async presentToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      mode: 'md',
+    });
+    toast.present();
   }
 
   initForm(): FormGroup{
@@ -42,6 +54,12 @@ export class VolunteercredentialsPage implements OnInit {
         locationCityName: ['',[Validators.required, Validators.maxLength(25)]],
       }),
     });
+  }
+
+  onSubmit(){
+    if(this.fg.valid){
+      const patch = compare(this.model, this.fg.value);
+    }
   }
 
 }

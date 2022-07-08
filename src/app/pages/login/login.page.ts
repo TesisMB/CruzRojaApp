@@ -82,8 +82,8 @@ export class LoginPage implements OnInit {
       .login(this.f.userDni.value, this.f.userPassword.value)
       .subscribe(
         res => {
-          this.hideLoader();
           this.isLoading = true;
+          this.hideLoader();
           this.router.navigateByUrl('', { replaceUrl: true });
         },
 
