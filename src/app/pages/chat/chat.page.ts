@@ -6,6 +6,7 @@ import { ChatService } from './../../services/chat/chat.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs/operators';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
   selector: 'app-chat',
@@ -20,18 +21,29 @@ export class ChatPage implements OnInit {
   currentUserHandler: any;
   chatRooms:  ChatRooms[] = [];
   activeTab = 'chats';
+  isLoading = true;
 
   constructor(
     public router: Router,
     public service: ChatService,
     private groupChatService: GroupchatService,
+    private ionLoader: LoaderService,
     private services: LoginService
   ) {
 
   }
 
+
+  ionViewWillEnter() { // or you can use ionViewWillEnter()
+    this.ionLoader.showLoader();
+    this.getCurrentUser();
+  }
+
   ngOnInit() {
     this.getChat();
+  }
+
+  getCurrentUser(){
     this.currentUserHandler = this.services.currentUserObs.subscribe(resp => {
       this.observableUser = resp;
     }, err => {
@@ -53,6 +65,8 @@ export class ChatPage implements OnInit {
     .pipe(delay(1500))
     .subscribe((x: ChatRooms[]) => {
       this.chatRooms = x;
+     this.ionLoader.hideLoader();
+    this.isLoading = false;
       console.log('entro chat');
       //console.log("ChatRooms => ", this.chatRooms);
       console.log('Chat =>', this.chatRooms);

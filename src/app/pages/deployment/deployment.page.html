@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button type="button" ></ion-back-button>
+      <ion-back-button defaultHref="/tabs/alertas"></ion-back-button>
     </ion-buttons>
     <ion-title>Informe</ion-title>
   </ion-toolbar>
@@ -12,41 +12,41 @@
     <div class="tab-content">
       <div>
         <h4>
-          {{emergencies.locationsEmergenciesDisasters.locationCityName}} -
-          {{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterName}}
+          {{emergencies.locationsEmergenciesDisasters.locationCityName}}
         </h4>
+        <h5>{{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterName}}</h5>
 
         <div class="calendarResponsible">
           <p>
             <ion-icon id="calendarIcon" name="calendar-outline"></ion-icon>
             <span>Fecha de inicio: {{emergencies.emergencyDisasterStartDate | date: 'dd/MM/yyyy hh:mm:ss
               a'}}</span>
-          </p>
-
+          </p> 
+</div>
           <!-- <p>
             <ion-icon id="responsibleIcon" name="person-outline"></ion-icon>
             <span>Responsable:
               {{emergencies.employees.name}}
             </span>
-          </p> -->
-        </div>
+          </p>  -->
+        
 
-        <ion-icon name="locate-outline" [routerLink]="['volunteerMap']"></ion-icon>
-        <ion-icon name="accessibility-outline" [routerLink]="['emergency/', emergencies.emergencyDisasterID]" class="volunteers"></ion-icon>
+        <!-- <ion-icon name="locate-outline" [routerLink]="['volunteerMap']"></ion-icon>
+        <ion-icon name="accessibility-outline" [routerLink]="['emergency/', emergencies.emergencyDisasterID]" class="volunteers"></ion-icon> -->
 
         <div class="date map-container">
           <div class="location map-frame">
             <div id="map">
             </div>
         </div>
-
+        <div class="d-flex justify-content-center align-content-center">
           <h2>
             Instrucciones
           </h2>
-
-          <!-- <div class="instruction location">
+    </div>
+          <div class="instruction location">
             {{emergencies.emergencyDisasterInstruction}}
-          </div> -->
+          </div>
         </div>
       </div>
     </div>

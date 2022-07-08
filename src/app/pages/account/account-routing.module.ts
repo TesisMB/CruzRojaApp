@@ -15,8 +15,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: AccountPage
-      },
+        component: AccountPage,
+        children: [
       {
         path: 'personalinfo',
         component: PersonalinfoPage
@@ -33,6 +33,8 @@ const routes: Routes = [
         path: 'volunteercredentials',
         component: VolunteercredentialsPage
       },
+     ]
+    },
     ]
   },
 ];

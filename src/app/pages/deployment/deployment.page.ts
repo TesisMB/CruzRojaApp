@@ -44,7 +44,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
         this.emergencies = data;
         console.log('asd', data);
       // this.ionLoader.hideLoader();
-        // this.initMap();
+         this.initMap();
       });
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log('Estoy en: ', window.location.pathname);
@@ -146,7 +146,7 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
   }
 
   navigateVolunteer(){
-    this.router.navigate(['emergency/',  this.emergencies.emergencyDisasterID ]);
+    this.router.navigate(['emergency/',  this.emergencies.emergencyDisasterID]);
   }
 
   /* async showToast(msg: string, duration: number) {

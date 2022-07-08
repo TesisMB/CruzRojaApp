@@ -17,7 +17,7 @@
       </ion-segment-button> -->
   <!-- </ion-segment>
   </div> -->
-  <ng-container *ngIf="chatRooms.length; else noData">
+  <ng-container *ngIf="chatRooms.length && !isLoading">
   <div *ngFor="let chat of chatRooms">
     <div class="div_padding">
       <ion-list>
@@ -35,7 +35,7 @@
     </div>
   </div>
   </ng-container>
-<ng-template #noData>
+<ng-template #noData *ngIf="!chatRooms.length && !isLoading">
   <div class="d-flex flex-column align-items-center align-content-center m-5">
   <img src="https://blush.design/api/download?shareUri=NsOLYp58jGydWYSf&c=Skin_0%7Eff9ba5&w=800&h=800&fm=png" style="height: 300px;" alt="">
  <p class="text-center mt-3">Subscribase a una alerta!</p>
@@ -43,7 +43,7 @@
 </ng-template>
   <!-- Skeleton text -->
 
-  <ion-list *ngIf="!chatRooms">
+  <ion-list *ngIf="isLoading">
     <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1]">
       <ion-thumbnail slot="start">
         <ion-skeleton-text></ion-skeleton-text>

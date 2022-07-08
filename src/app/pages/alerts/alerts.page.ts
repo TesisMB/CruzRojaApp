@@ -24,6 +24,7 @@ export class AlertsPage implements OnInit {
   handlerAlertsTypes: any;
   currentUser: any;
   id= null;
+  isLoading = true;
 
   constructor(
     private alertService: AlertService,
@@ -32,21 +33,38 @@ export class AlertsPage implements OnInit {
   ) { }
 
   ionViewWillEnter() { // or you can use ionViewWillEnter()
-    this.ionLoader.showLoader(); }
-
-// ionViewDidEnter() {
-//     this.ionLoader.hideLoader();
-// }
-  ngOnInit() {
+    this.ionLoader.showLoader();
     this.getAllAlerts();
-    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
+//  ionViewDidEnter() {
+//      this.ionLoader.hideLoader();
+//  }
+  ngOnInit() {
+  }
+  segmentChanged(ev: any) {
+    const chatsRooms = [];
+    this.isLoading = true;
+    console.log('Segment changed', ev);
+    if(ev.detail.value === 'old'){
+    this.alerts.forEach(x => chatsRooms.push(x.chatRooms.usersChatRooms));
+  const users =  chatsRooms.forEach(x => x.find(u => u.userID === this.currentUser.userID));
+    console.log(chatsRooms);
+    console.log(users);
+    this.alerts = [];
+    }
+    if(ev.detail.value === 'new'){
+
+    this.getAllAlerts();
+    }
+    // this.isLoading = false;
+  }
   getAllAlerts(){
     this.handlerAlerts = this.alertService.getAll().subscribe((x: EmergenciesDisasters[]) =>{
-    console.log('ingreso Alertas');
     this.alerts = x;
-    this.ionLoader.hideLoader();
+     this.ionLoader.hideLoader();
+    this.isLoading = false;
    });
   }
 

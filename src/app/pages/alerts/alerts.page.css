@@ -1,18 +1,25 @@
 /* Descripción de Emergencias */
-
+ion-content{
+  width: 100%;
+}
 ion-col {
-  padding: 0 !important;
+  /* padding: 0 !important;
   flex-direction: column-reverse;
   align-items: center;
   border-radius: 10px;
   margin-top: 18px;
-  margin-left: 5px;
+  margin-left: 5px; */
 }
 
 ion-row {
-  display: flex;
-  justify-content: space-around;
-  width: 93%;
+  /* display: flex;
+  justify-content: space-around;*/
+  /* width: 93%; */
+} 
+
+ion-card-content {
+/* display: flex; */
+/* flex-direction: row; */
 }
 
 .card-content {
@@ -21,6 +28,7 @@ ion-row {
 
 .subtitle {
   font-size: 12px;
+  text-align: center;
   font-weight: 700;
 }
 
@@ -28,38 +36,33 @@ ion-row {
 
 #emergencyIcon {
   width: 50%;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 }
 
 /* Iconos */
 
 .circulo {
-  width: 80px;
-  height: 80px;
+  /* width: 80px;
+  height: 80px; */
   border-radius: 50%;
   border: 1px solid #000;
-  margin: 5px 0;
+  /* margin: 5px 0; */
 }
 
 .triangulo {
-  border-right: 60px solid transparent;
-  border-left: 60px solid transparent;
-  border-bottom: 60px solid white;
-  /* position: fixed; */
-  /* bottom: 0; */
-  /* left: 50%; */
-  /* right: 50%; */
-  transform: translateX(-50%);
-  background-position: center;
-  background-size: cover;
-  height: 79px;
-  width: 89px;
-  z-index: 100;
+  width: 60px;
+  border-top: 1px solid;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  height: 60px;
+  /* background: red linear-gradient(red, blue); */
+  clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
 }
 
 .cuadrado {
-  width: 80px;
-  height: 80px;
+  /* width: 80px;
+  height: 80px; */
   border: 1px solid #000;
-  margin: 5px 0;
+  /* margin: 5px 0; */
 }

@@ -76,7 +76,7 @@ span {
 
 .location {
   border: 1px solid #ccc;
-  height: 180px;
+  height: max-content;
   font-size: 11px
 }
 

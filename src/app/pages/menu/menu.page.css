@@ -3,7 +3,7 @@
 
   ion-tab-bar{
     font-size: 20px;
-    --background: rgba(24, 24, 24, 1);
+    --background: white;
     /* position: absolute;
     height:60px;
     width: 90%;
@@ -18,7 +18,7 @@
   }
 
   ion-tab-button{
-    --background: rgba(0, 0, 0, 0.45);
+    /* --background: rgba(0, 0, 0, 0.45); */
   }
 
   ion-icon{
