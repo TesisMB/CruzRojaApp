@@ -3,7 +3,8 @@
       <ion-buttons slot="start">
         <ion-back-button type="button" defaultHref='tabs/chat'></ion-back-button>
       </ion-buttons>
-    </ion-toolbar>
+    <ion-title>#{{id}}</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <!-- <div class="header ion-no-border">
@@ -59,7 +60,7 @@
       <!--  <input type="text" placeholder="Usuario" id="user"
       (change)="value()" /> -->
 
-      <textarea autosize maxRows="3" type="text"formControlName="message" name="message" placeholder="Enviar mensaje..." id="chat-input"></textarea>
+      <textarea autosize maxRows="3" type="text" formControlName="message" name="message" placeholder="Enviar mensaje..." id="chat-input"></textarea>
 
       <button type="submit" class="btnSend" [disabled]="chatForm.get('message').invalid">
         <ion-icon id="btnIcon" name="send-sharp"></ion-icon>

@@ -2,7 +2,7 @@ import { PlacesService } from './../../services/places/places.service';
 import { EmergenciesDisasters } from './../../models/EmergenciesDisasters';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { AlertService } from 'src/app/services/alerts/alert.service';
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import * as L from 'LeafLet';
 
@@ -17,15 +17,15 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
   templateUrl: './deployment.page.html',
   styleUrls: ['./deployment.page.css'],
 })
-export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
+export class DeploymentPage implements OnInit, OnDestroy  {
 
+  @Input() emergencies: EmergenciesDisasters = null;
   handleDeployment: any;
-  emergencies: EmergenciesDisasters = null;
   handlerChat: any;
   isAccepted = false;
   currentUser: any;
   map: L.Map;
-  isLoading = true;
+  isLoading = false;
 
   constructor(
     private alertService: AlertService,
@@ -36,42 +36,47 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     private placesService: PlacesService,
     private ionLoader: LoaderService
   ) { }
+
+
+  public get isSubscribe(){
+    return this.emergencies.isSubscribe;
+  }
   ngOnInit() {
     // this.getPlacesByQuery();
     // eslint-disable-next-line no-underscore-dangle
+    //   console.log('Estoy en: ', window.location.pathname);
+    // this.ionLoader.showLoader();
     this.handleDeployment = this.alertService.currentAlert.subscribe(
       data =>{
         this.emergencies = data;
-        console.log('asd', data);
-      // this.ionLoader.hideLoader();
-         this.initMap();
+        console.log('alerta =>', data);
+        this.initMap();
+        // this.ionLoader.hideLoader();
       });
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log('Estoy en: ', window.location.pathname);
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
+    ionViewWillEnter(){
   }
 
-  ngAfterViewInit(): void {
-
-  }
-
-  get isSubscribe(){
-    if(this.emergencies.chatRooms && this.currentUser.roleName === 'Voluntario' && this.emergencies.alerts.alertDegree !== 'Controlado'){
-        return this.emergencies.chatRooms.usersChatRooms.find(x => x.userID === this.currentUser.userID);
-      }
-    else {
-  return true;
-}}
 
   setChatGroup(){
+    this.isLoading = true;
+    this.ionLoader.showLoader();
     console.log(this.emergencies);
-    this.handlerChat = this.chatService.joinGroup(this.emergencies.emergencyDisasterID).subscribe(data =>{
+    this.handlerChat = this.chatService.joinGroup(this.emergencies.emergencyDisasterID)
+    .subscribe(
+    (data) =>{
       console.log('Aceptado');
-        this.isAccepted = true;
-      this.location.back();
-    }, error =>{
-      console.log('error', error);
-        this.showToast('Ya se ha aceptado la emergencia', 3000);
-        this.isAccepted = true;
+      this.emergencies.isSubscribe = true;
+      this.ionLoader.hideLoader();
+      this.isLoading = false;
+},
+    (error) =>{
+    console.log('error', error);
+     this.ionLoader.hideLoader();
+     this.showToast('Usted ya esta registrado en esta alerta', 3000);
+     this.isAccepted = true;
+     this.isLoading = false;
     });
   }
 
@@ -162,3 +167,4 @@ export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
     this.handleDeployment.unsubscribe();
   }
 }
+

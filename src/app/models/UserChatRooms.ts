@@ -1,6 +1,7 @@
 export interface UserChatRooms {
-  userID: number;
   name: string;
-  userDni: string;
+  picture: string;
   roleName: string;
+  userDni: string;
+  userID: number;
 }

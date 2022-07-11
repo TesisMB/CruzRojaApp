@@ -7,19 +7,16 @@
 <ion-content>
 
     <ion-toolbar>
-      <ion-segment (ionChange)="segmentChanged($event)" color="danger" value="new">
-        <ion-segment-button value="new">
+      <ion-segment (ionChange)="segmentChanged($event)" color="danger" value="false">
+        <ion-segment-button value='false'>
           <ion-label>Nuevas alertas</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="old">
+        <ion-segment-button value='true'>
           <ion-label>Mis alertas</ion-label>
         </ion-segment-button>
       </ion-segment>
   </ion-toolbar>
-  <ng-container *ngIf="alerts.length; else noData">
-    <div *ngIf="isLoading" class="d-flex flex-column align-items-center align-content-center m-5">
-      <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
-    </div>
+  <ng-container *ngIf="alerts.length">
 
   <ion-list *ngIf="!isLoading" lines="inset" mode="md">
     
@@ -42,14 +39,30 @@
     
 
   </ion-list>
+
+  <ion-list *ngIf="isLoading">
+    <ion-item *ngFor="let item of [1,1,1,1,1,1]">
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ng-container> 
 
-<ng-template #noData>
+<ng-container *ngIf="!alerts.length && !isLoading">
       <div class="d-flex flex-column align-items-center align-content-center m-5">
       <img src="https://blush.design/api/download?shareUri=hlIniFJKcV8E0KWj&c=Skin_0%7Eff9ba5&w=800&h=800&fm=png" style="height: 250px;" alt="">
      <p class="text-center mt-3">No se han emitido alerta!</p>
     </div>
-    </ng-template>
+    </ng-container>
 </ion-content>
 
 

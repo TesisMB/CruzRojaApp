@@ -2,10 +2,11 @@ import { RoleName } from './../../models/RoleName';
 import { EmergenciesDisasters } from './../../models/EmergenciesDisasters';
 import { TypeEmergenciesDisasters } from './../../models/TypeEmergenciesDisasters';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonItemSliding, IonList, IonSlides } from '@ionic/angular';
+import { IonItemSliding, IonList, IonSlides, ToastController } from '@ionic/angular';
 import { AlertService } from 'src/app/services/alerts/alert.service';
 import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/services/loader/loader.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-alertas',
@@ -25,17 +26,19 @@ export class AlertsPage implements OnInit {
   currentUser: any;
   id= null;
   isLoading = true;
-
+  error: any = '';
   constructor(
     private alertService: AlertService,
     private router: Router,
-    private ionLoader: LoaderService
+    private ionLoader: LoaderService,
+    public toastCtrl: ToastController,
+
   ) { }
 
   ionViewWillEnter() { // or you can use ionViewWillEnter()
     this.ionLoader.showLoader();
-    this.getAllAlerts();
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.getAllAlerts(false);
   }
 
 //  ionViewDidEnter() {
@@ -44,49 +47,51 @@ export class AlertsPage implements OnInit {
   ngOnInit() {
   }
   segmentChanged(ev: any) {
-    const chatsRooms = [];
-    this.isLoading = true;
-    console.log('Segment changed', ev);
-    if(ev.detail.value === 'old'){
-    this.alerts.forEach(x => chatsRooms.push(x.chatRooms.usersChatRooms));
-  const users =  chatsRooms.forEach(x => x.find(u => u.userID === this.currentUser.userID));
-    console.log(chatsRooms);
-    console.log(users);
-    this.alerts = [];
-    }
-    if(ev.detail.value === 'new'){
-
-    this.getAllAlerts();
-    }
-    // this.isLoading = false;
+    const val = (ev.detail.value === 'true');
+    console.log(ev);
+    this.getAllAlerts(val);
   }
-  getAllAlerts(){
-    this.handlerAlerts = this.alertService.getAll().subscribe((x: EmergenciesDisasters[]) =>{
+  getAllAlerts(condition){
+    this.isLoading = true;
+    this.handlerAlerts = this.alertService.getAll()
+    .pipe(map((a: EmergenciesDisasters[]) => {
+      a.forEach((x: EmergenciesDisasters) => {
+        x.isSubscribe = x.usersChatRooms.some(user => user.userID === this.currentUser.userID);
+      });
+      const alerts = a.filter( f => f.isSubscribe === condition);
+      this.alertService.setAlerts(alerts);
+      return alerts;
+    }))
+    .subscribe((x: EmergenciesDisasters[]) =>{
     this.alerts = x;
+     console.log('Alerta =>', x);
      this.ionLoader.hideLoader();
     this.isLoading = false;
+   },
+   (err) => {
+    this.error = err;
+     this.ionLoader.hideLoader();
+     this.isLoading = false;
+     this.showToast('Error al cargar los datos :(',3000);
    });
   }
 
   /* Función para cuando se active el boton, se abre el slide para la derecha */
 
-  showLoader() {
-    this.ionLoader.showLoader();
-    // setTimeout(() => {
-    //   this.hideLoader();
-    // }, 2000);
-  }
-
-  hideLoader() {
-    this.ionLoader.hideLoader();
+  async showToast(msg: string, duration: number) {
+    // this.toastCtrl.dismiss();
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      duration,
+    });
+    await toast.present();
   }
 
   deploymentButton(index){
-    // this.showLoader();
-    const alert = this.alerts[index];
-    this.alertService.setAlert(alert);
-    this.id = index;
+    this.alertService.setNewAlert(this.alerts[index]);
     this.router.navigate(['deployment']);
+    // this.id = index;
+    //  this.ionLoader.showLoader();
   }
 
   /* Función para usar el color  */

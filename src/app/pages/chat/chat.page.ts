@@ -70,6 +70,11 @@ export class ChatPage implements OnInit {
       console.log('entro chat');
       //console.log("ChatRooms => ", this.chatRooms);
       console.log('Chat =>', this.chatRooms);
+    },
+    (err) => {
+      console.log('Error');
+      this.ionLoader.hideLoader();
+      this.isLoading = false;
     });
   }
 }

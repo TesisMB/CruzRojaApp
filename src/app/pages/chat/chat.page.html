@@ -1,6 +1,6 @@
 <app-header titulo="Chat"></app-header>
 
-<ion-content padding>
+<ion-content fullscreen="true">
 
   <!-- Por ahira se oculta  -->
 
@@ -18,7 +18,44 @@
   <!-- </ion-segment>
   </div> -->
   <ng-container *ngIf="chatRooms.length && !isLoading">
-  <div *ngFor="let chat of chatRooms">
+    <ion-list>
+      <ion-list-header> Canales </ion-list-header>
+
+      <ion-item *ngFor="let chat of chatRooms" button (click)="navigateToGroupChat(chat.id)">
+        <ion-avatar slot="start">
+          <img src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
+          width="40px" />
+        </ion-avatar>
+        <ion-label>
+          <h2>#{{chat.id}}</h2>
+          <!-- <h3>I'm a big deal</h3> -->
+          <p>{{chat.emergenciesDisasters.locationsEmergenciesDisasters.locationCityName}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header> Mensajes directos </ion-list-header>
+
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="./avatar-poe.png" />
+        </ion-avatar>
+        <ion-label>
+          <h2>Poe</h2>
+          <h3>New Ride</h3>
+          <p>I just upgraded my X-Wing. Next time...</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+  <ng-container *ngIf="!chatRooms.length && !isLoading">
+    <div class="d-flex flex-column align-items-center align-content-center m-5">
+      <img src="https://blush.design/api/download?shareUri=NsOLYp58jGydWYSf&c=Skin_0%7Eff9ba5&w=800&h=800&fm=png" style="height: 300px;" alt="">
+      <p class="text-center mt-3">¡Acepte a una alerta!</p>
+    </div>
+  </ng-container>
+  <!-- <div *ngFor="let chat of chatRooms">
     <div class="div_padding">
       <ion-list>
         <ion-item  button (click)="navigateToGroupChat(chat.id)">
@@ -33,14 +70,7 @@
         </ion-item>
       </ion-list>
     </div>
-  </div>
-  </ng-container>
-<ng-template #noData *ngIf="!chatRooms.length && !isLoading">
-  <div class="d-flex flex-column align-items-center align-content-center m-5">
-  <img src="https://blush.design/api/download?shareUri=NsOLYp58jGydWYSf&c=Skin_0%7Eff9ba5&w=800&h=800&fm=png" style="height: 300px;" alt="">
- <p class="text-center mt-3">Subscribase a una alerta!</p>
-</div>
-</ng-template>
+  </div> -->
   <!-- Skeleton text -->
 
   <ion-list *ngIf="isLoading">

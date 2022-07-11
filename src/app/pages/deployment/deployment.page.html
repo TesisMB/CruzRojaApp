@@ -52,9 +52,11 @@
       </div>
     </div>
 
-    <ion-button shape="round" class="accButton" *ngIf="!isSubscribe" [disabled]="isSubscribe" (click)="setChatGroup()"
+    <ion-button shape="round" class="accButton" [disabled]="isSubscribe" (click)="setChatGroup()"
       expand="block">
-      Subscribirme a la alerta!
-    </ion-button>
+      <!-- <ion-spinner *ngIf="isLoading" name="bubbles"></ion-spinner> -->
+      <span *ngIf="!isSubscribe" >Participar de la alerta</span> 
+      <span *ngIf="isSubscribe" class="SubsButton">Gracias por participar de esta alerta :)</span> 
+    </ion-button> 
   </section>
 </ion-content>

@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://localhost:5001/api',
-  hubURL: 'http://localhost:5001/chat',
+  hubURL: 'https://sicreyd.azurewebsites.net/chat',
+  apiURL:'https://sicreyd.azurewebsites.net/api',
+  //apiURL: 'http://localhost:5001/api',
+  //hubURL: 'http://localhost:5001/chat',
   key: 'pk.eyJ1IjoibWdjc29hZCIsImEiOiJjbDA1eXpoOGwwdWQ3M2tueXVycHFqMzhlIn0.CXkUig7PQwf0piWpitvI2w'
 };
 

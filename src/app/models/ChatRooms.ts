@@ -1,11 +1,11 @@
-import { EmergenciesDisasters, UserChatRooms, Messages } from "./index";
+import { EmergenciesDisasters, UserChatRooms, Messages } from './index';
 
 export interface ChatRooms {
-  id:                   number;
-  creationDate:         Date;
+  creationDate:         string;
   emergenciesDisasters: EmergenciesDisasters;
-  usersChatRooms:       UserChatRooms[];
+  id:                   number;
   messages:             Messages[];
+  usersChatRooms:       UserChatRooms[];
 }
 
 
