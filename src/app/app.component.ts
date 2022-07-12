@@ -1,3 +1,4 @@
+import { FcmService } from './fcm.service';
 /* eslint-disable no-trailing-spaces */
 import { CurrentUser } from './models/CurrentUser';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -5,6 +6,9 @@ import { Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login/login.service';
 import { Subject } from 'rxjs';
+import { SplashScreen} from '@capacitor/splash-screen';
+import { StatusBar, Style } from '@capacitor/status-bar';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -15,7 +19,21 @@ export class AppComponent implements OnInit, OnDestroy{
   showTabs = false; // <-- show tabs by default
   handler: any;
   constructor(
-    private loginService: LoginService) {
+    private loginService: LoginService,
+    private platform: Platform,
+    private fcmService: FcmService
+    ) {
+      this.initializeApp();
+    }
+
+    initializeApp(){
+      this.platform.ready().then(() => {
+        const setStatusBarStyleLight = async () => {
+          await StatusBar.setStyle({ style: Style.Light });
+        };
+        SplashScreen.hide().then(()=>console.log(`SplashScreen hidden`));
+        this.fcmService.initPush();
+      });
     }
 
     ngOnInit() {

@@ -8,9 +8,10 @@ import * as L from 'LeafLet';
 
 import 'leaflet/dist/images/marker-icon-2x.png';
 import 'leaflet/dist/images/marker-shadow.png';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoaderService } from 'src/app/services/loader/loader.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-deployment',
@@ -26,7 +27,9 @@ export class DeploymentPage implements OnInit, OnDestroy  {
   currentUser: any;
   map: L.Map;
   isLoading = false;
-
+  id = null;
+  error: any = '';
+  handleAlert: Subscription;
   constructor(
     private alertService: AlertService,
     private chatService: ChatService,
@@ -34,7 +37,8 @@ export class DeploymentPage implements OnInit, OnDestroy  {
     private router: Router,
     private location: Location,
     private placesService: PlacesService,
-    private ionLoader: LoaderService
+    private ionLoader: LoaderService,
+    private route: ActivatedRoute
   ) { }
 
 
@@ -42,14 +46,20 @@ export class DeploymentPage implements OnInit, OnDestroy  {
     return this.emergencies.isSubscribe;
   }
   ngOnInit() {
+    this.route.paramMap.subscribe( params => {
+      this.id = params.get('id');
+    });
     // this.getPlacesByQuery();
     // eslint-disable-next-line no-underscore-dangle
     //   console.log('Estoy en: ', window.location.pathname);
     // this.ionLoader.showLoader();
     this.handleDeployment = this.alertService.currentAlert.subscribe(
       data =>{
+        if(!data){
+          this.getAlertByID();
+        }
         this.emergencies = data;
-        console.log('alerta =>', data);
+        console.log('alerta por Observable=>', data);
         this.initMap();
         // this.ionLoader.hideLoader();
       });
@@ -58,7 +68,22 @@ export class DeploymentPage implements OnInit, OnDestroy  {
     ionViewWillEnter(){
   }
 
+  getAlertByID(){
+    this.ionLoader.showLoader();
+    this.handleAlert = this.alertService.getByIdWithoutFilter(this.id)
+    .subscribe(
+    (data) => {
+        this.emergencies = data;
+        console.log('Alerta by ID => ', data);
+        this.ionLoader.hideLoader();
+        this.initMap();
+    },
+    (err) => {
+      this.error = err;
+    this.ionLoader.hideLoader();
 
+    });
+  }
   setChatGroup(){
     this.isLoading = true;
     this.ionLoader.showLoader();

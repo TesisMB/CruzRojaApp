@@ -16,7 +16,7 @@ const routes: Routes = [
       {
         path: '',
         component: AccountPage,
-        children: [
+      },
       {
         path: 'personalinfo',
         component: PersonalinfoPage
@@ -34,8 +34,6 @@ const routes: Routes = [
         component: VolunteercredentialsPage
       },
      ]
-    },
-    ]
   },
 ];
 

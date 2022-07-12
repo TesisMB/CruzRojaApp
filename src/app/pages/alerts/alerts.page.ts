@@ -89,7 +89,7 @@ export class AlertsPage implements OnInit {
 
   deploymentButton(index){
     this.alertService.setNewAlert(this.alerts[index]);
-    this.router.navigate(['deployment']);
+    this.router.navigate(['alerta', this.alerts[index].emergencyDisasterID]);
     // this.id = index;
     //  this.ionLoader.showLoader();
   }

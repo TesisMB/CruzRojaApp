@@ -19,7 +19,7 @@ const routes: Routes = [
         component: AlertsPage
       },
       {
-        path: 'deployment',
+        path: 'alerta/:id',
         component: DeploymentPage,
         children: [
           {
