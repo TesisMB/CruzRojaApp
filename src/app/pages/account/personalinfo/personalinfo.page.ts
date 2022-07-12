@@ -1,14 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { HttpClient } from '@angular/common/http';
-import { Platform, LoadingController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { CurrentUser } from '../../../models/CurrentUser';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { compare } from 'fast-json-patch';
 import * as _ from 'lodash';
 import { ProfileService } from 'src/app/services/profile/profile.service';
-import { LoginService } from 'src/app/services/login/login.service';
-import { Router } from '@angular/router';
 import { User } from 'src/app/models';
 
 @Component({
@@ -17,7 +14,6 @@ import { User } from 'src/app/models';
   styleUrls: ['./personalinfo.page.css'],
 })
 export class PersonalinfoPage implements OnInit {
-
   currentUser: CurrentUser;
   users: User;
   model: CurrentUser;
@@ -28,12 +24,8 @@ export class PersonalinfoPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private platform: Platform,
-    private loadingCtrl: LoadingController,
-    private http: HttpClient,
-    private loginService: LoginService,
-    private router: Router,
-  ) { this.platform = platform; }
+    public toastController: ToastController
+  ) {  }
 
   ngOnInit() {
     this.fg = this.initForm();
@@ -45,13 +37,15 @@ export class PersonalinfoPage implements OnInit {
 
   initForm(): FormGroup{
     return this.formBuilder.group({
+      persons: this.formBuilder.group({
         email: ['',[Validators.required, Validators.email]],
         phone: ['',[Validators.required,Validators.pattern('^((\\+51-?)|0)?[0-9]{10}$')]],
-        address: ['',[Validators.required,  Validators.maxLength(25)]],
-        status: ['',[Validators.required]],
+        address: ['',[Validators.required, Validators.maxLength(25)]],
+        status: ['',[Validators.required]]
+      }),
       estates: this.formBuilder.group({
-        locationCityName: ['',[Validators.required,  Validators.maxLength(25)]],
-      })
+        locationCityName: ['',[Validators.required, Validators.maxLength(25)]],
+      }),
     });
   }
 

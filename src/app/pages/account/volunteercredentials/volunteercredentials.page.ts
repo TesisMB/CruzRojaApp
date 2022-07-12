@@ -62,4 +62,10 @@ export class VolunteercredentialsPage implements OnInit {
     }
   }
 
+  toastError() {
+  if(!this.fg.value){
+    this.presentToast('Error al modificar datos');
+  }
+}
+
 }

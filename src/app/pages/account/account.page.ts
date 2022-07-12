@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient } from '@angular/common/http';
-import { Platform, LoadingController } from '@ionic/angular';
+import { Platform, LoadingController, AlertController } from '@ionic/angular';
 import { CurrentUser } from '../../models/CurrentUser';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -36,6 +36,7 @@ export class AccountPage implements OnInit, OnDestroy {
   fg: FormGroup;
   images: LocalFile[] = [];
   service: ProfileService;
+  option: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,6 +45,7 @@ export class AccountPage implements OnInit, OnDestroy {
     private http: HttpClient,
     private loginService: LoginService,
     private router: Router,
+    private alertController: AlertController
   ) { this.platform = platform; }
 
   initForm(): FormGroup{
@@ -84,6 +86,8 @@ export class AccountPage implements OnInit, OnDestroy {
     }
   }
 
+  /* Funciones de navegación */
+
   navigateToPersonalInfo(){
     this.router.navigate(['personalinfo']);
   }
@@ -100,10 +104,44 @@ export class AccountPage implements OnInit, OnDestroy {
     this.router.navigate(['volunteerskills']);
   }
 
-  logout(){
-    this.loginService.logout();
-    // this.router.navigateByUrl('/login');
+  /* Alerta */
+
+
+
+  async logOut() {
+    const alert = await this.alertController.create({
+      header: 'Cerrar Sesión',
+      message: '¿Está seguro que quiere cerrar sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: (blah) =>{
+            console.log('Confirm Cancel: blah');
+          }
+        },
+        {
+          text: 'Ok',
+          handler:() =>{
+            this.loginService.logout();
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
+
+  /* Cerrar sesión */
+
+  /* public async logout(){
+    const confirmation = await this.confirmLogout();
+    if(confirmation){
+      this.loginService.logout();
+    }
+    // this.router.navigateByUrl('/login');
+  } */
 
   ngOnDestroy(){
     console.log('Salí de tabs');
