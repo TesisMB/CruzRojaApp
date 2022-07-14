@@ -13,6 +13,8 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 import { LoginService } from 'src/app/services/login/login.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models';
+import { environment } from 'src/environments/environment';
+import { FcmService } from 'src/app/fcm.service';
 
 const IMAGE_DIR = 'stored-images';
 
@@ -45,7 +47,8 @@ export class AccountPage implements OnInit, OnDestroy {
     private http: HttpClient,
     private loginService: LoginService,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private tokenService: FcmService,
   ) { this.platform = platform; }
 
   initForm(): FormGroup{
@@ -102,6 +105,12 @@ export class AccountPage implements OnInit, OnDestroy {
 
   navigateToVolunteerSkills(){
     this.router.navigate(['volunteerskills']);
+  }
+
+  sendDeviceToken(){
+    const deviceToken = 'Estoy enviando el token hardcodeado';
+    this.tokenService.sendToken(deviceToken)
+    .subscribe(resp => console.log(resp), err => console.log(err));
   }
 
   /* Alerta */

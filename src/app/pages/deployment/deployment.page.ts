@@ -2,12 +2,12 @@ import { PlacesService } from './../../services/places/places.service';
 import { EmergenciesDisasters } from './../../models/EmergenciesDisasters';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { AlertService } from 'src/app/services/alerts/alert.service';
-import { Component, OnInit, OnDestroy, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input ,ElementRef, ViewChild  } from '@angular/core';
 import { Location } from '@angular/common';
-import * as L from 'LeafLet';
 
-import 'leaflet/dist/images/marker-icon-2x.png';
-import 'leaflet/dist/images/marker-shadow.png';
+import { GoogleMap } from '@capacitor/google-maps';
+import { environment } from 'src/environments/environment';
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoaderService } from 'src/app/services/loader/loader.service';
@@ -25,7 +25,7 @@ export class DeploymentPage implements OnInit, OnDestroy  {
   handlerChat: any;
   isAccepted = false;
   currentUser: any;
-  map: L.Map;
+  // map: L.Map;
   isLoading = false;
   id = null;
   error: any = '';
@@ -60,7 +60,7 @@ export class DeploymentPage implements OnInit, OnDestroy  {
         }
         this.emergencies = data;
         console.log('alerta por Observable=>', data);
-        this.initMap();
+        // this.initMap();
         // this.ionLoader.hideLoader();
       });
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -76,7 +76,7 @@ export class DeploymentPage implements OnInit, OnDestroy  {
         this.emergencies = data;
         console.log('Alerta by ID => ', data);
         this.ionLoader.hideLoader();
-        this.initMap();
+        // this.initMap();
     },
     (err) => {
       this.error = err;
@@ -117,54 +117,54 @@ export class DeploymentPage implements OnInit, OnDestroy  {
     });
   }
 
-  initMap(){
-    const map = L.map('map').setView(
-      [
-        this.emergencies.locationsEmergenciesDisasters.locationlatitude,
-         this.emergencies.locationsEmergenciesDisasters.locationlongitude
-        ], 15);
+  // initMap(){
+  //   const map = L.map('map').setView(
+  //     [
+  //       this.emergencies.locationsEmergenciesDisasters.locationlatitude,
+  //        this.emergencies.locationsEmergenciesDisasters.locationlongitude
+  //       ], 15);
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
-     {
-    attribution: 'Ubicacíon de la emergencia de <bold>Cruz Roja Córdoba</bold>',
-    maxZoom: 14,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoibWdjc29hZCIsImEiOiJjbDA1eXpoOGwwdWQ3M2tueXVycHFqMzhlIn0.CXkUig7PQwf0piWpitvI2w'
+  //   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
+  //    {
+  //   attribution: 'Ubicacíon de la emergencia de <bold>Cruz Roja Córdoba</bold>',
+  //   maxZoom: 14,
+  //   id: 'mapbox/streets-v11',
+  //   tileSize: 512,
+  //   zoomOffset: -1,
+  //   accessToken: 'pk.eyJ1IjoibWdjc29hZCIsImEiOiJjbDA1eXpoOGwwdWQ3M2tueXVycHFqMzhlIn0.CXkUig7PQwf0piWpitvI2w'
 
-  }).addTo(map);
-  setTimeout(() => {
-    map.invalidateSize();
-  }, 500);
+  // }).addTo(map);
+  // setTimeout(() => {
+  //   map.invalidateSize();
+  // }, 500);
 
-    const marker = L.marker(
-      [this.emergencies.locationsEmergenciesDisasters.locationlatitude,
-      this.emergencies.locationsEmergenciesDisasters.locationlongitude
-    ],
-      {
-      fillColor: '#ccc'
-    })
-    .addTo(map);
+  //   const marker = L.marker(
+  //     [this.emergencies.locationsEmergenciesDisasters.locationlatitude,
+  //     this.emergencies.locationsEmergenciesDisasters.locationlongitude
+  //   ],
+  //     {
+  //     fillColor: '#ccc'
+  //   })
+  //   .addTo(map);
 
-    const circle =  L.circle(
-      [this.emergencies.locationsEmergenciesDisasters.locationlatitude,
-         this.emergencies.locationsEmergenciesDisasters.locationlongitude
-        ],
-         500, {
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.3,
-      radius: 800,
-      stroke: false
-    }).addTo(map);
+  //   const circle =  L.circle(
+  //     [this.emergencies.locationsEmergenciesDisasters.locationlatitude,
+  //        this.emergencies.locationsEmergenciesDisasters.locationlongitude
+  //       ],
+  //        500, {
+  //     color: 'red',
+  //     fillColor: '#f03',
+  //     fillOpacity: 0.3,
+  //     radius: 800,
+  //     stroke: false
+  //   }).addTo(map);
 
-    const onLocationError = (e) => {
-      alert(e.message);
-  };
+  //   const onLocationError = (e) => {
+  //     alert(e.message);
+  // };
 
-  map.on('locationerror', onLocationError);
-  }
+  // map.on('locationerror', onLocationError);
+  // }
 
   async showToast(msg: string, duration: number) {
     // this.toastCtrl.dismiss();

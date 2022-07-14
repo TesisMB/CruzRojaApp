@@ -1,6 +1,6 @@
 import { environment } from './../../../environments/environment';
 import { HttpClient, HttpHandler, HttpParams } from '@angular/common/http';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 
 @Injectable({
@@ -9,14 +9,13 @@ import { Injectable } from "@angular/core";
 
 export class PlacesApiClient extends HttpClient{
 
-    public baseUrl: string = 'https://localhost:5001/api/locations';
+    public baseUrl = 'https://localhost:5001/api/locations';
 
     constructor(handler: HttpHandler){
         super(handler);
     }
 
-    public override
-    get<T>(url: string,
+    public  get<T>(url: string,
         options: {params?: HttpParams | {
         [param: string]: string | string[];
     };
@@ -31,6 +30,7 @@ export class PlacesApiClient extends HttpClient{
                 limit: '2',
                 language: 'es',
                 /* types: 'place,neighborhood', */
+                // eslint-disable-next-line @typescript-eslint/naming-convention
                 access_token:  environment.key,
                 ...options.params
             }

@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { debounceTime, delay, map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { FcmService } from 'src/app/fcm.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class LoginService {
   //El platform es usado para que podamos usar el localStorage
   constructor(
     private http: HttpClient,
-    private router: Router) {
+    private router: Router,
+    private tokenService: FcmService) {
     this.currentUserSubject = new BehaviorSubject<CurrentUser>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUserObs = this.currentUserSubject.asObservable();
   }
@@ -45,6 +47,8 @@ export class LoginService {
           localStorage.setItem('currentUser', JSON.stringify(user));
           console.log(user);
           this.currentUserSubject.next(user);
+          this.tokenService.sendToken()
+          .subscribe(resp => console.log('Envio de token exitoso! => ',resp), err => console.log('Envio de token NO EXITOSO :( => ',err));
         }
         return user;
       }),
@@ -54,6 +58,7 @@ export class LoginService {
 
   logout() {
     // Elimina el usuario del local Storage y lo declara null.
+    this.deleteToken();
     localStorage.clear();
     this.currentUserSubject.next(null);
      this.router.navigateByUrl('/login');
@@ -67,5 +72,12 @@ export class LoginService {
     const parametros = new HttpParams().append('token', token);
     this.options.params = parametros;
     return this.http.post<any>(environment.apiURL + 'reset-password/', { userPassword }, this.options);
+  }
+
+  deleteToken(){
+    const path = '/sendDevice';
+    const deviceToken = null;
+   this.http.put(environment.apiURL+path, {deviceToken})
+    .subscribe(resp => console.log(resp), err => console.log(err));
   }
 }

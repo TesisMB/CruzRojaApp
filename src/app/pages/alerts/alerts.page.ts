@@ -48,7 +48,7 @@ export class AlertsPage implements OnInit {
   }
   segmentChanged(ev: any) {
     const val = (ev.detail.value === 'true');
-    console.log(ev);
+    console.log('valor => ',val);
     this.getAllAlerts(val);
   }
   getAllAlerts(condition){
@@ -65,14 +65,14 @@ export class AlertsPage implements OnInit {
     .subscribe((x: EmergenciesDisasters[]) =>{
     this.alerts = x;
      console.log('Alerta =>', x);
+     this.isLoading = false;
      this.ionLoader.hideLoader();
-    this.isLoading = false;
    },
    (err) => {
     this.error = err;
-     this.ionLoader.hideLoader();
-     this.isLoading = false;
-     this.showToast('Error al cargar los datos :(',3000);
+    this.isLoading = false;
+    this.showToast('Error al cargar los datos :(',3000);
+    this.ionLoader.hideLoader();
    });
   }
 

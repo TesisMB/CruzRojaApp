@@ -1,50 +1,41 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { PlacesService } from 'src/app/services/places/places.service';
-import { MapService } from 'src/app/services/map/map.service';
-import * as L from 'LeafLet';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { GoogleMap } from '@capacitor/google-maps';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-map-view',
-  templateUrl: './map-view.component.html',
-  styleUrls: ['./map-view.component.css'],
+  template: `<capacitor-google-maps #map></capacitor-google-maps>
+    <button (click)="createMap()">Create Map</button>`,
+  styles: [
+    `
+      capacitor-google-maps {
+        display: inline-block;
+        width: 275px;
+        height: 400px;
+      }
+    `,
+  ],
+  selector: 'app-google-map',
 })
-export class MapViewComponent implements AfterViewInit {
+export class MapViewComponent {
+  @ViewChild('map')
+  mapRef: ElementRef<HTMLElement>;
+  newMap: GoogleMap;
 
-  @ViewChild('map') mapContainer: ElementRef;
-  map: L.Map;
-
-  constructor(
-    private placesService: PlacesService,
-    private mapService: MapService) { }
-
-  ngAfterViewInit(): void {
-    this.initMap();
-  /*   if( !this.placesService.useLocation) throw Error('No hay placesService.userLocation'); */
- }
-
- initMap(){
-
-  this.map = L.map('map').setView([51.505, -0.09], 13);
-  L.tileLayer(
-    'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Cruz Roja Cordoba - Mapa de alertas',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoibWdjc29hZCIsImEiOiJjbDA1eXpoOGwwdWQ3M2tueXVycHFqMzhlIn0.CXkUig7PQwf0piWpitvI2w'
-}).addTo(this.map);
-
-setTimeout(() => {
-  this.map.invalidateSize();
-}, 500);
-
-  const onLocationError = (e) => {
-    alert(e.message);
-};
-
-this.map.on('locationerror', onLocationError);
-this.map.remove();
-}
-
+  ionViewWillEnter(){
+    this.createMap();
+  }
+  async createMap() {
+    this.newMap = await GoogleMap.create({
+      id: 'my-cool-map',
+      element: this.mapRef.nativeElement,
+      apiKey: environment.apiKey,
+      config: {
+        center: {
+          lat: 33.6,
+          lng: -117.9,
+        },
+        zoom: 8,
+      },
+    });
+  }
 }

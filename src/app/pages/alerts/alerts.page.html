@@ -16,9 +16,9 @@
         </ion-segment-button>
       </ion-segment>
   </ion-toolbar>
-  <ng-container *ngIf="alerts.length">
+  <ng-container >
 
-  <ion-list *ngIf="!isLoading" lines="inset" mode="md">
+  <ion-list *ngIf="!isLoading && alerts.length" lines="inset" mode="md">
     
     <ion-item *ngFor="let alert of alerts; index as i" mode="md" button="true" detail="true" (click)="deploymentButton(i)">
       <ion-thumbnail slot="start" [ngStyle]="{
@@ -41,7 +41,7 @@
   </ion-list>
 
   <ion-list *ngIf="isLoading">
-    <ion-item *ngFor="let item of [1,1,1,1,1,1]">
+    <ion-item *ngFor="let item of [1,1,1,1,1]">
       <ion-thumbnail slot="start">
         <ion-skeleton-text></ion-skeleton-text>
       </ion-thumbnail>
@@ -59,7 +59,7 @@
 
 <ng-container *ngIf="!alerts.length && !isLoading">
       <div class="d-flex flex-column align-items-center align-content-center m-5">
-      <img src="https://blush.design/api/download?shareUri=hlIniFJKcV8E0KWj&c=Skin_0%7Eff9ba5&w=800&h=800&fm=png" style="height: 250px;" alt="">
+      <img src="../../../assets/icons - Resources - EmergDesas/no-alerts.png" style="height: 250px;" alt="">
      <p class="text-center mt-3">No se han emitido alerta!</p>
     </div>
     </ng-container>

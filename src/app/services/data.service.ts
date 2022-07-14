@@ -26,5 +26,4 @@ export class DataService {
   update(resource) {
     return this.http.patch(environment.apiURL + this.patch, JSON.stringify(resource), this.options);
   }
-
 }

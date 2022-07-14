@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {  Capacitor, Plugins} from '@capacitor/core';
+import {  Capacitor} from '@capacitor/core';
 import {
   ActionPerformed,
   PushNotificationSchema,
@@ -8,19 +9,29 @@ import {
 } from '@capacitor/push-notifications';
 
 import {Router} from '@angular/router';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FcmService {
-
-  constructor(private router: Router) { }
-public initPush(){
+path = '/sendDevice';
+deviceToken = null;
+  constructor(private router: Router, private http: HttpClient) { }
+  public initPush(){
     if(Capacitor.getPlatform() !== 'web'){
       this.registerPush();
     }
+
   }
+  public sendToken(emptyToken?){
+    const deviceToken = this.deviceToken;
+    if(emptyToken){
+      return this.http.put(environment.apiURL+this.path, {emptyToken});
+    } else {
+       return this.http.put(environment.apiURL+this.path, {deviceToken});
+  }
+}
 
   private registerPush(){
     PushNotifications.requestPermissions().then(result => {
@@ -34,7 +45,8 @@ public initPush(){
 
     PushNotifications.addListener('registration',
       (token: Token) => {
-        console.log('token: ' + JSON.stringify(token.value));
+        this.deviceToken = token.value;
+        console.log('token: ' + this.deviceToken);
       }
     );
 
@@ -59,4 +71,6 @@ public initPush(){
     }
   );
   }
+
+
 }

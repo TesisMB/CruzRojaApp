@@ -142,3 +142,9 @@ span {
 #emergencyTitle {
   margin-left: 6rem;
 }
+
+capacitor-google-maps {
+  display: inline-block;
+  width: 275px;
+  height: 400px;
+}
