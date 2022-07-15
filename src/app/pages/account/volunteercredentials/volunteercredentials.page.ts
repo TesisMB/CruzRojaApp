@@ -1,3 +1,4 @@
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { CurrentUser } from '../../../models/CurrentUser';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -19,11 +20,11 @@ export class VolunteercredentialsPage implements OnInit {
   originalUser: CurrentUser;
   handlerProfile: any;
   fg: FormGroup;
-  service: ProfileService;
 
   constructor(
     private formBuilder: FormBuilder,
-    public toastController: ToastController) { }
+    public toastController: ToastController,
+    private service: ProfileService) { }
 
   ngOnInit() {
     this.fg = this.initForm();
@@ -65,7 +66,14 @@ export class VolunteercredentialsPage implements OnInit {
   toastError() {
   if(!this.fg.value){
     this.presentToast('Error al modificar datos');
+    }
   }
-}
 
+  ionViewDidEnter(){
+    const card = document.querySelector('.card');
+    card.addEventListener( 'click', function() {
+      card.classList.toggle('is-flipped');
+    });
+
+  }
 }
