@@ -108,9 +108,14 @@ export class AccountPage implements OnInit, OnDestroy {
   }
 
   sendDeviceToken(){
-    const deviceToken = 'Estoy enviando el token hardcodeado';
-    this.tokenService.sendToken(deviceToken)
-    .subscribe(resp => console.log(resp), err => console.log(err));
+    // const deviceToken = 'Estoy enviando el token hardcodeado';
+    // this.tokenService.sendToken(deviceToken)
+    // .subscribe(resp => console.log(resp), err => console.log(err));
+    const data = {
+      alertId: '242'
+    };
+    this.router.navigateByUrl(`/tabs/alertas/alerta/${data.alertId}`);
+
   }
 
   /* Alerta */

@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-deployment',
@@ -75,6 +76,11 @@ export class DeploymentPage implements OnInit, OnDestroy  {
     getAlertByID(id){
     // this.ionLoader.showLoader();
     this.handleAlert = this.alertService.getByIdWithoutFilter(id)
+      .pipe(map((x: EmergenciesDisasters) => {
+        x.isSubscribe = x.usersChatRooms.some(user => user.userID === this.currentUser.userID);
+        this.alertService.setNewAlert(x);
+        return x;
+      }))
     .subscribe(
     (data) => {
         this.emergencies = data;
