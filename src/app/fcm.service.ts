@@ -65,8 +65,11 @@ deviceToken = null;
     async (notification: ActionPerformed) => {
       const data = notification.notification.data;
       console.log('Push action performed: ' + JSON.stringify(notification.notification));
-      if(data.alertId){
-        this.router.navigateByUrl(`/tabs/alertas/alerta/${data.alertId}`);
+      if(data){
+        data.forEach(x => {
+          if(x.key === 'alertId'){
+          this.router.navigateByUrl(`/tabs/alertas/alerta/${x.value}`);
+          }});
       }
     }
   );
