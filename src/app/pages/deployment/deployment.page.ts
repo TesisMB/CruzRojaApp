@@ -26,7 +26,7 @@ export class DeploymentPage implements OnInit, OnDestroy  {
   isAccepted = false;
   currentUser: any;
   // map: L.Map;
-  isLoading = false;
+  isLoading = true;
   id = null;
   error: any = '';
   handleAlert: Subscription;
@@ -39,48 +39,54 @@ export class DeploymentPage implements OnInit, OnDestroy  {
     private placesService: PlacesService,
     private ionLoader: LoaderService,
     private route: ActivatedRoute
-  ) { }
+    ) {
+      this.route.paramMap.subscribe( params => {
+      this.id = params.get('id');
+      console.log(this.id);
+    });
+  }
+
 
 
   public get isSubscribe(){
     return this.emergencies.isSubscribe;
   }
   ngOnInit() {
-    this.route.paramMap.subscribe( params => {
-      this.id = params.get('id');
-    });
+    this.getAlertByID(this.id);
     // this.getPlacesByQuery();
     // eslint-disable-next-line no-underscore-dangle
     //   console.log('Estoy en: ', window.location.pathname);
-    // this.ionLoader.showLoader();
-    this.handleDeployment = this.alertService.currentAlert.subscribe(
-      data =>{
-        if(!data){
-          this.getAlertByID();
+    // this.handleDeployment = this.alertService.currentAlert.subscribe(
+      //   data =>{
+        //     if(!data){
+          //       this.getAlertByID(this.id);
+          //     }
+          //     this.emergencies = data;
+          //     console.log('alerta por Observable=>', data);
+          //     // this.initMap();
+          //     // this.ionLoader.hideLoader();
+          //   });
+          this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         }
-        this.emergencies = data;
-        console.log('alerta por Observable=>', data);
-        // this.initMap();
-        // this.ionLoader.hideLoader();
-      });
-      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    }
-    ionViewWillEnter(){
-  }
+        ionViewWillEnter(){
+           this.ionLoader.showLoader();
+        }
 
-  getAlertByID(){
-    this.ionLoader.showLoader();
-    this.handleAlert = this.alertService.getByIdWithoutFilter(this.id)
+    getAlertByID(id){
+    // this.ionLoader.showLoader();
+    this.handleAlert = this.alertService.getByIdWithoutFilter(id)
     .subscribe(
     (data) => {
         this.emergencies = data;
         console.log('Alerta by ID => ', data);
+        this.isLoading = false;
         this.ionLoader.hideLoader();
         // this.initMap();
     },
     (err) => {
       this.error = err;
-    this.ionLoader.hideLoader();
+        this.isLoading = false;
+        this.ionLoader.hideLoader();
 
     });
   }
@@ -189,7 +195,7 @@ export class DeploymentPage implements OnInit, OnDestroy  {
   } */
 
   ngOnDestroy(){
-    this.handleDeployment.unsubscribe();
+    this.handleAlert.unsubscribe();
   }
 }
 

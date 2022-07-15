@@ -86,6 +86,25 @@ constructor(private service: AlertService){}
       }
     }
 ]);
-  // const circle = await this.newMap.addMarkers
+
+const myMarker = await this.newMap.addMarker({
+  title: 'Aqui estoy yo!',
+  snippet: 'Mi ubicacion' ,
+coordinate: {
+  lat: this.coordinates.coords.latitude,
+  lng: this.coordinates.coords.longitude,
+}
+});
+
+// const circle = await this.newMap.
+// .Circle({
+//   radius: 70*1000,
+//   center: point,
+//   map: ItemMap.map,
+//   fillColor: '#FF0000',
+//   fillOpacity: 0.2,
+//   strokeColor: '#FF0000',
+//   strokeOpacity: 0.6
+//     });
   }
 }
