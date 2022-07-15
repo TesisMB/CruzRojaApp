@@ -70,6 +70,11 @@
 
 /* IDs */
 
+  #imgHeader{
+    position: relative;
+    bottom: 5px;
+  }
+
   #quienesSomos{
     background-repeat: no-repeat;
     background-position: center;
