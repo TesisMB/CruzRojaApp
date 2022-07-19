@@ -1384,10 +1384,10 @@
     "tslib" "^2.1.0"
     "xml2js" "^0.4.23"
 
-"@capacitor/core@^3.6.0":
-  "integrity" "sha512-F94ozABHXxq1xMcNGMnOVP73WZDWYR1PrJEfVfl9Ja0BXGEJURIxmHBc842OX3rrt3+g0ELHyhX9LTH16eeonw=="
-  "resolved" "https://registry.npmjs.org/@capacitor/core/-/core-3.6.0.tgz"
-  "version" "3.6.0"
+"@capacitor/core@^3.5.1":
+  "integrity" "sha512-UTROxB7q/hZBnhDLcCN7mVsAX3SxXNMhVuPbtddsDOUCm4hExLXN62gPD7rjgmumhfHMjeXmkw/EfRzSjttL1g=="
+  "resolved" "https://registry.npmjs.org/@capacitor/core/-/core-3.5.1.tgz"
+  "version" "3.5.1"
   dependencies:
     "tslib" "^2.1.0"
 
@@ -1400,6 +1400,14 @@
   "integrity" "sha512-3u9Hu4E0VBMa6r0d2t9MENDIR+bv5Tf144uPmb2Bl7XLQeFwvu4BSp2neNq39x58PvcROPMNX1BOTSGpQep+1Q=="
   "resolved" "https://registry.npmjs.org/@capacitor/geolocation/-/geolocation-1.3.1.tgz"
   "version" "1.3.1"
+
+"@capacitor/google-maps@^1.1.0":
+  "integrity" "sha512-VKzyhLxmb3zQTDwvPRHdNT/49ADsZRxtSQlto1xbSzdJ6upilWeahpmix98852XTxtt4XWAzSR/XI19hsOGUdg=="
+  "resolved" "https://registry.npmjs.org/@capacitor/google-maps/-/google-maps-1.1.0.tgz"
+  "version" "1.1.0"
+  dependencies:
+    "@googlemaps/js-api-loader" "^1.13.7"
+    "@googlemaps/markerclusterer" "^2.0.7"
 
 "@capacitor/push-notifications@^1.0.9":
   "integrity" "sha512-NaH+drTYjOGgFMHl/2Jn1/+2rlgomtwP2NfK20E0i7+QoRze1ArcSThJ4vSF0m7VkYBsH3MgbXkWfNSSPaYrtw=="
@@ -1435,6 +1443,21 @@
     "js-yaml" "^3.13.1"
     "minimatch" "^3.0.4"
     "strip-json-comments" "^3.1.1"
+
+"@googlemaps/js-api-loader@^1.13.7":
+  "integrity" "sha512-6iIb+qpGgQpgIHmIFO44WhE1rDUxPVHuezNFL30wRJnkvhwFm94tD291UvNg9L05hLDSoL16jd0lbqqmdy4C5g=="
+  "resolved" "https://registry.npmjs.org/@googlemaps/js-api-loader/-/js-api-loader-1.14.3.tgz"
+  "version" "1.14.3"
+  dependencies:
+    "fast-deep-equal" "^3.1.3"
+
+"@googlemaps/markerclusterer@^2.0.7":
+  "integrity" "sha512-l/Z3nxTE55iaWDB8NL/HpFdYht2x0khPaJI9pD7KDbfHeZaZyG8yT6xi2cZ0Lb2VvgKFb3OtNKRMpAuS4xm2rg=="
+  "resolved" "https://registry.npmjs.org/@googlemaps/markerclusterer/-/markerclusterer-2.0.8.tgz"
+  "version" "2.0.8"
+  dependencies:
+    "fast-deep-equal" "^3.1.3"
+    "supercluster" "^7.1.3"
 
 "@humanwhocodes/config-array@^0.5.0":
   "integrity" "sha512-FagtKFz74XrTl7y6HCzQpwDfXP0yhxe9lHLD1UZxjvZIcbyRz8zTFF/yYNfSfzU414eDwZ1SrO0Qvtyf+wFMQg=="
@@ -6378,6 +6401,11 @@
     "ua-parser-js" "0.7.22"
     "yargs" "^15.3.1"
 
+"kdbush@^3.0.0":
+  "integrity" "sha512-hRkd6/XW4HTsA9vjVpY9tuXJYLSlelnkTmVFu4M9/7MIYQtFcHpbugAU7UbOfjOiVSVYl2fqgBuJ32JUmRo5Ew=="
+  "resolved" "https://registry.npmjs.org/kdbush/-/kdbush-3.0.0.tgz"
+  "version" "3.0.0"
+
 "killable@^1.0.1":
   "integrity" "sha512-LzqtLKlUwirEUyl/nicirVmNiPvYs7l5n8wOPP7fyJVpUPkvCnW/vuiXGpylGUlnPDnB7311rARzAt3Mhswpjg=="
   "resolved" "https://registry.npmjs.org/killable/-/killable-1.0.1.tgz"
@@ -9812,6 +9840,13 @@
     "sax" "~1.2.4"
     "semver" "^6.3.0"
     "source-map" "^0.7.3"
+
+"supercluster@^7.1.3":
+  "integrity" "sha512-EulshI3pGUM66o6ZdH3ReiFcvHpM3vAigyK+vcxdjpJyEbIIrtbmBdY23mGgnI24uXiGFvrGq9Gkum/8U7vJWg=="
+  "resolved" "https://registry.npmjs.org/supercluster/-/supercluster-7.1.5.tgz"
+  "version" "7.1.5"
+  dependencies:
+    "kdbush" "^3.0.0"
 
 "supports-color@^2.0.0":
   "integrity" "sha1-U10EXOa2Nj+kARcIRimZXp3zJMc="

@@ -5,12 +5,6 @@
     color: white;
   }
 
-  ion-card{
-    width: 100%;
-    height: 350px;
-    /* box-shadow: none; */
-  }
-
   ion-slides {
     height: 100%;
   }
@@ -26,6 +20,7 @@
 
   b {
     font-weight: 500;
+    font-size: 13px;
   }
 
   p{
@@ -63,9 +58,54 @@
   }
 
   .swiper-slide img {
-     max-width: 85%;
+    /* max-width: 85%;
     margin-top: 30px;
+    */
     pointer-events: none;
+  }
+
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cardPublicity{
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #fa3b2a;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 290px;
+  }
+
+  .cardPublicity h6 {
+    color: #fa3b2a;
+    font-weight: bold;
+    margin: 15px 0;
+  }
+
+  .card-header{
+    width: 100%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+  }
+
+  .card-body{
+    width: 100%;
+    height: 80px;
+    padding: 0px;
+  }
+
+  .card-button{
+    width: 100%;
+    height: 40px;
   }
 
 /* IDs */
@@ -82,15 +122,8 @@
     background-size: cover;
     width: 100%;
   }
-  .content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 
   #quienesSomosLogo{
-    /* position: absolute; */
-    /* bottom: -100px; */
     width: 70%;
     margin: 10px 0;
     padding: 10px;
@@ -98,26 +131,8 @@
     border-radius: 150px;
   }
 
-  #donarSangre{
-    margin: 15px;
-    padding: 15px;
-    border: 1px solid #fa3b2a;
-    border-radius: 10px;
-    background-color: white;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
 
-  #donarSangre h6 {
-    color: #fa3b2a;
-    font-weight: bold;
-    margin: 15px 0;
-  }
-
-  #convivir{
+/*   #convivir{
     margin: 15px;
     padding: 15px;
     border: 1px solid #fa3b2a;
@@ -134,7 +149,7 @@
     color: #fa3b2a;
     font-weight: bold;
     margin: 15px 0;
-  }
+  } */
 
   p {
     padding: 0 15px;

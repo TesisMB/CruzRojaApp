@@ -1,7 +1,9 @@
-<app-header titulo="Perfil"></app-header>
-
 <ion-content>
   <div class="container">
+    <div class="container-icon">
+      <img src="../../../assets/icon/truck-medical-solid.svg" alt="">
+      <img src="../../../assets/icon/cruzar.png" alt="">
+    </div>
     <div class="overlay">
       <ion-avatar>
         <img *ngIf="this.currentUser.volunteerAvatar" src="{{this.currentUser.volunteerAvatar}}">
@@ -47,7 +49,7 @@
           <ion-icon name="triangle-outline" class="icons"></ion-icon>
           <ion-label>Preferencias</ion-label>
         </ion-item>
-      </div>     
+      </div>
          <ion-item lines="none" button="true" (click)="sendDeviceToken()">
         <ion-icon name="send-sharp" class="icons"></ion-icon>
         <ion-label>Enviar token</ion-label>
