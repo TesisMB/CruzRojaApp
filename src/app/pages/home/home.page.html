@@ -5,7 +5,6 @@
 <ion-content fullscreen>
 
   <section class="ion-margin-bottom mt-1">
-
     <section id="quienesSomos">
       <div class="content">
         <div id="imgHeader">
@@ -20,104 +19,31 @@
 
   <section>
     <ion-slides [options]="option" pager>
-      <ion-slide>
-        <div id="donarSangre">
-          <img id="donarSangreLogo" src="../../../assets/img-client/vidadona.png" alt="">
-          <h6>
-            <b>
-            Sumate a nuestro banco virtual de donantes de sangre
-            </b>
-          </h6>
-          <a href="https://www.cruzroja.org.ar/filiales-banco-de-sangre/">
-            <ion-button id="verMasDonarSangre"shape="round">
-              Ver Más
-            </ion-button>
-          </a>
-        </div>
-      </ion-slide>
+      <ion-slide *ngFor="let card of cards">
+        <div class="cardPublicity">
+          <div class="card-header">
+            <img id="donarSangreLogo" src="{{card.img}}" alt="">
+          </div>
 
-      <ion-slide>
-        <div id="convivir">
-          <img id="convivirLogo" src="../../../assets/img-client/convivir.png" alt="">
-          <h6>
-            <b>
-              Centros de Prevención, Asesoramiento y Diagnóstico de VIH
-            </b>
-          </h6>
+          <div class="card-body">
+            <h6>
+              <b>
+              {{card.body}}
+              </b>
+            </h6>
+          </div>
 
-            <a href="https://www.cruzroja.org.ar/filiales-vih/">
-              <ion-button id="verMasDonarSangre" shape="round">
+          <div class="card-button">
+            <a href="{{card.href}}">
+              <ion-button id="btnDonarSangre" size="small" shape="round">
                 Ver Más
               </ion-button>
             </a>
-       </div>
-      </ion-slide>
-      <ion-slide>
-
-        <ion-card>
-          <img class="imgHeader" src="../../../assets/img-client/CruzRoja -Ilustracion.png" alt="inicioLogo">
-          <ion-card-header>
-            <h5>Capacitaciones</h5>
-          </ion-card-header>
-          <ion-card-subtitle>
-            <p>
-              Sumate a nuestras campañas. <br/>
-              Mas información en nuestra <a href="https://www.cruzroja.org.ar/">pagina web</a>
-            </p>
-          </ion-card-subtitle>
-        </ion-card>
-
-        <!-- <ion-card>
-          <ion-card-header>
-          <img class="imgHeader" src="../../../assets/img-client/CruzRoja -Ilustracion.png" alt="inicioLogo">
-          </ion-card-header>
-          <ion-card-subtitle>
-            <h6>Capacitaciones</h6>
-            <p>
-              Sumate a nuestras campañas. <br/>
-              Mas información en nuestra <a href="https://www.cruzroja.org.ar/">pagina web</a>
-            </p>
-          </ion-card-subtitle>
-        </ion-card> -->
-
-      </ion-slide>
-
-      <ion-slide>
-        <ion-card>
-          <img class="imgHeader" id="emergency" src="../../../assets/img-client/emergencias.jpg" alt="emergenciaImg">
-          <ion-card-header>
-            <h5>Emergencias</h5>
-          </ion-card-header>
-          <ion-card-subtitle>
-            <p>
-              Acompañamos a las comunidades antes, durante y después de emergencias y desastres.
-            </p>
-          </ion-card-subtitle>
-        </ion-card>
-      </ion-slide>
-
-      <ion-slide>
-        <ion-card>
-          <img class="imgHeader" src="../../../assets/img-client/abuelos.jpg" alt="emergenciaImg">
-          <ion-card-header>
-            <h5>Teleasistencia</h5>
-          </ion-card-header>
-          <ion-card-subtitle>
-            <p>
-              Servicio de teleasistencia para adultos mayores y personas con discapacidad
-            </p>
-          </ion-card-subtitle>
-        </ion-card>
+          </div>
+        </div>
       </ion-slide>
     </ion-slides>
+    </section>
   </section>
-
-
-  </section>
- <!--  <div class="container">
-    <img src="../../../assets/img-client/sumate-1.png" alt="SumateLogo">
-    <img style="margin-left: 2rem" src="../../../assets/img-client/vidadona.png" alt="SumateLogo">
-  </div>
-  <img  src="../../../assets/img-client/logo.png" alt="CruzRojaLogo"> -->
 </ion-content>
 <!-- <app-menu showTabs></app-menu> -->

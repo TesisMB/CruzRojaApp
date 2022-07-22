@@ -65,14 +65,15 @@
     </ion-card>
       <!-- [disabled]="!initForm().valid" -->
   </form>
-
-  <ion-button
-    [disabled]="!initForm().valid"
-    class="accButton"
-    type="submit"
-    shape="round"
-    (click)="onSubmit()"
-  >
-    Guardar
-  </ion-button>
+  <div class="btnIonic">
+    <ion-button
+      [disabled]="!initForm().valid"
+      class="accButton"
+      type="submit"
+      shape="round"
+      (click)="onSubmit()"
+    >
+      Guardar
+    </ion-button>
+  </div>
 </ion-content>
