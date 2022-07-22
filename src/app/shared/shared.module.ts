@@ -9,7 +9,7 @@ import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
-    MenuPage
+    // MenuPage
   ],
   imports: [
     CommonModule,
@@ -20,7 +20,7 @@ import { PipesModule } from '../pipes/pipes.module';
     PipesModule
   ],
   exports: [
-    MenuPage,
+    // MenuPage,
     CommonModule,
     FormsModule,
     IonicModule,

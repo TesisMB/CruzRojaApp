@@ -38,7 +38,7 @@ export class AlertsPage implements OnInit {
   ionViewWillEnter() { // or you can use ionViewWillEnter()
     this.ionLoader.showLoader();
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.getAllAlerts(false);
+    this.getAllAlerts(true);
   }
 
 //  ionViewDidEnter() {

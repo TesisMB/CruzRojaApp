@@ -6,7 +6,7 @@
 	"plugins": {
 		"SplashScreen": {
 			"launchShowDuration": 0,
-			"launchAutoHide": true,
+			"launchAutoHide": false,
 			"backgroundColor": "#ffffffff",
 			"androidSplashResourceName": "splash",
 			"androidScaleType": "CENTER_CROP",
@@ -18,9 +18,16 @@
 			"splashImmersive": true,
 			"layoutName": "launch_screen",
 			"useDialog": true
+		},
+		"PushNotifications": {
+			"presentationOptions": [
+				"alert",
+				"sound"
+			]
 		}
 	},
 	"server": {
-		"hostname": "localhost:8100"
+		"hostname": "localhost:8100",
+		"url": "http://192.168.0.60:8100"
 	}
 }

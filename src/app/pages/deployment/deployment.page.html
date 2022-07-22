@@ -1,63 +1,116 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header [translucent]="true" >
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/alertas"></ion-back-button>
     </ion-buttons>
-    <ion-title>Informe</ion-title>
+    <ion-title size="small">Información de alerta</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <section *ngIf="!isLoading" class="modo">
-  <!-- <section class="modo"> -->
-    <div class="tab-content">
-      <div>
-        <h4>
-          {{emergencies.locationsEmergenciesDisasters.locationCityName}}
-        </h4>
-        <h5>{{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterName}}</h5>
+  <!-- <div id="map" #map>
+    <div class="map-frame">
+  </div> -->
+  <capacitor-google-maps #mapRef></capacitor-google-maps>
+  <ion-fab class="boton" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="boton" (click)="moveMap()">
+    <span *ngIf="mapState === 0">ALERTA</span>
+    <span *ngIf="mapState === 1">YO</span> 
+    <!-- <ion-icon md="caret-forward" ios="chevron-up-circle-outline"></ion-icon> -->
+   </ion-fab-button> 
+  <!-- <ion-fab-list side="top">
+    <ion-fab-button color="light">
+      <ion-icon name="logo-facebook"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="light">
+      <ion-icon name="logo-twitter"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="light">
+      <ion-icon name="logo-vimeo"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="light">
+      <ion-icon name="logo-google"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list> -->
+ </ion-fab>  
+ <ion-button slot="fixed"  class="boton" (click)="presentActionSheet()">Abrir action sheet</ion-button>
+  
+   <!-- <div class="button">
+    <ion-button slot="fixed"  class="boton" (click)="moveMap()">Move</ion-button>
+  </div> -->
 
-        <div class="calendarResponsible">
-          <p>
-            <ion-icon id="calendarIcon" name="calendar-outline"></ion-icon>
-            <span>Fecha de inicio: {{emergencies.emergencyDisasterStartDate | date: 'dd/MM/yyyy hh:mm:ss
-              a'}}</span>
-          </p>
-        </div>
-        <!-- <p>
-            <ion-icon id="responsibleIcon" name="person-outline"></ion-icon>
-            <span>Responsable:
-              {{emergencies.employees.name}}
-            </span>
-          </p>  -->
-
-
-        <!-- <ion-icon name="locate-outline" [routerLink]="['volunteerMap']"></ion-icon>
-        <ion-icon name="accessibility-outline" [routerLink]="['emergency/', emergencies.emergencyDisasterID]" class="volunteers"></ion-icon> -->
-
-        <div class="date map-container">
-          <div class="location map-frame">
-            <div >
-              <app-google-map id="map"></app-google-map>
-            </div>
-          </div>
-          <div class="d-flex justify-content-center align-content-center">
-            <h2>
-              Instrucciones
-            </h2>
-          </div>
-          <div class="instruction location">
-            {{emergencies.emergencyDisasterInstruction}}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <ion-button shape="round" class="accButton" [disabled]="isSubscribe" (click)="setChatGroup()"
-      expand="block">
-      <!-- <ion-spinner *ngIf="isLoading" name="bubbles"></ion-spinner> -->
-      <span *ngIf="!isSubscribe" >Participar de la alerta</span> 
-      <span *ngIf="isSubscribe" class="SubsButton">Gracias por participar de esta alerta :)</span> 
-    </ion-button> 
-  </section>
+  <!-- </div> -->
 </ion-content>
+
+<!-- <ion-content >
+  <section class="modo">
+    <div class="tab-content">
+     <ion-button shape="round" color="secondary" type="button" (click)="moveMap()">Cambiar de posicion</ion-button> -->
+       <!-- <h4>
+         {{emergencies.locationsEmergenciesDisasters.locationCityName}}
+       </h4>
+       <h5>{{emergencies.typesEmergenciesDisasters.typeEmergencyDisasterName}}</h5>
+ 
+       <div class="calendarResponsible">
+         <p>
+           <ion-icon id="calendarIcon" name="calendar-outline"></ion-icon>
+           <span>Fecha de inicio: {{emergencies.emergencyDisasterStartDate | date: 'dd/MM/yyyy hh:mm:ss
+             a'}}</span>
+         </p>
+       </div>
+       <p>
+           <ion-icon id="responsibleIcon" name="person-outline"></ion-icon>
+           <span>Responsable:
+             {{emergencies.employees.name}}
+           </span>
+         </p>   
+ 
+ <ion-button name="locate-outline" [routerLink]="['volunteerMap']"></ion-button>
+       <ion-button name="accessibility-outline" [routerLink]="['emergency/', emergencies.emergencyDisasterID]" class="volunteers"></ion-button>
+ 
+         <div class="d-flex justify-content-center align-content-center container">
+           <h2>
+             Instrucciones
+           </h2>
+         </div>
+         <div class="instruction location" *ngIf="!isLoading && emergencies">
+           {{emergencies.emergencyDisasterInstruction}}
+         </div>
+     </div>
+   <div *ngIf="!isLoading && emergencies">
+    <ion-grid fixed="true">
+      <ion-row >
+      <ion-col>
+        <ion-button shape="round" class="accButton" color="primary"[disabled]="!isSubscribe" (click)="setChatGroup()"
+          expand="block">  -->
+          <!-- <ion-spinner *ngIf="isLoading" name="bubbles"></ion-spinner> 
+          <span *ngIf="!isSubscribe" >Participar de la alerta</span> 
+          <span *ngIf="isSubscribe" class="SubsButton">Gracias por participar de esta alerta :)</span> 
+        </ion-button> 
+
+      </ion-col>  
+    </ion-row>
+    </ion-grid>
+  </div>
+ </section>
+</ion-content> -->
+
+
+  <!-- <div class="d-flex justify-content-center align-content-center modo" >
+    <capacitor-google-maps #mapRef></capacitor-google-maps>
+    <ion-button shape="round" color="primary" type="button" (click)="moveMap()">Cambiar de posicion</ion-button>
+    <div class="d-flex justify-content-center align-content-center" *ngIf="!isLoading" >
+      <h2>
+        Instrucciones
+      </h2>
+    <div class="instruction location">
+      {{emergencies.emergencyDisasterInstruction}}
+    </div>
+  <ion-button shape="round" class="accButton" [disabled]="isSubscribe" (click)="setChatGroup()"
+  expand="block"> 
+  <ion-spinner *ngIf="isLoading" name="bubbles"></ion-spinner> 
+  <span *ngIf="!isSubscribe" >Participar de la alerta</span> 
+  <span *ngIf="isSubscribe" class="SubsButton">Gracias por participar de esta alerta :)</span> 
+  </ion-button> 
+    </div>
+  </div> -->

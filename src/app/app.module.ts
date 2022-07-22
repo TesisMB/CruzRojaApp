@@ -1,3 +1,4 @@
+import { MapViewComponent } from 'src/app/maps/components/map-view/map-view.component';
 import { AccountModule } from './pages/account/account.module';
 import { ForgotpasswordPage } from './pages/login/forgotpassword/forgotpassword.page';
 import { AlertsModule } from './pages/alerts/alerts.module';
@@ -29,10 +30,11 @@ import { SharedModule } from './shared/shared.module';
 
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MenuPage } from './pages/menu/menu.page';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginPage, HomePage, ForgotpasswordPage],
+  declarations: [AppComponent, LoginPage, HomePage, ForgotpasswordPage,MenuPage],
   entryComponents: [],
 
   imports: [

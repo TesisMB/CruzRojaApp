@@ -5,7 +5,7 @@
   "npmClient": "npm",
   "webDir": "www",
   "plugins": {
-    "SplashScreen":{
+    "SplashScreen": {
       "launchShowDuration": 0,
       "launchAutoHide": true,
       "backgroundColor": "#ffffffff",
@@ -18,9 +18,14 @@
       "splashFullScreen": true,
       "splashImmersive": true,
       "layoutName": "launch_screen",
-      "useDialog": true    },
-    "PushNotifications":{
-      "presentationOptions": ["badge","sound","alert"]
+      "useDialog": true
+    },
+    "PushNotifications": {
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
     }
   },
   "server": {

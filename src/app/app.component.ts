@@ -8,6 +8,8 @@ import { LoginService } from './services/login/login.service';
 import { Subject } from 'rxjs';
 import { SplashScreen} from '@capacitor/splash-screen';
 import { StatusBar, Style } from '@capacitor/status-bar';
+import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +30,9 @@ export class AppComponent implements OnInit, OnDestroy{
 
     initializeApp(){
       this.platform.ready().then(() => {
+        CapacitorGoogleMaps.initialize({
+          key: environment.apiKey
+        });
         const setStatusBarStyleLight = async () => {
           await StatusBar.setStyle({ style: Style.Light });
         };
