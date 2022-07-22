@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 export class PlacesService extends DataService{
 
   public useLocation?: [number, number];
-  public isLoadingPlaces: boolean = false;
+  public isLoadingPlaces = false;
   public places: Feature [] = [];
 
   get isUserLocationReady(): boolean{
@@ -26,23 +26,23 @@ export class PlacesService extends DataService{
     private placesApi: PlacesApiClient,
     private mapService: MapService
     ) {
-    super(http, '/locations')
+    super(http, '/locations');
     this.getUserLocation();
   }
 
-  public async getUserLocation(): Promise<[number, number]>{
+  public async getUserLocation(): Promise<void>{
 
-    return new Promise( (resolve, reject) =>{
-      navigator.geolocation.getCurrentPosition(
-        ({coords}) => {
-          this.useLocation = [coords.longitude, coords.latitude];
-          resolve(this.useLocation);
-        },
-        (err) =>{
-          alert('No se pudo obtener la geolocalización');
-          console.log(err);
-        })
-    })
+    // return new Promise( (resolve, reject) =>{
+    //   navigator.geolocation.getCurrentPosition(
+    //     ({coords}) => {
+    //       this.useLocation = [coords.longitude, coords.latitude];
+    //       resolve(this.useLocation);
+    //     },
+    //     (err) =>{
+    //       alert('No se pudo obtener la geolocalización');
+    //       console.log(err);
+    //     });
+    // });
   }
 
   /* getLocationVolunteers(): Observable<any>{

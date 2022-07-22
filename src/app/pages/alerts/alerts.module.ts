@@ -9,6 +9,7 @@ import { VoluntariosDetallesPage } from '../volunteers/subpages/voluntarios-deta
 import { DeploymentPage } from '../deployment/deployment.page';
 import { AlertsPage } from './alerts.page';
 import { MapViewComponent } from 'src/app/maps/components/map-view/map-view.component';
+import { MapScreenComponent } from 'src/app/maps/screens/map-screen/map-screen.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MapViewComponent } from 'src/app/maps/components/map-view/map-view.comp
     VoluntariosDetallesPage,
     MapViewComponent,
     AlertslayoutComponent,
+    MapScreenComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

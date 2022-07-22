@@ -8,7 +8,6 @@ import { LoginService } from './services/login/login.service';
 import { Subject } from 'rxjs';
 import { SplashScreen} from '@capacitor/splash-screen';
 import { StatusBar, Style } from '@capacitor/status-bar';
-import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -29,15 +28,12 @@ export class AppComponent implements OnInit, OnDestroy{
     }
 
     initializeApp(){
-      this.platform.ready().then(() => {
-        CapacitorGoogleMaps.initialize({
-          key: environment.apiKey
-        });
+    this.platform.ready().then(() => {
         const setStatusBarStyleLight = async () => {
           await StatusBar.setStyle({ style: Style.Light });
         };
-        SplashScreen.hide().then(()=>console.log(`SplashScreen hidden`));
-        this.fcmService.initPush();
+         SplashScreen.hide().then(()=>console.log(`SplashScreen hidden`));
+         this.fcmService.initPush();
       });
     }
 

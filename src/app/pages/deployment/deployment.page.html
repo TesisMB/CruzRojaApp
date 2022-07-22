@@ -1,47 +1,16 @@
-<ion-header [translucent]="true" >
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/alertas"></ion-back-button>
-    </ion-buttons>
-    <ion-title size="small">Información de alerta</ion-title>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Despliegue de terreno</ion-title>
   </ion-toolbar>
-</ion-header>
 
-<ion-content>
-  <!-- <div id="map" #map>
-    <div class="map-frame">
-  </div> -->
-  <capacitor-google-maps #mapRef></capacitor-google-maps>
-  <ion-fab class="boton" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button class="boton" (click)="moveMap()">
-    <span *ngIf="mapState === 0">ALERTA</span>
-    <span *ngIf="mapState === 1">YO</span> 
-    <!-- <ion-icon md="caret-forward" ios="chevron-up-circle-outline"></ion-icon> -->
-   </ion-fab-button> 
-  <!-- <ion-fab-list side="top">
-    <ion-fab-button color="light">
-      <ion-icon name="logo-facebook"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-button color="light">
-      <ion-icon name="logo-twitter"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-button color="light">
-      <ion-icon name="logo-vimeo"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-button color="light">
-      <ion-icon name="logo-google"></ion-icon>
-    </ion-fab-button>
-  </ion-fab-list> -->
- </ion-fab>  
- <ion-button slot="fixed"  class="boton" (click)="presentActionSheet()">Abrir action sheet</ion-button>
-  
-   <!-- <div class="button">
-    <ion-button slot="fixed"  class="boton" (click)="moveMap()">Move</ion-button>
-  </div> -->
 
-  <!-- </div> -->
+<ion-content >
+  <ion-item>
+    <ion-icon name="location" slot="start"></ion-icon>
+    Latitud / Longitud
+  </ion-item>
 </ion-content>
-
+</ion-header>
 <!-- <ion-content >
   <section class="modo">
     <div class="tab-content">
