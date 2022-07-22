@@ -125,7 +125,6 @@ export class MapScreenComponent implements OnInit, OnDestroy {
   }
 
   async createMap() {
-    const emergencies = this.emergencies;
 
     this.newMap = await GoogleMap.create({
       id: 'my-cool-map',
@@ -143,17 +142,8 @@ export class MapScreenComponent implements OnInit, OnDestroy {
 
   await this.newMap.setMapType(MapType.Hybrid);
   await this.addMarkers();
+  await this.createModal();
   this.newMap.setOnMarkerClickListener(async (marker) => {
-
-    const modal = await this.modalCtrl.create({
-    component: DeploymentPage,
-    componentProps: {
-      emergencies: this.emergencies,
-    },
-    // breakpoints: [0, 0.2, 0.5, 1],
-    // initialBreakpoint: 0.2,
-  });
-  return await modal.present();
   });
 
   }
@@ -179,6 +169,18 @@ export class MapScreenComponent implements OnInit, OnDestroy {
       }
     }
 ]);
+  }
+
+  async createModal(){
+    const modal = await this.modalCtrl.create({
+      component: DeploymentPage,
+      componentProps: {
+        emergencies: this.emergencies,
+      },
+      breakpoints: [0, 0.2, 0.5, 1],
+      initialBreakpoint: 0.1,
+    });
+    return await modal.present();
   }
 
 
