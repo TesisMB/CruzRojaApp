@@ -16,7 +16,11 @@ capacitor-google-maps {
   height: 100%;
   } 
 
-  .boton{
+  .boton1{
     /* top: 1px; */
-    margin-bottom: 55px;
+    margin-bottom: 60px;
+  }
+  .boton2{
+    /* top: 1px; */
+    margin-bottom: 115px;
   }

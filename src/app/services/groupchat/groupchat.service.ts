@@ -45,8 +45,8 @@ export class GroupchatService {
   }
 
   //Inicio la conexion
-  public connectionStart() {
-    this.hubConnection.start()
+  public async connectionStart() {
+   await this.hubConnection.start()
       //Les paso el valor nuevo desde el groupchatpage.ts valor1 = null - valor2 = sala
       .then(() => this.groupConnection(this.currentGroupChatSubject.value))
       .catch(() => console.log('Error'));

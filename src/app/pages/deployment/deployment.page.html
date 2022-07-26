@@ -33,15 +33,15 @@
   </ion-item>
   <ion-grid fixed="true">
     <ion-row >
-    <ion-col >
-      <ion-button shape="round" size="small" class="accButton" color="primary" [disabled]="isSubscribe"
-        expand="block"> 
-        <!-- <ion-spinner *ngIf="isLoading" name="bubbles"></ion-spinner> -->
-        <span *ngIf="!isSubscribe" >Participar de la alerta</span> 
-        <span *ngIf="isSubscribe" class="SubsButton">Gracias por participar de esta alerta :)</span> 
-      </ion-button> 
-
-    </ion-col>  
+      <ion-col size="9">
+        <ion-button shape="round" size="small" class="accButton" color="primary" [disabled]="isSubscribe"
+          expand="block"> 
+          <!-- <ion-spinner *ngIf="isLoading" name="bubbles"></ion-spinner> -->
+          <span *ngIf="!isSubscribe" >Participar de la alerta</span> 
+          <span *ngIf="isSubscribe" class="SubsButton">Gracias por participar de esta alerta :)</span> 
+        </ion-button> 
+  
+      </ion-col>  
   </ion-row>
   </ion-grid>
  </ion-content>

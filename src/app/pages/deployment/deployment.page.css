@@ -10,3 +10,7 @@ ion-title.title-large {
  .info{
     /* margin-top: 3px; */
   }
+
+  .accButton{
+width: 100px; 
+ }

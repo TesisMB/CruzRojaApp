@@ -1,9 +1,7 @@
-import { PlacesService } from './../../../services/places/places.service';
 import { EmergenciesDisasters } from './../../../models/EmergenciesDisasters';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { AlertService } from 'src/app/services/alerts/alert.service';
 import { Component, OnInit, OnDestroy, Input ,ElementRef, ViewChild  } from '@angular/core';
-import { Location } from '@angular/common';
 import { Geolocation } from '@capacitor/geolocation';
 import { Platform, ModalController } from '@ionic/angular';
 import { GoogleMap, MapType } from '@capacitor/google-maps';
@@ -27,14 +25,14 @@ export class MapScreenComponent implements OnInit, OnDestroy {
   @Input() emergencies: EmergenciesDisasters = null;
   @ViewChild('mapRef') mapRef: ElementRef<HTMLElement>;
   boundingRect: any;
-   newMap: GoogleMap;
+  newMap: GoogleMap;
   markers = [];
   coordinates;
   mapState: 0 | 1 = 0;
 
   mapsOn = false;
-  handleDeployment: any;
-  handlerChat: any;
+  handleDeployment: Subscription;
+  handlerChat: Subscription;
   isAccepted = false;
   currentUser: any;
   isLoading = true;
@@ -71,7 +69,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
   }
 
         ionViewDidEnter(){
-          this.createMap();
+          // this.createMap();
         }
 
         async printCurrentPosition() {
@@ -83,8 +81,8 @@ export class MapScreenComponent implements OnInit, OnDestroy {
            this.ionLoader.showLoader();
           this.handleAlert = this.alertService.getByIdWithoutFilter(id)
           .pipe(map((x: EmergenciesDisasters) => {
-            x.isSubscribe = true;
-            // x.isSubscribe = x.usersChatRooms.some(user => user.userID === this.currentUser.userID);
+            // x.isSubscribe = true;
+            x.isSubscribe = x.usersChatRooms.some(user => user.userID === this.currentUser.userID);
             this.alertService.setNewAlert(x);
         return x;
       }))

@@ -9,3 +9,13 @@ export interface ChatRooms {
 }
 
 
+export interface Chats {
+    dateMessage: ChatDate[];
+    id: number;
+    emergenciesDisasters: EmergenciesDisasters;
+  }
+
+  export interface ChatDate{
+      createdDate: string;
+      messages: Messages[];
+  }

@@ -2,7 +2,7 @@ export class Messages {
   id?: number;
   message: string;
   messageState?: boolean;
-  createdDate?: Date;
+  createdDate?: string;
   FK_ChatRoomID?: string;
   fK_UserID?: number;
   FK_LocationVolunteerID?: number;
