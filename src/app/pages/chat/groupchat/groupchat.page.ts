@@ -158,8 +158,8 @@ export class GroupChatPage implements OnInit, OnDestroy {
     this.chatForm.get('id').patchValue(null);
     this.chatForm.get('messageState').patchValue(false);
     this.chatForm.get('createdDate').patchValue(this.pipe.transform(this.today, 'HH:mm'));
-    this.chatForm.get('FK_ChatRoomID').patchValue(this.id);
-    this.chatForm.get('fK_UserID').patchValue(this.currentUser.userID);
+    this.chatForm.get('chatRoomID').patchValue(this.id);
+    this.chatForm.get('userID').patchValue(this.currentUser.userID);
     this.chatForm.get('name').patchValue(this.currentUser.persons.firstName +' '+ this.currentUser.persons.lastName);
 
     // Agregamos un nuevo mensaje
@@ -169,8 +169,8 @@ export class GroupChatPage implements OnInit, OnDestroy {
 
    if( this.chatForm.valid){
   const msj: HubMessage = {
-  FK_ChatRoomID: form.FK_ChatRoomID,
-  fK_UserID: form.fK_UserID,
+  chatRoomID: form.chatRoomID,
+  userID: form.userID,
   message: form.message,
   };
 
@@ -197,8 +197,8 @@ export class GroupChatPage implements OnInit, OnDestroy {
       message: ['', Validators.required],
       messageState: ['', Validators.required],
       createdDate: ['', Validators.required],
-      FK_ChatRoomID: ['', Validators.required],
-      fK_UserID: ['', Validators.required],
+      chatRoomID: ['', Validators.required],
+      userID: ['', Validators.required],
       name: ['', Validators.required]
     });
 

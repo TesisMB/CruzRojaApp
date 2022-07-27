@@ -5,14 +5,14 @@ export class Messages {
   avatar: string;
   roleName: string;
   id?: number;
-  FK_ChatRoomID?: string;
-  fK_UserID?: number;
+  chatRoomID?: string;
+  userID?: number;
   messageState?: boolean;
   createdDate?: string;
 }
 
 export interface HubMessage{
   message: string;
-  FK_ChatRoomID?: string;
-  fK_UserID?: number;
+  chatRoomID?: string;
+  userID?: number;
 }
