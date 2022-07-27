@@ -13,9 +13,14 @@ export interface Chats {
     dateMessage: ChatDate[];
     id: number;
     emergenciesDisasters: EmergenciesDisasters;
+    lastMessage: string;
+    quantity: number;
+    usersChatRooms: UserChatRooms[];
   }
 
   export interface ChatDate{
       createdDate: string;
       messages: Messages[];
   }
+
+

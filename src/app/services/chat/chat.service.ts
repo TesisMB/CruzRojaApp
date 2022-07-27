@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 })
 
 export class ChatService extends DataService {
-  chatsSubjects : BehaviorSubject<any> = null;
-  chats$ : Observable<any>;
+  chatsSubjects: BehaviorSubject<any> = null;
+  chats$: Observable<any>;
 
   constructor(http: HttpClient) {
     super(http, '/chatrooms');
@@ -31,7 +31,7 @@ export class ChatService extends DataService {
   }
 
   get getPosition(){
-    let coords = {latitude: -66.764252, longitude: -70.184845};
+    const coords = {latitude: -66.764252, longitude: -70.184845};
     const coordsOptions = {enableHighAccuracy: true, timeout: 5000, maximumAge: 0};
     /* if(!navigator.geolocation){ */
       const location = navigator.geolocation.watchPosition(data => {

@@ -1,14 +1,14 @@
 import { User } from './../../../models/User';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Messages } from '../../../models/Messages';
+import { HubMessage, Messages } from '../../../models/Messages';
 import { Component, OnDestroy, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { ChatService } from 'src/app/services/chat/chat.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ChatDate, ChatRooms, Chats } from 'src/app/models/ChatRooms';
 import { LoginService } from 'src/app/services/login/login.service';
 import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
-import { IonContent, IonFab, IonFabButton } from '@ionic/angular';
+import { ActionSheetController, IonContent, IonFab, IonFabButton } from '@ionic/angular';
 import { finalize, map } from 'rxjs/operators';
 import { DatePipe, Location } from '@angular/common';
 
@@ -19,7 +19,7 @@ import { DatePipe, Location } from '@angular/common';
 })
 export class GroupChatPage implements OnInit, OnDestroy {
   @ViewChild('#fab') scrollButton: IonFab;
-  @ViewChild(IonContent, { static: true }) content: IonContent;
+  @ViewChild(IonContent) content: IonContent;
 
   isLoading = true;
   chat: Chats;
@@ -40,15 +40,16 @@ export class GroupChatPage implements OnInit, OnDestroy {
   today = new Date();
 
   constructor(
+    public actionSheetController: ActionSheetController,
     private chatService: ChatService,
     private service: GroupchatService,
     private fb: FormBuilder,
+    private route: Router,
     private aRoute: ActivatedRoute,
     private services: LoginService,
     ) {
-
     this.id = this.aRoute.snapshot.params.id;
-     this.service.setChatRoomId(this.id);
+    this.service.setChatRoomId(this.id);
 
     this.service.createConnection();
     this.service.connectionStart();
@@ -83,8 +84,9 @@ export class GroupChatPage implements OnInit, OnDestroy {
   }
 
   ionViewWillEnter(){
-    // const chatSection = document.getElementById('chat');
-    // chatSection.scrollTop = chatSection.scrollHeight;
+    this.content.scrollToBottom();
+    //  const chatSection = document.getElementById('chat');
+    //  chatSection.scrollTop = chatSection.scrollHeight;
    }
 
 
@@ -92,6 +94,10 @@ export class GroupChatPage implements OnInit, OnDestroy {
     const ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
     console.log('Fecha de hoy', ChangedFormat);
     return ChangedFormat;
+  }
+  logScrolling(event){
+    // console.log('logScrolling : When Scrolling', event);
+
   }
 
    getById() {
@@ -107,16 +113,16 @@ export class GroupChatPage implements OnInit, OnDestroy {
     });
   }
 
- async receivedMessage(){
+  receivedMessage(){
   //HUB CONNECTION - Trae los mensajes recibidos
-  this.messageHandler = await this.service.messageReceived
+  this.messageHandler =  this.service.messageReceived
   .subscribe(
     (data) => {
       this.pushMessage(data);
-  },
-   (error)=>{
-    console.log('Error en Message Received => ', error);
-  });
+    },
+    (error)=>{
+      console.log('Error en Message Received => ', error);
+    });
   }
 
   pushMessage(message: Messages): void{
@@ -134,9 +140,12 @@ export class GroupChatPage implements OnInit, OnDestroy {
       date.messages.push(message);
       this.chat.dateMessage.push(date);
     }
+     this.content.scrollToBottom(1500);
+
   }
 
-   getCurrentUser(){
+
+  getCurrentUser(){
     this.currentUserHandler =  this.services.currentUserObs.subscribe(resp => {
       this.currentUser = resp;
     }, err => {
@@ -155,11 +164,17 @@ export class GroupChatPage implements OnInit, OnDestroy {
 
     // Agregamos un nuevo mensaje
     //envia todo los valores del formulario
-    const msj = this.chatForm.value;
-    console.log('chatForm', msj);
+    const form: Messages = this.chatForm.value;
+    console.log('chatForm', form);
 
    if( this.chatForm.valid){
-    this.pushMessage(msj);
+  const msj: HubMessage = {
+  FK_ChatRoomID: form.FK_ChatRoomID,
+  fK_UserID: form.fK_UserID,
+  message: form.message,
+  };
+
+    this.pushMessage(form);
     this.chatHandlerPost = this.chatService.post(msj).pipe(
       finalize(() => {
         // this is called on both success and error
@@ -168,7 +183,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
       }))
     .subscribe(data => {
       console.log('Todo Bien');
-      this.service.sendMessage(data);
+      this.service.sendMessage(msj);
     },
       error => {
         console.log(error);
@@ -190,26 +205,69 @@ export class GroupChatPage implements OnInit, OnDestroy {
 }
   //Funciones
 
-  // leaveGroup(){
-  //   this.leaveChat = this.chatService.leaveGroup(this.currentUser.userID, this.id).subscribe(data => {
-  //     console.log('Usted a salido exitosamente del grupo!');
-  //   });
-  // }
+  leaveGroup(){
+    this.route.navigate(['tabs','chat']);
+    // this.leaveChat = this.chatService.leaveGroup(this.currentUser.userID, this.id)
+    // .subscribe(data => {
+    //   console.log('Usted a salido exitosamente del grupo!');
+    // });
+  }
 
-  // public handleScroll(event): void {
-  //   if (event.detail.scrollTop >= this.lastScrollTop) {
-  //        document.getElementById('fab-button').style.top = '100%';
-  //   }else{
-  //     document.getElementById('fab-button').style.top = '75%';
-  //     document.getElementById('fab-button').style.right = '4%';
-  //   }
+  public handleScroll(event): void {
+    if (event.detail.scrollTop >= this.lastScrollTop) {
+         document.getElementById('fab-button').style.top = '100%';
+    }else{
+      document.getElementById('fab-button').style.top = '75%';
+      document.getElementById('fab-button').style.right = '4%';
+    }
 
-  //   this.lastScrollTop = event.detail.scrollTop;
-  // }
+    this.lastScrollTop = event.detail.scrollTop;
+  }
 
   scrollToBottom() {
     // this.content.scrollToBottom(1500);
   }
+
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Opciones',
+      cssClass: 'my-custom-class',
+      buttons: [{
+        text: 'Ver miembros',
+        // role: 'selected',
+        icon: 'people-outline',
+        id: 'participant-button',
+        data: {
+          type: 'voluntarios'
+        },
+        handler: () => {
+          console.log('Participantes clicked');
+        }
+      }, {
+        text: 'Abandonar',
+        icon: 'trash',
+        data: {
+          type: 'voluntarios'
+        },
+        handler: () => {
+          console.log('Abandonar clicked');
+          this.leaveGroup();
+        }
+      }, {
+        text: 'Cancelar',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
+
+    const { role, data } = await actionSheet.onDidDismiss();
+    console.log('onDidDismiss resolved with role and data', role, data);
+  }
+
 
   ngOnDestroy() {
     this.service.stopConnection();

@@ -11,9 +11,11 @@
     <div class="container">
         <capacitor-google-maps #mapRef></capacitor-google-maps>
         <ion-fab class="boton1"  vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button size="small" (click)="moveMap()" color="light">
-                <ion-icon name="golf-outline"></ion-icon>
+            <ion-fab-button  size="small" (click)="moveMap()" color="light">
+              <ion-icon *ngIf="mapState === 1" name="compass-outline"></ion-icon>
+              <i class="fas fa-street-view" *ngIf="mapState === 0"></i>
             </ion-fab-button>  
+
           </ion-fab> 
 
             <ion-fab class="boton2" vertical="bottom" horizontal="end" slot="fixed">

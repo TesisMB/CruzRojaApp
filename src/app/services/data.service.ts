@@ -20,7 +20,7 @@ export class DataService {
     return this.http.get<any>(environment.apiURL + this.patch + '/' + id);
   }
 
-  post(message: Messages): Observable<any> {
+  post(message: any): Observable<any> {
     return this.http.post(environment.apiURL + this.patch, message);
   }
   update(resource) {

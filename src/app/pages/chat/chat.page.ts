@@ -34,13 +34,13 @@ export class ChatPage implements OnInit {
   }
 
 
-  ionViewWillEnter() { // or you can use ionViewWillEnter()
-    this.ionLoader.showLoader();
-    this.getCurrentUser();
+ async ionViewWillEnter() { // or you can use ionViewWillEnter()
+  await this.ionLoader.showLoader();
+  await  this.getCurrentUser();
+  await  this.getChat();
   }
 
   ngOnInit() {
-    this.getChat();
   }
 
   getCurrentUser(){
@@ -63,13 +63,10 @@ export class ChatPage implements OnInit {
 
   getChat() {
    return this.handlerChat = this.service.getAll()
-    .pipe(delay(1500))
     .subscribe((x: ChatRooms[]) => {
       this.chatRooms = x;
      this.ionLoader.hideLoader();
     this.isLoading = false;
-      console.log('entro chat');
-      //console.log("ChatRooms => ", this.chatRooms);
       console.log('Chat =>', this.chatRooms);
     },
     (err) => {
@@ -77,5 +74,9 @@ export class ChatPage implements OnInit {
       this.ionLoader.hideLoader();
       this.isLoading = false;
     });
+  }
+
+  ionViewDidLeave(){
+    this.handlerChat.unsubscribe();
   }
 }

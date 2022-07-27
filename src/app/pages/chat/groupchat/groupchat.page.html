@@ -6,7 +6,7 @@
     <ion-title>#{{id}}</ion-title>
   </ion-toolbar>
 </ion-header> -->
- <ion-header>
+ <ion-header >
   <ion-toolbar color="light" *ngIf="!isLoading">
        <div class="header ion-padding">
       <div class="info">
@@ -23,7 +23,7 @@
       </div>
       
       <ion-buttons  slot="end">
-        <ion-button >
+        <ion-button (click)="presentActionSheet()">
             <!-- <div class="calling"> -->
             <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
           <!-- </div> -->
@@ -33,7 +33,9 @@
     
   </ion-toolbar>
   </ion-header>
-<ion-content *ngIf="!isLoading" fullscreen="true">
+<ion-content  *ngIf="!isLoading" [scrollEvents]="true" (ionScroll)="logScrolling($event)" 
+
+>
     <!-- <div class="header ion-padding">
       <div class="info">
         <ion-buttons slot="start">
@@ -56,24 +58,27 @@
   
     <div class="conversation ion-padding">
       <div class="chat-section" id="chat" >
-        <div class="chat" *ngFor="let days of chat.dateMessage">
+        <div class="chat" *ngFor="let days of chat.dateMessage; index as i">
           <div class="date">
             <span>{{days.createdDate}}</span>
             <br>
           </div>
-          <div class="yours messages" [ngClass]="messages.fK_UserID === currentUser.userID ? 'mine messages' : 'yours messages'" *ngFor="let messages of days.messages">
-            <!-- <div class="message" [ngClass]="messages.fK_UserID === currentUser.userID ? 'mine' : 'other'">
+          <div class="messages" [ngClass]="messages.fK_UserID === currentUser.userID ? 'mine': 'yours'" *ngFor="let messages of days.messages; index as j">
+            <div class="message" [ngClass]="messages.fK_UserID === currentUser.userID ? '' : 'other'" *ngIf="days.messages[j+1]">
              {{messages.message}}
-            </div> -->
-            <div class="last-message-other" [ngClass]="messages.fK_UserID === currentUser.userID ? 'last' : 'last-message-other'">
-              <ion-avatar *ngIf="messages.fK_UserID !== currentUser.userID">
-                <img src="https://i.pravatar.cc/545" alt="" />
+            </div> 
+            <div class="message" last *ngIf="messages.fK_UserID === currentUser.userID && !days.messages[j+1]">
+              {{messages.message}}
+             </div>
+            <div *ngIf="messages.fK_UserID !== currentUser.userID && !days.messages[j+1]" class='last-message-other'>
+              <ion-avatar >
+                <img src="{{messages.avatar}}" alt="" />
               </ion-avatar>
               <div class="message last">
                 {{messages.message}}
               </div>
             </div>
-            <span>
+            <span >
               <ion-icon name="checkmark-outline" *ngIf="messages.fK_UserID === currentUser.userID && messages.messageState === false" ></ion-icon >
                 <ion-icon name="checkmark-done-outline" *ngIf="messages.fK_UserID === currentUser.userID && messages.messageState === true" ></ion-icon >
               {{messages.createdDate}}

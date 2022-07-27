@@ -82,7 +82,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
           this.handleAlert = this.alertService.getByIdWithoutFilter(id)
           .pipe(map((x: EmergenciesDisasters) => {
             // x.isSubscribe = true;
-            x.isSubscribe = x.usersChatRooms.some(user => user.userID === this.currentUser.userID);
+            x.isSubscribe = x.chatRooms.usersChatRooms.some(user => user.userID === this.currentUser.userID);
             this.alertService.setNewAlert(x);
         return x;
       }))
@@ -133,7 +133,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
           lat: this.emergencies.locationsEmergenciesDisasters.locationlatitude,
           lng: this.emergencies.locationsEmergenciesDisasters.locationlongitude,
         },
-        zoom: 15,
+        zoom: 12,
       },
       forceCreate: true,
     });
@@ -142,6 +142,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
   await this.addMarkers();
   await this.createModal();
   this.newMap.setOnMarkerClickListener(async (marker) => {
+    console.log(marker);
   });
 
   }
@@ -151,7 +152,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
     //   return;
     // }
     this.markers = await this.newMap.addMarkers([{
-      snippet: 'Aqui estoy yo',
+      // snippet: 'Aqui estoy yo',
      title: 'Mi ubicacion' ,
     coordinate: {
       lat: this.coordinates.coords.latitude,
@@ -185,8 +186,8 @@ export class MapScreenComponent implements OnInit, OnDestroy {
    async showCurrentPosition() {}
 
   async moveMap(){
-    if(this.mapState === 0){
-      this.mapState = 1;
+    if(this.mapState === 1){
+      this.mapState = 0;
       this.newMap.setCamera({
         coordinate: {
           lat: this.emergencies.locationsEmergenciesDisasters.locationlatitude,
@@ -197,7 +198,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
       });
     }
     else {
-      this.mapState = 0;
+      this.mapState = 1;
       await this.newMap.setCamera({
         coordinate: {
         lat: this.coordinates.coords.latitude,

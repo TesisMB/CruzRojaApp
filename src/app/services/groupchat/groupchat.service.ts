@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Messages } from 'src/app/models';
+import { HubMessage, Messages } from 'src/app/models';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class GroupchatService {
     this.currentGroupChatSubject.next(chatId);
   }
 
-  sendMessage(message: Messages) {
+  sendMessage(message: HubMessage) {
     this.hubConnection.invoke('NewMessage', message);
   }
 
@@ -45,8 +45,8 @@ export class GroupchatService {
   }
 
   //Inicio la conexion
-  public async connectionStart() {
-   await this.hubConnection.start()
+  public  connectionStart() {
+    this.hubConnection.start()
       //Les paso el valor nuevo desde el groupchatpage.ts valor1 = null - valor2 = sala
       .then(() => this.groupConnection(this.currentGroupChatSubject.value))
       .catch(() => console.log('Error'));
