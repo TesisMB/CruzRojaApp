@@ -6,8 +6,7 @@
     </div>
     <div class="overlay">
       <ion-avatar>
-        <img *ngIf="this.currentUser.volunteerAvatar" src="{{this.currentUser.volunteerAvatar}}">
-        <img *ngIf="!this.currentUser.volunteerAvatar" src="../../../assets/img-home-users/avatar-user.png">
+        <img src="{{this.currentUser.avatar}}">
       </ion-avatar>
     </div>
   </div>
@@ -27,14 +26,14 @@
       <ion-card-title class="card-title">
         Mi Información
       </ion-card-title>
-        <ion-item button (click)="navigateToPersonalInfo()">
-          <ion-icon name="person-outline" class="icons"></ion-icon>
-          <ion-label>Información Personal</ion-label>
-        </ion-item>
-        <ion-item button="true" (click)="navigateToPassword()">
-          <ion-icon name="lock-closed-outline" class="icons"></ion-icon>
-          <ion-label>Contraseña</ion-label>
-        </ion-item>
+      <ion-item button (click)="navigateToPersonalInfo()">
+        <ion-icon name="person-outline" class="icons"></ion-icon>
+        <ion-label>Información Personal</ion-label>
+      </ion-item>
+      <ion-item button="true" (click)="navigateToPassword()">
+        <ion-icon name="lock-closed-outline" class="icons"></ion-icon>
+        <ion-label>Contraseña</ion-label>
+      </ion-item>
       <div *ngIf="currentUser.roleName == 'Voluntario'">
         <ion-card-title class="card-title2">
           Información de Voluntarios
@@ -50,14 +49,14 @@
           <ion-label>Preferencias</ion-label>
         </ion-item>
       </div>
-         <ion-item lines="none" button="true" (click)="sendDeviceToken()">
+      <ion-item lines="none" button="true" (click)="sendDeviceToken()">
         <ion-icon name="send-sharp" class="icons"></ion-icon>
         <ion-label>Enviar token</ion-label>
       </ion-item>
-        <ion-item lines="none" button="true" (click)="logOut()">
-          <ion-icon name="log-out-outline" class="icons"></ion-icon>
-          <ion-label>Cerrar sesión</ion-label>
-        </ion-item>
+      <ion-item lines="none" button="true" (click)="logOut()">
+        <ion-icon name="log-out-outline" class="icons"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
 
     </ion-card-content>
   </ion-card>
@@ -120,9 +119,9 @@
 
 <!-- <form [formGroup]="fg" (ngSubmit)="onSubmit()"> -->
 
-  <!-- <ion-list> -->
-    <!-- Avatar - Solo voluntarios -->
-    <!-- <div class="avatarMrg" *ngIf="currentUser.roleName == 'Voluntario'">
+<!-- <ion-list> -->
+<!-- Avatar - Solo voluntarios -->
+<!-- <div class="avatarMrg" *ngIf="currentUser.roleName == 'Voluntario'">
       <ion-avatar class="avatar" >
         <img src="{{this.currentUser.volunteerAvatar}}">
         <ion-button class="cameraBtn" (click)="selectImage()">
@@ -131,21 +130,21 @@
       </ion-avatar>
     </div> -->
 
-    <!-- Card de datos de contacto -->
+<!-- Card de datos de contacto -->
 
-    <!-- <ion-card> -->
+<!-- <ion-card> -->
 
-      <!--Header del card-->
+<!--Header del card-->
 
-      <!-- <ion-card-header>
+<!-- <ion-card-header>
         <ion-card-title>
           Datos de contacto
         </ion-card-title>
       </ion-card-header> -->
 
-      <!--Contenido del card-->
+<!--Contenido del card-->
 
-      <!-- <ion-card-content formGroupName="persons">
+<!-- <ion-card-content formGroupName="persons">
 
         <ion-item>
           <ion-label position="floating">Correo electrónico</ion-label>
@@ -169,21 +168,21 @@
           </ion-select>
         </ion-item>
       </ion-card-content> -->
-      <!-- [disabled]="!initForm().valid" -->
+<!-- [disabled]="!initForm().valid" -->
 
-    <!-- Contraseña -->
+<!-- Contraseña -->
 
-      <!--Header-->
+<!--Header-->
 
-      <!-- <ion-card-header>
+<!-- <ion-card-header>
         <ion-card-title>
           Contraseña
         </ion-card-title>
       </ion-card-header> -->
 
-      <!--Contenido-->
+<!--Contenido-->
 
-      <!-- <ion-card-content>
+<!-- <ion-card-content>
         <ion-item>
           <ion-label position="floating">Actual contraseña</ion-label>
           <ion-input formControlName="Password" name="password" type="text" required></ion-input>
@@ -200,39 +199,39 @@
         </ion-item>
       </ion-card-content> -->
 
-      <!-- [disabled]="!initForm().valid" -->
-      <!-- <ion-button class="accButton" type="submit" shape="round" (click)="onSubmit()">Guardar</ion-button> -->
-    <!-- </ion-card> -->
+<!-- [disabled]="!initForm().valid" -->
+<!-- <ion-button class="accButton" type="submit" shape="round" (click)="onSubmit()">Guardar</ion-button> -->
+<!-- </ion-card> -->
 
-    <!-- Card de Voluntario -->
+<!-- Card de Voluntario -->
 
-    <!-- <ion-card *ngIf="currentUser.roleName == 'Voluntario'">
+<!-- <ion-card *ngIf="currentUser.roleName == 'Voluntario'">
 -->
-      <!--Header del card-->
+<!--Header del card-->
 
-      <!-- <ion-card-header>
+<!-- <ion-card-header>
         <ion-card-title>
           Voluntario
         </ion-card-title>
       </ion-card-header> -->
 
-      <!--Contenido del card-->
+<!--Contenido del card-->
 
-     <!--  <ion-card-content> -->
-        <!-- <ion-item>
+<!--  <ion-card-content> -->
+<!-- <ion-item>
           <ion-label position="floating">Descripción del Voluntario</ion-label>
           <ion-label>{{currentUser.volunt}}</ion-label>
         </ion-item> -->
 
-        <!-- <ion-item>
+<!-- <ion-item>
           <ion-label position="floating">Habilidades de los Voluntarios</ion-label>
           <ion-input formControlName="NewPassword" name="newPassword" type="text" required></ion-input>
         </ion-item> -->
 
-     <!--  </ion-card-content> -->
-      <!-- [disabled]="!initForm().valid" -->
-      <!-- <ion-button class="accButton" type="submit" shape="round" >Guardar</ion-button>
+<!--  </ion-card-content> -->
+<!-- [disabled]="!initForm().valid" -->
+<!-- <ion-button class="accButton" type="submit" shape="round" >Guardar</ion-button>
     </ion-card> -->
 
-  <!-- </ion-list>
+<!-- </ion-list>
 </form> -->

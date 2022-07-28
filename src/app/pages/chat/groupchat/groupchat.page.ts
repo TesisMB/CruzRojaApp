@@ -174,7 +174,7 @@ export class GroupChatPage implements OnInit, OnDestroy {
   message: form.message,
   };
 
-    this.pushMessage(form);
+    // this.pushMessage(form);
     this.chatHandlerPost = this.chatService.post(msj).pipe(
       finalize(() => {
         // this is called on both success and error
@@ -182,8 +182,9 @@ export class GroupChatPage implements OnInit, OnDestroy {
         this.scrollToBottom();
       }))
     .subscribe(data => {
-      console.log('Todo Bien');
       this.service.sendMessage(msj);
+      console.log('Todo Bien', this.chat);
+
     },
       error => {
         console.log(error);
