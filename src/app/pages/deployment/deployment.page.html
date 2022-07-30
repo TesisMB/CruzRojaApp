@@ -13,33 +13,39 @@
 </ion-content> -->
 </ion-header>
  <ion-content >
-   <ion-item >
-     <ion-icon name="location" slot="start"></ion-icon>
-    <ion-label position="stacked">Ubicación</ion-label>
-     <p class="info pt-2">{{emergencies.locationsEmergenciesDisasters.locationCityName}}</p>
-   </ion-item>
-    <ion-item>
-      <ion-icon name="calendar-outline" slot="start"></ion-icon>
-    <ion-label position="stacked">Fecha inicio</ion-label>
-     <p class="info pt-2">{{emergencies.emergencyDisasterStartDate | date}}</p> 
-  </ion-item>
-  <ion-item>
-    <ion-icon name="information-circle-outline" slot="start"></ion-icon>
-    <ion-label position="stacked">Descripcion</ion-label>
-    <ion-textarea
-      readonly
-      value={{emergencies.emergencyDisasterInstruction}}>
-    </ion-textarea>
-  </ion-item>
-  <ion-grid fixed="true">
-    <ion-row >
-      <ion-col size="9">
-        <ion-button shape="round" size="small" class="accButton" color="primary" [disabled]="isSubscribe"
+   <ion-grid fixed="true">
+     <ion-row >
+      <ion-col size="12">
+      <ion-item >
+        <ion-icon name="location" slot="start"></ion-icon>
+       <ion-label position="stacked">Ubicación</ion-label>
+        <p class="info pt-2">{{emergencies.locationsEmergenciesDisasters.locationCityName}}</p>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12">
+      <ion-item>
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+       <ion-label position="stacked">Fecha inicio</ion-label>
+        <p class="info pt-2">{{emergencies.emergencyDisasterStartDate | date}}</p> 
+     </ion-item>
+     
+    </ion-col>
+    <ion-col size="12">
+    </ion-col>
+        <ion-item>
+      <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+      <ion-label position="stacked">Descripcion</ion-label>
+       <p class="info pt-2">
+         {{emergencies.emergencyDisasterInstruction}}
+       </p>
+     </ion-item>
+      <ion-col size="12">
+         <ion-button shape="round" size="small" color="primary" [disabled]="isSubscribe"
           expand="block"> 
-          <!-- <ion-spinner *ngIf="isLoading" name="bubbles"></ion-spinner> -->
-          <span *ngIf="!isSubscribe" >Participar de la alerta</span> 
-          <span *ngIf="isSubscribe" class="SubsButton">Gracias por participar de esta alerta :)</span> 
-        </ion-button> 
+          <ion-spinner *ngIf="isLoading" name="bubbles"></ion-spinner>
+          <span *ngIf="!isSubscribe && !isLoading" class="SubsButton">Participar de la alerta</span> 
+          <span *ngIf="isSubscribe && !isLoading" class="SubsButton">Gracias por participar de esta alerta :)</span> 
+        </ion-button>  
   
       </ion-col>  
   </ion-row>

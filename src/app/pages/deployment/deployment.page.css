@@ -10,7 +10,9 @@ ion-title.title-large {
  .info{
     /* margin-top: 3px; */
   }
-
+.SubsButton{
+  font-size: 8px;
+}
   .accButton{
 width: 100px; 
  }

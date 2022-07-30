@@ -32,7 +32,6 @@ export class MapScreenComponent implements OnInit, OnDestroy {
 
   mapsOn = false;
   handleDeployment: Subscription;
-  handlerChat: Subscription;
   isAccepted = false;
   currentUser: any;
   isLoading = true;
@@ -101,26 +100,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
 
     });
   }
-  setChatGroup(){
-    this.isLoading = true;
-    this.ionLoader.showLoader();
-    console.log(this.emergencies);
-    this.handlerChat = this.chatService.joinGroup(this.emergencies.emergencyDisasterID)
-    .subscribe(
-    (data) =>{
-      console.log('Aceptado');
-      this.emergencies.isSubscribe = true;
-      this.ionLoader.hideLoader();
-      this.isLoading = false;
-},
-    (error) =>{
-    console.log('error', error);
-     this.ionLoader.hideLoader();
-     this.showToast('Usted ya esta registrado en esta alerta', 3000);
-     this.isAccepted = true;
-     this.isLoading = false;
-    });
-  }
+
 
   async createMap() {
 

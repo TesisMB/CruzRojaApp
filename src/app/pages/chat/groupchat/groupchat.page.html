@@ -35,7 +35,9 @@
 
   </ion-toolbar>
 </ion-header>
-<ion-content *ngIf="!isLoading" [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+<ion-content *ngIf="!isLoading" [scrollEvents]="true" >
+  <!-- <cdk-virtual-scroll-viewport class="ion-content-scroll-host" itemSize="56" minBufferPx="900" maxBufferPx="1350"> -->
+
   <!-- <div class="header ion-padding">
       <div class="info">
         <ion-buttons slot="start">
@@ -60,8 +62,8 @@
     <div class="chat-section" id="chat">
       <div class="chat" *ngFor="let days of chat.dateMessage; index as i">
         <div class="date">
-          <span>{{days.createdDate}}</span>
-          <br>
+          <span *ngIf="days.createdDate !== changeFormat">{{days.createdDate}}</span>
+          <span *ngIf="days.createdDate === changeFormat">Hoy</span>
         </div>
         <div class="messages" [ngClass]="messages.userID === currentUser.userID ? 'mine': 'yours'"
           *ngFor="let messages of days.messages; index as j">
@@ -82,10 +84,10 @@
           </div>
           <span>
             <ion-icon name="checkmark-outline"
-              *ngIf="messages.userID === currentUser.userID && messages.messageState === false"></ion-icon>
-            <ion-icon name="checkmark-done-outline"
               *ngIf="messages.userID === currentUser.userID && messages.messageState === true"></ion-icon>
-            {{messages.createdDate}}
+            <ion-icon name="checkmark-done-outline"
+              *ngIf="messages.userID === currentUser.userID && messages.messageState === false"></ion-icon>
+            {{messages.createdDate | date:'shortTime'}}
           </span>
         </div>
         <!-- <div class="mine messages">
@@ -159,6 +161,7 @@
 
 
   </div>
+ <!-- </cdk-virtual-scroll-viewport> -->
 </ion-content>
 <!-- <div class="header ion-no-border">
   <div class="info">

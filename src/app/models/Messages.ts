@@ -8,7 +8,7 @@ export class Messages {
   chatRoomID?: string;
   userID?: number;
   messageState?: boolean;
-  createdDate?: string;
+  createdDate?: any;
 }
 
 export interface HubMessage{

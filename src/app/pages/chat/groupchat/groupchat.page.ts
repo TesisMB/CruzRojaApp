@@ -2,7 +2,7 @@ import { User } from './../../../models/User';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HubMessage, Messages } from '../../../models/Messages';
-import { Component, OnDestroy, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ChatDate, ChatRooms, Chats } from 'src/app/models/ChatRooms';
@@ -11,15 +11,17 @@ import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
 import { ActionSheetController, IonContent, IonFab, IonFabButton } from '@ionic/angular';
 import { finalize, map } from 'rxjs/operators';
 import { DatePipe, Location } from '@angular/common';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-groupchat',
   templateUrl: './groupchat.page.html',
   styleUrls: ['./groupchat.page.scss'],
 })
-export class GroupChatPage implements OnInit, OnDestroy {
+export class GroupChatPage implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('#fab') scrollButton: IonFab;
   @ViewChild(IonContent) content: IonContent;
+  // @ViewChild(CdkVirtualScrollViewport) viewPort: CdkVirtualScrollViewport;
 
   isLoading = true;
   chat: Chats;
@@ -84,28 +86,31 @@ export class GroupChatPage implements OnInit, OnDestroy {
   }
 
   ionViewWillEnter(){
-    this.content.scrollToBottom();
     //  const chatSection = document.getElementById('chat');
     //  chatSection.scrollTop = chatSection.scrollHeight;
-   }
+  }
 
+ngAfterViewInit(){
+  // this.logScrolling(this.chat.dateMessage[this.chat.dateMessage.length-1].messages.length - 1, 'auto');
 
-  changeFormat(){
+}
+ get changeFormat(){
     const ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
-    console.log('Fecha de hoy', ChangedFormat);
+    // console.log('Fecha de hoy', ChangedFormat);
     return ChangedFormat;
   }
-  logScrolling(event){
-    // console.log('logScrolling : When Scrolling', event);
-
+  logScrolling(index, mode){
+console.log(index);
+// this.viewPort.scrollToIndex(index, mode);
   }
 
-   getById() {
+  getById() {
     //GET SALA DE CHAT, TRAE TODO EL CHAT.
     this.chatHandlerId = this.chatService.getById(this.id)
     .subscribe(data => {
       this.chat = data;
       this.isLoading = false;
+      this.content.scrollToBottom();
       console.log(data);
     }, error => {
       this.isLoading = false;
@@ -126,10 +131,11 @@ export class GroupChatPage implements OnInit, OnDestroy {
   }
 
   pushMessage(message: Messages): void{
-    const today = this.changeFormat();
+    const today = this.changeFormat;
     const messageOfToday = this.chat.dateMessage.findIndex(x => x.createdDate === today);
+    let lastIndex = -1;
     if(messageOfToday !== -1){
-      this.chat.dateMessage[messageOfToday].messages.push(message);
+      lastIndex =  this.chat.dateMessage[messageOfToday].messages.push(message);
     }
     else {
       const date: ChatDate = {
@@ -138,9 +144,10 @@ export class GroupChatPage implements OnInit, OnDestroy {
       };
       // date.createdDate = '26/07/2022';
       date.messages.push(message);
-      this.chat.dateMessage.push(date);
+      lastIndex = this.chat.dateMessage.push(date) - 1;
     }
-     this.content.scrollToBottom(1500);
+    //  this.content.scrollToBottom(1500);
+    this.logScrolling(lastIndex, 'smooth');
 
   }
 
