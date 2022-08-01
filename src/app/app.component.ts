@@ -2,14 +2,14 @@ import { FcmService } from './fcm.service';
 /* eslint-disable no-trailing-spaces */
 import { CurrentUser } from './models/CurrentUser';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Platform, IonRouterOutlet } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Platform, IonRouterOutlet  } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from './services/login/login.service';
 import { Subject } from 'rxjs';
 import { SplashScreen} from '@capacitor/splash-screen';
 import { StatusBar, Style } from '@capacitor/status-bar';
 // import { App } from '@capacitor/app';
-// import { Location } from '@angular/common';
+import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -24,8 +24,8 @@ export class AppComponent implements OnInit, OnDestroy{
   constructor(
     private platform: Platform,
     private fcmService: FcmService,
-    // private location: Location,
-    // private routerOutlet: IonRouterOutlet,
+    private location: Location,
+    // public routerOutlet: IonRouterOutlet,
     ) {
       this.initializeApp();
     }

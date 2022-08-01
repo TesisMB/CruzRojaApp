@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { FcmService } from 'src/app/fcm.service';
 import { Operation } from 'fast-json-patch';
-
+import { App } from '@capacitor/app';
 @Injectable({
   providedIn: 'root'
 })
@@ -63,6 +63,7 @@ export class LoginService {
     localStorage.clear();
     this.currentUserSubject.next(null);
      this.router.navigateByUrl('/login');
+     App.exitApp();
   }
 
   sendEmail(email: string) {
