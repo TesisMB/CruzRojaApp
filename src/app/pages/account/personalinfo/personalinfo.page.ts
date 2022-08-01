@@ -43,11 +43,12 @@ export class PersonalinfoPage implements OnInit, OnDestroy {
         email: ['',[Validators.required, Validators.email]],
         phone: ['',[Validators.required,Validators.pattern('^((\\+54-?)|0)?[0-9]{10}$')]],
         address: ['',[Validators.required, Validators.maxLength(25)]],
-        status: ['',[Validators.required]]
+        status: ['',[Validators.required]],
+        locationName: ['',[Validators.required, Validators.maxLength(25)]],
       }),
-      estates: this.formBuilder.group({
-        locationCityName: ['',[Validators.required, Validators.maxLength(25)]],
-      }),
+      // estates: this.formBuilder.group({
+      //   locationCityName: ['',[Validators.required, Validators.maxLength(25)]],
+      // }),
     });
   }
 
