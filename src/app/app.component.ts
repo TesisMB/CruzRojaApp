@@ -22,27 +22,21 @@ export class AppComponent implements OnInit, OnDestroy{
   showTabs = false; // <-- show tabs by default
   handler: any;
   constructor(
-    private loginService: LoginService,
     private platform: Platform,
     private fcmService: FcmService,
     // private location: Location,
     // private routerOutlet: IonRouterOutlet,
     ) {
       this.initializeApp();
-      // this.platform.backButton.subscribeWithPriority(10, () => {
-      //  if (this.routerOutlet.canGoBack()) {
-      //    this.location.back();
-      //  } 
-      // });
     }
-
+    
     initializeApp(){
-    this.platform.ready().then(() => {
+      this.platform.ready().then(() => {
         const setStatusBarStyleLight = async () => {
           await StatusBar.setStyle({ style: Style.Light });
         };
 
-         SplashScreen.hide().then(()=>console.log(`SplashScreen hidden`));
+        SplashScreen.hide().then(()=>console.log(`SplashScreen hidden`));
 
          this.fcmService.initPush();
 
@@ -50,9 +44,14 @@ export class AppComponent implements OnInit, OnDestroy{
       }
       
       ngOnInit() {
+        // this.platform.backButton.subscribeWithPriority(10, () => {
+        //  if (this.routerOutlet.canGoBack()) {
+        //    this.location.back();
+        //  } 
+        // });
         //   else {
-        //     App.exitApp();
-        // }
+          //     App.exitApp();
+          // }
         // this.handler = this.loginService.currentUserObs.subscribe(
           // (data: CurrentUser) =>{
             // eslint-disable-next-line @typescript-eslint/no-unused-expressions

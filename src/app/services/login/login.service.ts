@@ -6,6 +6,7 @@ import { debounceTime, delay, map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { FcmService } from 'src/app/fcm.service';
+import { Operation } from 'fast-json-patch';
 
 @Injectable({
   providedIn: 'root'
@@ -81,9 +82,18 @@ export class LoginService {
     .subscribe(resp => console.log(resp), err => console.log(err));
   }
 
-  updateUser(user: CurrentUser){
-    localStorage.setItem('currentUser', JSON.stringify(user));
+  updateUser(user: CurrentUser,  operations: Operation[]){
+    const path = environment.apiURL + '/employees/'+user.userID;
+    return this.http.patch(path, operations).pipe(
+      map((data) => {
+        if(data){
+      localStorage.setItem('currentUser', JSON.stringify(data));
+      this.currentUserSubject.next(data);
+    }
     console.log(user);
-    this.currentUserSubject.next(user);
+    return data;
+  }
+  ));
+
   }
 }

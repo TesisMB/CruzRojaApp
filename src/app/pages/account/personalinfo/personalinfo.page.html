@@ -67,13 +67,14 @@
   </form>
   <div class="btnIonic">
     <ion-button
-      [disabled]="!initForm().valid"
+      [disabled]="fg.invalid"
       class="accButton"
       type="submit"
       shape="round"
       (click)="onSubmit()"
     >
-      Guardar
+     <span *ngIf="!isLoading"> Guardar</span>
+     <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
     </ion-button>
   </div>
 </ion-content>
