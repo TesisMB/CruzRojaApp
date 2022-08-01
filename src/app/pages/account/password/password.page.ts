@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models';
-import { CustomValidators } from 'src/app/_helpers/CustomValidators';
+// import { CustomValidators } from 'src/app/_helpers/CustomValidators';
 
 @Component({
   selector: 'app-password',

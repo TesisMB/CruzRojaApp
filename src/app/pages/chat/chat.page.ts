@@ -3,7 +3,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 import { CurrentUser } from './../../models/CurrentUser';
 import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
 import { ChatService } from './../../services/chat/chat.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs/operators';
 import { LoaderService } from 'src/app/services/loader/loader.service';
@@ -14,7 +14,7 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
   styleUrls: ['./chat.page.css'],
 })
 
-export class ChatPage implements OnInit {
+export class ChatPage implements OnInit, OnDestroy {
   handlerChat: any;
   loadingHandle: any = true;
   observableUser: CurrentUser;
@@ -34,14 +34,15 @@ export class ChatPage implements OnInit {
   }
 
 
- async ionViewWillEnter() { // or you can use ionViewWillEnter()
-  await this.ionLoader.showLoader();
-  await  this.getCurrentUser();
-  await  this.getChat();
-  }
+ ionViewWillEnter() { // or you can use ionViewWillEnter()
+  //  this.getChat();
+ }
 
-  ngOnInit() {
-  }
+ async ngOnInit() {
+   await this.getChat();
+   await this.ionLoader.showLoader();
+   await  this.getCurrentUser();
+}
 
   getCurrentUser(){
     this.currentUserHandler = this.services.currentUserObs.subscribe(resp => {
@@ -78,6 +79,9 @@ export class ChatPage implements OnInit {
   }
 
   ionViewDidLeave(){
-    this.handlerChat.unsubscribe();
   }
+  ngOnDestroy(){
+    this.handlerChat.unsubscribe();
+    this.currentUserHandler.unsubscribe();
+ }
 }

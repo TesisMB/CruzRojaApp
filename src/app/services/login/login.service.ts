@@ -85,8 +85,11 @@ export class LoginService {
   updateUser(user: CurrentUser,  operations: Operation[]){
     const path = environment.apiURL + '/employees/'+user.userID;
     return this.http.patch(path, operations).pipe(
-      map((data) => {
+      map((data: any) => {
         if(data){
+          if(!data.token){
+            data.token = user.token;
+          }
       localStorage.setItem('currentUser', JSON.stringify(data));
       this.currentUserSubject.next(data);
     }
