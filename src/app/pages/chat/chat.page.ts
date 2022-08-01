@@ -52,6 +52,16 @@ export class ChatPage implements OnInit, OnDestroy {
     });
   }
 
+  doRefresh(event){
+    // this.isLoading = true;
+    this.getChat();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      // this.isLoading = false;
+      event.target.complete();
+    }, 3000);
+  }
+
   segmentChange(e){
     this.activeTab = e.target.value;
   }
@@ -64,6 +74,7 @@ export class ChatPage implements OnInit, OnDestroy {
   }
 
   getChat() {
+    // this.isLoading = true;
    return this.handlerChat = this.service.getAll()
     .subscribe((x: ChatRooms[]) => {
       this.chatRooms = x;

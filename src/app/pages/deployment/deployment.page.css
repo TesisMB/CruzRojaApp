@@ -16,3 +16,6 @@ ion-title.title-large {
   .accButton{
 width: 100px; 
  }
+ ion-content{
+  width: 100%;
+}

@@ -182,7 +182,7 @@ return true;
     //POST DE MENSAJES.
     this.chatForm.get('id').patchValue(null);
     this.chatForm.get('messageState').patchValue(false);
-    this.chatForm.get('createdDate').patchValue(this.pipe.transform(this.today, 'HH:mm'));
+    this.chatForm.get('createdDate').patchValue(this.pipe.transform(this.today, 'HH:mm', '-0300'));
     this.chatForm.get('chatRoomID').patchValue(this.id);
     this.chatForm.get('userID').patchValue(this.currentUser.userID);
     this.chatForm.get('name').patchValue(this.currentUser.persons.firstName +' '+ this.currentUser.persons.lastName);
@@ -197,6 +197,7 @@ return true;
   chatRoomID: form.chatRoomID,
   userID: form.userID,
   message: form.message,
+  createdDate: this.today
   };
 
     // this.pushMessage(form);
@@ -272,17 +273,19 @@ return true;
         handler: () => {
           this.goToMembers();
         }
-      }, {
-        text: 'Abandonar',
-        icon: 'trash',
-        data: {
-          type: 'voluntarios'
-        },
-        handler: () => {
-          console.log('Abandonar clicked');
-          this.leaveGroup();
-        }
-      }, {
+      },
+      // {
+      //   text: 'Abandonar',
+      //   icon: 'trash',
+      //   data: {
+      //     type: 'voluntarios'
+      //   },
+      //   handler: () => {
+      //     console.log('Abandonar clicked');
+      //     this.leaveGroup();
+      //   }
+      // },
+      {
         text: 'Cancelar',
         icon: 'close',
         role: 'cancel',

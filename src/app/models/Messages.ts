@@ -15,4 +15,5 @@ export interface HubMessage{
   message: string;
   chatRoomID?: string;
   userID?: number;
+  createdDate?: any;
 }

@@ -40,3 +40,7 @@ ion-content{
   --padding-top: 3px;
   --background: red;
 } */
+cdk-virtual-scroll-viewport {
+  min-height: 100%;
+  width: 100%;
+}

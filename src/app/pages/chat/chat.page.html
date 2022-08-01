@@ -1,7 +1,9 @@
 <app-header titulo="Chat"></app-header>
 
-<ion-content fullscreen="true">
-
+<ion-content fullscreen="true" [scrollY]="false">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <!-- Por ahira se oculta  -->
 
   <!--   <div class="tabs ion-padding">
@@ -16,8 +18,10 @@
         <ion-label>Contactos</ion-label>
       </ion-segment-button> -->
   <!-- </ion-segment>
-  </div> -->
-  <ng-container *ngIf="chatRooms.length && !isLoading">
+  </div> --> 
+
+  <!-- <cdk-virtual-scroll-viewport class="ion-content-scroll-host"> -->
+      <ng-container *ngIf="chatRooms.length && !isLoading">
     <ion-list>
       <ion-list-header> Canales </ion-list-header>
 
@@ -89,5 +93,6 @@
       </ion-label>
     </ion-item>
   </ion-list>
+<!-- </cdk-virtual-scroll-viewport> -->
 </ion-content>
 <!-- <app-menu showTabs></app-menu> -->
