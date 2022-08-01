@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ChatPage } from './chat.page';
 import { PrivatechatPage } from './privatechat/privatechat.page';
+import { VolunteersPage } from '../volunteers/volunteers.page';
+import { VoluntariosDetallesPage } from '../volunteers/subpages/voluntarios-detalles/volunteersdetails';
 
 const routes: Routes = [
   {
@@ -17,7 +19,15 @@ const routes: Routes = [
       },
       {
         path: 'groupChat/:id',
-        component: GroupChatPage
+        component: GroupChatPage,
+      },
+      {
+      path: 'members/:id',
+      component: VolunteersPage,
+    },
+      {
+        path: 'members/details/:id',
+        component: VoluntariosDetallesPage
       },
       {
         path: 'privatechat/:id',

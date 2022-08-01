@@ -80,4 +80,10 @@ export class LoginService {
    this.http.put(environment.apiURL+path, {deviceToken})
     .subscribe(resp => console.log(resp), err => console.log(err));
   }
+
+  updateUser(user: CurrentUser){
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    console.log(user);
+    this.currentUserSubject.next(user);
+  }
 }

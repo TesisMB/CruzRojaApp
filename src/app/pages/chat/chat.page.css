@@ -16,16 +16,7 @@ ion-segment-button{
   border-radius: 22px;
 }
 
-ion-badge{
-  font-size: 11px;
-  margin-bottom: 5px;
-  --padding-start: 5px;
-  --padding-end: 5px;
-  --padding-bottom: 3px;
-  --padding-top: 3px;
-  --background: red;
-}
- */
+*/
 /* Classes */
 
 /* .info-div{
@@ -36,4 +27,16 @@ ion-badge{
   font-weight: bolder;
   text-align: right;
 }
- */
+*/
+ion-content{
+  width: 100%;
+}
+/* ion-badge{
+  font-size: 11px;
+  margin-bottom: 5px;
+  --padding-start: 5px;
+  --padding-end: 5px;
+  --padding-bottom: 3px;
+  --padding-top: 3px;
+  --background: red;
+} */

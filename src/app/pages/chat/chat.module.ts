@@ -7,6 +7,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ChatPage } from './chat.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { PrivatechatPage } from './privatechat/privatechat.page';
+import { VoluntariosDetallesPage } from '../volunteers/subpages/voluntarios-detalles/volunteersdetails';
+import { VolunteersPage } from '../volunteers/volunteers.page';
 
 @NgModule({
   imports: [
@@ -18,7 +20,9 @@ import { PrivatechatPage } from './privatechat/privatechat.page';
   ChatPage,
   GroupChatPage,
   ChatlayoutComponent,
-  PrivatechatPage
+  PrivatechatPage,
+  VolunteersPage,
+  VoluntariosDetallesPage,
 ]
 })
 export class ChatPageModule {}

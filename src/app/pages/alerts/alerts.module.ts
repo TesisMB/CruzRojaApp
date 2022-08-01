@@ -22,8 +22,6 @@ import { MapScreenComponent } from 'src/app/maps/screens/map-screen/map-screen.c
   declarations: [
     AlertsPage,
     DeploymentPage,
-    VolunteersPage,
-    VoluntariosDetallesPage,
     MapViewComponent,
     AlertslayoutComponent,
     MapScreenComponent

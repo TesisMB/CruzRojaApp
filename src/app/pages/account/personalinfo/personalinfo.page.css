@@ -11,6 +11,10 @@ ion-select{
   --padding-bottom: 1rem;
 }
 
+ion-content{
+  width: 100%;
+}
+
 /* Clases */
 
 .accButton{

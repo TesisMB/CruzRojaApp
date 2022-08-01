@@ -1,7 +1,7 @@
 <ion-content>
   <div class="container">
     <div class="container-icon">
-      <img src="../../../assets/icon/truck-medical-solid.svg" alt="">
+      <!-- <img src="../../../assets/icon/truck-medical-solid.svg" alt=""> -->
       <img src="../../../assets/icon/cruzar.png" alt="">
     </div>
     <div class="overlay">
@@ -34,7 +34,7 @@
         <ion-icon name="lock-closed-outline" class="icons"></ion-icon>
         <ion-label>Contraseña</ion-label>
       </ion-item>
-      <div *ngIf="currentUser.roleName == 'Voluntario'">
+      <div *ngIf="currentUser.roleName === 'Voluntario'">
         <ion-card-title class="card-title2">
           Información de Voluntarios
         </ion-card-title>

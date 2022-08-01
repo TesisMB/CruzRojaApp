@@ -20,11 +20,11 @@ export class PersonalinfoPage implements OnInit {
   originalUser: CurrentUser;
   handlerProfile: any;
   fg: FormGroup;
-  service: ProfileService;
 
   constructor(
     private formBuilder: FormBuilder,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private service: ProfileService
   ) {  }
 
   ngOnInit() {
@@ -52,6 +52,7 @@ export class PersonalinfoPage implements OnInit {
   onSubmit(){
     if(this.fg.valid){
       const patch = compare(this.model, this.fg.value);
+
     }
   }
 }

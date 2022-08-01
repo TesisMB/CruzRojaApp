@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Información Personal</ion-title>
+    <ion-title  size="small">Información Personal</ion-title>
     <ion-buttons slot="start">
       <ion-back-button type="button" defaultHref="/tabs/account"></ion-back-button>
     </ion-buttons>
@@ -17,11 +17,11 @@
 
       <!--Header del card-->
 
-      <ion-card-header>
+      <!-- <ion-card-header>
         <ion-card-title>
           Datos de contacto
         </ion-card-title>
-      </ion-card-header>
+      </ion-card-header> -->
 
       <!--Contenido del card-->
 
@@ -54,7 +54,7 @@
 
       <div formGroupName="persons">
         <ion-item id="accSelect">
-          <ion-label>Disponibilidad</ion-label>
+          <ion-label  position="floating">Disponibilidad ante alertas</ion-label>
           <ion-select cancelText="Cancelar" okText="Aceptar" value="{{this.currentUser.persons.status}}">
             <ion-select-option value="true">Disponible</ion-select-option>
             <ion-select-option value="false">No disponible</ion-select-option>

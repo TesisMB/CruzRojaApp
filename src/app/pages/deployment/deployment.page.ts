@@ -52,6 +52,7 @@ export class DeploymentPage implements OnInit, OnDestroy  {
       this.emergencies.isSubscribe = true;
       // this.ionLoader.hideLoader();
       this.isLoading = false;
+      this.showToast('Felicidades! Se le ha creado un chat de la alerta', 3000);
 },
     (error) =>{
     console.log('error', error);

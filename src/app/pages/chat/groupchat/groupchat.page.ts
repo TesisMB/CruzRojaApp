@@ -65,6 +65,7 @@ export class GroupChatPage implements OnInit, OnDestroy, AfterViewInit {
     await this.service.registerMessage();
     await this.receivedMessage();
     await this.getCurrentUser();
+
     //Captar el CurrentUser mediante el LocalStorage
     //const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     //console.log('LocalStorage', currentUser.userID);
@@ -104,17 +105,35 @@ console.log(index);
 // this.viewPort.scrollToIndex(index, mode);
   }
 
+  isLast(i,j): boolean{
+   if(this.chat.dateMessage[i].messages[j+1]){
+   return this.chat.dateMessage[i].messages[j+1].userID === this.currentUser.userID;
+   }
+return true;
+  }
+
   getById() {
     //GET SALA DE CHAT, TRAE TODO EL CHAT.
     this.chatHandlerId = this.chatService.getById(this.id)
+    .pipe(
+      finalize(() => {
+        // this is called on both success and error
+        if( this.content){
+          this.content.scrollToBottom(400);
+          console.log('Si hay content');
+        }
+        else {
+          console.log('No hay content');
+        }
+       }))
     .subscribe(data => {
       this.chat = data;
       this.isLoading = false;
-      this.content.scrollToBottom();
       console.log(data);
     }, error => {
       this.isLoading = false;
       console.log(error);
+
     });
   }
 
@@ -146,8 +165,7 @@ console.log(index);
       date.messages.push(message);
       lastIndex = this.chat.dateMessage.push(date) - 1;
     }
-    //  this.content.scrollToBottom(1500);
-    this.logScrolling(lastIndex, 'smooth');
+      this.content.scrollToBottom(1500);
 
   }
 
@@ -186,8 +204,8 @@ console.log(index);
       finalize(() => {
         // this is called on both success and error
         console.log('finalize');
-        this.scrollToBottom();
-      }))
+        this.content.scrollToBottom(1500);
+       }))
     .subscribe(data => {
       this.service.sendMessage(msj);
       console.log('Todo Bien', this.chat);
@@ -212,7 +230,10 @@ console.log(index);
 
 }
   //Funciones
-
+  goToMembers(){
+    this.service.setChatMembers(this.chat.usersChatRooms);
+    this.route.navigate(['/members', this.id], {relativeTo: this.aRoute});
+  }
   leaveGroup(){
     this.route.navigate(['tabs','chat']);
     // this.leaveChat = this.chatService.leaveGroup(this.currentUser.userID, this.id)
@@ -233,7 +254,7 @@ console.log(index);
   }
 
   scrollToBottom() {
-    // this.content.scrollToBottom(1500);
+     this.content.scrollToBottom(1500);
   }
 
   async presentActionSheet() {
@@ -249,7 +270,7 @@ console.log(index);
           type: 'voluntarios'
         },
         handler: () => {
-          console.log('Participantes clicked');
+          this.goToMembers();
         }
       }, {
         text: 'Abandonar',

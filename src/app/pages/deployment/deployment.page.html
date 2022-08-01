@@ -41,7 +41,7 @@
      </ion-item>
       <ion-col size="12">
          <ion-button shape="round" size="small" color="primary" [disabled]="isSubscribe"
-          expand="block"> 
+          expand="block" (click)="setChatGroup()"> 
           <ion-spinner *ngIf="isLoading" name="bubbles"></ion-spinner>
           <span *ngIf="!isSubscribe && !isLoading" class="SubsButton">Participar de la alerta</span> 
           <span *ngIf="isSubscribe && !isLoading" class="SubsButton">Gracias por participar de esta alerta :)</span> 

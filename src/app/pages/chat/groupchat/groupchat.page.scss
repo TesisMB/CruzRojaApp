@@ -1,5 +1,5 @@
 cdk-virtual-scroll-viewport {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
 }
 ion-header{
@@ -58,16 +58,16 @@ ion-header{
     }
     ion-content {
       
-        
+      height: 100%;
       width: 100%;
       .conversation {
         background: #fff;
-        height: max-content;
+        min-height: 100%;
         margin-top: 5px;
         border-top-left-radius: 38px;
         border-top-right-radius: 38px;
         .chat-section {
-          height: calc(100% - 90px);
+          min-height: calc(100% - 90px);
           overflow-y: visible;
           .chat {
               display: flex;
@@ -94,6 +94,7 @@ ion-header{
               .message {
                 border-radius: 18px;
                 padding: 18px 20px;
+                padding-top: 8px;
                 margin-top: 5px;
                 margin-bottom: 5px;
                 font-size: 0.9rem;
@@ -105,6 +106,14 @@ ion-header{
                     font-size: 0.7rem;
                     margin-left: 40px;
                     color: #a6a6a6;
+                }
+                .name{
+                  font-size: 11px;
+                  margin-left: 0px;
+                }
+                .role{
+                  font-size: 9px;
+                  margin-left: 20px;
                 }
                 .message{
                     background: #eee;
@@ -148,14 +157,25 @@ ion-header{
             .mine{
                 align-items: flex-end;
                 span{
-                    font-size: 0.7rem;
+                    // font-size: 0.7rem;
                     color: #a6a6a6;
-                    display: flex;
-                    align-items: center;
+                    // display: flex;
+                    // align-items: flex-end;
                     margin-right: 10px;
+                    font-size: 0.7rem;
+                    // margin-left: 40px;
+                    // color: #a6a6a6;
                     ion-icon{
                         font-size: 1.1rem;
                     }
+                }
+                .name{
+                  font-size: 11px;
+                  margin-right: 0px;
+                }
+                .role{
+                  font-size: 9px;
+                  margin-right: 20px;
                 }
     
                 .message{
@@ -193,14 +213,18 @@ ion-header{
             }
             .other{
                 margin-left: 45px;
+              }
             }
           }
-        }
 
       }
     }
     
-/* Componentes de Ionic
+    ion-icon {
+
+    }
+
+    /* Componentes de Ionic
 
 html, body {
   margin: 0;
@@ -228,12 +252,6 @@ p {
   font-size: 0.8rem;
 }
 
-ion-icon {
-  font-size: 20px;
-  margin-left: 3px;
-  margin-bottom: 3px;
-  transform: rotate(-45deg);
-}
 
 ion-toolbar {
   box-shadow: 1;
@@ -361,6 +379,27 @@ ion-footer{
     color: #5f5e5e;
   }
 
+  #fab-button {
+    // border-radius: 50%;
+    // font-size: 24px;
+    // background-color: #a0a0a0;
+    position: fixed;
+    top: 500px;
+    width: 50px;
+    height: 50px;
+    // cursor: pointer;
+    transition: .5s;
+    // z-index: 100;
+    // transform: rotate(45deg);
+  }
+  #scrollBackIcon {
+    margin-top: 7px;
+    margin-right: 5px;
+    font-size: 26px;
+    margin-left: 3px;
+    margin-bottom: 3px;
+    transform: rotate(-45deg);
+  }
 /* IDs */
 /*
 #footer-input {
@@ -375,25 +414,7 @@ ion-footer{
 }
 
 
-#fab-button {
-  border-radius: 50%;
-  font-size: 24px;
-  background-color: #a0a0a0;
-  position: fixed;
-  top: 1000px;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  transition: .5s;
-  z-index: 100;
-  transform: rotate(45deg);
-}
 
-#scrollBackIcon {
-  margin-top: 7px;
-  margin-right: 5px;
-  font-size: 26px
-}
 
 ::-webkit-scrollbar {
   display: none;

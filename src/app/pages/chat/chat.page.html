@@ -21,7 +21,7 @@
     <ion-list>
       <ion-list-header> Canales </ion-list-header>
 
-      <ion-item *ngFor="let chat of chatRooms" button (click)="navigateToGroupChat(chat.id)">
+      <ion-item *ngFor="let chat of chatRooms; index as i" button (click)="navigateToGroupChat(chat.id, i)">
         <ion-avatar slot="start">
           <img src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
           width="40px" />
@@ -31,6 +31,7 @@
           <!-- <h3>I'm a big deal</h3> -->
           <p>{{chat.emergenciesDisasters.locationsEmergenciesDisasters.locationCityName}}</p>
         </ion-label>
+        <ion-badge *ngIf="chat.quantity" slot="end">{{chat.quantity}}</ion-badge>
       </ion-item>
     </ion-list>
 

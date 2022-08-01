@@ -1,8 +1,11 @@
+import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
 import { AlertService } from 'src/app/services/alerts/alert.service';
 import { Router } from '@angular/router';
 import { Component, } from '@angular/core';
 import { EmergenciesDisasters } from 'src/app/models/EmergenciesDisasters';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { UserChatRooms } from 'src/app/models';
 
 @Component({
   selector: 'app-volunteers',
@@ -12,25 +15,27 @@ import { ActivatedRoute } from '@angular/router';
 
 export class VolunteersPage {
   emergencies: EmergenciesDisasters;
+  members: Observable<UserChatRooms[]>;
   handlerVoluntarios: any;
   textoBuscar = '';
   searchTerm: string;
   public searchedItem: any;
-  idEmergency: number;
+  chatId: number;
   handlerEmergency: any;
   volunteers: any = [];
 
   constructor(
     public router: Router,
     private aRoute: ActivatedRoute,
-    public service: AlertService
+    public service: GroupchatService
   ) {
     /* this.searchedItem = this.volunteers; */
   }
 
   ionViewWillEnter() {
-    this.idEmergency = this.aRoute.snapshot.params.id;
-    this.getEmergenciesByID();
+    this.chatId = this.aRoute.snapshot.params.id;
+   this.members = this.service.currentUserChat$;
+    // this.getEmergenciesByID();
   }
 
   /* Función de busqueda */
@@ -40,29 +45,29 @@ export class VolunteersPage {
     //console.log(event);
   }
 
-  getEmergenciesByID() {
-    this.handlerEmergency = this.service.getByIdWithoutFilter(this.idEmergency).subscribe((data) => {
-      this.emergencies = data;
+  // getEmergenciesByID() {
+  //   this.handlerEmergency = this.service.getByIdWithoutFilter(this.chatId).subscribe((data) => {
+  //     this.emergencies = data;
 
-      this.emergencies.chatRooms.usersChatRooms.forEach(element =>{
-        const user = {
-          userID: element.userID,
-          name: element.name,
-          dni: element.userDni,
-          role: element.roleName
-        };
+  //     this.emergencies.chatRooms.usersChatRooms.forEach(element =>{
+  //       const user = {
+  //         userID: element.userID,
+  //         name: element.name,
+  //         dni: element.userDni,
+  //         role: element.roleName
+  //       };
 
-        this.volunteers.push(user);
+  //       this.volunteers.push(user);
 
-        this.volunteers = this.volunteers.filter(roleName => roleName.role === 'Voluntario');
+  //       this.volunteers = this.volunteers.filter(roleName => roleName.role === 'Voluntario');
 
-      });
+  //     });
 
-      console.log('Voluntarios involucrados', this.volunteers);
-      console.log('ingreso emergency');
-      console.log(data);
-    },error =>{
-      console.log(error);
-    });
-  }
+  //     console.log('Voluntarios involucrados', this.volunteers);
+  //     console.log('ingreso emergency');
+  //     console.log(data);
+  //   },error =>{
+  //     console.log(error);
+  //   });
+  // }
 }

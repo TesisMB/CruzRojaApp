@@ -1,22 +1,71 @@
 ion-buttons{
   font-size: 8px;
 }
-
+ion-content {
+  width: 100%;
+}
 ion-avatar img{
   max-width: none;
   width: 100px;
   height: 100px;
 }
+#avatar img{
+  width: 50px;
+  height: 50px;
+}
 
 /* Classes */
+.container-icon{
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: 1.6rem;
+}
+.container-icon img{
+  width: 60px;
+}
+ion-grid{
+  padding: 0;
+}
 
+.progress {
+  width: 100%;
+  /* height: 100%; */
+  display: block;
+  border: 1px solid black;
+  background: linear-gradient(to bottom, #ff4538 50%, white 50%);
+}
+.progress:after {
+  /* other styling.. */
+  width: 0;
+  transition: all 2s;
+  -webkit-transition: all 2s;
+}
+.progress:hover:after {
+  width: 50%;
+  /* height: 100%; */
+
+}
+.head{
+  padding: 0 !important;
+}
+.container{
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: linear-gradient(to bottom, #ff4538 50%, white 50%);
+}
 .volunteerAvatar{
-  margin-top: 1rem;
-  width: 80%;
+  /* margin-top: 1rem; */
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
+  text-align: center;
 }
 
 .volunteerInfo{

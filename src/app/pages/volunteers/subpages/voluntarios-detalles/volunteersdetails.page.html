@@ -1,55 +1,121 @@
-<div>
-  <ion-header class="ion-no-border">
-    <div>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button type="button" defaultHref="voluntarios"></ion-back-button>
-        </ion-buttons>
-        <ion-title type="small">Detalles del Voluntario</ion-title>
-      </ion-toolbar>
-    </div>
-  </ion-header>
-</div>
-
-<ion-content>
-    <div class="volunteerAvatar">
-      <ion-avatar id="avatar">
-        <img  src="{{emergencies.volunteer.volunteerAvatar}}" >
+<ion-header class="ion-no-border">
+  <div>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button
+          type="button"
+          defaultHref="voluntarios"
+        ></ion-back-button>
+      </ion-buttons>
+      <ion-title size="small">
+        Cruz Roja
+      </ion-title>
+      <ion-avatar id="avatar" slot="end" class="pr-5">
+        <img src="../../../assets/icon/cruzar.png" alt="" />
       </ion-avatar>
-      <div class="volunteerInfo">
-        <ion-label id="volunteerName">{{emergencies.volunteer.name}}</ion-label>
-        <ion-label>Legajo: {{emergencies.volunteer.userDni}}</ion-label>
-      </div>
-    </div>
+    </ion-toolbar>
+  </div>
+</ion-header>
 
-    <ion-card id="card">
+<ion-content *ngIf="(volunteer | async) as user; else loading">
+  <ion-grid fixed="true">
+    <ion-row>
+      <ion-col class="head" size="12">
+        <div class="container">
+          <div class="volunteerAvatar">
+            <ion-avatar >
+              <img src="{{user.avatar }}" />
+            </ion-avatar>
+          </div>
+          <div class="volunteerInfo">
+            <ion-label id="volunteerName"
+              >{{user.persons.firstName }} {{user.persons.lastName}}</ion-label
+            >
+            <ion-label>{{user.roleName}}</ion-label>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="12" size-sm
+        ><ion-title size="small">Datos de contacto</ion-title>
+      </ion-col>
 
-      <!--Header del card-->
+      <ion-col size="12" size-sm
+        ><ion-item>
+          <ion-icon name="call" slot="start"></ion-icon>
+          <ion-label position="stacked">Telefono</ion-label>
+          <span  class="info pt-2">{{user.persons.phone}}</span>
+        </ion-item>
+        </ion-col
+      >
+      <ion-col size="12" size-sm
+        ><ion-item>
+          <ion-icon name="mail" slot="start"></ion-icon>
+          <ion-label position="stacked">Correo electronico</ion-label>
+          <span class="info pt-2">{{user.persons.email}}</span>
+        </ion-item></ion-col
+      >
+      <ion-col size="12" size-sm
+        ><ion-item>
+          <ion-icon name="location" slot="start"></ion-icon>
+          <ion-label position="stacked">Sucursal de Cruz Roja</ion-label>
+          <span class="info pt-2">
+            {{user.estates.estateTypes}} {{user.estates.address}}
+          </span>
+        </ion-item></ion-col
+      >
+      <ion-col size="12" size-sm
+        ><ion-item>
+          <ion-icon name="person" slot="start"></ion-icon>
+          <ion-label position="stacked">Pronombre</ion-label>
+          <span *ngIf="user.persons.gender === 'M'" class="info pt-2">El</span>
+          <span *ngIf="user.persons.gender === 'F'" class="info pt-2">
+            La
+          </span>
+          <span *ngIf="user.persons.gender === 'O'" class="info pt-2">
+            Lo
+          </span>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-      <ion-card-header>
+  <!-- <ion-card id="card"> -->
+
+  <!--Header del card-->
+
+  <!-- <ion-card-header>
         <ion-card-title>
             Capacitaciones
         </ion-card-title>
-      </ion-card-header>
+      </ion-card-header> -->
 
-      <!--Contenido del card-->
+  <!--Contenido del card-->
 
-      <ion-card-content>
+  <!-- <ion-card-content>
         <ion-list>
-          <ion-item *ngFor="let volunteer of emergencies['volunteersSkills']">
+          <ion-item >
             <div id="volunteerDiv">
               <p id="skillName">
-                {{volunteer['skillName']}}
+                
               </p>
 
-              <p class="skillsFormationDate" *ngFor="let item of volunteer['volunteersSkillsFormationEstates']">
-                {{item['formationEstateName']}}
-                {{item['date']}}
+              <p class="skillsFormationDate" >
+               
               </p>
             </div>
           </ion-item>
         </ion-list>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
 </ion-content>
 
+<ng-template #loading>
+  <ion-list>
+    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1]">
+      <h3>
+        <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+      </h3>
+    </ion-item>
+  </ion-list>
+  <!-- <p>No hay voluntarios</p> -->
+</ng-template>

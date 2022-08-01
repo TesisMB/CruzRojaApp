@@ -55,9 +55,10 @@ export class ChatPage implements OnInit {
     this.activeTab = e.target.value;
   }
 
-  navigateToGroupChat(id: number){
+  navigateToGroupChat(id: number, index: number){
     // this.groupChatService.setChatRoomId(id);
 
+    this.chatRooms[index].quantity = 0;
     this.router.navigate(['groupChat', id]);
   }
 

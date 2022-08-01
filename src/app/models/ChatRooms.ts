@@ -6,6 +6,7 @@ export interface ChatRooms {
   id:                   number;
   messages:             Messages[];
   usersChatRooms:       UserChatRooms[];
+  quantity:             number;
 }
 
 
