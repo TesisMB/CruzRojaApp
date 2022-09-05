@@ -1,11 +1,14 @@
-import { AccountPage } from './pages/account/account.page';
+import { MapViewComponent } from 'src/app/maps/components/map-view/map-view.component';
+import { AccountModule } from './pages/account/account.module';
+import { ForgotpasswordPage } from './pages/login/forgotpassword/forgotpassword.page';
+import { AlertsModule } from './pages/alerts/alerts.module';
+import { ChatPageModule } from './pages/chat/chat.module';
 import { HomePage } from './pages/home/home.page';
-import { AlertsPage } from './pages/alerts/alerts.page';
 import { LoginPage } from './pages/login/login.page';
 
-export function getToken() {
-  return localStorage.getItem('currentUser');
-}
+// export function getToken() {
+//   return localStorage.getItem('currentUser');
+// }
 
 import { HttpInterceptorService } from './_helpers/http.interceptor.service';
 
@@ -16,23 +19,22 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { IonicStorageModule } from '@ionic/storage-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { JwtModule } from '@auth0/angular-jwt';
 
-//SharedModule
+// SharedModule
 import { SharedModule } from './shared/shared.module';
 
-//Interceptor
+// Interceptor
 
 import { AuthInterceptorService } from './_helpers/auth-interceptor.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { DeploymentPage } from './shared';
+import { MenuPage } from './pages/menu/menu.page';
 
 
 @NgModule({
-  declarations: [AppComponent, LoginPage, AlertsPage, HomePage, DeploymentPage, AccountPage],
+  declarations: [AppComponent, LoginPage, HomePage, ForgotpasswordPage,MenuPage],
   entryComponents: [],
 
   imports: [
@@ -44,12 +46,15 @@ import { DeploymentPage } from './shared';
     ComponentsModule,
     SharedModule,
     Ng2SearchPipeModule,
-    IonicStorageModule.forRoot(),
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: getToken
-    }
-  }),
+    ChatPageModule,
+    AlertsModule,
+    AccountModule
+  //   IonicStorageModule.forRoot(),
+  //   JwtModule.forRoot({
+  //     config: {
+  //       tokenGetter: getToken
+  //   }
+  // }),
 ],
 schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
@@ -64,7 +69,7 @@ schemas: [CUSTOM_ELEMENTS_SCHEMA],
       useClass: HttpInterceptorService,
       //Permite agregar más interceptor y no reutilizar el mismo interceptor
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent],
 

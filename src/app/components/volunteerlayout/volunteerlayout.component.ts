@@ -11,7 +11,7 @@ import { Volunteer } from 'src/app/models/Volunteer';
   styleUrls: ['./volunteerlayout.component.css'],
 })
 
-export class LayoutComponent implements OnInit {
+export class VolunteerlayoutComponent implements OnInit {
   @Input() volunteers: Volunteer[];
 
   constructor(

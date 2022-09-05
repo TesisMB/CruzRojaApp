@@ -1,74 +1,77 @@
-
-
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './guards/auth.guard';
-import { RoleName } from './models/RoleName';
 import { LoginPage } from './pages/login/login.page';
 import { HomePage } from './pages/home/home.page';
-import { AccountPage } from './pages/account/account.page';
-import { DeploymentPage } from './pages/deployment/deployment.page';
-import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { MenuPage } from './pages/menu/menu.page';
+import { ForgotpasswordPage } from './pages/login/forgotpassword/forgotpassword.page';
 
-const volunteersModule = () => import ('src/app/pages/volunteers/volunteers.module').then(x => x.VolunteersPageModule);
 const chatModule = () => import ('src/app/pages/chat/chat.module').then(x => x.ChatPageModule);
 const alertsModule = () => import ('src/app/pages/alerts/alerts.module').then(x => x.AlertsModule);
+const accountModule = () => import ('src/app/pages/account/account.module').then(x => x.AccountModule);
 
 const routes: Routes = [
-
-  {
-    path: 'home',
-    component: HomePage,
-    canActivate: [AuthGuard]
-  },
-
   {
     path: 'login',
     component: LoginPage,
   },
-
   {
-    path: 'alertas',
-    loadChildren: alertsModule,
+    path: 'tabs',
+    component: MenuPage,
     canActivate: [AuthGuard],
-    data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.Voluntario, RoleName.CEyD]}
+    children: [
+      {
+        path: 'home',
+        component: HomePage,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'alertas',
+        children: [
+          {
+            path: '',
+            loadChildren: alertsModule,
+            canActivate: [AuthGuard],
+          }
+        ]
+      },
+       {
+        path: 'chat',
+        children: [
+          {
+            path: '',
+            loadChildren: chatModule,
+            canActivate: [AuthGuard],
+          }
+        ]
+      },
+      {
+        path: 'account',
+        children: [
+          {
+            path: '',
+            loadChildren: accountModule,
+            canActivate: [AuthGuard],
+          }
+        ]
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home'
+      }
+    ]
   },
-
   {
-    path: 'voluntarios',
-    loadChildren: volunteersModule,
-    canActivate: [AuthGuard],
-    data: {roles: [RoleName.Admin, RoleName.CoordinadorGeneral, RoleName.CEyD]}
+    path: 'forgotpassword',
+    component: ForgotpasswordPage
   },
-
   {
-    path: 'chat',
-    loadChildren: chatModule
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'tabs'
   },
-
-  {
-    path: 'deployment',
-    component: DeploymentPage,
-  },
-
-  {
-    path: 'account',
-    component: AccountPage,
-  },
-
-  {
-    path: 'pagenotfound',
-    component: PagenotfoundComponent
-  },
-
-  //Redirecciona a un 404, en caso de que no exista una dirección
-  {
-    path: '**',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-
 ];
 
 @NgModule({

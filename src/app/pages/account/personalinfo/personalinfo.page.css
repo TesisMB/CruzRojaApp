@@ -1,0 +1,30 @@
+ion-card{
+  --ion-background-color: transparent !important;
+  box-shadow: none;
+  text-align: center;
+  position: relative;
+  right: 10px;
+}
+
+ion-select{
+  --padding-top: 1rem;
+  --padding-bottom: 1rem;
+}
+
+ion-content{
+  width: 100%;
+}
+
+/* Clases */
+
+.accButton{
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:50%;
+  margin-left: 5rem;
+}

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { DataService } from 'src/app/services/data.service';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,6 +9,9 @@ import { environment } from 'src/environments/environment';
 })
 
 export class ChatService extends DataService {
+  chatsSubjects: BehaviorSubject<any> = null;
+  chats$: Observable<any>;
+
   constructor(http: HttpClient) {
     super(http, '/chatrooms');
   }
@@ -20,8 +23,15 @@ export class ChatService extends DataService {
     return this.http.post(environment.apiURL + chatPatch, {FK_ChatRoomID, coords});
   }
 
+  leaveGroup(userID: number, id: number){
+    const FK_UserID = userID;
+    const FK_ChatRoomID = id;
+    const chatPatch = `/chatrooms/leavegroup/${FK_UserID}/${FK_ChatRoomID}`;
+    return this.http.delete(environment.apiURL + chatPatch);
+  }
+
   get getPosition(){
-    let coords = {latitude: -66.764252, longitude: -70.184845};
+    const coords = {latitude: -66.764252, longitude: -70.184845};
     const coordsOptions = {enableHighAccuracy: true, timeout: 5000, maximumAge: 0};
     /* if(!navigator.geolocation){ */
       const location = navigator.geolocation.watchPosition(data => {

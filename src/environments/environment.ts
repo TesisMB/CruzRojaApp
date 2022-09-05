@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://localhost:5001/api'
+  hubURL: 'https://sicreyd.azurewebsites.net/chat',
+  apiURL:'https://sicreyd.azurewebsites.net/api',
+   apiKey:'AIzaSyA_CKkvt8BfYaEsSp0AHiJVwD_KB5G2Pa4',
+  // apiURL: 'https://localhost:5001/api',
+  // hubURL: 'https://localhost:5001/chat',
+  key: 'pk.eyJ1IjoibWdjc29hZCIsImEiOiJjbDA1eXpoOGwwdWQ3M2tueXVycHFqMzhlIn0.CXkUig7PQwf0piWpitvI2w'
 };
 
 /*
@@ -14,4 +19,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

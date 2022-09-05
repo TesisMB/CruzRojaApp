@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -9,7 +10,7 @@ import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
-    MenuPage
+    // MenuPage
   ],
   imports: [
     CommonModule,
@@ -17,16 +18,18 @@ import { PipesModule } from '../pipes/pipes.module';
     IonicModule,
     ReactiveFormsModule,
     RouterModule,
-    PipesModule
+    PipesModule,
+    ScrollingModule
   ],
   exports: [
-    MenuPage,
+    // MenuPage,
     CommonModule,
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
     RouterModule,
-    PipesModule
+    PipesModule,
+    ScrollingModule
   ]
 })
 export class SharedModule { }

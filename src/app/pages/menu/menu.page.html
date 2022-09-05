@@ -1,19 +1,8 @@
-<!-- Boton de Perfil -->
-
-<ion-fab id="fab" horizontal='end'>
-    <ion-chip button="true" (click)="toggleMenu()" class="ion-margin-start">
-      <ion-avatar>
-        <img id="volunteerIcon" *ngIf="currentUser.roleName == 'Voluntario'" src="{{currentUser.volunteerAvatar}}">
-        <ion-icon button id="userIcon" name="person-circle-outline"></ion-icon>
-      </ion-avatar>
-      <ion-label>{{currentUser.persons.firstName}} {{currentUser.persons.lastName}}</ion-label>
-    </ion-chip>
-</ion-fab>
 
 <!-- Tabs / Menu de acceso -->
 
 <ion-tabs id="principal">
-  <div style="background-color: transparent;">
+  <!-- <div > -->
     <ion-tab-bar id="tabs" slot="bottom">
 
       <ion-tab-button tab="home">
@@ -31,17 +20,23 @@
         <!-- <ion-badge color="danger">11</ion-badge> -->
         <ion-label>Chat</ion-label>
       </ion-tab-button>
+
+      <ion-tab-button tab="account">
+        <ion-icon name="person-outline"></ion-icon>
+        <!-- <ion-badge color="danger">11</ion-badge> -->
+        <ion-label>Perfil</ion-label>
+      </ion-tab-button>
     </ion-tab-bar>
-  </div>
+  <!-- </div> -->
 </ion-tabs>
 
 <!-- Menu Window -->
 
-<ion-menu type="overlay" side="end" menuID= "menuID" swipeGesture="false" contentId="principal">
+<!-- <ion-menu type="overlay" side="end" menuID= "menuID" swipeGesture="true" contentId="principal">
   <ion-header>
     <ion-toolbar>
       <ion-avatar>
-        <img id="volunteerAccIcon" *ngIf="currentUser.roleName == 'Voluntario'" style="margin-left: 5px; font-size: 48px;" src="{{currentUser.volunteerAvatar}}" alt="">
+        <img *ngIf="currentUser.roleName == 'Voluntario'" src="{{currentUser.volunteerAvatar}}" alt="">
       </ion-avatar>
       <ion-icon *ngIf="currentUser.roleName != 'Voluntario'" style="margin-left: 10px; font-size: 48px;" button id="user" name="person-circle-outline"></ion-icon>
       <ion-title>{{currentUser.persons.firstName}} {{currentUser.persons.lastName}}</ion-title>
@@ -61,5 +56,5 @@
         </ion-item>
     </ion-list>
   </ion-content>
-</ion-menu>
+</ion-menu> -->
 

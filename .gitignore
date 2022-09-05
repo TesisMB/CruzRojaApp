@@ -30,3 +30,4 @@ npm-debug.log*
 /plugins
 /www
 package-lock.json
+src/environments/environment.ts

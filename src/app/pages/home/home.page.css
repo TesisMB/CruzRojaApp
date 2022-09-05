@@ -1,30 +1,35 @@
+
 /* Componentes de Ionic */
 
-ion-chip{
-  margin-top: 15px;
-}
+  a{
+    color: white;
+  }
 
-/* background-color:  #fa3b2a; */
+  ion-slides {
+    height: 100%;
+  }
 
-ion-card{
-  width: 100%;
-  height: 520px;
-  box-shadow: none;
-  border-radius: 12px;
-}
+  ion-slice{
+    width: 250px !important;
+  }
 
-ion-item{
-  width: 100%;
-  box-shadow: none;
-}
+  ion-item{
+    width: 100%;
+    /* box-shadow: none; */
+  }
 
-p{
-  padding: 5px;
-}
+  b {
+    font-weight: 500;
+    font-size: 13px;
+  }
 
-section{
-  margin-top: 5px;
-}
+  p{
+    padding: 5px;
+  }
+
+  section{
+    margin-top: 5px;
+  }
 
 /* Clases */
 
@@ -33,14 +38,82 @@ section{
   }
 
   .imgHeader{
+    max-width: 120px;
+    max-height: 100px;
+    border-radius: 100px;
     object-fit: cover;
     width: 100%;
-    height: 250px;
+    height: 100%;
     transform: scale(1.1, 1.1);
     transition: 600ms all ease-in-out;
   }
 
+  .swiper-slide {
+    display: block;
+  }
+
+  .swiper-slide h6 {
+    /* margin-top: 2.8rem; */
+    color: var(--ion-text-color, #000000);
+  }
+
+  .swiper-slide img {
+    /* max-width: 85%;
+    margin-top: 30px;
+    */
+    pointer-events: none;
+  }
+
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cardPublicity{
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #fa3b2a;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 290px;
+  }
+
+  .cardPublicity h6 {
+    color: #fa3b2a;
+    font-weight: bold;
+    margin: 15px 0;
+  }
+
+  .card-header{
+    width: 100%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+  }
+
+  .card-body{
+    width: 100%;
+    height: 80px;
+    padding: 0px;
+  }
+
+  .card-button{
+    width: 100%;
+    height: 40px;
+  }
+
 /* IDs */
+
+  #imgHeader{
+    position: relative;
+    bottom: 5px;
+  }
 
   #quienesSomos{
     background-repeat: no-repeat;
@@ -51,17 +124,20 @@ section{
   }
 
   #quienesSomosLogo{
-    position: absolute;
-    bottom: -100px;
-    width: 100%;
+    width: 70%;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: lightgray;
+    border-radius: 150px;
   }
 
-  #donarSangre{
-    width: 275px;
-    height: 275px;
-    border: 2px solid #fa3b2a;
+
+/*   #convivir{
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #fa3b2a;
+    border-radius: 10px;
     background-color: white;
-    margin-left: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -69,3 +145,19 @@ section{
     align-items: center;
   }
 
+  #convivir h6{
+    color: #fa3b2a;
+    font-weight: bold;
+    margin: 15px 0;
+  } */
+
+  p {
+    padding: 0 15px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ion-color-step-600, #60646b);
+  }
+
+  p b {
+    color: var(--ion-text-color, #000000);
+  }

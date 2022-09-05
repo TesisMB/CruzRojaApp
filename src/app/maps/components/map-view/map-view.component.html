@@ -1,3 +1,9 @@
-<div #mapDiv class="map-container">
-
-</div>
+ <ion-content >
+    <div id="map" #map>
+    </div>    
+     <div class="button">
+      <ion-button slot="fixed"  class="boton" (click)="moveMap()">Move</ion-button>
+      <ion-button slot="fixed"  class="boton" (click)="presentActionSheet()">Abrir action sheet</ion-button>
+    </div>
+    </ion-content>
+  

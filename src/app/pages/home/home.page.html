@@ -1,65 +1,16 @@
-<ion-header class="ion-no-border">
-	<ion-toolbar>
-    <ion-title>SICREYD</ion-title>
-	</ion-toolbar>
-</ion-header>
+ <app-header titulo="SIGREYD" class="ion-no-border">
 
-<ion-content [fullscreen]="true">
+</app-header>
 
-  <section class="ion-margin-bottom">
-    <ion-slides [options]="option" class="slides" pager="true">
+<ion-content fullscreen>
 
-      <ion-slide>
-        <ion-card>
-          <img class="imgHeader" src="../../../assets/img-client/CruzRoja -Ilustracion.png" alt="inicioLogo">
-          <ion-card-header>
-            <h3>Capacitaciones</h3>
-          </ion-card-header>
-          <ion-card-subtitle>
-            <p>
-              Sumate a nuestras campañas. <br/>
-              Mas información en nuestra <a href="https://www.cruzroja.org.ar/">pagina web</a>
-            </p>
-          </ion-card-subtitle>
-        </ion-card>
-      </ion-slide>
-
-      <ion-slide>
-        <ion-card>
-          <img class="imgHeader" id="emergency" src="../../../assets/img-client/emergencias.jpg" alt="emergenciaImg">
-          <ion-card-header>
-            <h3>Emergencias</h3>
-          </ion-card-header>
-          <ion-card-subtitle>
-            <p>
-              Acompañamos a las comunidades antes, durante y después de emergencias y desastres.
-            </p>
-          </ion-card-subtitle>
-        </ion-card>
-      </ion-slide>
-
-      <ion-slide>
-        <ion-card>
-          <img class="imgHeader" src="../../../assets/img-client/abuelos.jpg" alt="emergenciaImg">
-          <ion-card-header>
-            <h3>Teleasistencia</h3>
-          </ion-card-header>
-          <ion-card-subtitle>
-            <p>
-              Servicio de teleasistencia para adultos mayores y personas con discapacidad
-            </p>
-          </ion-card-subtitle>
-        </ion-card>
-      </ion-slide>
-    </ion-slides>
-  </section>
-
-  <section id="quienesSomos">
-    <div class="">
-    <img id="quienesSomosLogo" src="../../../assets/img-client/quienesomos.png" alt="">
-    <div>
-      <img src="../../../assets/img-client/codos.jpg" alt="">
-    </div>
+  <section class="ion-margin-bottom mt-1">
+    <section id="quienesSomos">
+      <div class="content">
+        <div id="imgHeader">
+          <img src="../../../assets/img-client/codos.jpg" alt="">
+        </div>
+      <img id="quienesSomosLogo" src="../../../assets/img-client/quienesomos.png" alt="">
       <p class="">
         Somos una asociación civil, humanitaria y de carácter voluntario, con presencia en el territorio argentino, y parte integrante del Movimiento Internacional de la Cruz Roja y de la Media Luna Roja, la red humanitaria más grande del mundo presente en 191 países. <br/>
         Capacitamos en Primeros Auxilios a más de 50.000 personas por año en el país y brindamos cobertura a los asistentes en eventos masivos.</p>
@@ -67,19 +18,32 @@
   </section>
 
   <section>
-    <div id="donarSangre">
-      <img id="donarSangreLogo" src="../../../assets/img-client/vidadona.png" alt="">
-      <p style="color: black;">
-        Sumate a nuestro banco virtual de donantes de sangre
-      </p>
-      <ion-button id="verMasDonarSangre"shape="round">Ver Más</ion-button>
-    </div>
-  </section>
+    <ion-slides [options]="option" pager>
+      <ion-slide *ngFor="let card of cards">
+        <div class="cardPublicity">
+          <div class="card-header">
+            <img id="donarSangreLogo" src="{{card.img}}" alt="">
+          </div>
 
- <!--  <div class="container">
-    <img src="../../../assets/img-client/sumate-1.png" alt="SumateLogo">
-    <img style="margin-left: 2rem" src="../../../assets/img-client/vidadona.png" alt="SumateLogo">
-  </div>
-  <img  src="../../../assets/img-client/logo.png" alt="CruzRojaLogo"> -->
+          <div class="card-body">
+            <h6>
+              <b>
+              {{card.body}}
+              </b>
+            </h6>
+          </div>
+
+          <div class="card-button">
+            <a href="{{card.href}}">
+              <ion-button id="btnDonarSangre" size="small" shape="round">
+                Ver Más
+              </ion-button>
+            </a>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+    </section>
+  </section>
 </ion-content>
 <!-- <app-menu showTabs></app-menu> -->

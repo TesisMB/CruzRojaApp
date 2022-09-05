@@ -3,7 +3,7 @@
 
   ion-tab-bar{
     font-size: 20px;
-    --background: rgba(24, 24, 24, 1);
+    --background: white;
     /* position: absolute;
     height:60px;
     width: 90%;
@@ -17,11 +17,8 @@
     --background: rgba(0,0,0,0.45); */
   }
 
-
-
-
   ion-tab-button{
-    --background: rgba(0, 0, 0, 0.45);
+    /* --background: rgba(0, 0, 0, 0.45); */
   }
 
   ion-icon{
@@ -41,11 +38,13 @@
   }
 
   #userIcon{
-    margin-bottom: 5px;
-    font-size: 24px;
+    position: relative;
+    margin-top: 0.8rem;
+    color:black;
+    font-size: 40px;
   }
 
   #volunteerIcon{
-    margin-bottom: 5px;
+    margin-bottom: 20px;
   }
 

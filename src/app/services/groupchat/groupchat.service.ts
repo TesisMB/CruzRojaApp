@@ -1,8 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Messages } from 'src/app/models';
-
+import { Chats, HubMessage, Messages, UserChatRooms } from 'src/app/models';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,23 +12,28 @@ export class GroupchatService {
   messageReceived: EventEmitter<Messages> = new EventEmitter();
 
   groupChatId: number = null;
-  public currentGroupChat$: Observable<number>;
-  private currentGroupChatSubject: BehaviorSubject<number>;
+  public currentChatID$: Observable<number>;
+  public currentUserChat$: Observable<UserChatRooms[]>;
+  private currentGroupChatSubject: BehaviorSubject<Chats>;
+  private currentUserChatSubject: BehaviorSubject<UserChatRooms[]>;
   private currentGroupChatID: BehaviorSubject<number>;
 
   constructor() {
     //Inicializo el BehaviorSubject como null
-    this.currentGroupChatSubject = new BehaviorSubject<number>(null);
+    this.currentGroupChatID = new BehaviorSubject<number>(null);
+    this.currentUserChatSubject = new BehaviorSubject<UserChatRooms[]>(null);
+
     //Conversion del BehaviorSubject a un observable(Escucha todo el tiempo y toma el ultimo valor)
-    this.currentGroupChat$ = this.currentGroupChatSubject.asObservable();
+    this.currentChatID$ = this.currentGroupChatID.asObservable();
+    this.currentUserChat$ = this.currentUserChatSubject.asObservable();
     this.currentGroupChatID = new BehaviorSubject<number>(null);
   }
 
   public setChatRoomId(chatId: number) {
-    this.currentGroupChatSubject.next(chatId);
+    this.currentGroupChatID.next(chatId);
   }
 
-  sendMessage(message: Messages) {
+  sendMessage(message: HubMessage) {
     this.hubConnection.invoke('NewMessage', message);
   }
 
@@ -37,18 +42,20 @@ export class GroupchatService {
     this.groupChatId = connection;
     this.hubConnection.invoke('AddToGroup', connection);
   }
-
+  setChatMembers(members: UserChatRooms[]){
+    this.currentUserChatSubject.next(members);
+  }
   //Me conecto al hub
   public createConnection() {
     const builder = new HubConnectionBuilder();
-    this.hubConnection = builder.withUrl('https://localhost:5001/chat').build();
+    this.hubConnection = builder.withUrl(environment.hubURL).build();
   }
 
   //Inicio la conexion
-  public connectionStart() {
+  public  connectionStart() {
     this.hubConnection.start()
       //Les paso el valor nuevo desde el groupchatpage.ts valor1 = null - valor2 = sala
-      .then(() => this.groupConnection(this.currentGroupChatSubject.value))
+      .then(() => this.groupConnection(this.currentGroupChatID.value))
       .catch(() => console.log('Error'));
   }
 
@@ -70,7 +77,7 @@ export class GroupchatService {
   //Detengo las conexiones
   public stopConnection() {
     this.hubConnection.stop();
-    this.currentGroupChatSubject.next(null);
+    this.currentGroupChatID.next(null);
   }
 
 }

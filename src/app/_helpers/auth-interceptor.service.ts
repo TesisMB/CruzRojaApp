@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor,HttpRequest, HttpResponse,HttpErrorResponse} from '@angular/common/http';
 import { Observable, throwError} from 'rxjs';
@@ -20,6 +19,9 @@ export class AuthInterceptorService implements HttpInterceptor{
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${currentUser.token}`
+                },
+                setParams: {
+                  userId: currentUser.userID.toString()
                 }
             });
 
@@ -29,12 +31,18 @@ export class AuthInterceptorService implements HttpInterceptor{
             request = request.clone({
               setHeaders: {
                 'content-type': 'application/json'
-              }
+              },
+              // setParams: {
+              //   userId: currentUser.userID.toString()
+              // }
             });
           }
 
           request = request.clone({
-            headers: request.headers.set('Accept', 'application/json')
+            headers: request.headers.set('Accept', 'application/json'),
+            // setParams: {
+            //   userId: currentUser.userID.toString()
+            // }
           });
 
           return next.handle(request).pipe(

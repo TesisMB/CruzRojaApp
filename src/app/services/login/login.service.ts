@@ -5,32 +5,35 @@ import { environment } from '../../../environments/environment';
 import { debounceTime, delay, map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-
+import { FcmService } from 'src/app/fcm.service';
+import { Operation } from 'fast-json-patch';
+import { App } from '@capacitor/app';
 @Injectable({
   providedIn: 'root'
 })
 
 export class LoginService {
+  public currentUserObs: Observable<any>;
   private options = {
     headers: new HttpHeaders().set('Content-Type', 'application/json'),
     params: new HttpParams()
   };
-  authState = new BehaviorSubject(false);
+  private authState = new BehaviorSubject<any>(false);
   private currentUserSubject: BehaviorSubject<any>;
-  public currentUserObs: Observable<any>;
-  apiURL = '/app/login';
+  private apiURL = '/app/login';
 
   //El platform es usado para que podamos usar el localStorage
   constructor(
     private http: HttpClient,
-    private router: Router) {
+    private router: Router,
+    private tokenService: FcmService) {
     this.currentUserSubject = new BehaviorSubject<CurrentUser>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUserObs = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): CurrentUser {
     const user = JSON.parse(localStorage.getItem('currentUser'));
-    if (user != this.currentUserSubject.value) {
+    if (user !== this.currentUserSubject.value) {
       this.currentUserSubject.next(user);
     }
     return this.currentUserSubject.value;
@@ -45,6 +48,8 @@ export class LoginService {
           localStorage.setItem('currentUser', JSON.stringify(user));
           console.log(user);
           this.currentUserSubject.next(user);
+          this.tokenService.sendToken()
+          .subscribe(resp => console.log('Envio de token exitoso! => ',resp), err => console.log('Envio de token NO EXITOSO :( => ',err));
         }
         return user;
       }),
@@ -54,9 +59,11 @@ export class LoginService {
 
   logout() {
     // Elimina el usuario del local Storage y lo declara null.
-    localStorage.removeItem('currentUser');
+    this.deleteToken();
+    localStorage.clear();
     this.currentUserSubject.next(null);
-    this.router.navigate(['/login']);
+     this.router.navigateByUrl('/login');
+     App.exitApp();
   }
 
   sendEmail(email: string) {
@@ -64,8 +71,33 @@ export class LoginService {
   }
 
   changePassword(token: string, userPassword: string) {
-    let parametros = new HttpParams().append('token', token);
+    const parametros = new HttpParams().append('token', token);
     this.options.params = parametros;
     return this.http.post<any>(environment.apiURL + 'reset-password/', { userPassword }, this.options);
+  }
+
+  deleteToken(){
+    const path = '/sendDevice';
+    const deviceToken = null;
+   this.http.put(environment.apiURL+path, {deviceToken})
+    .subscribe(resp => console.log(resp), err => console.log(err));
+  }
+
+  updateUser(user: CurrentUser,  operations: Operation[]){
+    const path = environment.apiURL + '/employees/'+user.userID;
+    return this.http.patch(path, operations).pipe(
+      map((data: any) => {
+        if(data){
+          if(!data.token){
+            data.token = user.token;
+          }
+      localStorage.setItem('currentUser', JSON.stringify(data));
+      this.currentUserSubject.next(data);
+    }
+    console.log(user);
+    return data;
+  }
+  ));
+
   }
 }

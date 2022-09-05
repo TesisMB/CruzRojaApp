@@ -4,12 +4,18 @@
   h2 {
     font-size: 40px;
     font-weight: bold;
+    color: white;
   }
 
   .img {
     height: 120px;
     width: 120px;
     position: static;
+    margin-top: 64px;
+  }
+
+  .header{
+    background-color: #bd2d2d;
   }
 
 /* Contenido */
@@ -41,9 +47,9 @@
     display: flex;
   }
 
-  form{
+  /* form{
     margin-top: 4rem;
-  }
+  } */
 
   button {
     background-color: white;

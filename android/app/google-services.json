@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "796438959253",
+    "project_id": "theta-messenger-354800",
+    "storage_bucket": "theta-messenger-354800.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796438959253:android:516404c59ce991b110b79c",
+        "android_client_info": {
+          "package_name": "com.sigreyd.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796438959253-8cml7840f9upq93m8l8naoao547i6jft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBft_H7zI1Jiu_t_LcCYeEgSmh_GODZxfc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796438959253-8cml7840f9upq93m8l8naoao547i6jft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

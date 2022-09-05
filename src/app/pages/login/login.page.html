@@ -1,17 +1,17 @@
 <ion-content enctype="application/json" class="ion-margin-vertical">
   <form [formGroup]="credentials" (ngSubmit)="onSubmit()">
-    <div class="ion-text-center ixd">
+    <div class="ion-text-center">
       <img
         class="img text-danger"
-        src="https://1.bp.blogspot.com/-XnYaCR8Oah4/XwzTOABWn3I/AAAAAAAABaY/-EyDoHPCIIQ6EAloBqlxoLnmyXWUu2DmwCLcBGAsYHQ/s320/cruzar.png"
+        src="../../../assets/icon/cruzar.png"
       />
-      <h2>SICREYD</h2>
+      <h2>SIGREYD</h2>
     </div>
     <div class="ion-div">
       <ion-item>
         <ion-label position="fixed">Dni</ion-label>
         <ion-input
-          formControlName="UserDni"
+          formControlName="userDni"
           name="dni"
           type="text"
           required
@@ -21,7 +21,7 @@
       <ion-item>
         <ion-label position="fixed">Contraseña</ion-label>
         <ion-input
-          formControlName="UserPassword"
+          formControlName="userPassword"
           name="passWord"
           type="password"
           required
@@ -31,8 +31,10 @@
       <div class="buttonstyle" >
         <button
           type="submit"
-          [disabled]="!credentials.valid">
-          Ingresar
+          [disabled]="!credentials.valid"
+          [disabled]="isLoading">
+            <span *ngIf="!isLoading">Ingresar</span>
+            <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
         </button>
       </div>
       <div>

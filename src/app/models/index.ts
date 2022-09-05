@@ -9,8 +9,9 @@ export  * from './Locations';
 export * from './Alert';
 export * from './Employees';
 export * from './TypeChatRooms';
-export * from './Message'
-export * from './ChatRooms'
-export * from './Volunteer'
-export * from  './Locations'
-export * from  './UserChatRooms'
+export * from './Messages';
+export * from './ChatRooms';
+export * from './Volunteer';
+export * from  './Locations';
+export * from  './UserChatRooms';
+export * from './Victims';

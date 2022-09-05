@@ -1,92 +1,81 @@
-import { PlacesService } from './../../services/places/places.service';
 import { EmergenciesDisasters } from './../../models/EmergenciesDisasters';
 import { ChatService } from 'src/app/services/chat/chat.service';
-import { AlertService } from 'src/app/services/alerts/alert.service';
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import { Location } from '@angular/common';
-import * as L from 'LeafLet';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { ActionSheet, ActionSheetButtonStyle } from '@capacitor/action-sheet';
+import { ActionSheetController } from '@ionic/angular';
+
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
   selector: 'app-deployment',
   templateUrl: './deployment.page.html',
   styleUrls: ['./deployment.page.css'],
 })
-export class DeploymentPage implements AfterViewInit, OnInit, OnDestroy  {
-
-  handleDeployment: any;
-  emergencies: EmergenciesDisasters = null;
-  handlerChat: any;
-  isAccepted: boolean = false;
-  currentUser: any;
-
+export class DeploymentPage implements OnInit, OnDestroy  {
+  @Input() emergencies: EmergenciesDisasters = null;
+  currentUser;
+  handleDeployment: Subscription;
+  handlerChat: Subscription;
+  error: any = '';
+  isLoading = false;
   constructor(
-    private alertService: AlertService,
     private chatService: ChatService,
-    private location: Location,
-    private placesService: PlacesService,
-  ) { }
+    public toastCtrl: ToastController,
+    private router: Router,
+    public actionSheetController: ActionSheetController,
+    private ionLoader: LoaderService,
 
-  ngAfterViewInit(): void {
-    this.initMap();
+    ) { }
+
+  public get isSubscribe(){
+    return this.emergencies.isSubscribe;
   }
-
-  ngOnInit() {
-    this.handleDeployment = this.alertService._currentAlert.subscribe(
-      data =>{
-        this.emergencies = data;
-        console.log('asd', data);
-      });
+  async ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
+  navigateVolunteer(){
+    this.router.navigate(['emergency/',  this.emergencies.emergencyDisasterID]);
+  }
+
   setChatGroup(){
+    this.isLoading = true;
+    // this.ionLoader.showLoader();
     console.log(this.emergencies);
-    this.handlerChat = this.chatService.joinGroup(this.emergencies.emergencyDisasterID).subscribe(data =>{
+    this.handlerChat = this.chatService.joinGroup(this.emergencies.emergencyDisasterID)
+    .subscribe(
+    (data) =>{
       console.log('Aceptado');
-        this.isAccepted = true;
-    }, error =>{
-      console.log('error', error);
-        this.isAccepted = true;
+      this.emergencies.isSubscribe = true;
+      // this.ionLoader.hideLoader();
+      this.isLoading = false;
+      this.showToast('Felicidades! Se le ha creado un chat de la alerta', 3000);
+},
+    (error) =>{
+    console.log('error', error);
+     this.ionLoader.hideLoader();
+     this.showToast('Usted ya esta registrado en esta alerta', 3000);
+    //  this.isAccepted = true;
+     this.isLoading = false;
     });
   }
 
-  initMap(){
-    var map = L.map('map').setView([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude], 9);
+  async showToast(msg: string, duration: number) {
+    // this.toastCtrl.dismiss();
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      duration,
+    });
+    await toast.present();
+  }
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoibWdjc29hZCIsImEiOiJjbDA1eXpoOGwwdWQ3M2tueXVycHFqMzhlIn0.CXkUig7PQwf0piWpitvI2w'
-  }).addTo(map);
-
-    var marker = L.marker([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude],{
-      fillColor: '#ccc'
-    })
-    .addTo(map);
-
-    var circle = L.circle([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude], {
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.3,
-      radius: 800,
-      stroke: false
-    }).addTo(map);
-
-    var popup = L.popup().setLatLng([this.emergencies.locations.locationLatitude, this.emergencies.locations.locationLongitude])
-
-    function onMapClick(e) {
-      popup
-          .setLatLng(e.latlng)
-          .setContent("You clicked the map at " + e.latlng.toString())
-          .openOn(map);
-    }
-
+  ionViewDidLeave() {
   }
 
   ngOnDestroy(){
-    this.handleDeployment.unsubscribe();
   }
 }
+
