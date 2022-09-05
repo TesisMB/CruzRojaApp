@@ -113,12 +113,12 @@ export class MapScreenComponent implements OnInit, OnDestroy {
           lat: this.emergencies.locationsEmergenciesDisasters.locationlatitude,
           lng: this.emergencies.locationsEmergenciesDisasters.locationlongitude,
         },
-        zoom: 12,
+        zoom: 15,
       },
       forceCreate: true,
     });
 
-  await this.newMap.setMapType(MapType.Hybrid);
+  await this.newMap.setMapType(MapType.Normal);
   await this.addMarkers();
   await this.createModal();
   this.newMap.setOnMarkerClickListener(async (marker) => {
@@ -173,7 +173,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
           lat: this.emergencies.locationsEmergenciesDisasters.locationlatitude,
           lng: this.emergencies.locationsEmergenciesDisasters.locationlongitude,
       },
-        zoom: 12,
+        zoom: 15,
         bearing: 0
       });
     }
@@ -184,7 +184,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
         lat: this.coordinates.coords.latitude,
         lng: this.coordinates.coords.longitude,
       },
-        zoom: 12,
+        zoom: 15,
         bearing: 0
       });
     }
