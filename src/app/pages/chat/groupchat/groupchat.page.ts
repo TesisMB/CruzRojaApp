@@ -246,6 +246,7 @@ return true;
   public handleScroll(event): void {
     if (event.detail.scrollTop >= this.lastScrollTop) {
          document.getElementById('fab-button').style.top = '100%';
+         document.getElementById('fab-button').style.display = 'block';
     }else{
       document.getElementById('fab-button').style.top = '75%';
       document.getElementById('fab-button').style.right = '4%';
@@ -255,7 +256,7 @@ return true;
   }
 
   scrollToBottom() {
-     this.content.scrollToBottom(1500);
+     this.content.scrollToBottom(1000);
   }
 
   async presentActionSheet() {

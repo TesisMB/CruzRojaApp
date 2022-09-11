@@ -35,13 +35,13 @@
 
   </ion-toolbar>
 </ion-header>
-<ion-content *ngIf="!isLoading" [scrollEvents]="true"  (ionScroll)="handleScroll($event)">
+<ion-content *ngIf="!isLoading" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <ion-fab class="boton2" id="fab-button" vertical="bottom" horizontal="end" slot="fixed">
 
-    <ion-fab-button  size="small" (click)="scrollToBottom()" color="light">
-        <ion-icon name="chevron-down-outline"></ion-icon>
+    <ion-fab-button size="small" (click)="scrollToBottom()" color="light">
+      <ion-icon name="chevron-down-outline"></ion-icon>
     </ion-fab-button>
-</ion-fab> 
+  </ion-fab>
   <!-- <button (click)="scrollToBottom()">
     <ion-icon id="scrollBackIcon" name="chevron-down-outline"></ion-icon>
   </button>  -->
@@ -76,37 +76,36 @@
         </div>
         <div class="messages" [ngClass]="messages.userID === currentUser.userID ? 'mine': 'yours'"
           *ngFor="let messages of days.messages; index as j">
-          <div class="message" 
-            *ngIf="days.messages[j+1] && messages.userID === currentUser.userID">
-              {{messages.message}}
-        
-          </div>  
-           <div class="message other"
-          *ngIf="messages.userID !== currentUser.userID && days.messages[j+1] && days.messages[j+1].userID !== currentUser.userID">
-          <span class="name">{{messages.name | titlecase}}</span>
-          <span class="role">{{messages.roleName | titlecase}}</span>
-          <div class="mess">
+          <div class="message" *ngIf="days.messages[j+1] && messages.userID === currentUser.userID">
             {{messages.message}}
+
           </div>
-        </div>
-          <div class="message last"  *ngIf="messages.userID === currentUser.userID && !days.messages[j+1]">
+          <div class="message other"
+            *ngIf="messages.userID !== currentUser.userID && days.messages[j+1] && days.messages[j+1].userID !== currentUser.userID">
+            <span class="name">{{messages.name | titlecase}}</span>
+            <span class="role">{{messages.roleName | titlecase}}</span>
+            <div class="mess">
               {{messages.message}}
+            </div>
+          </div>
+          <div class="message last" *ngIf="messages.userID === currentUser.userID && !days.messages[j+1]">
+            {{messages.message}}
           </div>
           <div *ngIf="messages.userID !== currentUser.userID && isLast(i,j)" class='last-message-other'>
             <ion-avatar>
               <img src="{{messages.avatar}}" alt="" />
             </ion-avatar>
-        
+
             <div class="message last">
- 
+
               <span class="name">{{messages.name | titlecase}}</span>
               <span class="role">{{messages.roleName | titlecase}}</span>
               <div class="mess">
                 {{messages.message}}
               </div>
+            </div>
+
           </div>
-      
-        </div>
           <span>
             <ion-icon name="checkmark-outline"
               *ngIf="messages.userID === currentUser.userID && messages.messageState === true"></ion-icon>
@@ -186,7 +185,7 @@
 
 
   </div>
- <!-- </cdk-virtual-scroll-viewport> -->
+  <!-- </cdk-virtual-scroll-viewport> -->
 </ion-content>
 <!-- <div class="header ion-no-border">
   <div class="info">

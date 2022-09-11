@@ -8,4 +8,5 @@ export interface CurrentUser  {
   token: string;
   userID: number;
   avatar: string;
+  createdDate: Date;
 }
