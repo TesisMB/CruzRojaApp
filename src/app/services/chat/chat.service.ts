@@ -3,18 +3,58 @@ import { DataService } from 'src/app/services/data.service';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ChatRooms } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ChatService extends DataService {
-  chatsSubjects: BehaviorSubject<any> = null;
-  chats$: Observable<any>;
+  private chats$: BehaviorSubject<ChatRooms[]> = new BehaviorSubject<ChatRooms[]>([]);
+  //chats$: Observable<any>;
+  chatRooms: any [] = [];
+
 
   constructor(http: HttpClient) {
     super(http, '/chatrooms');
   }
+
+
+get chatRoomsObservable$(){
+  return this.chats$.asObservable();
+}
+
+setChatRooms(chat: ChatRooms[]){
+  this.chats$.next(chat);
+}
+
+
+searchChat(id){
+  const chat = this.chatRooms.find(x => x.id == id)
+  console.log("SearchChat => ", chat);
+
+  return chat;
+}
+
+
+public deleteChatRoom(id){
+ let iD = Number(id);
+  const index =  this.chatRooms.findIndex(x => x.id == iD);
+
+  let deleteChatRooms= this.chatRooms.splice(index, 1);
+
+  console.log("deleteChatRooms =>", deleteChatRooms);
+
+  this.uploadChatRooms(this.chatRooms);
+}
+
+
+public uploadChatRooms(ChatRooms: ChatRooms[]) {
+  this.chatRooms = ChatRooms;
+  this.chats$.next(this.chatRooms);
+}
+
+
 
   joinGroup(id: number): Observable<any> {
     const FK_ChatRoomID = id;

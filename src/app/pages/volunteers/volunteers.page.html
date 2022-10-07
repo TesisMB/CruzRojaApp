@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button type="button" defaultHref="tabs/chat/groupChat/{{chatId}}"></ion-back-button>
     </ion-buttons>
-    <ion-title>Voluntarios</ion-title>
+    <ion-title>Miembros</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,25 +11,26 @@
 <ion-content *ngIf="(members | async) as members; else loading">
   <div>
     <ion-toolbar>
-      <ion-searchbar id="search" debounce="250" placeholder="Buscar voluntario..." (ionChange)="search($event)" animated>
+      <ion-searchbar id="search" debounce="250" placeholder="Buscar voluntario..." (ionChange)="search($event)"
+        animated>
       </ion-searchbar>
     </ion-toolbar>
   </div>
-  
+
   <ion-list *ngFor="let item of members | filter: textoBuscar: 'name'">
     <ion-item [routerLink]="['../details', item.userID]">
       <ion-thumbnail slot="start">
-        <ion-img src="{{item.avatar}}"></ion-img>
+        <ion-img src="{{item.avatar}}" style="border-radius: 50%;"></ion-img>
       </ion-thumbnail>
       <ion-label id="volunteerName">
-          <h3 ><strong>{{item.name}}</strong></h3>
-          <h4  class="mt-2">{{item.roleName}}</h4>
+        <h3><strong>{{item.name}}</strong></h3>
+        <h4 class="mt-2">{{item.roleName}}</h4>
       </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
 
- <ng-template #loading>
+<ng-template #loading>
   <ion-list>
     <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1]">
       <h3>
@@ -38,6 +39,6 @@
     </ion-item>
   </ion-list>
   <!-- <p>No hay voluntarios</p> -->
-</ng-template> 
+</ng-template>
 
 <!-- <app-menu showTabs></app-menu> -->

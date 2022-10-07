@@ -29,7 +29,7 @@ ion-header {
 
       ion-avatar {
         max-width: 45px;
-        margin-left: 10px;
+        margin-left: 3px;
         max-height: 45px;
       }
 
@@ -46,8 +46,8 @@ ion-header {
         }
 
         h1 {
-          font-size: 1.2rem;
-          font-weight: bold;
+          font-size: 14px;
+          // font-weight: bold;
         }
 
         p {
@@ -369,7 +369,7 @@ ion-footer {
   }
 }
 
-.btnSend {
+#btnSend {
   margin-left: 12px;
   background: #feacac;
   padding: 12px 12px 9px 15px;
@@ -385,9 +385,9 @@ ion-footer {
 //     outline: none;
 //     margin-top: 3px;
 // }
-#btnSend:hover {
-  background: rgba(235, 231, 231, 0.459);
-}
+// .btnSend:hover {
+//   background: rgb(216, 58, 53) !important;
+// }
 
 .item-input-wrapper {
   display: flex;

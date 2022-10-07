@@ -9,18 +9,23 @@
 <ion-header>
   <ion-toolbar color="light" *ngIf="!isLoading">
     <div class="header ion-padding">
-      <div class="info">
-        <ion-buttons slot="start">
+      <div class="info" (click)="infoChat(chat.id)" style="cursor: pointer;">
+        <ion-buttons slot="start" style="position: relative; left: -8px;">
           <ion-back-button type="button" defaultHref='tabs/chat'></ion-back-button>
-          <ion-avatar>
+          <ion-avatar style="width: 50px;   border: 1px solid rgba(42, 42, 42, 0.364);">
             <img
               src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
               alt="" />
           </ion-avatar>
         </ion-buttons>
         <span class="details">
-          <h1>{{id}}</h1>
-          <p>{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterName}}</p>
+          <h1>#{{id}}</h1>
+          <!-- <p>{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterName}}</p> -->
+          <p style="width: 137px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;">{{chat.emergenciesDisasters.locationsEmergenciesDisasters.locationCityName}}</p>
+
         </span>
       </div>
 
@@ -35,6 +40,8 @@
 
   </ion-toolbar>
 </ion-header>
+
+
 <ion-content *ngIf="!isLoading" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <ion-fab class="boton2" id="fab-button" vertical="bottom" horizontal="end" slot="fixed">
 
@@ -78,7 +85,6 @@
           *ngFor="let messages of days.messages; index as j">
           <div class="message" *ngIf="days.messages[j+1] && messages.userID === currentUser.userID">
             {{messages.message}}
-
           </div>
           <div class="message other"
             *ngIf="messages.userID !== currentUser.userID && days.messages[j+1] && days.messages[j+1].userID !== currentUser.userID">
@@ -274,9 +280,9 @@
     <ion-label class="item-input-wrapper">
 
       <textarea autosize maxRows="3" type="text" formControlName="message" name="message"
-        placeholder="Enviar mensaje..." id="chat-input"></textarea>
+        placeholder="Enviar mensaje..." id="chat-input" #txtQuery (keyup)="onQueryChange(txtQuery.value)"></textarea>
 
-      <button type="submit" class="btnSend" [disabled]="chatForm.get('message').invalid">
+      <button type="submit" id="btnSend" [disabled]="chatForm.get('message').invalid">
         <ion-icon id="btnIcon" name="send-sharp"></ion-icon>
       </button>
     </ion-label>

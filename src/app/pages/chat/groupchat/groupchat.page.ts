@@ -12,6 +12,8 @@ import { ActionSheetController, IonContent, IonFab, IonFabButton } from '@ionic/
 import { finalize, map } from 'rxjs/operators';
 import { DatePipe, Location } from '@angular/common';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { Observable } from 'rxjs';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-groupchat',
@@ -40,6 +42,8 @@ export class GroupChatPage implements OnInit, OnDestroy, AfterViewInit {
   lastScrollTop = 0;
   pipe = new DatePipe('en-US');
   today = new Date();
+  handlerChat: any;
+  chatRooms:  ChatRooms[] = [];
 
   constructor(
     public actionSheetController: ActionSheetController,
@@ -186,6 +190,7 @@ return true;
     this.chatForm.get('chatRoomID').patchValue(this.id);
     this.chatForm.get('userID').patchValue(this.currentUser.userID);
     this.chatForm.get('name').patchValue(this.currentUser.persons.firstName +' '+ this.currentUser.persons.lastName);
+    document.getElementById('btnSend').style.backgroundColor = '#feacac';
 
     // Agregamos un nuevo mensaje
     //envia todo los valores del formulario
@@ -228,20 +233,40 @@ return true;
       userID: ['', Validators.required],
       name: ['', Validators.required]
     });
-
 }
+
+infoChat(id: number){
+  this.route.navigate(['info', id]);
+}
+
   //Funciones
   goToMembers(){
     this.service.setChatMembers(this.chat.usersChatRooms);
     this.route.navigate(['/members', this.id], {relativeTo: this.aRoute});
   }
+
   leaveGroup(){
-    this.route.navigate(['tabs','chat']);
-    // this.leaveChat = this.chatService.leaveGroup(this.currentUser.userID, this.id)
-    // .subscribe(data => {
-    //   console.log('Usted a salido exitosamente del grupo!');
-    // });
+   // this.route.navigate(['tabs','chat']);
+    this.leaveChat = this.chatService.leaveGroup(this.currentUser.userID, this.id)
+    .subscribe(data => {
+    this.route.navigate(['/tabs/chat'], {relativeTo: this.aRoute});
+      console.log('Usted a salido exitosamente del grupo!');
+      this.chatService.deleteChatRoom(this.id);
+    });
   }
+
+
+
+  onQueryChange(query: string = ''){
+    
+    if(query !== ''){
+      document.getElementById('btnSend').style.backgroundColor = 'rgb(216, 58, 53)';
+    }else{
+      document.getElementById('btnSend').style.backgroundColor = '#feacac';
+    }
+
+  }
+
 
   public handleScroll(event): void {
     if (event.detail.scrollTop >= this.lastScrollTop) {
@@ -275,17 +300,17 @@ return true;
           this.goToMembers();
         }
       },
-      // {
-      //   text: 'Abandonar',
-      //   icon: 'trash',
-      //   data: {
-      //     type: 'voluntarios'
-      //   },
-      //   handler: () => {
-      //     console.log('Abandonar clicked');
-      //     this.leaveGroup();
-      //   }
-      // },
+      {
+        text: 'Abandonar',
+        icon: 'trash',
+        data: {
+          type: 'voluntarios'
+        },
+        handler: () => {
+          console.log('Abandonar clicked');
+          this.leaveGroup();
+        }
+      },
       {
         text: 'Cancelar',
         icon: 'close',

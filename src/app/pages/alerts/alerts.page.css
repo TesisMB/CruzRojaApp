@@ -1,7 +1,8 @@
 /* Descripción de Emergencias */
-ion-content{
+ion-content {
   width: 100%;
 }
+
 ion-col {
   /* padding: 0 !important;
   flex-direction: column-reverse;
@@ -15,11 +16,11 @@ ion-row {
   /* display: flex;
   justify-content: space-around;*/
   /* width: 93%; */
-} 
+}
 
 ion-card-content {
-/* display: flex; */
-/* flex-direction: row; */
+  /* display: flex; */
+  /* flex-direction: row; */
 }
 
 .card-content {
@@ -45,24 +46,47 @@ ion-card-content {
   /* width: 80px;
   height: 80px; */
   border-radius: 50%;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   /* margin: 5px 0; */
 }
 
 .triangulo {
   width: 60px;
   border-top: 1px solid;
-  border-bottom: 1px solid #000;
+  /* border-bottom: 1px solid #000;
   border-left: 1px solid #000;
-  border-right: 1px solid #000;
+  border-right: 1px solid #000; */
   height: 60px;
   /* background: red linear-gradient(red, blue); */
   clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
 }
 
+
+
 .cuadrado {
   /* width: 80px;
   height: 80px; */
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   /* margin: 5px 0; */
+}
+
+ion-img {
+  display: block;
+  width: 100%;
+  height: 73%;
+  object-fit: fill;
+  object-position: inherit;
+  position: relative;
+  top: 7px;
+}
+
+.triangulo ion-img {
+  display: block;
+  width: 100%;
+  height: 65%;
+  object-fit: inherit;
+  object-position: inherit;
+  position: relative;
+  top: 20px;
+  left: 2px;
 }
