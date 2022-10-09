@@ -1,21 +1,24 @@
-ion-buttons{
+ion-buttons {
   font-size: 8px;
 }
+
 ion-content {
   width: 100%;
 }
-ion-avatar img{
+
+ion-avatar img {
   max-width: none;
   width: 100px;
   height: 100px;
 }
-#avatar img{
+
+#avatar img {
   width: 50px;
   height: 50px;
 }
 
 /* Classes */
-.container-icon{
+.container-icon {
   display: flex;
   align-content: center;
   justify-content: space-between;
@@ -23,10 +26,12 @@ ion-avatar img{
   position: relative;
   top: 1.6rem;
 }
-.container-icon img{
+
+.container-icon img {
   width: 60px;
 }
-ion-grid{
+
+ion-grid {
   padding: 0;
 }
 
@@ -35,31 +40,36 @@ ion-grid{
   /* height: 100%; */
   display: block;
   border: 1px solid black;
-  background: linear-gradient(to bottom, #ff4538 50%, white 50%);
+  background: linear-gradient(to bottom, #bd2d2d 50%, white 50%);
 }
+
 .progress:after {
   /* other styling.. */
   width: 0;
   transition: all 2s;
   -webkit-transition: all 2s;
 }
+
 .progress:hover:after {
   width: 50%;
   /* height: 100%; */
 
 }
-.head{
+
+.head {
   padding: 0 !important;
 }
-.container{
+
+.container {
   width: 100%;
-  height: 100%;
+  height: 95px;
   display: block;
-  background: linear-gradient(to bottom, #ff4538 50%, white 50%);
+  background-color: #bd2d2d;
 }
-.volunteerAvatar{
-  /* margin-top: 1rem; */
-  width: 100%;
+
+
+.volunteerAvatar {
+  width: 91%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,34 +78,68 @@ ion-grid{
   text-align: center;
 }
 
-.volunteerInfo{
-  margin-left: 2rem;
+.volunteerInfo {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 5rem;
 }
 
-.skillsFormationDate{
+.skillsFormationDate {
   margin: 1rem
 }
 
 /* IDs */
 
-#volunteerName{
-  margin-top: 3rem;
-  font-size: 20px;
+.volunteerName {
+  font-size: 14px;
 }
 
-#skillName{
+#skillName {
   margin-top: 0.5rem;
 }
 
-#card{
+#card {
   margin-top: 2.5rem;
   width: 83%;
 }
 
-#volunteerDiv{
+#volunteerDiv {
   border-bottom: 1px solid rgb(95, 94, 94);
+}
+
+.container-icon img {
+  width: 50px;
+  height: 50px;
+  margin-right: 4px;
+}
+
+ion-avatar img {
+  border: 5px solid #ffffff;
+}
+
+img {
+  width: 100px;
+  max-height: 100px;
+}
+
+ion-avatar {
+  background-color: #ffffff;
+  height: 100px;
+  width: 100px;
+  margin: auto;
+}
+
+ion-buttons {
+  color: #fff;
+}
+
+ion-title {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.roleName {
+  color: #9e9e9e;
 }

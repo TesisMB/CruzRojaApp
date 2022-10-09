@@ -71,3 +71,8 @@ ion-list {
 ion-button {
     --box-shadow: none !important;
 }
+
+.button {
+    display: flex;
+    justify-content: space-between;
+}

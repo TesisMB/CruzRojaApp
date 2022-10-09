@@ -8,12 +8,13 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ChatDate, ChatRooms, Chats } from 'src/app/models/ChatRooms';
 import { LoginService } from 'src/app/services/login/login.service';
 import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
-import { ActionSheetController, IonContent, IonFab, IonFabButton } from '@ionic/angular';
+import { ActionSheetController, IonContent, IonFab, IonFabButton, NavController, NavParams } from '@ionic/angular';
 import { finalize, map } from 'rxjs/operators';
 import { DatePipe, Location } from '@angular/common';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Observable } from 'rxjs';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-groupchat',
@@ -24,7 +25,10 @@ export class GroupChatPage implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('#fab') scrollButton: IonFab;
   @ViewChild(IonContent) content: IonContent;
   // @ViewChild(CdkVirtualScrollViewport) viewPort: CdkVirtualScrollViewport;
+  public items: any[] = [];
+  // @ViewChild(Content) content2: Content
 
+  
   isLoading = true;
   chat: Chats;
   msj: Messages[] = [];
@@ -52,54 +56,63 @@ export class GroupChatPage implements OnInit, OnDestroy, AfterViewInit {
     private fb: FormBuilder,
     private route: Router,
     private aRoute: ActivatedRoute,
-    private services: LoginService,
-    ) {
-    this.id = this.aRoute.snapshot.params.id;
-    this.service.setChatRoomId(this.id);
-
-    this.service.createConnection();
-    this.service.connectionStart();
+    private services: LoginService) {
+   
+    {
+      this.id = this.aRoute.snapshot.params.id;
+      this.service.setChatRoomId(this.id);
+      
+      this.service.createConnection();
+      this.service.connectionStart();
+    }
   }
 
-  async ngOnInit() {
 
-    await this.getForm();
-    await this.getById();
-    await this.service.registerGroup();
-    await this.service.registerMessage();
-    await this.receivedMessage();
-    await this.getCurrentUser();
 
-    //Captar el CurrentUser mediante el LocalStorage
-    //const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    //console.log('LocalStorage', currentUser.userID);
-
-    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+async ngOnInit() {
+  
+  await this.getForm();
+  await this.getById();
+  await this.service.registerGroup();
+  await this.service.registerMessage();
+  await this.receivedMessage();
+  await this.getCurrentUser();
+  
+  //Captar el CurrentUser mediante el LocalStorage
+  //const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  //console.log('LocalStorage', currentUser.userID);
+  
+  // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     // console.log('LocalStorage', this.currentUser.userID);
-
-
-
+    
+    
+    
     // this.currentGroupChatHandler = this.service.currentGroupChat$.subscribe(data => {
-    //   console.log('currentGroupChat$: ', data);
-    // });
+      //   console.log('currentGroupChat$: ', data);
+      // });
+      
+      
+      // console.log('Id ==> ', this.id);
+      
+      /*     this.service.setChatRoomId(30);
+      */
+    }
+    
 
-
-    // console.log('Id ==> ', this.id);
-
-    /*     this.service.setChatRoomId(30);
-     */
-  }
-
-  ionViewWillEnter(){
-    //  const chatSection = document.getElementById('chat');
-    //  chatSection.scrollTop = chatSection.scrollHeight;
-  }
-
-ngAfterViewInit(){
-  // this.logScrolling(this.chat.dateMessage[this.chat.dateMessage.length-1].messages.length - 1, 'auto');
-
-}
- get changeFormat(){
+    
+    ionViewWillEnter(){
+      setTimeout(() => {
+        this.content.scrollToBottom(0);
+        }, 100);
+      //  const chatSection = document.getElementById('chat');
+      //  chatSection.scrollTop = chatSection.scrollHeight;
+    }
+    
+    ngAfterViewInit(){
+      // this.logScrolling(this.chat.dateMessage[this.chat.dateMessage.length-1].messages.length - 1, 'auto');
+      
+    }
+    get changeFormat(){
     const ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
     // console.log('Fecha de hoy', ChangedFormat);
     return ChangedFormat;
@@ -123,7 +136,8 @@ return true;
       finalize(() => {
         // this is called on both success and error
         if( this.content){
-          this.content.scrollToBottom(400);
+          this.ionViewWillEnter();
+          // this.content.scrollToBottom(400);
           console.log('Si hay content');
         }
         else {
@@ -210,7 +224,7 @@ return true;
       finalize(() => {
         // this is called on both success and error
         console.log('finalize');
-        this.content.scrollToBottom(1500);
+        // this.content.scrollToBottom(1500);
        }))
     .subscribe(data => {
       this.service.sendMessage(msj);
@@ -235,7 +249,11 @@ return true;
     });
 }
 
+
+
+
 infoChat(id: number){
+  this.service.setChatMembers(this.chat.usersChatRooms);
   this.route.navigate(['info', id]);
 }
 

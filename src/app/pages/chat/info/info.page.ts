@@ -15,6 +15,8 @@ export class InfoPage implements OnInit {
   isLoading = true;
   chat: Chats;
   id: number;
+  count: number;
+  members: Observable<UserChatRooms[]>;
 
 
   constructor(
@@ -32,6 +34,12 @@ export class InfoPage implements OnInit {
     this.getById();
   }
 
+  ionViewWillEnter() {
+   this.members = this.service.currentUserChat$;
+    // this.getEmergenciesByID();
+
+  }
+
 
   goToUser(id: number){
     this.route.navigate(['/members/details',id], {relativeTo: this.aRoute});
@@ -39,15 +47,13 @@ export class InfoPage implements OnInit {
    
   
   goToMembers(){
-    this.service.setChatMembers(this.chat.usersChatRooms);
     this.route.navigate(['/members', this.id], {relativeTo: this.aRoute});
   }
 
 
   getById() {
     this.chat = this.chatService.searchChat(this.id);
-
-    console.log("Aca estoy!!! ", this.chat)
+    this.count = this.chat.usersChatRooms.length;
   }
 
 }

@@ -23,7 +23,7 @@
   <!-- <cdk-virtual-scroll-viewport class="ion-content-scroll-host"> -->
   <ng-container *ngIf="chatRooms.length && !isLoading">
     <ion-list>
-      <ion-list-header> Canales </ion-list-header>
+      <ion-list-header> Grupos </ion-list-header>
 
       <ion-item *ngFor="let chat of chatRooms; index as i" button (click)="navigateToGroupChat(chat.id, i)">
         <ion-avatar slot="start">
