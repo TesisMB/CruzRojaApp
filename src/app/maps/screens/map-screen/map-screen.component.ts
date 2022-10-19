@@ -162,8 +162,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
     return await modal.present();
   }
 
-
-   async showCurrentPosition() {}
+  async showCurrentPosition() {}
 
   async moveMap(){
     if(this.mapState === 1){
@@ -190,6 +189,9 @@ export class MapScreenComponent implements OnInit, OnDestroy {
     }
   }
 
+  navigateMemberList(){
+    this.router.navigate(['memberlist/', this.id]);
+  }
 
   async showToast(msg: string, duration: number) {
     // this.toastCtrl.dismiss();
@@ -204,14 +206,15 @@ export class MapScreenComponent implements OnInit, OnDestroy {
     this.router.navigate(['emergency/',  this.emergencies.emergencyDisasterID]);
   }
 
-  ionViewDidLeave() {
+/*   ionViewDidLeave() {
     this.newMap.destroy();
-
-  }
+    console.log('ionViewDidLeave');
+  } */
 
   ngOnDestroy(){
     this.handleAlert.unsubscribe();
     this.newMap.destroy();
+    console.log('ngOnDestroy');
   }
 }
 

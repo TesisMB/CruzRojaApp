@@ -45,7 +45,7 @@ export class ChatPage implements OnInit, OnDestroy {
    await this.ionLoader.showLoader();
    await  this.getCurrentUser();
    this.chatRoomsObservable$ = this.service.chatRoomsObservable$;
-   console.log("chatRoomsObservable$ Before => ", this.chatRoomsObservable$);
+   console.log('chatRoomsObservable$ Before => ', this.chatRoomsObservable$);
 }
 
   getCurrentUser(){

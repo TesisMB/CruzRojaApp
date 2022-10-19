@@ -72,6 +72,7 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'tabs'
   },
+
 ];
 
 @NgModule({

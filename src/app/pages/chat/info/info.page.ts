@@ -24,10 +24,10 @@ export class InfoPage implements OnInit {
     private aRoute: ActivatedRoute,
     public service: GroupchatService,
     private route: Router,
+  )
 
-  ) { 
+  {
     this.id = this.aRoute.snapshot.params.id;
-
   }
 
   ngOnInit() {
@@ -44,8 +44,7 @@ export class InfoPage implements OnInit {
   goToUser(id: number){
     this.route.navigate(['/members/details',id], {relativeTo: this.aRoute});
   }
-   
-  
+
   goToMembers(){
     this.route.navigate(['/members', this.id], {relativeTo: this.aRoute});
   }
