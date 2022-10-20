@@ -18,7 +18,7 @@
   </div>
 
   <div *ngIf="memberlist">
-      <ion-list #lista *ngFor="let item of memberlist['usersChatRooms']">
+      <ion-list #lista *ngFor="let item of memberlist['usersChatRooms'] | filter: textoBuscar: 'name'">
         <ion-item-sliding>
 
           <ion-item-options side="start">
