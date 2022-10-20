@@ -52,7 +52,8 @@ getVolunteers(id, s?){
   };
   params.status = s;
   this.options.params  = new HttpParams({fromObject: params});
-  return this.http.get<any>(environment.apiURL + this.patch + '/' + id, + '?status=' + s);
+  return this.http.get<any>(environment.apiURL + this.patch + '/' + id,this.options);
+  // return this.http.get<any>(environment.apiURL + this.patch + '/' + id, + '?status=' + s);
   //https://localhost:5001/api/chatrooms/20?status=false&userId=5
 }
 
