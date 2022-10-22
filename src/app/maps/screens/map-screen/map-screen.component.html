@@ -1,37 +1,38 @@
-<ion-header [translucent]="true" >
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/tabs/alertas"></ion-back-button>
-      </ion-buttons>
-      <ion-title size="small">Información de alerta</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/alertas"></ion-back-button>
+    </ion-buttons>
+    <ion-title size="small">Información de alerta</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-content [fullscreen]="true">
-    <div class="container">
-      <capacitor-google-maps #mapRef></capacitor-google-maps>
-        <ion-fab class="boton1"  vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button  size="small" (click)="moveMap()" color="light">
-              <ion-icon *ngIf="mapState === 1" name="compass-outline"></ion-icon>
-              <i class="fas fa-street-view" *ngIf="mapState === 0"></i>
-            </ion-fab-button>
-        </ion-fab>
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <capacitor-google-maps #mapRef></capacitor-google-maps>
+    <ion-fab class="boton1" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button size="small" (click)="moveMap()" color="light">
+        <ion-icon *ngIf="mapState === 1" name="compass-outline"></ion-icon>
+        <i class="fas fa-street-view" *ngIf="mapState === 0"></i>
+      </ion-fab-button>
+    </ion-fab>
 
-        <ion-fab class="boton2" vertical="bottom" horizontal="end" slot="fixed">
-          <ion-fab-button  size="small" (click)="createModal()" color="light">
-            <ion-icon name="information-circle-outline"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
+    <ion-fab class="boton2" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button size="small" (click)="createModal()" color="light">
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
-        <ion-fab class="boton3" vertical="bottom" horizontal="end" slot="fixed">
-          <ion-fab-button size="small" (click)="navigateMemberList()" color="light">
-            <ion-icon name="people-outline"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
-    </div>
+    <ion-fab *ngIf="currentUser.roleName != 'Voluntario'" class="boton3" vertical="bottom" horizontal="end"
+      slot="fixed">
+      <ion-fab-button size="small" (click)="navigateMemberList()" color="light">
+        <ion-icon name="people-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
 
 </ion-content>
-         <!-- <ion-fab-list side="top">
+<!-- <ion-fab-list side="top">
             <ion-fab-button size="small">
              <span *ngIf="mapState === 0">ALERTA</span>
             <span *ngIf="mapState === 1">YO</span>

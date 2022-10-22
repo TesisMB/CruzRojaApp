@@ -5,14 +5,14 @@
         <div class="button">
 
           <ion-buttons slot="start" style="position: relative; left: -8px;">
-            <ion-back-button type="button" defaultHref='tabs/chat'></ion-back-button>
+            <ion-back-button type="button" defaultHref="tabs/chat/groupChat/{{id}}"></ion-back-button>
           </ion-buttons>
 
-          <ion-buttons slot="end">
+          <!-- <ion-buttons slot="end">
             <ion-button>
               <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
             </ion-button>
-          </ion-buttons>
+          </ion-buttons> -->
 
         </div>
 
@@ -40,7 +40,7 @@
           </div>
 
           <div style="text-align: center;">
-            <p *ngIf="count === 1" style="color: grey;">Grupo - {{count}} miembro</p> //
+            <p *ngIf="count === 1" style="color: grey;">Grupo - {{count}} miembro</p>
             <p *ngIf="count > 1" style="color: grey;">Grupo - {{count}} miembros</p>
           </div>
         </div>
@@ -60,7 +60,7 @@
               </ion-toolbar>
             </div> -->
 
- <ion-list *ngFor="let item of members">
+  <ion-list *ngFor="let item of members">
     <ion-item (click)="goToUser(item.userID)">
       <ion-thumbnail slot="start">
         <ion-img src="{{item.avatar}}" style="border-radius: 50%;"></ion-img>

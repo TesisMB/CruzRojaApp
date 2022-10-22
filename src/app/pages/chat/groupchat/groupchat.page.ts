@@ -131,7 +131,7 @@ return true;
 
   getById() {
     //GET SALA DE CHAT, TRAE TODO EL CHAT.
-    this.chatHandlerId = this.chatService.getById(this.id)
+    this.chatHandlerId = this.chatService.getVolunteers(this.id, true)
     .pipe(
       finalize(() => {
         // this is called on both success and error
