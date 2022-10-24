@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header ion-padding">
+      <div class="info">
+        <div class="button">
+
+          <ion-buttons slot="start" style="position: relative; left: -8px;">
+            <ion-back-button type="button" defaultHref="tabs/chat/groupChat/{{id}}"></ion-back-button>
+          </ion-buttons>
+
+          <!-- <ion-buttons slot="end">
+            <ion-button>
+              <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+            </ion-button>
+          </ion-buttons> -->
+
+        </div>
+
+
+
+        <div class="details">
+          <div style="display: flex;
+          align-items: center;
+          justify-content: center;">
+            <img
+              src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
+              alt="" />
+          </div>
+
+          <div style="display: flex; align-items: center;
+          margin-top: 2rem;">
+            <p style="
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          font-size: 17px;">
+              #{{id}}<span
+                style="margin-left: 10px;">{{chat.emergenciesDisasters.locationsEmergenciesDisasters.locationCityName}}</span>
+            </p>
+          </div>
+
+          <div style="text-align: center;">
+            <p *ngIf="count === 1" style="color: grey;">Grupo - {{count}} miembro</p>
+            <p *ngIf="count > 1" style="color: grey;">Grupo - {{count}} miembros</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="(members | async) as members;">
+  <!-- <div>
+              <ion-toolbar>
+                <ion-searchbar id="search" debounce="250" placeholder="Buscar voluntario..." (ionChange)="search($event)"
+                  animated>
+                </ion-searchbar>
+              </ion-toolbar>
+            </div> -->
+
+  <ion-list *ngFor="let item of members">
+    <ion-item (click)="goToUser(item.userID)">
+      <ion-thumbnail slot="start">
+        <ion-img src="{{item.avatar}}" style="border-radius: 50%;"></ion-img>
+      </ion-thumbnail>
+      <ion-label id="volunteerName">
+        <h3><strong>{{item.name}}</strong></h3>
+        <h4 class="mt-2">{{item.roleName}}</h4>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-button (click)="goToMembers()" color="light"
+    style="box-shadow: none !important; display: flex; align-items: center; margin-top: 2rem;">
+    <span style="color: black;">Ver todos ({{count}} más)</span>
+  </ion-button>
+</ion-content>
+
+
+
+
+<!-- <ion-buttons slot="end">
+        <ion-button (click)="presentActionSheet()">
+          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </ion-buttons> -->

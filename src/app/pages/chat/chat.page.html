@@ -18,24 +18,24 @@
         <ion-label>Contactos</ion-label>
       </ion-segment-button> -->
   <!-- </ion-segment>
-  </div> --> 
+  </div> -->
 
   <!-- <cdk-virtual-scroll-viewport class="ion-content-scroll-host"> -->
-      <ng-container *ngIf="chatRooms.length && !isLoading">
+  <ng-container *ngIf="chatRooms.length && !isLoading">
     <ion-list>
-      <ion-list-header> Canales </ion-list-header>
+      <ion-list-header> Grupos </ion-list-header>
 
       <ion-item *ngFor="let chat of chatRooms; index as i" button (click)="navigateToGroupChat(chat.id, i)">
         <ion-avatar slot="start">
-          <img src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
-          width="40px" />
+          <img
+            src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
+            style="width:50px !important; max-width: none !important;" />
         </ion-avatar>
-        <ion-label>
-          <h2>#{{chat.id}}</h2>
-          <!-- <h3>I'm a big deal</h3> -->
+        <ion-label style="margin-left: 8px;">
+          <h2 style="font-size: 14px;">#{{chat.id}}</h2>
           <p>{{chat.emergenciesDisasters.locationsEmergenciesDisasters.locationCityName}}</p>
         </ion-label>
-        <ion-badge *ngIf="chat.quantity" slot="end">{{chat.quantity}}</ion-badge>
+        <!-- <ion-badge *ngIf="chat.quantity" slot="end">{{chat.quantity}}</ion-badge> -->
       </ion-item>
     </ion-list>
 
@@ -56,7 +56,10 @@
   </ng-container>
   <ng-container *ngIf="!chatRooms.length && !isLoading">
     <div class="d-flex flex-column align-items-center align-content-center m-5">
-      <img src="../../../assets/icons - Chat/no-chat.png" style="height: 300px;" alt="">
+      <img src="../../../assets/icons - Chat/no-chat.png" style="height: 300px; border: none; width: 200px !important;"
+        alt="">
+      <!-- <img src="https://img.freepik.com/premium-vector/contact-is-empty-flat-illustration_418302-56.jpg?w=740"
+        style="height: 300px;" alt=""> -->
       <p class="text-center mt-3">¡Acepte a una alerta!</p>
     </div>
   </ng-container>
@@ -93,6 +96,6 @@
       </ion-label>
     </ion-item>
   </ion-list>
-<!-- </cdk-virtual-scroll-viewport> -->
+  <!-- </cdk-virtual-scroll-viewport> -->
 </ion-content>
 <!-- <app-menu showTabs></app-menu> -->

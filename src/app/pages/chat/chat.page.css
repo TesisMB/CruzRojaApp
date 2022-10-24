@@ -28,9 +28,10 @@ ion-segment-button{
   text-align: right;
 }
 */
-ion-content{
+ion-content {
   width: 100%;
 }
+
 /* ion-badge{
   font-size: 11px;
   margin-bottom: 5px;
@@ -43,4 +44,18 @@ ion-content{
 cdk-virtual-scroll-viewport {
   min-height: 100%;
   width: 100%;
+}
+
+
+img {
+  width: 50px !important;
+  max-width: none !important;
+  /* border: 1px solid; */
+  border: 1px solid rgba(42, 42, 42, 0.364);
+  height: 50px;
+  position: relative;
+  border: -1px;
+  /* margin-bottom: 26px; */
+  bottom: 5px;
+  right: 1px
 }

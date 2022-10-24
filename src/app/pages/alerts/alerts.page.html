@@ -6,68 +6,74 @@
 
 <ion-content>
 
-    <ion-toolbar>
-      <ion-segment (ionChange)="segmentChanged($event)" color="danger" value="true">
-        <ion-segment-button value='false'>
-          <ion-label>Nuevas alertas</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value='true'>
-          <ion-label>Mis alertas</ion-label>
-        </ion-segment-button>
-      </ion-segment>
+  <ion-toolbar>
+    <ion-segment (ionChange)="segmentChanged($event)" color="danger" value="true">
+      <ion-segment-button value='false'>
+        <ion-label>Nuevas alertas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value='true'>
+        <ion-label>Mis alertas</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
-  <ng-container >
+  <ng-container>
 
-  <ion-list *ngIf="!isLoading && alerts.length" lines="inset" mode="md">
-    
-    <ion-item *ngFor="let alert of alerts; index as i" mode="md" button="true" detail="true" (click)="deploymentButton(i)">
-      <ion-thumbnail slot="start" [ngStyle]="{
+    <ion-list *ngIf="!isLoading && alerts.length" lines="inset" mode="md">
+
+      <ion-item *ngFor="let alert of alerts; index as i" mode="md" button="true" detail="true"
+        (click)="deploymentButton(i)">
+        <ion-thumbnail slot="start" [ngStyle]="{
         backgroundColor: getColor(alert.alerts.alertDegree)
       }" [ngClass]="{
         'circulo': alert.alerts.alertDegree === 'Moderado',
         'triangulo': alert.alerts.alertDegree === 'Controlado',
-        'cuadrado': alert.alerts.alertDegree === 'Urgente'}"
-      >
-        <ion-img src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"></ion-img>
-      </ion-thumbnail>
-      <ion-label>
-        <h3 ><strong>{{alert.alerts.alertDegree}}</strong></h3>
-        <h4  class="mt-2">#{{alert.emergencyDisasterID}} &nbsp; {{alert.typesEmergenciesDisasters.typeEmergencyDisasterName}}</h4>
-        <p class="mt-2">{{alert.locationsEmergenciesDisasters.locationCityName}}</p>
-      </ion-label>
-    </ion-item>
-    
+        'cuadrado': alert.alerts.alertDegree === 'Urgente'}">
+          <ion-img
+            src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg">
+          </ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h3><strong>{{alert.alerts.alertDegree}}</strong></h3>
+          <h4 class="mt-2">#{{alert.emergencyDisasterID}} &nbsp;
+            {{alert.typesEmergenciesDisasters.typeEmergencyDisasterName}}</h4>
+          <p class="mt-2">{{alert.locationsEmergenciesDisasters.locationCityName}}</p>
+        </ion-label>
+      </ion-item>
 
-  </ion-list>
 
-  <ion-list *ngIf="isLoading">
-    <ion-item *ngFor="let item of [1,1,1,1,1]">
-      <ion-thumbnail slot="start">
-        <ion-skeleton-text></ion-skeleton-text>
-      </ion-thumbnail>
-      <ion-label>
-        <h3>
-          <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-        </h3>
-        <p>
-          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
-        </p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-</ng-container> 
+    </ion-list>
 
-<ng-container *ngIf="!alerts.length && !isLoading">
-      <div class="d-flex flex-column align-items-center align-content-center m-5">
+    <ion-list *ngIf="isLoading">
+      <ion-item *ngFor="let item of [1,1,1,1,1]">
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <ng-container *ngIf="!alerts.length && !isLoading">
+    <div class="d-flex flex-column align-items-center align-content-center m-5">
       <img src="../../../assets/icons - Resources - EmergDesas/no-alerts.png" style="height: 250px;" alt="">
-     <p class="text-center mt-3">No se han emitido alerta!</p>
+      <!-- <img
+        src="https://static.vecteezy.com/system/resources/thumbnails/008/515/907/small/no-notification-flat-illustration-concept-vector.jpg"
+        style="height: 250px;" alt=""> -->
+      <p class="text-center mt-3">No se han emitido alerta!</p>
     </div>
-    </ng-container>
+  </ng-container>
 </ion-content>
 
 
 
-  <!--     <ion-card  *ngFor="let alert of alerts; index as i">
+<!--     <ion-card  *ngFor="let alert of alerts; index as i">
        <ion-label color="dark"><h5 class="subtitle">ID: {{alert.emergencyDisasterID}}</h5></ion-label>
       <ion-card-content >
         <ion-grid fixed="true">

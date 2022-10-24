@@ -9,6 +9,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { PrivatechatPage } from './privatechat/privatechat.page';
 import { VoluntariosDetallesPage } from '../volunteers/subpages/voluntarios-detalles/volunteersdetails';
 import { VolunteersPage } from '../volunteers/volunteers.page';
+import { InfoPage } from '../chat/info/info.page';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { VolunteersPage } from '../volunteers/volunteers.page';
   PrivatechatPage,
   VolunteersPage,
   VoluntariosDetallesPage,
+  InfoPage
 ]
 })
 export class ChatPageModule {}

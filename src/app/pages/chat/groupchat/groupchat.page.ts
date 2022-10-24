@@ -8,10 +8,13 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ChatDate, ChatRooms, Chats } from 'src/app/models/ChatRooms';
 import { LoginService } from 'src/app/services/login/login.service';
 import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
-import { ActionSheetController, IonContent, IonFab, IonFabButton } from '@ionic/angular';
+import { ActionSheetController, IonContent, IonFab, IonFabButton, NavController, NavParams } from '@ionic/angular';
 import { finalize, map } from 'rxjs/operators';
 import { DatePipe, Location } from '@angular/common';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { Observable } from 'rxjs';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-groupchat',
@@ -22,7 +25,10 @@ export class GroupChatPage implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('#fab') scrollButton: IonFab;
   @ViewChild(IonContent) content: IonContent;
   // @ViewChild(CdkVirtualScrollViewport) viewPort: CdkVirtualScrollViewport;
+  public items: any[] = [];
+  // @ViewChild(Content) content2: Content
 
+  
   isLoading = true;
   chat: Chats;
   msj: Messages[] = [];
@@ -40,6 +46,8 @@ export class GroupChatPage implements OnInit, OnDestroy, AfterViewInit {
   lastScrollTop = 0;
   pipe = new DatePipe('en-US');
   today = new Date();
+  handlerChat: any;
+  chatRooms:  ChatRooms[] = [];
 
   constructor(
     public actionSheetController: ActionSheetController,
@@ -48,54 +56,63 @@ export class GroupChatPage implements OnInit, OnDestroy, AfterViewInit {
     private fb: FormBuilder,
     private route: Router,
     private aRoute: ActivatedRoute,
-    private services: LoginService,
-    ) {
-    this.id = this.aRoute.snapshot.params.id;
-    this.service.setChatRoomId(this.id);
-
-    this.service.createConnection();
-    this.service.connectionStart();
+    private services: LoginService) {
+   
+    {
+      this.id = this.aRoute.snapshot.params.id;
+      this.service.setChatRoomId(this.id);
+      
+      this.service.createConnection();
+      this.service.connectionStart();
+    }
   }
 
-  async ngOnInit() {
 
-    await this.getForm();
-    await this.getById();
-    await this.service.registerGroup();
-    await this.service.registerMessage();
-    await this.receivedMessage();
-    await this.getCurrentUser();
 
-    //Captar el CurrentUser mediante el LocalStorage
-    //const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    //console.log('LocalStorage', currentUser.userID);
-
-    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+async ngOnInit() {
+  
+  await this.getForm();
+  await this.getById();
+  await this.service.registerGroup();
+  await this.service.registerMessage();
+  await this.receivedMessage();
+  await this.getCurrentUser();
+  
+  //Captar el CurrentUser mediante el LocalStorage
+  //const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  //console.log('LocalStorage', currentUser.userID);
+  
+  // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     // console.log('LocalStorage', this.currentUser.userID);
-
-
-
+    
+    
+    
     // this.currentGroupChatHandler = this.service.currentGroupChat$.subscribe(data => {
-    //   console.log('currentGroupChat$: ', data);
-    // });
+      //   console.log('currentGroupChat$: ', data);
+      // });
+      
+      
+      // console.log('Id ==> ', this.id);
+      
+      /*     this.service.setChatRoomId(30);
+      */
+    }
+    
 
-
-    // console.log('Id ==> ', this.id);
-
-    /*     this.service.setChatRoomId(30);
-     */
-  }
-
-  ionViewWillEnter(){
-    //  const chatSection = document.getElementById('chat');
-    //  chatSection.scrollTop = chatSection.scrollHeight;
-  }
-
-ngAfterViewInit(){
-  // this.logScrolling(this.chat.dateMessage[this.chat.dateMessage.length-1].messages.length - 1, 'auto');
-
-}
- get changeFormat(){
+    
+    ionViewWillEnter(){
+      setTimeout(() => {
+        this.content.scrollToBottom(0);
+        }, 100);
+      //  const chatSection = document.getElementById('chat');
+      //  chatSection.scrollTop = chatSection.scrollHeight;
+    }
+    
+    ngAfterViewInit(){
+      // this.logScrolling(this.chat.dateMessage[this.chat.dateMessage.length-1].messages.length - 1, 'auto');
+      
+    }
+    get changeFormat(){
     const ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
     // console.log('Fecha de hoy', ChangedFormat);
     return ChangedFormat;
@@ -114,12 +131,13 @@ return true;
 
   getById() {
     //GET SALA DE CHAT, TRAE TODO EL CHAT.
-    this.chatHandlerId = this.chatService.getById(this.id)
+    this.chatHandlerId = this.chatService.getVolunteers(this.id, true)
     .pipe(
       finalize(() => {
         // this is called on both success and error
         if( this.content){
-          this.content.scrollToBottom(400);
+          this.ionViewWillEnter();
+          // this.content.scrollToBottom(400);
           console.log('Si hay content');
         }
         else {
@@ -186,6 +204,7 @@ return true;
     this.chatForm.get('chatRoomID').patchValue(this.id);
     this.chatForm.get('userID').patchValue(this.currentUser.userID);
     this.chatForm.get('name').patchValue(this.currentUser.persons.firstName +' '+ this.currentUser.persons.lastName);
+    document.getElementById('btnSend').style.backgroundColor = '#feacac';
 
     // Agregamos un nuevo mensaje
     //envia todo los valores del formulario
@@ -205,7 +224,7 @@ return true;
       finalize(() => {
         // this is called on both success and error
         console.log('finalize');
-        this.content.scrollToBottom(1500);
+        // this.content.scrollToBottom(1500);
        }))
     .subscribe(data => {
       this.service.sendMessage(msj);
@@ -228,24 +247,49 @@ return true;
       userID: ['', Validators.required],
       name: ['', Validators.required]
     });
-
 }
+
+
+
+
+infoChat(id: number){
+  this.service.setChatMembers(this.chat.usersChatRooms);
+  this.route.navigate(['info', id]);
+}
+
   //Funciones
   goToMembers(){
     this.service.setChatMembers(this.chat.usersChatRooms);
     this.route.navigate(['/members', this.id], {relativeTo: this.aRoute});
   }
+
   leaveGroup(){
-    this.route.navigate(['tabs','chat']);
-    // this.leaveChat = this.chatService.leaveGroup(this.currentUser.userID, this.id)
-    // .subscribe(data => {
-    //   console.log('Usted a salido exitosamente del grupo!');
-    // });
+   // this.route.navigate(['tabs','chat']);
+    this.leaveChat = this.chatService.leaveGroup(this.currentUser.userID, this.id)
+    .subscribe(data => {
+    this.route.navigate(['/tabs/chat'], {relativeTo: this.aRoute});
+      console.log('Usted a salido exitosamente del grupo!');
+      this.chatService.deleteChatRoom(this.id);
+    });
   }
+
+
+
+  onQueryChange(query: string = ''){
+    
+    if(query !== ''){
+      document.getElementById('btnSend').style.backgroundColor = 'rgb(216, 58, 53)';
+    }else{
+      document.getElementById('btnSend').style.backgroundColor = '#feacac';
+    }
+
+  }
+
 
   public handleScroll(event): void {
     if (event.detail.scrollTop >= this.lastScrollTop) {
          document.getElementById('fab-button').style.top = '100%';
+         document.getElementById('fab-button').style.display = 'block';
     }else{
       document.getElementById('fab-button').style.top = '75%';
       document.getElementById('fab-button').style.right = '4%';
@@ -255,7 +299,7 @@ return true;
   }
 
   scrollToBottom() {
-     this.content.scrollToBottom(1500);
+     this.content.scrollToBottom(1000);
   }
 
   async presentActionSheet() {
@@ -274,17 +318,17 @@ return true;
           this.goToMembers();
         }
       },
-      // {
-      //   text: 'Abandonar',
-      //   icon: 'trash',
-      //   data: {
-      //     type: 'voluntarios'
-      //   },
-      //   handler: () => {
-      //     console.log('Abandonar clicked');
-      //     this.leaveGroup();
-      //   }
-      // },
+      {
+        text: 'Abandonar',
+        icon: 'trash',
+        data: {
+          type: 'voluntarios'
+        },
+        handler: () => {
+          console.log('Abandonar clicked');
+          this.leaveGroup();
+        }
+      },
       {
         text: 'Cancelar',
         icon: 'close',

@@ -1,7 +1,7 @@
 import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
 import { AlertService } from 'src/app/services/alerts/alert.service';
 import { Router } from '@angular/router';
-import { Component, } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { EmergenciesDisasters } from 'src/app/models/EmergenciesDisasters';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -13,7 +13,7 @@ import { UserChatRooms } from 'src/app/models';
   styleUrls: ['./volunteers.page.css'],
 })
 
-export class VolunteersPage {
+export class VolunteersPage implements OnInit{
   emergencies: EmergenciesDisasters;
   members: Observable<UserChatRooms[]>;
   handlerVoluntarios: any;
@@ -32,11 +32,16 @@ export class VolunteersPage {
     /* this.searchedItem = this.volunteers; */
   }
 
-  ionViewWillEnter() {
+
+
+  ngOnInit() {
     this.chatId = this.aRoute.snapshot.params.id;
-   this.members = this.service.currentUserChat$;
-    // this.getEmergenciesByID();
+    this.members = this.service.currentUserChat$;
   }
+  // ionViewWillEnter() {
+  //   this.chatId = this.aRoute.snapshot.params.id;
+  //  this.members = this.service.currentUserChat$;
+  // }
 
   /* Función de busqueda */
 

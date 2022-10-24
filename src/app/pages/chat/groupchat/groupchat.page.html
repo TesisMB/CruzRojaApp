@@ -9,39 +9,44 @@
 <ion-header>
   <ion-toolbar color="light" *ngIf="!isLoading">
     <div class="header ion-padding">
-      <div class="info">
-        <ion-buttons slot="start">
+      <div class="info" style="cursor: pointer;">
+        <ion-buttons slot="start" style="position: relative; left: -8px;">
           <ion-back-button type="button" defaultHref='tabs/chat'></ion-back-button>
-          <ion-avatar>
+          <ion-avatar style="width: 50px;   border: 1px solid rgba(42, 42, 42, 0.364);">
             <img
               src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg"
               alt="" />
           </ion-avatar>
         </ion-buttons>
-        <span class="details">
-          <h1>{{id}}</h1>
-          <p>{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterName}}</p>
+        <span class="details" (click)="infoChat(chat.id)">
+          <h1>#{{id}}</h1>
+          <!-- <p>{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterName}}</p> -->
+          <p style="width: 100px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;">{{chat.emergenciesDisasters.locationsEmergenciesDisasters.locationCityName}}</p>
+
         </span>
       </div>
 
       <ion-buttons slot="end">
         <ion-button (click)="presentActionSheet()">
-          <!-- <div class="calling"> -->
           <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
-          <!-- </div> -->
         </ion-button>
       </ion-buttons>
     </div>
 
   </ion-toolbar>
 </ion-header>
-<ion-content *ngIf="!isLoading" [scrollEvents]="true"  (ionScroll)="handleScroll($event)">
+
+
+<ion-content *ngIf="!isLoading" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <ion-fab class="boton2" id="fab-button" vertical="bottom" horizontal="end" slot="fixed">
 
-    <ion-fab-button  size="small" (click)="scrollToBottom()" color="light">
-        <ion-icon name="chevron-down-outline"></ion-icon>
+    <ion-fab-button size="small" (click)="scrollToBottom()" color="light">
+      <ion-icon name="chevron-down-outline"></ion-icon>
     </ion-fab-button>
-</ion-fab> 
+  </ion-fab>
   <!-- <button (click)="scrollToBottom()">
     <ion-icon id="scrollBackIcon" name="chevron-down-outline"></ion-icon>
   </button>  -->
@@ -76,37 +81,35 @@
         </div>
         <div class="messages" [ngClass]="messages.userID === currentUser.userID ? 'mine': 'yours'"
           *ngFor="let messages of days.messages; index as j">
-          <div class="message" 
-            *ngIf="days.messages[j+1] && messages.userID === currentUser.userID">
-              {{messages.message}}
-        
-          </div>  
-           <div class="message other"
-          *ngIf="messages.userID !== currentUser.userID && days.messages[j+1] && days.messages[j+1].userID !== currentUser.userID">
-          <span class="name">{{messages.name | titlecase}}</span>
-          <span class="role">{{messages.roleName | titlecase}}</span>
-          <div class="mess">
+          <div class="message" *ngIf="days.messages[j+1] && messages.userID === currentUser.userID">
             {{messages.message}}
           </div>
-        </div>
-          <div class="message last"  *ngIf="messages.userID === currentUser.userID && !days.messages[j+1]">
+          <div class="message other"
+            *ngIf="messages.userID !== currentUser.userID && days.messages[j+1] && days.messages[j+1].userID !== currentUser.userID">
+            <span class="name">{{messages.name | titlecase}}</span>
+            <span class="role">{{messages.roleName | titlecase}}</span>
+            <div class="mess">
               {{messages.message}}
+            </div>
+          </div>
+          <div class="message last" *ngIf="messages.userID === currentUser.userID && !days.messages[j+1]">
+            {{messages.message}}
           </div>
           <div *ngIf="messages.userID !== currentUser.userID && isLast(i,j)" class='last-message-other'>
             <ion-avatar>
               <img src="{{messages.avatar}}" alt="" />
             </ion-avatar>
-        
+
             <div class="message last">
- 
+
               <span class="name">{{messages.name | titlecase}}</span>
               <span class="role">{{messages.roleName | titlecase}}</span>
               <div class="mess">
                 {{messages.message}}
               </div>
+            </div>
+
           </div>
-      
-        </div>
           <span>
             <ion-icon name="checkmark-outline"
               *ngIf="messages.userID === currentUser.userID && messages.messageState === true"></ion-icon>
@@ -186,7 +189,7 @@
 
 
   </div>
- <!-- </cdk-virtual-scroll-viewport> -->
+  <!-- </cdk-virtual-scroll-viewport> -->
 </ion-content>
 <!-- <div class="header ion-no-border">
   <div class="info">
@@ -275,9 +278,9 @@
     <ion-label class="item-input-wrapper">
 
       <textarea autosize maxRows="3" type="text" formControlName="message" name="message"
-        placeholder="Enviar mensaje..." id="chat-input"></textarea>
+        placeholder="Enviar mensaje..." id="chat-input" #txtQuery (keyup)="onQueryChange(txtQuery.value)"></textarea>
 
-      <button type="submit" class="btnSend" [disabled]="chatForm.get('message').invalid">
+      <button type="submit" id="btnSend" [disabled]="chatForm.get('message').invalid">
         <ion-icon id="btnIcon" name="send-sharp"></ion-icon>
       </button>
     </ion-label>

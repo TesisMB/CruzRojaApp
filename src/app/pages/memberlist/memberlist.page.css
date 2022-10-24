@@ -1,0 +1,15 @@
+ion-list{
+  --ion-list-color:#ffffff  !important;
+  color: rgb(255, 253, 253);
+}
+
+/* IDs */
+
+#search{
+  width: 94%;
+  --border-radius: 25px;
+}
+
+#lista{
+  font-size: 12px;
+}

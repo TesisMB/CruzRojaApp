@@ -7,6 +7,7 @@ import { ChatPage } from './chat.page';
 import { PrivatechatPage } from './privatechat/privatechat.page';
 import { VolunteersPage } from '../volunteers/volunteers.page';
 import { VoluntariosDetallesPage } from '../volunteers/subpages/voluntarios-detalles/volunteersdetails';
+import { InfoPage } from './info/info.page';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
       path: 'members/:id',
       component: VolunteersPage,
     },
+      {
+        path: 'info/:id',
+        component: InfoPage
+      },
       {
         path: 'members/details/:id',
         component: VoluntariosDetallesPage

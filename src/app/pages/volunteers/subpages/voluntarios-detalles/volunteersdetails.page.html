@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border">
+<!-- <ion-header class="ion-no-border">
   <div>
     <ion-toolbar color="primary">
       <ion-buttons slot="start">
@@ -15,56 +15,64 @@
       </ion-avatar>
     </ion-toolbar>
   </div>
-</ion-header>
+</ion-header> -->
 
 <ion-content *ngIf="(volunteer | async) as user; else loading">
+
+
+  <div class="container">
+    <div class="container-icon">
+      <ion-buttons slot="start">
+        <ion-back-button type="button" defaultHref="info"></ion-back-button>
+      </ion-buttons>
+      <!-- <img src="../../../assets/icon/truck-medical-solid.svg" alt=""> -->
+      <img src="../../../assets/icon/cruzar.png" alt="">
+    </div>
+    <div class="overlay">
+      <ion-avatar>
+        <img src="{{user.avatar}}">
+      </ion-avatar>
+    </div>
+  </div>
+
   <ion-grid fixed="true">
     <ion-row>
       <ion-col class="head" size="12">
-        <div class="container">
-          <div class="volunteerAvatar">
-            <ion-avatar >
-              <img src="{{user.avatar }}" />
-            </ion-avatar>
-          </div>
-          <div class="volunteerInfo">
-            <ion-label id="volunteerName"
-              >{{user.persons.firstName }} {{user.persons.lastName}}</ion-label
-            >
-            <ion-label>{{user.roleName}}</ion-label>
-          </div>
+
+        <div class="volunteerInfo">
+          <ion-label class="volunteerName">{{user.persons.lastName}}, {{user.persons.firstName }}</ion-label>
+          <ion-label class="volunteerName roleName">{{user.roleName}}</ion-label>
         </div>
       </ion-col>
-      <ion-col size="12" size-sm
-        ><ion-title size="small">Datos de contacto</ion-title>
+      <ion-col size="12" size-sm>
+        <ion-title size="small">Datos de contacto</ion-title>
       </ion-col>
 
-      <ion-col size="12" size-sm
-        ><ion-item>
+      <ion-col size="12" size-sm>
+        <ion-item>
           <ion-icon name="call" slot="start"></ion-icon>
           <ion-label position="stacked">Telefono</ion-label>
-          <span  class="info pt-2">{{user.persons.phone}}</span>
+          <span class="info pt-2">{{user.persons.phone}}</span>
         </ion-item>
-        </ion-col
-      >
-      <ion-col size="12" size-sm
-        ><ion-item>
+      </ion-col>
+      <ion-col size="12" size-sm>
+        <ion-item>
           <ion-icon name="mail" slot="start"></ion-icon>
           <ion-label position="stacked">Correo electronico</ion-label>
           <span class="info pt-2">{{user.persons.email}}</span>
-        </ion-item></ion-col
-      >
-      <ion-col size="12" size-sm
-        ><ion-item>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-sm>
+        <ion-item>
           <ion-icon name="location" slot="start"></ion-icon>
           <ion-label position="stacked">Sucursal de Cruz Roja</ion-label>
           <span class="info pt-2">
             {{user.estates.estateTypes}} {{user.estates.address}}
           </span>
-        </ion-item></ion-col
-      >
-      <ion-col size="12" size-sm
-        ><ion-item>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-sm>
+        <ion-item>
           <ion-icon name="person" slot="start"></ion-icon>
           <ion-label position="stacked">Pronombre</ion-label>
           <span *ngIf="user.persons.gender === 'M'" class="info pt-2">El</span>

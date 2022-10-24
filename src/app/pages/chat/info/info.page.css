@@ -1,0 +1,78 @@
+img {
+    border: 1px solid #000;
+    border-radius: 50%;
+    max-width: 85px;
+    margin-top: 1rem;
+}
+
+.marquee-container {
+    height: 30px;
+    overflow: hidden;
+    line-height: 30px;
+}
+
+.marquee {
+    top: 0;
+    left: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee2 {
+    animation-delay: 15s;
+}
+
+b {
+    padding-left: 10px;
+}
+
+@keyframes marquee {
+    0% {
+        left: 100%;
+    }
+
+    100% {
+        left: -100%
+    }
+}
+
+
+
+/* Components de Ionic */
+
+ion-list {
+    --ion-list-color: #ffffff !important;
+    color: rgb(255, 253, 253);
+}
+
+/* IDs */
+
+#search {
+    width: 94%;
+    --border-radius: 25px;
+}
+
+#lista {
+    font-size: 12px;
+}
+
+#volunteerAvatar {
+    width: 100vw;
+}
+
+#volunteerName {
+    margin-left: 1rem;
+    color: #000;
+}
+
+ion-button {
+    --box-shadow: none !important;
+}
+
+.button {
+    display: flex;
+    justify-content: space-between;
+}
