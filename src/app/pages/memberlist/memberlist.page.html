@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button type="button" defaultHref='alerta/{{id}}'></ion-back-button>
     </ion-buttons>
-    <ion-title>Voluntarios</ion-title>
+    <ion-title>Solicitudes</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -46,18 +46,31 @@
     </ion-list>
   </div>
 
+  <ng-container *ngIf="!(volunteers | async) && !isLoading">
+    <div class="d-flex flex-column align-items-center align-content-center m-5">
+      <!-- <img src="../../../assets/icons - Chat/no-chat.png" style="height: 300px;" alt=""> -->
+      <img src="https://img.freepik.com/premium-vector/contact-is-empty-flat-illustration_418302-56.jpg?w=740"
+        style="height: 300px;" alt="">
+      <p class="text-center mt-3">¡Acepte a una alerta!</p>
+    </div>
+  </ng-container>
 
 
-
-</ion-content>
-
-<ng-template #loading>
-  <ion-list>
+  <ion-list *ngIf="isLoading">
     <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1]">
-      <h3>
-        <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-      </h3>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        </p>
+      </ion-label>
     </ion-item>
   </ion-list>
-  <!-- <p>No hay voluntarios</p> -->
-</ng-template>
+  <!-- </cdk-virtual-scroll-viewport> -->
+</ion-content>
+<!-- <app-menu showTabs></app-menu> -->

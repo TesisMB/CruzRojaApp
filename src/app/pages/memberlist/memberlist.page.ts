@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { UserChatRooms } from 'src/app/models';
 import { ChatRooms } from 'src/app/models/ChatRooms';
 import { ChatService } from 'src/app/services/chat/chat.service';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 interface VolunteerList {
   firstName: string;
@@ -21,7 +22,7 @@ interface VolunteerList {
 export class MemberlistPage implements OnInit {
 
   @ViewChild('lista') lista: IonList;
-
+  isLoading = true;
   id = null;
   textoBuscar = '';
   searchTerm: string;
@@ -32,7 +33,9 @@ export class MemberlistPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: ChatService
+    private service: ChatService,
+    private ionLoader: LoaderService,
+
     ) {
     this.route.paramMap.subscribe( params => {
       this.id = params.get('id');
@@ -70,8 +73,14 @@ export class MemberlistPage implements OnInit {
     this.service.getVolunteers(this.id, false).subscribe( x => {
       this.memberlist = x;
       console.log('Voluntarios' + this.memberlist);
+      this.ionLoader.hideLoader();
+      this.isLoading = false;
       this.service.uploadUser(this.memberlist.usersChatRooms);
       // this.service.setUserChatRooms(this.memberlist.usersChatRooms);
+    }, err =>{
+      console.log('Error');
+      this.ionLoader.hideLoader();
+      this.isLoading = false;
     });
   }
 
