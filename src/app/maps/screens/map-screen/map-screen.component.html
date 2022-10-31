@@ -23,7 +23,7 @@
       </ion-fab-button>
     </ion-fab>
 
-    <ion-fab *ngIf="currentUser.roleName != 'Voluntario'" class="boton3" vertical="bottom" horizontal="end"
+    <ion-fab *ngIf="currentUser.roleName !== 'Voluntario'" class="boton3" vertical="bottom" horizontal="end"
       slot="fixed">
       <ion-fab-button size="small" (click)="navigateMemberList()" color="light">
         <ion-icon name="people-outline"></ion-icon>
