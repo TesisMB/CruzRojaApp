@@ -33,7 +33,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
   mapsOn = false;
   handleDeployment: Subscription;
   isAccepted = false;
-  currentUser: any;
+  currentUser = JSON.parse(localStorage.getItem('currentUser'));
   isLoading = true;
   id = null;
   error: any = '';
@@ -64,7 +64,6 @@ export class MapScreenComponent implements OnInit, OnDestroy {
     await this.printCurrentPosition();
     await  this.getAlertByID(this.id);
       // Platform now ready, execute any required native code
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
         ionViewDidEnter(){
@@ -212,9 +211,9 @@ export class MapScreenComponent implements OnInit, OnDestroy {
   } */
 
   ngOnDestroy(){
-    this.handleAlert.unsubscribe();
-    this.newMap.destroy();
-    console.log('ngOnDestroy');
+     this.handleAlert.unsubscribe();
+     this.newMap.destroy();
+    // console.log('ngOnDestroy');
   }
 }
 
