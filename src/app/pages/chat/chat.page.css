@@ -32,6 +32,11 @@ ion-content {
   width: 100%;
 }
 
+ion-list {
+  overflow-y: scroll;
+  height: 100%;
+}
+
 /* ion-badge{
   font-size: 11px;
   margin-bottom: 5px;
@@ -44,6 +49,7 @@ ion-content {
 cdk-virtual-scroll-viewport {
   min-height: 100%;
   width: 100%;
+  overflow: scroll;
 }
 
 
