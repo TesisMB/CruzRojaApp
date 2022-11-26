@@ -65,13 +65,19 @@ deviceToken = null;
     async (notification: ActionPerformed) => {
       const data = notification.notification.data;
       console.log('Push action performed: ' + JSON.stringify(notification.notification));
-      if(data.alertId){
-        console.log('Data de alerta => ', data.alertId);
-        this.router.navigateByUrl(`/tabs/alertas/alerta/${data.alertId}`);
-      }
+      this.notificationData(data);
     }
   );
   }
 
+  private notificationData(data){
+    if(data.alertId){
+      console.log('Data de alerta => ', data.alertId);
+      this.router.navigateByUrl(`/tabs/alertas/alerta/${data.alertId}`);
+    }else{
+      console.log('Data de Chat => ', data.chatId);
+      this.router.navigateByUrl(`/tabs/chat/groupChat/${data.chatId}`);
+    }
+  }
 
 }
