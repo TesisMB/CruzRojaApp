@@ -74,9 +74,16 @@ deviceToken = null;
     if(data.alertId){
       console.log('Data de alerta => ', data.alertId);
       this.router.navigateByUrl(`/tabs/alertas/alerta/${data.alertId}`);
-    }else{
+    }else if(data.chatId){
       console.log('Data de Chat => ', data.chatId);
-      this.router.navigateByUrl(`/tabs/chat/groupChat/${data.chatId}`);
+      this.router.navigateByUrl(`/groupChat/${data.chatId}`);
+    }else if(data.chatRoomId){
+      console.log('Data de Solicitud => ', data.chatRoomId);
+      this.router.navigateByUrl(`/tabs/chat`);
+    }
+    else{
+      console.log('Data de Nueva solicitud => ', data.JoinGroup);
+      this.router.navigateByUrl(`/memberlist/${data.JoinGroup}`);
     }
   }
 

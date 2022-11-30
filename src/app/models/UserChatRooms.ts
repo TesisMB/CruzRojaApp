@@ -6,4 +6,5 @@ export interface UserChatRooms {
   avatar: string;
   // eslint-disable-next-line @typescript-eslint/naming-convention
   fk_ChatRoomId: number;
+  status: boolean;
 }

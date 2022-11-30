@@ -3,7 +3,7 @@ import { hostname } from 'os';
 
 const config: CapacitorConfig = {
   appId: 'com.sigreyd.app',
-  appName: 'SIGREYD',
+  appName: 'SICREYD',
   bundledWebRuntime: false,
   webDir: 'www',
   plugins: {

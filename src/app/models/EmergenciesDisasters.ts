@@ -23,4 +23,5 @@ export interface EmergenciesDisasters {
   modifiedByEmployee: string;
   victims?: Victims;
   volunteer?: Volunteer;
+  quantity: number;
 }

@@ -43,7 +43,8 @@ export class MemberlistPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.ionLoader.showLoader();
     this.volunteer();
   }
 
@@ -72,9 +73,9 @@ export class MemberlistPage implements OnInit {
   volunteer(){
     this.service.getVolunteers(this.id, false).subscribe( x => {
       this.memberlist = x;
-      console.log('Voluntarios' + this.memberlist);
       this.ionLoader.hideLoader();
       this.isLoading = false;
+      console.log('Voluntarios' + this.memberlist);
       this.service.uploadUser(this.memberlist.usersChatRooms);
       // this.service.setUserChatRooms(this.memberlist.usersChatRooms);
     }, err =>{

@@ -15,6 +15,37 @@
 
     <ion-card>
 
+      <ion-avatar class="imagen-class row">
+        <div class="custom-file fileInputProfileWrap col-12">
+          <input type="file" (change)="selectFiles($event)" class="fileInputProfile">
+          <div class="img-space">
+
+            <ng-container *ngIf="previews else elseTemplate">
+              <img [src]="previews" class="img-responsive">
+            </ng-container>
+            <ng-template #elseTemplate>
+              <img src="https://i.imgur.com/S9HJEwF.png" class="img-responsive">
+            </ng-template>
+          </div>
+        </div>
+
+        <div *ngFor="let progressInfo of progressInfos" class="col-12 mt-2">
+          <span *ngIf="message.length">{{ message }} </span>
+          <mat-toolbar class="progress-bar">
+            <mat-progress-bar color="accent" [value]="progressInfo.value"></mat-progress-bar>
+            <span class="progress">{{ progressInfo.value }}%</span>
+          </mat-toolbar>
+        </div>
+
+      </ion-avatar>
+
+
+      <!-- <div class="overlay">
+        <ion-avatar>
+          <img src="{{this.currentUser.avatar}}">
+        </ion-avatar>
+      </div> -->
+
       <!--Header del card-->
 
       <!-- <ion-card-header>

@@ -39,6 +39,12 @@ get userChatRoomsObservable$(){
 }
 
 
+WithoutFalse(userChatRooms: UserChatRooms[]){
+userChatRooms = userChatRooms.filter(x => x.status === false);
+return userChatRooms;
+}
+
+
 searchUser(id){
   const index =  this.userChatRooms.findIndex(x => x.userID == id);
 

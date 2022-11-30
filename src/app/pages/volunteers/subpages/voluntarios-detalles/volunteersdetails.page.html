@@ -117,7 +117,7 @@
       </ion-card> -->
 </ion-content>
 
-<ng-template #loading>
+<!-- <ng-template #loading>
   <ion-list>
     <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1]">
       <h3>
@@ -125,5 +125,22 @@
       </h3>
     </ion-item>
   </ion-list>
-  <!-- <p>No hay voluntarios</p> -->
+</ng-template> -->
+
+<ng-template #loading>
+
+  <ion-list>
+    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1,1,1,1]">
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        </p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+<!-- </cdk-virtual-scroll-viewport> -->
+<!-- <app-menu showTabs></app-menu> -->
 </ng-template>

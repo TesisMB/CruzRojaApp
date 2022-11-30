@@ -1,5 +1,5 @@
 import { CurrentUser } from './../../models/CurrentUser';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { debounceTime, delay, map } from 'rxjs/operators';
@@ -65,6 +65,24 @@ export class LoginService {
      this.router.navigateByUrl('/login');
      App.exitApp();
   }
+
+  getFiles(): Observable<any> {
+    return this.http.get(`${environment.apiURL}/files`);
+ }
+
+
+  upload(file: File ){
+    const ImageFile: FormData = new FormData();
+    ImageFile.append('file', file);
+  //  this._imgFile$.next(file);
+   // resource.imageFile = ImageFile;
+    const req = new HttpRequest('POST', `${environment.apiURL}/upload`, ImageFile, {
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req);
+  }
+
 
   sendEmail(email: string) {
     return this.http.post<string>(environment.apiURL + '/forgot-password/', email);
