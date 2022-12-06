@@ -221,14 +221,14 @@
   botón para volver al final del chat -->
 <!-- <button id="fab-button" (click)="scrollToBottom()">
       <ion-icon id="scrollBackIcon" name="chevron-down-outline"></ion-icon>
-    </button> 
+    </button>
     <ion-grid>
       <ion-row>
         <ion-col size="12" *ngFor="let days of chat.dateMessage">
           <ion-grid>
             <ion-row>
     <p class="divisor">{{days.createdDate}}</p>
-    <ion-col [offset]="(item.fK_UserID === currentUser.userID) ? '3' : '0'" size="9" 
+    <ion-col [offset]="(item.fK_UserID === currentUser.userID) ? '3' : '0'" size="9"
     *ngFor="let item of days.messages" class= "message"
      [ngClass]="(item.fK_UserID === currentUser.userID) ? 'my-message' : 'other-message'">
         <span id="userName">{{item.name}}</span>
@@ -249,7 +249,7 @@
 
 <ion-content *ngIf="isLoading">
   <ion-list>
-    <ion-item *ngFor="let item of [1,1,1,1,1,1,1,1]">
+    <ion-item *ngFor="let item of [1,1,1,1,1,1,1]">
       <ion-thumbnail slot="start">
         <ion-skeleton-text></ion-skeleton-text>
       </ion-thumbnail>

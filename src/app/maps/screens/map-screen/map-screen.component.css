@@ -28,3 +28,10 @@ capacitor-google-maps {
     /* top: 1px; */
     margin-bottom: 170px;
   }
+
+
+  ion-badge{
+    position: relative;
+    bottom: 3.5rem;
+    left: 2.2rem;
+  }

@@ -44,7 +44,7 @@
     </ion-list>
 
     <ion-list *ngIf="isLoading">
-      <ion-item *ngFor="let item of [1,1,1,1,1]">
+      <ion-item *ngFor="let item of [1,1,1,1,1,1,1]">
         <ion-thumbnail slot="start">
           <ion-skeleton-text></ion-skeleton-text>
         </ion-thumbnail>
@@ -108,13 +108,13 @@
 [ngStyle]="{
   backgroundColor: getColor(alert.alerts.alertDegree)
 }"
- > 
+ >
   <div >
   <img id="emergencyIcon"
   src="../../../assets/icons - Resources - EmergDesas/{{alert.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg" (click)="deploymentButton(i)"/>
   <div class="card-content">
     <h3 class="subtitle">ID: {{alert.emergencyDisasterID}}</h3>
   </div>
- 
+
   </div>
 </ion-col> -->

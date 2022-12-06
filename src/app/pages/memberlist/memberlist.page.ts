@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IonList } from '@ionic/angular';
 import { Observable } from 'rxjs';
@@ -19,7 +19,7 @@ interface VolunteerList {
   styleUrls: ['./memberlist.page.css'],
 })
 
-export class MemberlistPage implements OnInit {
+export class MemberlistPage implements OnInit, OnDestroy {
 
   @ViewChild('lista') lista: IonList;
   isLoading = true;
@@ -29,6 +29,7 @@ export class MemberlistPage implements OnInit {
   public searchedItem: any;
   memberlist: ChatRooms;
   volunteers: Observable<UserChatRooms[]>;
+  quantity: Observable<number>;
   user: UserChatRooms[];
 
   constructor(
@@ -50,9 +51,11 @@ export class MemberlistPage implements OnInit {
 
 
   ionViewWillEnter() {
-    this.volunteers = this.service.usersChatRooms$;
+     this.volunteers = this.service.usersChatRooms$;
+     this.quantity = this.service.quantity$;
     // this.user = this.service.usersChatRooms$.value;
     console.log("voluntarios", this.volunteers);
+    console.log("Cantidad en solicitud!!!", this.quantity);
   }
  
 
@@ -61,8 +64,9 @@ export class MemberlistPage implements OnInit {
     postVolunteerConfirmation(userId, chatroomid, status).
     subscribe(
       res =>{
-        console.log('Se ha podido enviar los datos');
         this.service.searchUser(userId);
+        this.service.setQuantity(res);
+        console.log('Se ha podido enviar los datos');
       },
       error =>{
         console.log('No se han podido enviar los datos');
@@ -76,7 +80,6 @@ export class MemberlistPage implements OnInit {
       this.ionLoader.hideLoader();
       this.isLoading = false;
       console.log('Voluntarios' + this.memberlist);
-      this.service.uploadUser(this.memberlist.usersChatRooms);
       // this.service.setUserChatRooms(this.memberlist.usersChatRooms);
     }, err =>{
       console.log('Error');
@@ -101,4 +104,9 @@ export class MemberlistPage implements OnInit {
     console.log('Se ha rechazado la solicitud');
     this.lista.closeSlidingItems();
   } */
+
+  ngOnDestroy(): void {
+     this.service.uploadUser([]);
+    }
+
 }

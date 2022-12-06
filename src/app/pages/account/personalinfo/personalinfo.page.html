@@ -17,7 +17,7 @@
 
       <ion-avatar class="imagen-class row">
         <div class="custom-file fileInputProfileWrap col-12">
-          <input type="file" (change)="selectFiles($event)" class="fileInputProfile">
+          <!-- <input type="file" (change)="selectFiles($event)" class="fileInputProfile"> -->
           <div class="img-space">
 
             <ng-container *ngIf="previews else elseTemplate">
@@ -28,15 +28,6 @@
             </ng-template>
           </div>
         </div>
-
-        <div *ngFor="let progressInfo of progressInfos" class="col-12 mt-2">
-          <span *ngIf="message.length">{{ message }} </span>
-          <mat-toolbar class="progress-bar">
-            <mat-progress-bar color="accent" [value]="progressInfo.value"></mat-progress-bar>
-            <span class="progress">{{ progressInfo.value }}%</span>
-          </mat-toolbar>
-        </div>
-
       </ion-avatar>
 
 
@@ -62,11 +53,21 @@
             <ion-label position="floating">Correo electrónico</ion-label>
             <ion-input formControlName="email" name="email" type="email" required></ion-input>
           </ion-item>
+          <div *ngFor="let error of errorMessages.email">
+            <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
 
           <ion-item>
             <ion-label position="floating">Teléfono</ion-label>
             <ion-input formControlName="phone" name="phone" type="phone" required></ion-input>
           </ion-item>
+          <div *ngFor="let error of errorMessages.phone">
+            <ng-container *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
         </div>
 
         <div formGroupName="persons">
@@ -75,6 +76,11 @@
             <ion-input formControlName="locationName" name="locationCityName" type="locationCityName" required>
             </ion-input>
           </ion-item>
+          <div *ngFor="let error of errorMessages.locationName">
+            <ng-container *ngIf="locationName.hasError(error.type) && (locationName.dirty || locationName.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
         </div>
 
         <div formGroupName="persons">
@@ -82,6 +88,11 @@
             <ion-label position="floating">Domicilio</ion-label>
             <ion-input formControlName="address" name="address" type="address" required></ion-input>
           </ion-item>
+          <div *ngFor="let error of errorMessages.address">
+            <ng-container *ngIf="address.hasError(error.type) && (address.dirty || address.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
         </div>
 
         <div formGroupName="persons">

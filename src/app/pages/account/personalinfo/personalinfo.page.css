@@ -12,7 +12,7 @@ ion-select{
 }
 
 ion-card-content{
-  margin-top: 3rem !important;
+  margin-top: 4.2rem !important;
 }
 
 ion-content{
@@ -57,6 +57,16 @@ ion-content{
 .mat-input-element {
   font-size: medium;
   font-weight: 200;
+}
+
+
+/* .error-message{
+  color: red;
+} */
+
+small{
+  width: 100%;
+  display: flex;
 }
 
 #fileInput {
@@ -125,16 +135,17 @@ ion-content{
   /* margin-right: 5rem; */
   position: relative;
   /* right: 29px; */
-
+  margin-left: 7rem;
   margin-top: 8rem;
 }
 
 .img-space img {
   display: block;
   width: 50%;
-  margin:  0 auto;
+  /* margin:  0 auto; */
   cursor: pointer;
   border-radius: 50%;
+  margin-top: .5rem;
 }
 
 .fileInputProfileWrap {

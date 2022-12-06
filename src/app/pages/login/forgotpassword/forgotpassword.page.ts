@@ -45,7 +45,7 @@ export class ForgotpasswordPage implements OnInit {
 
     this.handleForgotPassword = this.servicio.sendEmail(email).
     subscribe(data =>{
-      this.presentToast('Operación exitosa, revise su e-mail');
+      this.presentToast('Operación exitosa, revise su email');
       this.isLoading = false;
       console.log('enviando email', data);
       this.emailForm.reset();

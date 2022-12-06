@@ -35,8 +35,8 @@ get currentAlert(){return this.currentAlert$;}
    return this.currentAlertSubject.next(alert);
   }
 
-  getByIdWithoutFilter(id: number): Observable<any> {
-    return this.http.get<any>(environment.apiURL + this.patch + '/' + id);
+  getByIdWithoutFilter(id: number, status: boolean): Observable<any> {
+    return this.http.get<any>(environment.apiURL + this.patch + '/' + id + '/' + status);
   }
 
 }

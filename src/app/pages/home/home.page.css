@@ -23,8 +23,9 @@
     font-size: 13px;
   }
 
-  p{
-    padding: 5px;
+  .somos{
+    padding-left: 1.2rem !important;
+    padding-right: 1.7rem !important;
   }
 
   section{

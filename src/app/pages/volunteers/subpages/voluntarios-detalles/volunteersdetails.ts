@@ -24,7 +24,6 @@ export class VoluntariosDetallesPage implements OnInit, OnDestroy {
   ) { }
 
    async ngOnInit() {
-     await this.ionLoader.showLoader();
     this.idVolunteer = this.aRoute.snapshot.params.id;
     this.volunteer = this.service.getById(this.idVolunteer);
 
@@ -36,11 +35,8 @@ export class VoluntariosDetallesPage implements OnInit, OnDestroy {
       this.emergencies = data;
       console.log('ingreso volunteer detail');
       console.log(data);
-      this.ionLoader.hideLoader();
-
     },error =>{
       console.log(error);
-      this.ionLoader.hideLoader();
     });
   }
   ngOnDestroy(): void {

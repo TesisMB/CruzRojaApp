@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ChatRooms, UserChatRooms } from 'src/app/models';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ChatService extends DataService {
   chatRooms: any [] = [];
   userChatRooms: any [] = [];
   private chats$: BehaviorSubject<ChatRooms[]> = new BehaviorSubject<ChatRooms[]>([]);
+  public quantity$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   public usersChatRooms$: BehaviorSubject<UserChatRooms[]> = new BehaviorSubject<UserChatRooms[]>([]);
 
@@ -32,6 +34,15 @@ get userChatRoomsObservable$(){
   return this.usersChatRooms$.asObservable();
 }
 
+get quantityObservable$(){
+  return this.quantity$.asObservable();
+}
+
+setQuantity(quantity: number){
+  // quantity = quantity - 1;
+  console.log("CANTIDAD!! ", quantity);
+ this.quantity$.next(quantity);
+}
 
  setUserChatRooms(userChatRooms: UserChatRooms[]){
    console.log("Servicio!! ", userChatRooms);
@@ -98,7 +109,12 @@ getVolunteers(id, s?){
   };
   params.status = s;
   this.options.params  = new HttpParams({fromObject: params});
-  return this.http.get<any>(environment.apiURL + this.patch + '/' + id,this.options);
+  return this.http.get<any>(environment.apiURL + this.patch + '/' + id,this.options).pipe(map(x => {
+    this.userChatRooms = x.usersChatRooms;
+    this.usersChatRooms$.next(x.usersChatRooms);
+
+    return x;
+  }));
   // return this.http.get<any>(environment.apiURL + this.patch + '/' + id, + '?status=' + s);
 }
 

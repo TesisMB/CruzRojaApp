@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoaderService } from 'src/app/services/loader/loader.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DeploymentPage } from './../../../pages/deployment/deployment.page';
 
@@ -38,6 +38,8 @@ export class MapScreenComponent implements OnInit, OnDestroy {
   id = null;
   error: any = '';
   handleAlert: Subscription;
+  quantity: Observable<number>;
+
   constructor(
     private platform: Platform,
     private alertService: AlertService,
@@ -77,7 +79,7 @@ export class MapScreenComponent implements OnInit, OnDestroy {
 
         getAlertByID(id){
            this.ionLoader.showLoader();
-          this.handleAlert = this.alertService.getByIdWithoutFilter(id)
+          this.handleAlert = this.alertService.getByIdWithoutFilter(id, false)
           .pipe(map((x: EmergenciesDisasters) => {
             // x.isSubscribe = true;
             x.isSubscribe = x.chatRooms.usersChatRooms.some(user => user.userID === this.currentUser.userID);
@@ -87,6 +89,8 @@ export class MapScreenComponent implements OnInit, OnDestroy {
       .subscribe(
         (data) => {
           this.emergencies = data;
+          this.chatService.setQuantity(data.quantity);
+          this.quantity = this.chatService.quantity$;
           this.createMap();
         console.log('Alerta by ID => ', data);
         this.isLoading = false;

@@ -86,7 +86,7 @@ export class MapViewComponent implements OnInit, OnDestroy  {
 
         getAlertByID(id){
            this.ionLoader.showLoader();
-          this.handleAlert = this.alertService.getByIdWithoutFilter(id)
+          this.handleAlert = this.alertService.getByIdWithoutFilter(id, false)
           .pipe(map((x: EmergenciesDisasters) => {
             x.isSubscribe = true;
             // x.isSubscribe = x.usersChatRooms.some(user => user.userID === this.currentUser.userID);

@@ -28,6 +28,8 @@
       <ion-fab-button size="small" (click)="navigateMemberList()" color="light">
         <ion-icon name="people-outline"></ion-icon>
       </ion-fab-button>
+
+      <ion-badge *ngIf="(quantity | async) as quantity">{{quantity}}</ion-badge>
     </ion-fab>
 
 

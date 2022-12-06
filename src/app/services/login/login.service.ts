@@ -1,3 +1,4 @@
+import { Photo } from '@capacitor/camera';
 import { CurrentUser } from './../../models/CurrentUser';
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -8,6 +9,13 @@ import { Router } from '@angular/router';
 import { FcmService } from 'src/app/fcm.service';
 import { Operation } from 'fast-json-patch';
 import { App } from '@capacitor/app';
+
+interface LocalFile {
+  name: string;
+  path: string;
+  data: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -71,12 +79,13 @@ export class LoginService {
  }
 
 
-  upload(file: File ){
-    const ImageFile: FormData = new FormData();
-    ImageFile.append('file', file);
+  upload(file: Photo ){
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    // const ImageFile: FormData = new FormData();
+    // ImageFile.append('file', file);
   //  this._imgFile$.next(file);
    // resource.imageFile = ImageFile;
-    const req = new HttpRequest('POST', `${environment.apiURL}/upload`, ImageFile, {
+    const req = new HttpRequest('POST', `${environment.apiURL}/upload`, file, {
       reportProgress: true,
       responseType: 'text'
     });
@@ -103,7 +112,9 @@ export class LoginService {
 
   updateUser(user: CurrentUser,  operations: Operation[]){
     const path = environment.apiURL + '/employees/'+user.userID;
-    return this.http.patch(path, operations).pipe(
+    return this.http
+    .patch(path, operations)
+    .pipe(
       map((data: any) => {
         if(data){
           if(!data.token){
