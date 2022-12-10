@@ -4,5 +4,5 @@ export interface User {
   persons: Person;
   userDni: string;
   userID: number;
-  volunteerAvatar: string;
+  avatar: string;
 }

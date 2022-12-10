@@ -81,9 +81,12 @@ deviceToken = null;
       console.log('Data de Solicitud => ', data.chatRoomId);
       this.router.navigateByUrl(`/tabs/chat`);
     }
-    else{
+    else if(data.JoinGroup){
       console.log('Data de Nueva solicitud => ', data.JoinGroup);
       this.router.navigateByUrl(`/memberlist/${data.JoinGroup}`);
+    }else{
+      console.log('Data de finalizacion de alerta => ', data.EndAlert);
+      this.router.navigateByUrl(`/tabs/alertas`);
     }
   }
 

@@ -53,15 +53,27 @@ cdk-virtual-scroll-viewport {
 }
 
 
-img {
+/* img {
   width: 50px !important;
   max-width: none !important;
-  /* border: 1px solid; */
   border: 1px solid rgba(42, 42, 42, 0.364);
   height: 50px;
   position: relative;
   border: -1px;
-  /* margin-bottom: 26px; */
   bottom: 5px;
   right: 1px
+} */
+
+img{
+  margin: 0 auto;
+  margin-top: 11rem;
+  display: flex;
+}
+
+
+.texto{
+    text-align: center;
+      font-size: 20px;
+      font-weight: 500;
+      margin-top: 1rem !important;
 }

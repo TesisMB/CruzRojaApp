@@ -2,7 +2,7 @@ export interface Estates {
   estatePhone: number;
   locationAddress: LocationAddress;
   locationCityName: string;
-
+  estateTypes: string;
   estatesTimes: [{
     times: Times;
   }];

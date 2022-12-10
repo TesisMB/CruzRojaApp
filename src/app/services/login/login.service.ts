@@ -78,6 +78,14 @@ export class LoginService {
     return this.http.get(`${environment.apiURL}/files`);
  }
 
+ getUser(id: number) {
+  const path = '/Employees/Select/' + id;
+  return this.http.get<any>(
+    environment.apiURL + path,
+    this.options
+    );
+}
+
 
   upload(file: Photo ){
     // eslint-disable-next-line @typescript-eslint/naming-convention

@@ -22,6 +22,7 @@ interface VolunteerList {
 export class MemberlistPage implements OnInit, OnDestroy {
 
   @ViewChild('lista') lista: IonList;
+  datos: any;
   isLoading = true;
   id = null;
   textoBuscar = '';
@@ -54,10 +55,10 @@ export class MemberlistPage implements OnInit, OnDestroy {
      this.volunteers = this.service.usersChatRooms$;
      this.quantity = this.service.quantity$;
     // this.user = this.service.usersChatRooms$.value;
-    console.log("voluntarios", this.volunteers);
-    console.log("Cantidad en solicitud!!!", this.quantity);
+    console.log('voluntarios', this.volunteers);
+    console.log('Cantidad en solicitud!!!', this.quantity);
   }
- 
+
 
   solicitudeConfirmation(userId, chatroomid, status){
     this.service.
@@ -79,7 +80,8 @@ export class MemberlistPage implements OnInit, OnDestroy {
       this.memberlist = x;
       this.ionLoader.hideLoader();
       this.isLoading = false;
-      console.log('Voluntarios' + this.memberlist);
+      console.log('Voluntarios', this.memberlist.usersChatRooms.length);
+      this.datos = this.memberlist.usersChatRooms.length;
       // this.service.setUserChatRooms(this.memberlist.usersChatRooms);
     }, err =>{
       console.log('Error');

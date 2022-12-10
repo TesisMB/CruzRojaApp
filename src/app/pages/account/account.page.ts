@@ -39,7 +39,7 @@ export class AccountPage implements OnInit, OnDestroy {
   images: LocalFile[] = [];
   service: ProfileService;
   option: string;
-
+  user: CurrentUser;
   constructor(
     private formBuilder: FormBuilder,
 		private plt: Platform,
@@ -70,9 +70,8 @@ export class AccountPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.fg = this.initForm();
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log('LocalStorage', this.currentUser);
-    this.fg.patchValue(this.currentUser);
-    this.model = _.cloneDeep(this.currentUser);
+    this.getUser();
+    //console.log('LocalStorage', this.currentUser);
   }
 
   getProfile(){
@@ -118,6 +117,22 @@ export class AccountPage implements OnInit, OnDestroy {
     this.router.navigateByUrl(`/tabs/alertas/alerta/${data.alertId}`);
 
   }
+
+
+  getUser(){
+    this.loginService.getUser(this.currentUser.userID).subscribe(data => {
+      this.user = data;
+      this.currentUser = this.user;
+      // this.email.patchValue(this.user.persons.email);
+     this.fg.patchValue(this.user);
+      this.model = _.cloneDeep(this.fg.value);
+      // console.log('USUARIOS!!', this.user);
+    }, error =>{
+      console.log(error);
+    });
+  }
+
+
 
   /* Alerta */
 

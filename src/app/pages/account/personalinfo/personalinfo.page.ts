@@ -29,6 +29,7 @@ interface LocalFile {
 export class PersonalinfoPage implements OnInit, OnDestroy {
   currentUser: CurrentUser;
   users: User;
+  user: User;
   model: CurrentUser;
   originalUser: CurrentUser;
   handlerProfile: any;
@@ -57,9 +58,10 @@ export class PersonalinfoPage implements OnInit, OnDestroy {
     this.fg = this.initForm();
     this.getCurrentUser();
     console.log('LocalStorage', this.currentUser);
-
-    this.previews = this.currentUser.avatar;
+    this.getUser();
   }
+
+
 
   get email(){
     return this.registrationForm.get('persons.email');
@@ -158,6 +160,7 @@ export class PersonalinfoPage implements OnInit, OnDestroy {
 
   initForm(): FormGroup{
    this.registrationForm = this.formBuilder.group({
+     avatar: [],
       persons: this.formBuilder.group({
         email: ['',[Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
         phone: ['',[Validators.required,Validators.pattern('^((\\+54-?)|0)?[0-9]{10}$')]],
@@ -176,14 +179,27 @@ export class PersonalinfoPage implements OnInit, OnDestroy {
 
 
 
+  getUser(){
+    this.service.getUser(this.currentUser.userID).subscribe(data => {
+      this.user = data;
+      this.previews = this.user.avatar;
+      console.log('Email!!', this.user.persons.email);
+      // this.email.patchValue(this.user.persons.email);
+     this.fg.patchValue(this.user);
+      this.model = _.cloneDeep(this.fg.value);
+      // console.log('USUARIOS!!', this.user);
+    }, error =>{
+      console.log(error);
+    });
+  }
+
+
 
 
   getCurrentUser(){
     this.handleUser =  this.service.currentUserObs.subscribe(
       (user: CurrentUser) => {
         this.currentUser = user;
-        this.fg.patchValue(this.currentUser);
-        this.model = _.cloneDeep(this.fg.value);
       });
     }
 

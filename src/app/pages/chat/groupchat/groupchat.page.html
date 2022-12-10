@@ -39,40 +39,33 @@
   </ion-toolbar>
 </ion-header>
 
+<ng-container *ngIf="this.datos <= 0 &&!isLoading">
+  <div>
+    <img src="https://i.imgur.com/INCbzPN.png" class="img" />
+    <p class="mensajes">Todavia no hay mensajes</p>
+  </div>
 
-<ion-content *ngIf="!isLoading" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
-  <ion-fab class="boton2" id="fab-button" vertical="bottom" horizontal="end" slot="fixed">
-
-    <ion-fab-button size="small" (click)="scrollToBottom()" color="light">
-      <ion-icon name="chevron-down-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  <!-- <button (click)="scrollToBottom()">
-    <ion-icon id="scrollBackIcon" name="chevron-down-outline"></ion-icon>
-  </button>  -->
-  <!-- <cdk-virtual-scroll-viewport class="ion-content-scroll-host" itemSize="56" minBufferPx="900" maxBufferPx="1350"> -->
-
-  <!-- <div class="header ion-padding">
-      <div class="info">
-        <ion-buttons slot="start">
-          <ion-back-button type="button" defaultHref='tabs/chat'></ion-back-button>
-        </ion-buttons>
-         <ion-avatar>
-          <img src="https://i.pravatar.cc/243" alt="" />
-        </ion-avatar>
-        <span class="details">
-          <h1>Josue</h1>
-          <p>online</p>
-        </span>
-      </div>
-      <div class="calling">
-        <ion-icon name="call-outline"></ion-icon>
-      </div>
+  <!-- <div class="d-flex flex-column align-items-center align-content-center m-5">
+      <img src="../../../assets/icons - Chat/no-chat.png" style="height: 300px; border: none; width: 200px !important;"
+        alt="">
+      <p class="text-center mt-3">¡Acepte a una alerta!</p>
     </div> -->
+  </ng-container>
+
+
+  <ion-content *ngIf="!isLoading"
+   [scrollEvents]="true" (ionScroll)="handleScroll($event)">
+    <ion-fab class="boton2" id="fab-button" vertical="bottom" horizontal="end" slot="fixed">
+
+      <ion-fab-button size="small" (click)="scrollToBottom()" color="light">
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
 
 
-  <div class="conversation ion-padding">
+    <ng-container *ngIf="this.datos > 0">
+    <div class="conversation ion-padding">
     <div class="chat-section" id="chat">
       <div class="chat" *ngFor="let days of chat.dateMessage; index as i">
         <div class="date">
@@ -80,12 +73,12 @@
           <span *ngIf="days.createdDate === changeFormat">Hoy</span>
         </div>
         <div class="messages" [ngClass]="messages.userID === currentUser.userID ? 'mine': 'yours'"
-          *ngFor="let messages of days.messages; index as j">
-          <div class="message" *ngIf="days.messages[j+1] && messages.userID === currentUser.userID">
+        *ngFor="let messages of days.messages; index as j">
+        <div class="message" *ngIf="days.messages[j+1] && messages.userID === currentUser.userID">
             {{messages.message}}
           </div>
           <div class="message other"
-            *ngIf="messages.userID !== currentUser.userID && days.messages[j+1] && days.messages[j+1].userID !== currentUser.userID">
+          *ngIf="messages.userID !== currentUser.userID && days.messages[j+1] && days.messages[j+1].userID !== currentUser.userID">
             <span class="name">{{messages.name | titlecase}}</span>
             <span class="role">{{messages.roleName | titlecase}}</span>
             <div class="mess">
@@ -112,140 +105,19 @@
           </div>
           <span>
             <ion-icon name="checkmark-outline"
-              *ngIf="messages.userID === currentUser.userID && messages.messageState === true"></ion-icon>
+            *ngIf="messages.userID === currentUser.userID && messages.messageState === true"></ion-icon>
             <ion-icon name="checkmark-done-outline"
-              *ngIf="messages.userID === currentUser.userID && messages.messageState === false"></ion-icon>
+            *ngIf="messages.userID === currentUser.userID && messages.messageState === false"></ion-icon>
             {{messages.createdDate | date:'shortTime'}}
           </span>
         </div>
-        <!-- <div class="mine messages">
-            <div class="message">
-              Great Thanks.!
-            </div>
-            <div class="message last">
-              Hello Word!
-            </div>
-          </div>
-          <div class="yours messages">
-            <div class="message other">
-              Hey!
-            </div>
-            <div class="message other">
-              Klk!
-            </div>
-            <div class="last-message-other">
-              <ion-avatar>
-                <img src="https://i.pravatar.cc/545" alt="" />
-              </ion-avatar>
-              <div class="message last">
-                Hello, how`s going?
-              </div>
-            </div>
-            <span>1:22 PM</span>
-          </div>
-          <div class="mine messages">
-            <div class="message">
-              Great Thanks.!
-            </div>
-            <div class="message last">
-              Hello Word!
-            </div>
-            <span>
-              <ion-icon name="checkmark-done-outline"></ion-icon>
-              2:00 PM
-            </span>
-          </div>
-          <div class="yours messages">
-            <div class="message other">
-              Hey!
-            </div>
-            <div class="message other">
-              Klk!
-            </div>
-            <div class="last-message-other">
-              <ion-avatar>
-                <img src="https://i.pravatar.cc/545" alt="" />
-              </ion-avatar>
-              <div class="message last">
-                Hello, how`s going?
-              </div>
-            </div>
-            <span>1:22 PM</span>
-          </div>
-          <div class="mine messages">
-            <div class="message">
-              Great Thanks.!
-            </div>
-            <div class="message last">
-              Hello Word!
-            </div>
-            <span>
-              <ion-icon name="checkmark-done-outline"></ion-icon>
-              2:00 PM
-            </span>
-          </div> -->
       </div>
     </div>
-
-
   </div>
-  <!-- </cdk-virtual-scroll-viewport> -->
+</ng-container>
+
+
 </ion-content>
-<!-- <div class="header ion-no-border">
-  <div class="info">
-    <ion-buttons slot="start">
-      <ion-back-button type="button" defaultHref="chat"></ion-back-button>
-    </ion-buttons>
-    <ion-avatar id="emergencyIcon">
-      <img src="../../../assets/icons - Chat/{{chat.emergenciesDisasters.typesEmergenciesDisasters.typeEmergencyDisasterIcon}}.svg" alt="">
-    </ion-avatar>
-    <span class="details">
-        <h1>{{chat.emergenciesDisasters.typeEmergencyDisasterName}}</h1>
-    </span>
-  </div>
-</div> -->
-
-
-<!-- <ion-fab>
-  <ion-fab-button (click)="leaveGroup()">
-      <ion-avatar>
-        <ion-icon name="caret-back-circle-outline"></ion-icon>
-      </ion-avatar>
-  </ion-fab-button>
-</ion-fab> -->
-
-
-<!-- Mensajes -->
-
-<!-- <ion-content [scrollEvents]="true" *ngIf="!isLoading">
-  botón para volver al final del chat -->
-<!-- <button id="fab-button" (click)="scrollToBottom()">
-      <ion-icon id="scrollBackIcon" name="chevron-down-outline"></ion-icon>
-    </button>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="12" *ngFor="let days of chat.dateMessage">
-          <ion-grid>
-            <ion-row>
-    <p class="divisor">{{days.createdDate}}</p>
-    <ion-col [offset]="(item.fK_UserID === currentUser.userID) ? '3' : '0'" size="9"
-    *ngFor="let item of days.messages" class= "message"
-     [ngClass]="(item.fK_UserID === currentUser.userID) ? 'my-message' : 'other-message'">
-        <span id="userName">{{item.name}}</span>
-      <div>
-        <span id="message">{{item.message}}</span>
-      </div>
-      <div class="time">
-        <span>{{item.createdDate}}</span>
-      </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-</ion-content>-->
 
 <ion-content *ngIf="isLoading">
   <ion-list>
@@ -265,13 +137,6 @@
   </ion-list>
 </ion-content>
 
-<!-- Input -->
-<!-- <div class="message-input">
-  <ion-input placeholder="Type your message..."></ion-input>
-  <div class="send-button">
-    <ion-icon name="send-sharp"></ion-icon>
-  </div>
-</div> -->
 
 <ion-footer ion-padding>
   <form [formGroup]="chatForm" (ngSubmit)="postChat()" footer-input>

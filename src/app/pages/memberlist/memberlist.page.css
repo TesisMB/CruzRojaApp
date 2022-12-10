@@ -13,3 +13,14 @@ ion-list{
 #lista{
   font-size: 12px;
 }
+
+
+.texto{
+  text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.imagen{
+  margin-top: 4rem;
+}

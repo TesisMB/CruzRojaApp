@@ -11,10 +11,7 @@ import { GroupchatService } from 'src/app/services/groupchat/groupchat.service';
 import { ActionSheetController, IonContent, IonFab, IonFabButton, NavController, NavParams } from '@ionic/angular';
 import { finalize, map } from 'rxjs/operators';
 import { DatePipe, Location } from '@angular/common';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { Observable } from 'rxjs';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
+
 
 @Component({
   selector: 'app-groupchat',
@@ -28,9 +25,10 @@ export class GroupChatPage implements OnInit, OnDestroy, AfterViewInit {
   public items: any[] = [];
   // @ViewChild(Content) content2: Content
 
-  
+
   isLoading = true;
   chat: Chats;
+  datos: any;
   msj: Messages[] = [];
   chatForm: FormGroup;
   messageHandler: any;
@@ -57,11 +55,10 @@ export class GroupChatPage implements OnInit, OnDestroy, AfterViewInit {
     private route: Router,
     private aRoute: ActivatedRoute,
     private services: LoginService) {
-   
+
     {
       this.id = this.aRoute.snapshot.params.id;
       this.service.setChatRoomId(this.id);
-      
       this.service.createConnection();
       this.service.connectionStart();
     }
@@ -70,36 +67,28 @@ export class GroupChatPage implements OnInit, OnDestroy, AfterViewInit {
 
 
 async ngOnInit() {
-  
+
   await this.getForm();
   await this.getById();
   await this.service.registerGroup();
   await this.service.registerMessage();
   await this.receivedMessage();
   await this.getCurrentUser();
-  
   //Captar el CurrentUser mediante el LocalStorage
   //const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   //console.log('LocalStorage', currentUser.userID);
-  
   // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     // console.log('LocalStorage', this.currentUser.userID);
-    
-    
-    
+
     // this.currentGroupChatHandler = this.service.currentGroupChat$.subscribe(data => {
       //   console.log('currentGroupChat$: ', data);
       // });
-      
-      
+
       // console.log('Id ==> ', this.id);
-      
       /*     this.service.setChatRoomId(30);
       */
     }
-    
 
-    
     ionViewWillEnter(){
       setTimeout(() => {
         this.content.scrollToBottom(0);
@@ -107,10 +96,8 @@ async ngOnInit() {
       //  const chatSection = document.getElementById('chat');
       //  chatSection.scrollTop = chatSection.scrollHeight;
     }
-    
     ngAfterViewInit(){
       // this.logScrolling(this.chat.dateMessage[this.chat.dateMessage.length-1].messages.length - 1, 'auto');
-      
     }
     get changeFormat(){
     const ChangedFormat = this.pipe.transform(this.today, 'dd/MM/YYYY');
@@ -146,6 +133,8 @@ return true;
        }))
     .subscribe(data => {
       this.chat = data;
+      this.datos = this.chat.dateMessage.length;
+      // console.log('Datos vacioa!!! ', this.chat.dateMessage.length);
       this.isLoading = false;
       console.log(data);
     }, error => {
@@ -276,7 +265,6 @@ infoChat(id: number){
 
 
   onQueryChange(query: string = ''){
-    
     if(query !== ''){
       document.getElementById('btnSend').style.backgroundColor = 'rgb(216, 58, 53)';
     }else{
