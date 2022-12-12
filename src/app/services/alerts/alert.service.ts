@@ -17,7 +17,7 @@ export class AlertService extends DataService {
   private currentAlertSubject: BehaviorSubject<EmergenciesDisasters>;
 
   constructor(http: HttpClient) {
-    super(http, '/emergenciesdisasters/WithoutFilter/app');
+    super(http, '/emergenciesdisasters/WithoutFilter');
     this.alertsSubject = new BehaviorSubject<EmergenciesDisasters[]>(JSON.parse(localStorage.getItem('alertas')));
     this.currentAlertSubject = new BehaviorSubject<EmergenciesDisasters>(JSON.parse(localStorage.getItem('alerta')));
     this.currentAlert$ = this.currentAlertSubject.asObservable();
